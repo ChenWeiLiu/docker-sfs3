@@ -1,0 +1,7 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+chang_root - 指定新網管
+原版作者：tad(tad@www.tnc.edu.tw)
+程式版本：v1.0
+
+提供：指定新網管，解除使用者網管身份的功能
+

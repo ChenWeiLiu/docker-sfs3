@@ -1,0 +1,356 @@
+<!-- //$Id: PHP_tmp.html 5310 2009-01-10 07:57:56Z hami $ -->
+<style>
+.word{font-family: verdana,arial,helvetica,sans-serif;font-size: 120%;font-weight: bolder;color: #0000FF}
+.code{padding-left:  40px;text-indent: -40px;font-family: "courier new" ;font-size: 70%;border:1px}
+.php{font-family: "courier new" ;font-size: 80%;border:1px;background-color: #CCCCCC;font-family: Courier New;}
+.td1{}
+.td2{}
+
+
+</style>
+
+<TABLE  align='center'>
+<TR align='center'><TD style="font-size:13pt ">資料庫寫作生產力工具--MySQL+Smarty+ADODB</TD></TR>
+<TR align='center'><TD></TD></TR>
+</TABLE>
+<TABLE width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#E6ECF0' style='font-size:9pt'>
+<TR>
+<TD width="50%">
+請選擇一個資料庫{{$this->select_db()}}</TD>
+<TD width="50%">
+{{if $this->DB!=''}}
+請選擇一個資料表{{$this->select_tb()}}
+{{/if}}
+</TD>
+</TR>
+</TABLE>
+{{if $this->DB!=''&&  $this->TB!=''}}
+<TABLE width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#E5E5E5' style='font-size:10pt'>
+<TR align='center'><TD width=25%><B>欄位資訊</B></TD>
+<TD width=75%>
+<B></B>
+<B>[<A HREF="{{$smarty.server.PHP_SELF}}?DB={{$this->DB}}&TB={{$this->TB}}&act=word">語法參考</A>]</B>
+<B>[<A HREF="{{$smarty.server.PHP_SELF}}?DB={{$this->DB}}&TB={{$this->TB}}&act=php">範例程式{{$this->TB}}.php參考</A>]</B>
+<B>[<A HREF="{{$smarty.server.PHP_SELF}}?DB={{$this->DB}}&TB={{$this->TB}}&act=tpl">樣本檔{{$this->TB}}.htm參考</A>]</B><BR>
+<B>[<A HREF="{{$smarty.server.PHP_SELF}}?DB={{$this->DB}}&TB={{$this->TB}}&act=conf">非學務程式設定檔{{$this->TB}}_config.php參考</A>]</B>
+<a href='run_test.php?DB={{$this->DB}}&TB={{$this->TB}}'>測試結果</a>
+</TD></TR>
+<TR bgcolor='#FFFFFF'><TD width=25% align='center' valign='top'>
+
+<TABLE>
+<TR align='center' bgcolor='#E6ECF0'><TD>名稱</TD><TD>形態</TD></TR>
+{{foreach from=$this->field_info  item=arr}}
+<TR bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<TD><B>{{$arr.Field}}</B></TD><TD>{{$arr.Type}}</TD></TR>
+{{/foreach}}
+</TABLE>
+第一欄必須為索引欄位
+否則產生程式碼
+須修改後才能使用。
+</TD><TD width=75% valign='top'  bgcolor='#FFFFFF'>
+{{if  $smarty.get.act=='word'}}
+<TEXTAREA NAME="php" ROWS="150" COLS="100" class=php>
+選擇語法：
+{{$this->select()}}
+
+{{$this->select1()}}
+
+{{$this->select2()}}
+
+{{$this->select6()}}
+
+{{$this->select3()}}
+
+{{$this->select4()}}
+
+{{$this->select5()}}
+
+新增語法：
+{{$this->add()}}
+
+{{$this->add1()}}
+
+{{$this->add2()}}
+
+修改語法：
+{{$this->up()}}
+
+{{$this->up1()}}
+
+刪除語法：
+{{$this->del()}}
+
+{{$this->del1()}}
+
+{{$this->del2()}}
+
+Smarty用法參考:
+  php程式內(物件用法)：
+    $this->smarty->assign("this",$this);//(php程式內)
+  樣本檔內:(物件用法)：
+    {{ldelim}}foreach from=$this->all item=arr{{rdelim}}
+{{ foreach from=$this->field  item=arr }}
+      {{ldelim}}$arr.{{$arr}}{{rdelim}}
+{{/foreach}}
+    {{ldelim}}/foreach{{rdelim}}
+
+  php程式內(非物件用法)：
+    $this->smarty->assign("ALL",$ALL);//(php程式內)
+  樣本檔內:(非物件用法)：
+    {{ldelim}}foreach from=$ALL item=arr{{rdelim}}
+{{ foreach from=$this->field  item=arr }}
+      {{ldelim}}$arr.{{$arr}}{{rdelim}}
+{{/foreach}}
+    {{ldelim}}/foreach{{rdelim}}
+
+配合的表單：
+<FORM METHOD=POST ACTION='{{ldelim}}$smarty.server.PHP_SELF{{rdelim}}' Name='e1' enctype='multipart/form-data'>
+{{ foreach from=$this->field  item=arr }}
+<INPUT TYPE="text" NAME="{{$arr}}" value='' size=20>
+{{/foreach}}
+<INPUT TYPE='hidden' Name='form_act'  value=''>
+<INPUT TYPE='hidden' Name='page' Value='{{ldelim}}$smarty.get.page{{rdelim}}'>
+<INPUT TYPE='reset' Value='重設' class=bur2 >
+<INPUT TYPE='button' value='填好送出' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='請自行修改本處為add或update';this.form.submit()}">
+<INPUT TYPE='button' value='取消返回' onclick="history.back();" class=bur2>
+</FORM>
+
+
+
+</TEXTAREA>
+{{elseif  $smarty.get.act=='php'}}
+<TEXTAREA NAME="php" ROWS="150" COLS="100" class=php>
+&lt;?php
+//$Id: PHP_tmp.html 5310 2009-01-10 07:57:56Z hami $
+include "config.php";
+//認證
+sfs_check();
+
+//引入換頁物件(學務系統用法)
+include_once "../../include/chi_page2.php";
+//程式使用的Smarty樣本檔
+$template_file = dirname (__file__)."/templates/{{$this->TB}}.htm";
+
+//建立物件
+$obj= new {{$this->TB}}($CONN,$smarty);
+//初始化
+$obj->init();
+//處理程序,有時程序內有header指令,故本程序宜於head("{{$this->TB}}模組");之前
+$obj->process();
+
+//秀出網頁布景標頭
+head("{{$this->TB}}模組");
+
+//顯示SFS連結選單(欲使用請拿開註解)
+//echo make_menu($school_menu_p);
+
+//顯示內容
+$obj->display($template_file);
+//佈景結尾
+foot();
+
+
+//物件class
+class {{$this->TB}}{
+	var $CONN;//adodb物件
+	var $smarty;//smarty物件
+	var $size=10;//每頁筆數
+	var $page;//目前頁數
+	var $tol;//資料總筆數
+
+	//建構函式
+	function {{$this->TB}}($CONN,$smarty){
+		$this->CONN=&$CONN;
+		$this->smarty=&$smarty;
+	}
+	//初始化
+	function init() {$this->page=($_GET[page]=='') ? 0:$_GET[page];}
+	//程序
+	function process() {
+		if($_POST[form_act]=='add') $this->add();
+		if($_POST[form_act]=='update') $this->update();
+		if($_GET[form_act]=='del') $this->del();
+		$this->all();
+	}
+	//顯示
+	function display($tpl){
+		$this->smarty->assign("this",$this);
+		$this->smarty->display($tpl);
+	}
+	//擷取資料
+	function all(){
+		$SQL="select {{$this->field.0}} from {{$this->TB}} ";
+		$rs=$this->CONN->Execute($SQL) or die($SQL);
+		$this->tol=$rs->RecordCount();
+		$SQL="select * from {{$this->TB}}  order by {{$this->field.0}} desc  limit ".($this->page*$this->size).", {$this->size}  ";
+		$rs=$this->CONN->Execute($SQL) or die($SQL);
+		$arr=$rs->GetArray();
+		$this->all=$arr;//return $arr;
+	//產生連結頁面
+		$this->links= new Chi_Page($this->tol,$this->size,$this->page);
+	}
+	//新增
+	function add(){
+		{{$this->add()}}
+		$rs=$this->CONN->Execute($SQL) or die($SQL);
+		//$Insert_ID= $this->CONN->Insert_ID();
+		$URL=$_SERVER[PHP_SELF]."?page=".$_POST[page];
+		Header("Location:$URL");
+	}
+	//更新
+	function update(){
+		{{$this->up()}}
+		$rs=$this->CONN->Execute($SQL) or die($SQL);
+		$URL=$_SERVER[PHP_SELF]."?page=".$_POST[page];
+		Header("Location:$URL");
+	}
+	//刪除
+	function del(){
+		{{$this->del2()}}
+		$rs=$this->CONN->Execute($SQL) or die($SQL);
+		$URL=$_SERVER[PHP_SELF]."?page=".$_GET[page];
+		Header("Location:$URL");
+	}
+}
+?&gt;</TEXTAREA>
+{{elseif  $smarty.get.act=='tpl'}}
+<TEXTAREA NAME="php" ROWS="150" COLS="100" class=php>
+<!-- //$Id: PHP_tmp.html 5310 2009-01-10 07:57:56Z hami $ -->
+<!-- 
+表單架構
+{{ldelim}}if $smarty.get.act=="add_form" {{rdelim}}
+  新增表單 
+{{ldelim}}else{{rdelim}}
+  {{ldelim}}foreach from=$this->all item=arr{{rdelim}}
+    {{ldelim}}if $smarty.get.edit==$arr.e_kind_id{{rdelim}}
+     編修表單
+     {{ldelim}}else{{rdelim}}
+     流覽資料
+     {{ldelim}}/if{{rdelim}}
+  {{ldelim}}/foreach{{rdelim}}
+{{ldelim}}/if{{rdelim}}
+-->
+<TABLE width='90%'  border='0' align='center'><TR><TD align=right>{{ldelim}}$this->links->show_page(){{rdelim}}</TD></TR></TABLE>
+<table  width='90%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr align=center  style='font-size:11pt' bgcolor='#E5E5E5'>
+{{foreach from=$this->field  item=arr}}
+<td>{{$arr}}</td>
+{{/foreach}}
+<td><a href="{{ldelim}}$smarty.server.PHP_SELF{{rdelim}}?act=add_form">新增</a></td>
+</tr>
+{{ldelim}}if $smarty.get.act=="add_form" {{rdelim}}
+<!-- 新增表單   ---開始-->
+<tr align=center><td colspan="{{$this->tol_field()+1 }}">
+<FORM METHOD=POST ACTION='{{ldelim}}$smarty.server.PHP_SELF{{rdelim}}' Name='e1' enctype='multipart/form-data'>
+<table>
+{{ foreach from=$this->field  item=arr }}
+<tr><td>{{$arr}}</td>
+<td><input type="text"  name="{{$arr}}" value=''></td></tr>
+{{/foreach}}
+<tr>
+<td colspan=2>
+<INPUT TYPE='hidden' Name='form_act' value=''>
+<INPUT TYPE='hidden' Name='page' Value='{{ldelim}}$this->page{{rdelim}}'>
+<INPUT TYPE='reset' Value='重設' class=bur2 >
+<INPUT TYPE='button' value='填好送出' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='add';this.form.submit()}">
+<INPUT TYPE='button' value='取消返回' onclick="history.back();" class=bur2>
+</td></tr>
+</table>
+</FORM>
+<!-- 新增表單   ---結束-->
+</td></tr>
+{{ldelim}}else{{rdelim}}
+{{ldelim}}foreach from=$this->all item=arr{{rdelim}}
+
+{{ldelim}}if $smarty.get.edit==$arr.{{$this->field.0}}{{rdelim}}
+<!-- 編修表單   ---開始-->
+<tr align=center><td colspan={{$this->tol_field()+1}} >
+<FORM METHOD=POST ACTION='{{ldelim}}$smarty.server.PHP_SELF{{rdelim}}'  Name='e1' enctype='multipart/form-data'>
+<table>
+{{ foreach from=$this->field  item=arr }}
+<tr><td>{{$arr}}</td>
+<td><input type="text"  name="{{$arr}}" value='{{ldelim}}$arr.{{$arr}}{{rdelim}}'></td></tr>
+{{/foreach}}
+<tr>
+<td colspan=2>
+<INPUT TYPE='hidden' Name='form_act'  value=''>
+<INPUT TYPE='hidden' Name='page' Value='{{ldelim}}$this->page{{rdelim}}'>
+<INPUT TYPE='reset' Value='重設' class=bur2 >
+<INPUT TYPE='button' value='填好送出' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='update';this.form.submit()}">
+<INPUT TYPE='button' value='取消返回' onclick="history.back();" class=bur2>
+</td></tr>
+</table>
+</FORM>
+</td></tr>
+<!-- 編修表單 ---結束-->
+{{ldelim}}else{{rdelim}}
+<!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+<tr align=center bgcolor='{{ldelim}}cycle values="#FFFFFF,#E6ECF0"{{rdelim}}' style='font-size:14px'>
+{{foreach from=$this->field  item=arr}}
+<td>{{ldelim}}$arr.{{$arr}}{{rdelim}}&nbsp;</td>
+{{/foreach}}
+<td><a href="{{ldelim}}$smarty.server.PHP_SELF{{rdelim}}?edit={{ldelim}}$arr.{{$this->field.0}}{{rdelim}}&page={{ldelim}}$this->page{{rdelim}}">修改</a>
+<a href="{{ldelim}}$smarty.server.PHP_SELF{{rdelim}}?form_act=del&{{$this->field.0}}={{ldelim}}$arr.{{$this->field.0}}{{rdelim}}&page={{ldelim}}$this->page{{rdelim}}" onclick="return window.confirm('真的刪除嗎？');">刪除</a>&nbsp;
+</td></tr>
+{{ldelim}}/if{{rdelim}}
+{{ldelim}}/foreach{{rdelim}}
+
+{{ldelim}}/if{{rdelim}}
+
+
+</table>
+
+
+
+</TEXTAREA>
+{{elseif  $smarty.get.act=='conf'}}
+<TEXTAREA NAME="php" ROWS="150" COLS="100" class=php>
+<?php
+
+$MySQL['Host']="localhost";	//資料庫主機位置
+$MySQL['Usr']="root";		//資料庫使用者
+$MySQL['Usr_Pass']="123";	//資料庫使用者的密碼
+$MySQL['Db']="{{$this->DB}}";		//使用資的料庫名稱
+$Admin['User']='aaa';		//簡易認証用的帳號
+$Admin['Pass']='aaa';		//簡易認証用的密碼
+
+$ADODB_class_flie="adodb/adodb.inc.php";		//adodb 物件的絕對路徑
+$Smarty_class_file="Smarty/Smarty.class.php";		// Smarty 物件的絕對路徑
+$Smarty_Compile_DIR="Smarty/templates_c/";		//Smarty Compile的目錄絕對路徑(可寫入)
+$My_page_class=str_replace('//','/',dirname(__file__)."/chi_page2.php");
+
+
+//----引入使用的函式物件----------//
+require_once $ADODB_class_flie;
+require_once $Smarty_class_file;
+require_once $My_page_class;
+
+
+//----ADODB 物件----------//
+$CONN = ADONewConnection("mysql"); # eg 'mysql' or 'postgres'('mysql');
+$CONN->debug= false;//true
+$CONN->Connect($MySQL['Host'], $MySQL['Usr'], $MySQL['Usr_Pass'],$MySQL['Db']) or die("<H1>無法連結資料庫</H1>");
+
+//----Smarty物件----------//
+$smarty = new Smarty();
+$smarty->compile_dir = __Smarty_Compile_DIR;
+$smarty->left_delimiter = '{{ldelim}}';
+$smarty->right_delimiter = '{{rdelim}}';
+
+//簡易認証用
+function Auth() {
+  global $Admin;
+  if ($_SERVER['PHP_AUTH_USER']!=$Admin['User'] || $_SERVER['PHP_AUTH_PW']!=$Admin['Pass']  ) {
+  Header("WWW-Authenticate: Basic realm=\"SOGO級超黑金卡會員\"");
+  Header("HTTP/1.0 401 Unauthorized");
+  echo "<div align='center'><h2>不要隨意進入！</h2></div>";
+  exit;
+  }
+}
+?></TEXTAREA>
+{{/if}}
+
+</TD></TR>
+</TABLE>
+{{/if}}
+

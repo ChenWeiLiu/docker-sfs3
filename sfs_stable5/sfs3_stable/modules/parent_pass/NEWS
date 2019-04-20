@@ -1,0 +1,10 @@
+// $Id: NEWS,v 1.2 2003-05-28 03:51:59 jrh Exp $
+* 2003/05/20 1.0.1
+
+提供管理者管理家長的帳號和密碼查詢
+
+====
+註：這裡採用 outline 文件模式。
+
+關於 outline，請參考 http://linux.tnc.edu.tw/techdoc/otl/ 的說明。
+

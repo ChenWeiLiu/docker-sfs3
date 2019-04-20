@@ -1,0 +1,57 @@
+
+<TR bgcolor="#FFFFFF">
+	<TD colspan=7><H3><BR><CENTER>沒有這個學生的任何異動記錄</CENTER><BR><BR></H3></TD>
+</TR>
+
+<tr bgcolor="#CCCCFF" style='color:#000000;font-size:11pt;' align='center'>
+<td nowrap colspan=7  align="left" valign="top">
+
+<fieldset style='font-size:12pt;'><legend><B>新增異動記錄</B></legend>
+<table border=0  width=100%>
+<TR><td nowrap align='right'>stud_move表流水號：<td width=80%>{{$data.move_id}}</td></tr>
+<TR><td nowrap align='right'>學生表流水號：<td>
+<INPUT TYPE='text' NAME='student_sn' value='{{$arr_c.student_sn}}' size=12 class=ipme2 readonly>
+</td></tr>
+
+<TR><td nowrap align='right'>學 　 號：<td>
+<INPUT TYPE='text' NAME='stud_id' value='{{$arr_c.stud_id}}' size=12 class=ipme2 readonly></tr>
+
+<TR><td nowrap align='right'>學 年 度：<td>
+<INPUT TYPE='text' NAME='move_year_seme' value='{{$smarty.get.Seme+0}}' size=12 class=ipme2></tr>
+
+<TR><td nowrap align='right'>異動日期：<td>
+<INPUT TYPE='text' NAME='move_date' value='{{$smarty.now|date_format:"%Y-%m-%d"}}' size=12 class=ipme2></tr>
+
+<TR><td nowrap align='right'>異動代碼：<td>
+<select name="move_kind"><option value='' selected>--請選擇--</option>
+{{html_options  options=$stud_coud2 }}
+</select>
+</tr>
+
+<TR><td nowrap align='right'>核准單位：<td>
+<INPUT TYPE='text' NAME='move_c_unit' value='縣政府' size=12 class=ipme2></tr>
+
+<TR><td nowrap align='right'>核准日期：<td>
+<INPUT TYPE='text' NAME='move_c_date' value='{{$smarty.now|date_format:"%Y-%m-%d"}}' size=12 class=ipme2></tr>
+
+<TR><td nowrap align='right'>核 准 字：<td>
+<INPUT TYPE='text' NAME='move_c_word' value='' size=12 class=ipme2></tr>
+
+<TR><td nowrap align='right'>核 准 號：<td>第
+<INPUT TYPE='text' NAME='move_c_num' value='' size=12 class=ipme2>號</tr>
+
+<TR><td nowrap align='right'>(原/新)就讀學校：<td>
+<INPUT TYPE='text' NAME='school' value='國中小' size=20 class=ipme2></tr>
+
+<TR><td colspan=2 align='center'><BR>
+
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='Seme'  value='{{$smarty.get.Seme}}'>
+<INPUT TYPE='hidden' NAME='Sclass'  value='{{$smarty.get.Sclass}}'>
+
+<INPUT TYPE=button  value='＋ 新增一筆異動記錄' onclick=" bb2('真的要儲存成新的記錄？確定？','add_move');"  class=bur2>
+<INPUT TYPE=button  value='取消返回' onclick="history.back();" class=bu1>
+</td></tr></table>
+
+</fieldset>
+</td></tr>

@@ -1,0 +1,60 @@
+{{* $Id:$ *}}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%" bgcolor="#cccccc">
+<form name="myform" method="post" action="{{$smarty.server.SCRIPT_NAME}}">
+<tr>
+<td style="background-color:white;">
+<table class="small"><tr><td>
+選擇學生：{{$year_seme_menu}}{{$class_year_menu}}<span style="color: red;">(注意：僅處理所選學期之在籍學生)</span>
+<br>{{if $smarty.post.class_year}}處理學期：{{$year_seme_menu2}}{{/if}}
+</td></tr></table><br>
+{{if $smarty.post.act_year_seme}}
+<span class="small">選擇領域：
+<input type="radio" name="subj" value="lang" OnCLick="this.form.submit();" {{if $smarty.post.subj=='lang'}}checked{{/if}}>語文 
+<input type="radio" name="subj" value="math" OnCLick="this.form.submit();" {{if $smarty.post.subj=='math'}}checked{{/if}}>數學 
+<input type="radio" name="subj" value="natu" OnCLick="this.form.submit();" {{if $smarty.post.subj=='natu'}}checked{{/if}}>自然 
+<input type="radio" name="subj" value="soci" OnCLick="this.form.submit();" {{if $smarty.post.subj=='soci'}}checked{{/if}}>社會 
+<input type="radio" name="subj" value="heal" OnCLick="this.form.submit();" {{if $smarty.post.subj=='heal'}}checked{{/if}}>健體 
+<input type="radio" name="subj" value="art" OnCLick="this.form.submit();" {{if $smarty.post.subj=='art'}}checked{{/if}}>藝文 
+<input type="radio" name="subj" value="comp" OnCLick="this.form.submit();" {{if $smarty.post.subj=='comp'}}checked{{/if}}>綜合
+</span>
+<br><br>
+{{/if}}
+{{if $data_arr}}
+{{assign var=i value=1}}
+{{if $msg}}<span style="color: red;">{{$msg}}</span><br>{{/if}}
+<input type="submit" name="edit" value="確定修改"> <span class="small" style="color: red;">(成績亦可由匯入讀卡成績模組直接匯入)</span><br>
+<table bgcolor='#9EBCDD' cellspacing=1 cellpadding=4 class='small'>
+<tr style="background-color: #E1ECFF; text-align: center;"><td>序次</td><td>學號</td><td>班級</td><td>座號</td><td>姓名</td><td>原分數</td><td>補行評量原始分數</td></tr>
+{{foreach from=$base_arr item=d key=sn name=datarows}}
+<tr style="background-color: white; text-align: center;">
+<td>{{$i}}</td>
+<td>{{$d.stud_id}}</td>
+<td>{{$d.seme_class}}</td>
+<td>{{$d.seme_num}}</td>
+<td style="color: {{if $d.stud_sex==1}}blue{{else}}red{{/if}};">{{$d.stud_name}}</td>
+<td style="color: {{if $a1==1}}red{{else}}black{{/if}};">{{$data_arr.$sn.oscore}}</td>
+<td style="color: {{if $c1==1}}red{{else}}black{{/if}}; text-align: left;">
+<input type="text" name="nscore[{{$sn}}]" value="{{if $data_arr.$sn.has_score}}{{$data_arr.$sn.nscore}}{{/if}}" style="width: 40pt;">
+<input type="hidden" name="old_nscore[{{$sn}}]" value="{{if $data_arr.$sn.has_score}}{{$data_arr.$sn.nscore}}{{/if}}">
+{{if $data_arr.$sn.nscore>$data_arr.$sn.oscore}}<img src="./images/up.png" style="vertical-align: middle;">{{/if}}
+{{if $chg_arr.$sn}}<img src="./images/check.png" style="vertical-align: middle;">{{/if}}
+</td>
+</tr>
+{{assign var=i value=$i+1}}
+{{/foreach}}
+<tr style="background-color: #E1ECFF; text-align: center;"><td>序次</td><td>學號</td><td>班級</td><td>座號</td><td>姓名</td><td>原分數</td><td>補行評量原始分數</td></tr>
+{{else}}
+{{if $smarty.post.subj}}<span style="color: red;">尚未設定補行評量學生，請先設定才能進行成績處理。</span>{{/if}}
+{{/if}}
+</table>
+{{if $data_arr}}
+<input type="submit" name="act" value="擇優計算學期成績">
+{{/if}}
+</td>
+</tr>
+</form>
+</table>
+{{include file="$SFS_TEMPLATE/footer.tpl"}}

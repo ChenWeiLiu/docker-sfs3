@@ -1,0 +1,62 @@
+<!-- $Id: rand_run_prt.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<HTML>
+<meta http-equiv="Content-Type" content="text/html; Charset=Big5">
+<HEAD>
+<TITLE>{{$this->Info.Rand.rWord.Y}}學年度 第
+{{$this->Info.Rand.rWord.S}}學期
+{{$this->Info.Rand.rWord.Gw}} 學生 亂數編班名冊</TITLE>
+</HEAD>
+<body onload="if(window.confirm('開始列印？')){self.print();};return true;">
+
+{{assign var='new_page' value='1'}}
+
+{{foreach item=arr key=id from=$this->New.stu}}
+<table cellPadding='0' border=1 cellSpacing='0' width='80%' align=center  style='border-collapse:collapse;font-size:14pt;'>
+<TR align=center>
+<TD colspan=8><B>{{$this->mSch.sch_cname_s}}
+{{$this->Info.Rand.rWord.Y}}學年度 第
+{{$this->Info.Rand.rWord.S}}學期 
+{{$this->Info.Rand.rWord.Gw}} {{$id}}班</B> 編班名冊
+<DIV ALIGN="right" >導師：<U>　　　　　　　　</U>.</DIV>
+</TD>
+</TR>
+<TR align=center>
+<TD width=10%>學號</TD>
+<TD width=5%>班級</TD>
+<TD width=5%>座號</TD>
+<TD width=5%>性別</TD>
+<TD width=10%>姓名</TD>
+<TD width=10%>舊班級</TD>
+<TD width=10%>原座號</TD>
+<TD width=10%>備註</TD>
+</TR>
+{{foreach item=stu  from=$arr}}
+<TR align=center>
+<TD>{{$stu.stud_id}}</TD>
+<TD>{{$stu.ncla}}</TD>
+<TD>{{$stu.nnum}}</TD>
+<TD>{{$this->sex[$stu.stud_sex]}}</TD>
+<TD>{{$stu.stud_name}}</TD>
+<TD>{{$stu.class_name}}班</TD>
+<TD>{{$stu.seme_num}}</TD>
+<TD>{{$stu.memo}}</TD>
+</TR>
+{{/foreach}}
+</TABLE>
+
+<TABLE width=80% align=center >
+<TR align=center>
+<td>&nbsp;</td>
+<td>第<B>{{$new_page}}</B>頁</td>
+<td>製表日期：{{$smarty.now|date_format:"%Y-%m-%d"}}</TD>
+</TR>
+<TR>
+<TD width=33%>承辦人：</TD>
+<TD width=33%>教務主任：</TD>
+<TD width=34%>校長：</TD>
+</TR>
+</TABLE>
+{{assign var='new_page' value=$new_page+1}}
+{{if $new_page!=$this->Info.Rand.newTol}}<P STYLE='page-break-before: always;'>{{/if}}
+{{/foreach}}</body>
+</HTML>

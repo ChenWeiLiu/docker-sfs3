@@ -1,0 +1,220 @@
+
+
+body {
+	background-color: #FFFFFF;
+	margin: 0 0 0 0;
+}
+
+a:link{color:#FF986C;text-decoration: none;font-size:14px;}
+a:visited{color:#FF986C;text-decoration: none;font-size:14px;}
+a:active{color:#6F66D7;text-decoration: none;font-size:14px;}
+a:hover {color: #6F66D7;text-decoration: none;font-size:14px;}
+
+.main_tb{
+	background-color:#FDEBC0 ;
+	margin: 0 0 0 0;
+	text-align:left;
+	width:100%;
+	border-spacing:1px;
+	border-collapse:0px;
+}
+
+
+.second_tb{
+	background-color:#FDF8DC ;
+	margin: 0 0 -1 0;
+	text-align:left;
+	width:100%;
+	border-spacing:0px;
+	border-collapse:0px;
+}
+
+.content_tb{
+	background-color:#FDF8DC ;
+	margin: 2% 5% 2% 5%;
+	text-align:left;
+	width:90%;
+	border-spacing:1px;
+	border-collapse:0px;
+}
+
+
+.tb1 {
+	color:#FF7357;
+	background-color:#FBFDE0 ;
+	font-weight=800 ;
+	line-height:320%;
+	text-align:left;
+	max-width:100%  ;
+	word-break:break-all  ;
+	border:thin solid #D3D3D3;
+	font-size:18px;
+	text-indent:48px
+}
+
+.tb2 {
+	color:#FFFFFF;
+	background-color:#FFB570 ;
+	font-weight=800 ;
+ 	margin-left:10% ;
+	line-height:120%;
+	text-align:center;
+	max-width:80%  ;
+	word-break:break-all  ;
+	border:thin solid #D74242;
+	font-size:16px;
+}
+
+.td_right {
+	background-color:#FDF8DC ;
+	text-align:center;
+	vertical-align : top;
+	width:24%;
+}
+
+.td_left {
+	background-color:#FDF8DC ;
+	text-align:center;
+	vertical-align : top;
+	width:76%;
+	margin-left:22px;
+}
+
+.td_second_right {
+	background-color:#FDF8DC ;
+	text-align:right;
+	vertical-align : bottom;
+
+}
+
+.td_second_left {
+	background-color:#FDF8DC ;
+	text-align:right;
+	vertical-align : bottom;
+	background-image:url("bg.gif");
+	width:100%;
+}
+
+.button1{
+	font-size: small;
+	background-color: lightGray;
+	border-width: 2px;
+	border-color: #efefef #696969 #696969 #efefef;
+	border-style: solid;
+	padding: 2px;
+	cursor:help;
+
+}
+
+.fnt1 {
+	font-weight=800 ;
+	line-height:120%;
+	color:#FF7357;
+	text-decoration:none;
+	word-break:break-all  ;
+}
+
+.fnt2 {
+	font-size:20px;
+	color:#FFB570;
+	text-align:right;
+	line-height:50px;
+	vertical-align : bottom;
+}
+
+.fnt3 {
+	font-size:16px;
+	color:#FFB570;
+	text-align:right;
+	vertical-align : bottom;
+}
+
+.title_fnt {
+	color:#FF7357;
+	font-weight=800 ;
+	line-height:140%;
+	text-align:left;
+	max-width:100%  ;
+	word-break:break-all  ;
+	font-size:18px;
+	text-indent:48px
+}
+
+.kind_fnt {
+	color:#939393;
+	line-height:140%;
+	text-align:left;
+	max-width:100%  ;
+	word-break:break-all  ;
+	font-size:18px;
+	text-indent:48px
+}
+
+.content_fnt {
+	color:#FF986C;
+	line-height:110%;
+	text-align:left;
+	max-width:100%  ;
+	word-break:break-all  ;
+	font-size:14px;
+	text-indent:16px
+}
+
+.alias_fnt {
+	color:#A1A1A1;
+	line-height:110%;
+	text-align:right;
+	max-width:100%  ;
+	word-break:break-all  ;
+	font-size:14px;
+}
+
+.feel_fnt {
+	color:#FF986C;
+	line-height:110%;
+	text-align:left;
+	max-width:100%  ;
+	word-break:break-all  ;
+	font-size:14px;
+}
+
+.kind_list_fnt {
+	color:#FF986C;
+	line-height:110%;
+	text-align:left;
+	max-width:100%  ;
+	word-break:break-all  ;
+	font-size:14px;
+	margin-left:12% ;
+	margin-righ:12% ;
+}
+
+.new_content_list_fnt {
+	color:#FF986C;
+	line-height:110%;
+	text-align:left;
+	max-width:100%  ;
+	font-size:14px;
+	margin-left:12% ;
+	margin-righ:12% ;
+}
+
+.log_div {
+	position: absolute;
+	top:10px;
+	left:10px;
+}
+
+<!--整體-->
+<!--最外層主要的表格 -->
+<!--放標題的表格 -->
+<!--右邊區塊有框線的標題字格式設定-->
+<!--左邊區塊有框線的標題字格式設定-->
+<!--主表格右邊的表格設定 -->
+<!--主表格左邊的表格設定 -->
+<!--放標題的表格的右邊表格設定 -->
+<!--放標題的表格的左邊表格設定 -->
+<!--登入按鈕-->
+<!--版主字型設定-->
+<!--標題字型設定 -->
+<!--標題說明字型設定 -->

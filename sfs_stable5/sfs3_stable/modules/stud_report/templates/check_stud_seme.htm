@@ -1,0 +1,16 @@
+<!-- $Id: check_stud_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<form action="{{$smarty.server.PHP_SELF}}" name="myform" method="POST">
+選擇學年 : <select name="sel_year" onChange="this.form.submit()">
+{{html_options options=$sel_year_arr selected=$smarty.request.sel_year}}
+</select>
+{{if $sel_class_arr }}
+選擇年級 : <select name="sel_class">
+{{html_options options=$sel_class_arr selected=$smarty.request.sel_class }}
+</select>
+<input type='submit' name='act' value="修正班名錯誤">
+
+<hr>
+{{$str}}
+
+{{/if}}
+</form>

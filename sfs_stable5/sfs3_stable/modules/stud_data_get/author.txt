@@ -1,0 +1,7 @@
+stud_data_get - 學生名單擷取
+原創作者：林朝敏
+
+prolin@sy3es.tnc.edu.tw 2004-10-15
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+只鍵入姓名，匯出完整資料(CSV格式)。

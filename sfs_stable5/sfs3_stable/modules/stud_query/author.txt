@@ -1,0 +1,2 @@
+stud_query  學生資料各項查詢統計
+stud_query1.0 --- 2001-10-1 --- HaMi( cik@mail.wpes.tcc.edu.tw )

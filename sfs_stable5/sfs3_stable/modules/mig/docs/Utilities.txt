@@ -1,0 +1,209 @@
+
+BUNDLED UTILITIES
+-----------------
+
+  mkGallery	- Create a "gallery" from images in the current directory.
+
+  jhead		- Extracts EXIF header information from JPEG files.
+	(Note that jhead is not for direct use - it is called by mkGallery
+	when mkGallery is invoked with the "-e" flag).
+
+  convert-metafiles	- Updates pre-0.83 metafiles to the new 0.90 format.
+			  This acts recursively - i.e. it will process the
+			  metafiles in the current directory and all sub-
+			  directories.  You only need to use this if you
+			  are upgrading from 0.83 or earlier.
+
+  mf_conv.pl	- The perl code which lives behind convert-metafiles.
+
+
+###########################################################################
+
+mkGallery
+---------
+
+mkGallery can do three things:
+
+1. Take a directory full of images and create thumbnails for them.
+
+2. Read EXIF header information from image files and cache it in
+   a text file for MiG to use.
+
+3. Create blank comment templates in mig.cf files.
+
+It can do all of them at the same time, too, if you want.  You can specify
+which image(s) to work with, or just tell it to process every image in the
+current directory.
+
+**                                                                  **
+**  Note that mkGallery requires ImageMagick and Perl.  Neither of  **
+**  those is required for MiG itself - they are required only if    **
+**  you want to use the mkGallery utility.                          **
+**                                                                  **
+
+mkGallery has not been tested under Windows.  Use at your own risk.
+
+
+Usage:
+   mkGallery [ -h ] [ -a ] [ -w ] [ -t ] [ -e ] [ -c ] [ -i ]
+        [ -s <size> ] [ -q <quality> ] [ -M <type> ] [ -m <label> ]
+        [ <file1> <file2> <...> ]
+
+      -h : Prints this help message.
+      -a : Process all image files in current directory.
+      -w : Turn over-write on.  By default, files written such
+           as the EXIF file will be appended to rather than
+           over-written.  Using "-w" indicates the file should
+           be over-written instead.
+      -t : Generate thumbnail images.
+      -e : Build "exif.inf" file.
+           See the file docs/Utilities.txt - you must build the jhead
+           utility (included) before you can use the -e option.
+      -c : Generate blank comments for uncommented images.
+      -i : "Interactive" mode for comments (see docs/Utilities.txt).
+      -s : Set pixel size for thumbnails.  See the file docs/Utilities.txt.
+      -q : Set quality level for thumbnails.  See the file docs/Utilities.txt.
+      -M : Define type of "prefix" or "suffix".
+      -m : thumbnail marker label (default "th").  See the file
+           docs/Utilities.txt for more information.
+
+   If creating thumbnails, "convert" must be in your $PATH.
+   This program supports JPEG, PNG and GIF formats.
+   The "-e" feature only supports JPEG files.
+   MiG - http://tangledhelix.com/software/mig/ - dan@tangledhelix.com
+
+
+A note about pixel sizes
+------------------------
+
+If you specify "-s 250" for instance, ImageMagick will be handed a geometry
+size of 250x250.  This means it will create a thumbnail image where the
+maximum value of height (or the maximum value of width) is 250 pixels.  It
+will not exceed that value for either width or height.  However, it will
+maintain the aspect ratio of your image, so you will not end up with a
+250x250 pixel image (well, not usually).
+
+Here are some examples I got from testing using the default setting which
+is '100'.
+
+Original size		Thumbnail size
+
+ 1280x960		100x75
+ 505x250		100x49
+ 347x202		100x58
+ 160x205		78x100
+
+
+A note about quality levels
+---------------------------
+
+Some image formats such as JPEG can have varying quality levels.  The
+default level is "50" but you can use any number from 1 to 100.  The
+higher the number, the better the quality of the thumbnail.  I have found
+that 50 is a good number and produces a fairly clear thumbnail from even
+large detailed photographs yet still keeping a very good file size
+(usually below 2.5K).
+
+You can specify a quality level with "-q <number>".
+
+
+Labels, prefixes, and suffixes
+-------------------------------------------
+
+The -M and -m options are new to 0.90.  In previous versions, all
+thumbnails were built with the pattern "filename_th.ext" so that an image
+named "myHouse.JPG" would have a thumbnail called "myHouse_th.JPG".
+
+That's been changed.  You can now use any text you want for the "label",
+not just "th".  So you could have "mkGallery -m mini" create thumbnails for
+you like "myHouse_mini.JPG" and "myGarden_mini.JPG" instead.
+
+Also, you can use a prefix rather than the default (a suffix).  So you
+could have "mkGallery -M prefix" go ahead and create thumbnails like
+"th_myHouse.JPG" and "th_myGarden.JPG" instead.
+
+If you choose to use prefixes not suffixes, and/or a different label name,
+you must make the associated changes to mig.cfg!  Otherwise MiG will not
+know what to look for!  Changing mig.cfg has a side effect, too - mkGallery
+reads it to set defaults for -m and -M, so if your mig.cfg is set to what
+you want, you shouldn't have to worry about -m or -M when running
+mkGallery.
+
+Look at $markerType and $markerLabel in mig.cfg.default or mig.cfg.
+$markerType equates to "-M" and $markerLabel equates to "-m".
+
+Values in mig.cfg are used, but if you invoke command-line options to
+mkGallery, -m and -M will override the values in mig.cfg.
+
+
+"Interactive" mode
+------------------
+
+If using the "-c" option to generate comment fields in mig.cf, you can also
+optionally specify "-i" or "Interactive" mode.  Basically all this will do
+is prompt you for each image which does not already have a comment, and you
+can (optionally) type in a comment for that image.  If you don't want to do
+so, just hit Enter and that image will be skipped - mkGallery will move
+along to the next one in the list.
+
+
+###########################################################################
+
+jhead
+-----
+
+jhead was written by Matthias Wandel and can be found at:
+    http://www.sentex.net/~mwandel/jhead/index.html
+
+It is included here but I take no credit for the code.  Matthias however
+deserves lots of credit for it, as it's incredibly useful!  Feel free to
+drop Matthias a line and let him know his code is appreciated.  His email
+address is available at the URL listed above.
+
+You will need to build jhead in order to use it.  To build on most systems
+just type "make jhead" in the util subdirectory.  If you don't have gcc
+you'll need to edit Makefile to point to your compiler.
+
+This should work as-is on most Unix or Unix-like platforms.  I can attest
+to its working with Solaris 8 and Redhat Linux 6.1.
+
+jhead is not something you need to run directly - it is used by mkGallery
+if you invoke mkGallery with the "-e" option.
+
+
+###########################################################################
+
+convert-metafiles
+-----------------
+
+convert-metafiles is only of interest to folks who are upgrading from 0.83
+or earlier to 0.90 or later.  The format and filenames for meta-files such
+as .hidden.txt, .comments.txt, .exif_comments.txt has changed, and this
+script (and its associated script, mf_conv.pl) will go and automatically
+update these for you from your old files if you answer 'y' when it asks if
+you want it to do so.
+
+Just cd into your albums dir and run the script.  Example:
+
+  cd /www/htdocs/mig/album
+  ../util/convert-metafiles
+
+The install script might have already done this for you, though.  It does
+this if you answered "y" to the question "Are you upgrading from MiG 0.83
+or earlier?"
+
+
+###########################################################################
+
+mf_conv.pl
+----------
+
+This is the "real" code, written in Perl, which lives behind the
+convert-metafiles script.  The only reason you would want to use this
+directly is if you want to convert only the current directory and not touch
+the subdirectories underneath it.  Otherwise there's no need to use this
+script directly.
+
+
+###########################################################################
+

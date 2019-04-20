@@ -1,0 +1,131 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>檢錄列印系統</title>
+<SCRIPT LANGUAGE="JavaScript">
+function pp() {   
+
+	if (window.confirm('開始列印？'))
+	{
+	self.print();}
+}
+</SCRIPT>
+<link rel="stylesheet" type="text/css" href="sport.css"> 
+<style>
+	td{line-height:30px}
+	.td1 {line-height:20px}
+	.td2 {line-height:30px}
+</style>
+</head>
+<BODY onload="pp(); return true;">
+<!-- 第一張表 -->
+<CENTER><H3>{{$school_name}}{{$item.title}}<BR>競賽類檢錄記錄表</H3></CENTER>
+<table align='center' border='0' width='90%'><tr width='100%'><td align='right' width='20%'>■組別：</td>
+<td  width='50%'>
+{{$sportclass[$item.enterclass]}}{{$sportname[$item.item]}}{{$itemkind[$item.kind]}}
+第&nbsp;<B>{{$smarty.get.Spk}}&nbsp;</B>組</td>
+<td width='30%'>比賽地點：{{$item.place}}</td>
+</tr><tr><td align='right' width='20%'>■錄取：</td>
+<td width='50%'>
+共<B><U>{{$sport_group}}</U></B>組，每組<U><B>{{$item.playera}}</B></U>人，
+錄取<U><B>{{$item.passera}}</B></U>名 。
+</td>
+<td width='30%'>日期：{{$item.sporttime|date_format:"%m月%d日"}}</td></tr></table>
+
+
+<table cellPadding='0' cellSpacing='0' border='1'  width='90%' align=center style='border-collapse:collapse;font-size:14pt;'>
+<tr bgcolor=white align='center'>
+<td width='14%' nowrap><B>道次</B></td>
+<td width='14%' nowrap> <B>單位</B></td>
+<td width='14%' nowrap><B>號碼</B></td>
+<td width='14%' nowrap> <B>姓名</B></td>
+<td width='14%' nowrap><B>成績記錄</B></td>
+<td width='15%' nowrap><B>名次</B></td>
+
+<td width='15%'><B>備註</B></td>
+</tr>
+
+{{foreach from=$data item=data}}
+
+<tr bgcolor=white align='center'>
+<td width='10%'>{{$data.line}} &nbsp; <!-- {{$data.sportorder}} --></td>
+<td width='18%'>&nbsp;{{$data.view_class}}</td>
+<td width='14%'>{{$data.sportnum}}</td>
+<td width='14%'>{{$data.cname}}</td>
+<td width='14%'>{{$data.results}}</td>
+<td width='15%'>&nbsp;</td>
+<td width='15%'>&nbsp;</td></tr>
+
+{{/foreach}}
+
+
+</table>
+
+<CENTER><table border='0' cellPadding='0' cellSpacing='0' width='600'>
+<tr align='middle'>
+<td width='199' class=td2>
+<b style='font-size:10pt'>■徑賽裁判長：</b></td>
+<td width='199' class=td2>
+<b style='font-size:10pt'>■終點裁判長：</b></td>
+<td width='200' class=td2>
+<b style='font-size:10pt'>■記錄員：</b></td>
+</tr>
+</table></CENTER>
+
+<br>
+<br><BR>
+<!-- 第一張表 -->
+<CENTER><H3>{{$school_name}}{{$item.title}}<BR>競賽類檢錄記錄表</H3></CENTER>
+<table align='center' border='0' width='90%'><tr width='100%'><td align='right' width='20%'>■組別：</td>
+<td  width='50%'>
+{{$sportclass[$item.enterclass]}}{{$sportname[$item.item]}}{{$itemkind[$item.kind]}}
+第&nbsp;<B>{{$smarty.get.Spk}}&nbsp;</B>組</td>
+<td width='30%'>比賽地點：{{$item.place}}</td>
+</tr><tr><td align='right' width='20%'>■錄取：</td>
+<td width='50%'>
+共<B><U>{{$sport_group}}</U></B>組，每組<U><B>{{$item.playera}}</B></U>人，
+錄取<U><B>{{$item.passera}}</B></U>名 。
+</td>
+<td width='30%'>日期：{{$item.sporttime|date_format:"%m月%d日"}}</td></tr></table>
+
+
+<table cellPadding='0' cellSpacing='0' border='1'  width='90%' align=center style='border-collapse:collapse;font-size:14pt;'>
+<tr bgcolor=white align='center'>
+<td width='14%' nowrap><B>道次</B></td>
+<td width='14%' nowrap> <B>單位</B></td>
+<td width='14%' nowrap><B>號碼</B></td>
+<td width='14%' nowrap> <B>姓名</B></td>
+<td width='14%' nowrap><B>成績記錄</B></td>
+<td width='15%' nowrap><B>名次</B></td>
+
+<td width='15%'><B>備註</B></td>
+</tr>
+
+{{foreach from=$data2 item=data2}}
+
+<tr bgcolor=white align='center'>
+<td width='10%'>{{$data2.line}} &nbsp; <!-- {{$data2.sportorder}} --></td>
+<td width='18%'>&nbsp;{{$data2.view_class}}</td>
+<td width='14%'>{{$data2.sportnum}}</td>
+<td width='14%'>{{$data2.cname}}</td>
+<td width='14%'>{{$data2.results}}</td>
+<td width='15%'>&nbsp;</td>
+<td width='15%'>&nbsp;</td></tr>
+
+{{/foreach}}
+
+</table>
+
+
+<CENTER><table border='0' cellPadding='0' cellSpacing='0' width='600'>
+<tr align='middle'>
+<td width='199' class=td2>
+<b style='font-size:10pt'>■徑賽裁判長：</b></td>
+<td width='199' class=td2>
+<b style='font-size:10pt'>■終點裁判長：</b></td>
+<td width='200' class=td2>
+<b style='font-size:10pt'>■記錄員：</b></td>
+</tr>
+</table></CENTER>
+
+<br>
+<br>

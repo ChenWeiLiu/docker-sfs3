@@ -1,0 +1,126 @@
+<!-- //$Id: PHP_tmp.html 5310 2009-01-10 07:57:56Z hami $ -->
+<TABLE width='100%'  border='0' align='center'><TR><TD align=right>{{$this->links->show_page()}}</TD></TR></TABLE>
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr align=center  style='font-size:11pt' bgcolor='#E5E5E5'>
+<td width=8%>序號</td>
+<td width=12%>使用日期</td>
+<td width=6%>星期</td>
+<td width=6%>節次</td>
+<td width=12%>地點/教室</td>
+<td width=10%>借用人</td>
+<td width=16%>預約登記時間</td>
+<td width=10%>借用班級或處室</td>
+<td width=10%><a href="{{$smarty.server.PHP_SELF}}?act=add_form">預約</a></td>
+</tr>
+{{if $smarty.get.act=="add_form" }}
+<!-- 新增表單   ---開始-->
+<tr align=center><td colspan="9">
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}' Name='e1' >
+<table>
+<tr align=center>
+<td>
+<INPUT TYPE='hidden' Name='form_act' value=''>
+<INPUT TYPE='hidden' Name='page' Value='{{$this->page}}'>
+<INPUT TYPE='reset' Value='重設' class=bur2 >
+<INPUT TYPE='button' value='送出預約' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='add';this.form.submit()}">
+<INPUT TYPE='button' value='取消返回' onclick="history.back();" class=bur2>
+</td></tr>
+<tr><td>1.選擇日期<font color="#FF0000">*</font></td></tr>
+<tr><td>
+<!-- 月曆 -->
+<table cellspacing="1" cellpadding="6" bgcolor='#9EBCDD'>
+<tr bgcolor="White" align=center style='font-size:10pt'>
+<td colspan=1><a href="{{$smarty.server.PHP_SELF}}?act=add_form&YM={{$this->uYM}}">上月</a><br>{{$this->uYM}}</td>
+<td colspan=5>
+【<a href="{{$smarty.server.PHP_SELF}}?act=add_form&YM={{$smarty.now|date_format:"%Y-%m"}}">返回本月</a>】<br>
+目前月份:{{$this->YM}}
+</td>
+<td colspan=1><a href="{{$smarty.server.PHP_SELF}}?act=add_form&YM={{$this->nYM}}">下月</a><br>{{$this->nYM}}</td>
+</tr>
+<tr bgcolor="White" align=center><td>日</td>
+<td>一</td>
+<td>二</td>
+<td>三</td>
+<td>四</td>
+<td>五</td>
+<td>六</td>
+</tr><tr  bgcolor="White" align=center>
+{{foreach from=$this->dayAry($this->YM) item=ar1}}
+{{if $ar1.W==0 || $ar1.W==6}}
+<td bgcolor='#E6E6FA'>
+{{else}}
+<td>
+{{/if}}
+{{if $ar1.D!=''}}
+<label>
+{{if $ar1.Td=='Y'}}<B style="color:red">{{$ar1.D}}</B>{{else}}{{$ar1.D}}{{/if}}
+<input type="checkbox" name="day[{{$ar1.d}}]" value="{{$ar1.W}}"></label></td>
+{{else}}
+&nbsp;</td>
+{{/if}}
+{{if $ar1.W==6 && $ar1.D!=''}}</tr><tr  bgcolor="White" align=center>{{/if}}
+{{/foreach}}
+</tr></table>
+</td></tr>
+<tr><td>2.選擇節次<font color="#FF0000">*</font></td></tr>
+<tr><td>
+<table cellspacing="1" cellpadding="6" bgcolor='#9EBCDD' width=100%>
+<tr bgcolor="White" align=center style='font-size:10pt'>
+{{foreach from=$this->sections item=ar2 key=K}}
+<td><label>{{$ar2}}<br><input type="radio" name="sector" value="{{$K}}"></label></td>
+{{/foreach}}
+</tr></table>
+</td></tr>
+<tr><td>3.選擇專科教室/場地<font color="#FF0000">*</font>：
+<select name="room">
+<option value=''>請選擇專科教室</option>
+{{html_options options=$this->gPlace()}}
+</select>
+</td></tr>
+
+{{assign var=Me value=$this->gPerson()}}
+<tr><td>4.使用單位/處室<font color="#FF0000">*</font>：{{$Me.name}}</td></tr>
+<tr><td>
+{{if $Me.me_class!=''}}
+<label><input type="radio" name="class_kind" value="0">{{$Me.me_class_name}}
+<input type="hidden" name="class0" value="{{$Me.me_class}}">
+</label>
+{{/if}}
+<label>
+<input type="radio" name="class_kind" value="1">自選班級
+{{html_options name=class1 options=$Me.class_ary selected=$mySelect}}
+</label><label>
+<input type="radio" name="class_kind" value="2">依處室
+{{html_options name=class2 options=$Me.office selected=$mySelect}}
+</label>
+</td></tr>
+</table>
+</FORM>
+<!-- 新增表單   ---結束-->
+</td></tr>
+{{else}}
+{{foreach from=$this->all item=arr}}
+<!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+<tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' style='font-size:14px'>
+<td>{{$arr.crsn}} </td>
+<td>{{$arr.date}} </td>
+<td>{{$this->wk[$arr.day]}} </td>
+<td>{{$this->sections[$arr.sector]}} </td>
+<td>{{$arr.room}} </td>
+<td>{{$this->tea_name($arr.teacher_sn)}} </td>
+<td>{{$arr.sign_date}} </td>
+<td>{{$arr.seme_class}} </td>
+<td>
+{{if $this->chkToday($arr.date)=='Y'}}
+<a href="{{$smarty.server.PHP_SELF}}?form_act=del&crsn={{$arr.crsn}}&page={{$this->page}}" onclick="return window.confirm('真的刪除嗎？僅限自己登錄的！');">刪除</a> 
+{{/if}}
+</td></tr>
+
+{{/foreach}}
+{{/if}}
+
+
+</table>
+
+
+

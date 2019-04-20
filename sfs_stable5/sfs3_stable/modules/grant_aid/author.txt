@@ -1,0 +1,7 @@
+grant_aid - 獎助學金
+原創作者：infodaes
+
+info@mail.daes.tcc.edu.tw 2005-10-27
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+獎助學金作業管理(整合原住民獎助學金模組)

@@ -1,0 +1,214 @@
+<!-- $Id: chc_940809.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+.mei{border-width: 0px;border-bottom-style:  solid;border-bottom-width: 1px;
+border-bottom-color: #660000;font-weight: bold; 
+ font-size:11pt;color:blue}
+.mei2{border-style: solid; border-width: 0px; background-color:#C0C0C0; font-size:11pt;}
+.submit{font-weight: 300;color:#339900;font-size:12pt;cursor: pointer}
+.ddiv{font-weight: 300;color:#660000;font-size:13px}
+.txt1{color:#808080}
+</style>
+<TABLE border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<TR bgcolor='white'>
+<td colspan=13>
+請選擇學年度：
+{{foreach from=$this->all_year item=yarr}}
+{{if $smarty.get.Year==$yarr.stud_study_year}}
+<b>[<a href="{{$PHP_SELF}}?Year={{$yarr.stud_study_year}}">{{$yarr.stud_study_year}}年</a>]</b>
+{{else}}
+<a href="{{$PHP_SELF}}?Year={{$yarr.stud_study_year}}">{{$yarr.stud_study_year}}年</a>
+{{/if}}
+&nbsp;
+{{/foreach}}
+
+<div align="right">{{$this->links->show_page()}}</div>
+
+
+{{if $smarty.get.Year==$this->Year}}
+<b>[<a href="{{$PHP_SELF}}?Year={{$this->Year}}&form_act=del" 
+onclick="return window.confirm('真的將{{$this->Year}}學年度的新生資料全部刪除嗎？');">X 清空{{$this->Year}}年資料</a>]</b>&nbsp;
+<b>[<a href="{{$PHP_SELF}}?Year={{$this->Year}}&act=move">M 整班移動</a>]</b>
+{{/if}}
+&nbsp;
+
+</td>
+</tr>
+{{if $this->all!='' && $this->Year!=''}}
+<TR bgcolor='white'>
+<td>臨時編號 </td>
+<td>姓名</td>
+<td>身份證字號</td>
+<td>性別</td>
+<td>就讀</td>
+<td>生日</td>
+<td>電話</td>
+<td>舊校名</td>
+<td>入學年</td>
+<td>年級</td>
+<td>班級</td>
+<td>座號</td>
+<td>功能</td>
+</tr>
+{{foreach from=$this->all  item=arr}}
+{{if $smarty.get.tmp_sn==$arr.newstud_sn}}
+<TR bgcolor='#FFCC99'>
+<td><A name='{{$arr.newstud_sn}}'>{{$arr.temp_id}}</A> </td>
+<td>{{$arr.stud_name}}</td>
+<td>{{$arr.stud_person_id}}</td>
+<td>
+{{if  $arr.stud_sex=='1'}}
+<font color="#0000FF">{{$this->SEX[$arr.stud_sex]}}</font>
+
+{{else}}
+<font color="#FF0000">{{$this->SEX[$arr.stud_sex]}}</font>
+{{/if}}
+
+
+</td>
+<td>{{$arr.sure_study}}</td>
+<td>{{$arr.stud_birthday}}</td>
+<td>{{$arr.stud_tel_1}}</td>
+<td>{{$arr.old_school}}</td>
+<td>{{$arr.stud_study_year}}</td>
+<td>{{$arr.class_year}}</td>
+<td>{{$arr.class_sort}}</td>
+<td>{{$arr.class_site}}</td>
+<td>編修中</td>
+</tr>
+<TR bgcolor='white'>
+<td colspan=13 valign=top >
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}' Name='ef' enctype='multipart/form-data'>
+<TABLE width='100%'  border='0' align='center' cellpadding='5' cellspacing='5' class=txt1>
+<TR><TD colspan=2 width=100%>
+
+<FIELDSET>
+<LEGEND><img src="images/pin_orange.gif"><FONT  COLOR='#FF0000'>新生基本資料管理</FONT></LEGEND>
+<DIV class=ddiv>●性別：<FONT COLOR='#339900'>1男,2女</FONT></div>
+學生姓名:<input type='text' class='mei' name='stud_name' value='{{$arr.stud_name}}' size='8'>
+性別:<input type='text' class='mei' name='stud_sex' value='{{$arr.stud_sex}}' size='3'>
+出生日期:<input type='text' class='mei' name='stud_birthday' value='{{$arr.stud_birthday}}' size='11'>
+身分證字號:<input type='text' class='mei' name='stud_person_id' value='{{$arr.stud_person_id}}' size='11'>
+電話:<input type='text' class='mei' name='stud_tel_1' value='{{$arr.stud_tel_1}}' size='11'><BR>
+
+家長姓名:<input type='text' class='mei' name='guardian_name' value='{{$arr.guardian_name}}' size='8'>
+舊校名:<input type='text' class='mei' name='old_school' value='{{$arr.old_school}}' size='12'>
+舊班名:<input type='text' class='mei' name='old_class' value='{{$arr.old_class}}' size='12'>
+
+<BR>
+
+
+地址:<input type='text' class='mei' name='stud_address' value='{{$arr.stud_address}}' size='40'>
+郵遞區號:<input type='text' class='mei' name='addr_zip' value='{{$arr.addr_zip}}' size='6'>
+
+</FIELDSET>
+</TD>
+</TR>
+
+<TR><TD width=50% valign=top>
+<FIELDSET>
+<LEGEND><img src="images/pin_orange.gif"><FONT  COLOR='#FF0000'>正式資料管理---(寫入學籍表相關)</FONT></LEGEND>
+<DIV class=ddiv>●是否就讀：<FONT COLOR='#339900'>0不就讀,1就讀,2就讀特珠班</FONT></div>
+是否就讀:<input type='text' class='mei' name='sure_study' value='{{$arr.sure_study}}' size='4'>
+入學年:<input type='text' class='mei' name='stud_study_year' value='{{$arr.stud_study_year}}' size='4'>
+正式學號:<input type='text' class='mei' name='stud_id' value='{{$arr.stud_id}}' size='6'><BR>
+年級:<input type='text' class='mei' name='class_year' value='{{$arr.class_year}}' size='4'>
+班級:<input type='text' class='mei' name='class_sort' value='{{$arr.class_sort}}' size='4'>
+座號:<input type='text' class='mei' name='class_site' value='{{$arr.class_site}}' size='4'>
+
+</FIELDSET>
+
+
+</TD><TD width=50% valign=top>
+<FIELDSET>
+<LEGEND><img src="images/pin_orange.gif"><FONT  COLOR='#FF0000'>臨時編班應用</FONT></LEGEND>
+臨時編號:&nbsp;<b style='color:blue'>{{$arr.temp_id}}</b>
+<INPUT TYPE='hidden' Name='temp_id' Value='{{$arr.temp_id}}'>
+<B class=ddiv>(本欄不允許調整)</B>
+<BR>
+班級:<input type='text' class='mei' name='temp_class' value='{{$arr.temp_class}}' size='4'>
+座號:<input type='text' class='mei' name='temp_site' value='{{$arr.temp_site}}' size='4'>
+名次:<input type='text' class='mei' name='sort_sn' value='{{$arr.sort_sn}}' size='4'>
+<BR>
+
+
+成績1:<input type='text' class='mei' name='temp_score1' value='{{$arr.temp_score1}}' size='4'>
+成績2:<input type='text' class='mei' name='temp_score2' value='{{$arr.temp_score2}}' size='4'>
+成績3:<input type='text' class='mei' name='temp_score3' value='{{$arr.temp_score3}}' size='4'>
+</FIELDSET>
+</TD></TR>
+<TR><TD colspan=2 width=100%>
+<FIELDSET>
+	<LEGEND><img src="images/pin_orange.gif"><FONT  COLOR='#FF0000'>其它(未分類)</FONT></LEGEND>
+<DIV class=ddiv>●亂數編班身分別:<FONT COLOR='#339900'>0 一般生,1 特珠生,2 雙胞胎同班,3 雙胞胎不同班</FONT></div>
+亂數編班身分別::<input type='text' class='mei' name='stud_kind' value='{{$arr.stud_kind}}' size='4'>
+另一雙胞胎代碼:<input type='text' class='mei' name='bao_id' value='{{$arr.bao_id}}' size='6'>
+<br>
+是否就讀才藝班:<input type='text' class='mei' name='sure_oth' value='{{$arr.sure_oth}}' size='3'>
+才藝班班名:<input type='text' class='mei' name='oth_class' value='{{$arr.oth_class}}' size='6'>
+才藝班座號:<input type='text' class='mei' name='oth_site' value='{{$arr.oth_site}}' size='4'>
+編班備註欄:<input type='text' class='mei' name='class_memo' value='{{$arr.class_memo}}' size='16'><BR>
+
+
+
+未就讀原因或特殊班類別:<input type='text' class='mei' name='meno' value='{{$arr.meno}}' size='30'><BR>
+
+</FIELDSET>
+<DIV ALIGN="center"><B  onclick="if( window.confirm('確定了？')) {ef.form_act.value='update';ef.submit();}"  class=submit><U>[OK填好送出]</U></B>&nbsp;
+<B  onclick="location.href='{{$PHP_SELF}}?act=edit&Year={{$arr.stud_study_year}}&page={{$this->page}}'"   class=submit ><U>[Back取消返回]</U></B></DIV>
+
+</TD></TR>
+
+</TABLE>
+
+<INPUT TYPE='hidden' Name='form_act' value=''>
+<INPUT TYPE='hidden' Name='newstud_sn' Value='{{$arr.newstud_sn}}'>
+<INPUT TYPE='hidden' Name='Year' Value='{{$this->Year}}'>
+<INPUT TYPE='hidden' Name='page' Value='{{$this->page}}'>
+</FORM>
+
+
+
+
+
+
+
+
+</td>
+</tr>
+
+{{else}}
+
+<TR bgcolor='white' onMouseOver=this.style.backgroundColor='#FFCE3C'
+onMouseOut=this.style.backgroundColor=''>
+<td>{{$arr.temp_id}} </td>
+<td>{{$arr.stud_name}}</td>
+<td>{{$arr.stud_person_id}}</td>
+<td>
+{{if  $arr.stud_sex=='1'}}
+<font color="#0000FF">{{$this->SEX[$arr.stud_sex]}}</font>
+{{else}}
+<font color="#FF0000">{{$this->SEX[$arr.stud_sex]}}</font>
+{{/if}}
+
+
+</td>
+<td>{{$arr.sure_study}}</td>
+<td>{{$arr.stud_birthday}}</td>
+<td>{{$arr.stud_tel_1}}</td>
+<td>{{$arr.old_school}}</td>
+<td>{{$arr.stud_study_year}}</td>
+<td>{{$arr.class_year}}</td>
+<td>{{$arr.class_sort}}</td>
+<td>{{$arr.class_site}}</td>
+
+<td><A HREF='{{$PHP_SELF}}?act=edit&Year={{$arr.stud_study_year}}&page={{$this->page}}&tmp_sn={{$arr.newstud_sn}}#{{$arr.newstud_sn}}'>編修</A></td>
+</tr>
+{{/if}}
+{{/foreach}}
+
+{{/if}}
+</table>
+
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('作者群：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n和美 葉國恭 大村 鄭培華');">
+◎By 彰化縣學務系統開發小組 於 94.08.10 </DIV></FONT><BR>

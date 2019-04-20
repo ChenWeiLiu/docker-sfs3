@@ -1,0 +1,5 @@
+address_book - 通訊錄
+
+本模組係為符應各校不同的資料列表需求
+
+作者:曾文芳  email: infodaes@seed.net.tw

@@ -1,0 +1,8 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+score_query - 成績綜合查詢
+原版作者：jrh
+
+jrh@www.tnc.edu.tw 2003/05/29
+
+提供多一點條件的成績查詢
+

@@ -1,0 +1,3 @@
+curriculum_xml - 課表XML交換
+原版作者：Infodaes
+教育部班級暨教師課表資料交換暫行規格標準1.0版

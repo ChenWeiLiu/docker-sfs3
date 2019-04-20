@@ -1,0 +1,130 @@
+{{* $Id: ps_guid.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=big5">
+<title>個別輔導紀錄冊--基本資料列印</title>
+<meta name="generator" content="彰化縣學務系統開發小組">
+	<STYLE>
+	<!--
+	.memo{font-size:10pt;font-family:細明體}
+	-->
+	</STYLE>
+
+</head>
+<CENTER><H2>個別輔導紀錄冊</H2></CENTER>
+<body style="font-family:標楷體" bgcolor="white" text="black"  onload="self.print();">
+<table width='95%' align=center border="1" cellpadding="0" cellspacing="0" style='border-collapse:collapse;font-size:14pt;'>
+<tr>
+<td width="20%" nowrap align=center>個案姓名</td>
+<td colspan="2" width="40%">&nbsp;{{$base.stud_name}}</td>
+<td width="20%" nowrap align=center>性別</td>
+<td width="20%">&nbsp;{{$SEX[$base.stud_sex]}}</td>
+</tr>
+
+<tr>
+<td nowrap align=center>出生日期</td>
+<td colspan="2">&nbsp;{{$base.stud_birthday}}
+</td><td nowrap align=center>籍　　貫</td>
+<td>&nbsp;{{$place[$base.stud_birth_place]}}</td>
+</tr>
+
+<tr>
+<td nowrap align=center>班　　級</td>
+<td colspan="2">&nbsp;{{$base.cgrade}}</td>
+<td nowrap align=center>身份證字號</td>
+<td>&nbsp;{{$base.stud_person_id}}</td>
+</tr>
+
+<tr>
+<td nowrap align=center>家長或監護人</td>
+<td colspan="2">&nbsp;{{$base.guardian_name}}</td>
+<td nowrap align=center>職　　業</td>
+<td>&nbsp;{{$base.guardian_unit}}</td>
+</tr>
+
+<tr>
+<td nowrap align=center>聯絡住址</td>
+<td colspan="2">&nbsp;{{$base.guardian_address}}</td>
+<td nowrap align=center>電　　話</td>
+<td>&nbsp;{{$base.guardian_phone}}</td>
+</tr>
+
+<tr>
+<td nowrap align=center>重要關係人</td>
+<td colspan="2">&nbsp;{{$stud.about_man}}</td>
+<td nowrap align=center>關　　係</td>
+<td>&nbsp;{{$stud.relation}}</td>
+</tr>
+
+<tr>
+<td nowrap align=center>聯絡住址</td>
+<td colspan="2">&nbsp;{{$stud.ab_man_addr}}</td>
+<td nowrap align=center>電　　話</td>
+<td>&nbsp;{{$stud.ab_man_tel}}</td>
+</tr>
+
+
+<tr>
+<td nowrap align=center>輔 導 者</td>{{assign var="XXX" value=$stud.guid_tea_sn}}
+<td colspan="2">&nbsp;{{$teach.$XXX.name}}</td>
+<td nowrap align=center>接案日期</td>
+<td>&nbsp;{{$stud.begin_date}}</td>
+</tr>
+
+<tr><td colspan=5>
+<table width='98%' align=center border="0" cellpadding="0" cellspacing="0" style='border-collapse:collapse;font-size:14pt;'>
+<tr><td nowrap width=100% colspan="5">一、個案源起</td>
+</td></tr>
+
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.guid_begin_why}}
+</td></tr>
+
+<tr><td nowrap width=100% colspan="5">二、問題行為概述</td></td></tr>
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.guid_c_reason}}
+</td></tr>
+
+</td></tr>
+<tr><td nowrap valign=top>三、個案背景</td>
+<td colspan="4">&nbsp;
+</td></tr>
+
+<tr><td nowrap width=100% colspan="5">　1.家庭結構</td></td></tr>
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.about_home}}
+</td></tr>
+<tr><td nowrap width=100% colspan="5">　2.學校生活</td></td></tr>
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.about_school}}
+</td></tr>
+<tr><td nowrap width=100% colspan="5">　3.身心特質</td></td></tr>
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.person_specific}}
+</td></tr>
+
+<tr><td nowrap width=100% colspan="5">　4.其他</td></td></tr>
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.about_oth}}
+</td></tr>
+
+<tr><td nowrap width=100% colspan="5">四、分析與診斷</td></td></tr>
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.st_analysis}}
+</td></tr>
+
+<tr><td nowrap width=100% colspan="5">五、輔導策略</td></td></tr>
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.guidance_method}}
+</td></tr>
+
+<tr><td nowrap width=100% colspan="5">六、特殊記錄</td></td></tr>
+<tr><td nowrap width=20% valign=top>&nbsp;</td>
+<td colspan="4" width=80% class=memo>{{$stud.st_oth_record}}
+</td></tr>
+
+
+
+</table>
+</td>
+</tr>
+</table>

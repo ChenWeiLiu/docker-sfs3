@@ -1,0 +1,88 @@
+<!-- $Id: chc_940622.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<TABLE border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<TR bgcolor='white'>
+<td colspan=10>
+請選擇學年度：
+{{foreach from=$year_arr item=year_arr}}
+{{if $smarty.get.year==$year_arr.stud_study_year}}
+<b>[<a href="{{$PHP_SELF}}?year={{$year_arr.stud_study_year}}">{{$year_arr.stud_study_year}}年</a>]</b>
+{{else}}
+<a href="{{$PHP_SELF}}?year={{$year_arr.stud_study_year}}">{{$year_arr.stud_study_year}}年</a>
+{{/if}}
+&nbsp;
+{{/foreach}}<div align=right style="font-size:12pt">{{$LINK}}</div>
+</td>
+</tr>
+{{if $LINK!='' && $stu!=''}}
+<TR bgcolor='white'>
+<td>臨時編號 </td>
+<td>姓名</td>
+<td>身份證字號</td>
+<td>性別</td>
+<td>家長姓名</td>
+<td>生日</td>
+<td>電話</td>
+<td>舊校名</td>
+<td>特殊類別</td>
+<td>功能</td>
+</tr>
+{{foreach from=$stu  item=arr}}
+{{if $smarty.get.tmp_sn==$arr.newstud_sn}}
+<TR bgcolor='white'>
+<td>{{$arr.temp_id}} </td>
+<td>{{$arr.stud_name}}</td>
+<td>{{$arr.stud_person_id}}</td>
+<td>{{$SEX[$arr.stud_sex]}}</td>
+<td>{{$arr.guardian_name}}</td>
+
+<td colspan=5>
+<FORM METHOD=POST ACTION='{{$PHP_SELF}}' Name='ef' enctype='multipart/form-data'>
+<FONT  COLOR='blue'>1.若對編班有特別須求才修改類別。<BR>
+2.若為雙胞胎,但不要求編於同一班或無家長証明,請仍註記為一般生。<BR></FONT>
+類別:
+<select name=stud_kind>
+{{html_options options=$stud_kind selected=$arr.stud_kind}}
+</select>
+<BR>編號2:<input type='text' name='bao_id' value='{{$arr.bao_id}}' size=10><BR>(指另位雙胞胎之臨時編號,非雙胞胎可不填)<BR>
+<BR>
+<B  onclick="if( window.confirm('確定了？')) {ef.act.value='update';ef.submit();}"  style='font-weight: 300;color:red;font-size:12pt'>
+[OK送出]</B>&nbsp;
+<B  onclick="location.href='{{$PHP_SELF}}?act=edit&year={{$arr.stud_study_year}}&page={{$page}}'"  style='font-weight: 300;color:red;font-size:12pt' >
+[Back返回]</B>
+
+<INPUT TYPE='hidden' Name='act' Value=''>
+<INPUT TYPE='hidden' Name='newstud_sn' Value='{{$arr.newstud_sn}}'>
+<INPUT TYPE='hidden' Name='temp_id' Value='{{$arr.temp_id}}'>
+<INPUT TYPE='hidden' Name='stud_study_year' Value='{{$arr.stud_study_year}}'>
+<INPUT TYPE='hidden' Name='page' Value='{{$page}}'>
+
+</FORM>
+</tr>
+{{else}}
+
+<TR bgcolor='white'>
+<td>{{$arr.temp_id}} </td>
+<td>{{$arr.stud_name}}</td>
+<td>{{$arr.stud_person_id}}</td>
+<td>{{$SEX[$arr.stud_sex]}}</td>
+<td>{{$arr.guardian_name}}</td>
+<td>{{$arr.stud_birthday}}</td>
+<td>{{$arr.stud_tel_1}}</td>
+<td>{{$arr.old_school}}</td>
+<td>
+{{if $arr.stud_kind=='0' ||  $arr.stud_kind=='' }}
+{{$stud_kind[$arr.stud_kind]}}
+{{elseif  $arr.stud_kind=='2' || $arr.stud_kind=='3' }}
+<FONT COLOR='red'>{{$stud_kind[$arr.stud_kind]}}</FONT>
+(與<FONT COLOR='blue'>{{$temp_id_name[$arr.bao_id]}}</FONT>)
+{{else}}
+<FONT COLOR='red'>{{$stud_kind[$arr.stud_kind]}}</FONT>
+{{/if}}
+</td>
+<td><A HREF='{{$PHP_SELF}}?act=edit&year={{$arr.stud_study_year}}&page={{$page}}&tmp_sn={{$arr.newstud_sn}}'>編修</A></td>
+</tr>
+{{/if}}
+{{/foreach}}
+
+{{/if}}
+</table>

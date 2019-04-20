@@ -1,0 +1,108 @@
+#DropDownControlIFrame {
+  display: none;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  height: 250px;
+  width: 250px;
+  z-index: 99;
+}
+
+#DropDownControl {
+  position:absolute;
+  background-color:#FFF;
+  margin:0;
+  padding:0;
+  display:none;
+  z-index: 100;
+}
+
+#DropDownControl table {
+  font-size: 8pt;
+  border-left: 1px solid #336;
+  border-right: 1px solid #336;
+}
+
+#DropDownControl th {
+  font-weight: normal;
+}
+
+#DropDownControl th a {
+  font-weight: normal;
+  text-decoration: none;
+  color: #FFF;
+  padding: 1px;
+}
+
+#DropDownControl td {
+  text-align: center;
+}
+
+#DropDownControl .header {
+  background-color: #336;
+}
+
+#DropDownControl .weekday {
+  background-color: #DDD;
+  color: #000;
+}
+
+#DropDownControl .weekend {
+  background-color: #FFC;
+  color: #000;
+}
+
+#DropDownControl .current {
+  border: 1px solid #339;
+  background-color: #336;
+  color: #FFF;
+}
+
+#DropDownControl .weekday,
+#DropDownControl .weekend,
+#DropDownControl .current {
+  display: block;
+  text-decoration: none;
+  border: 1px solid #FFF;
+  width: 2em;
+}
+
+#DropDownControl .weekday:hover,
+#DropDownControl .weekend:hover,
+#DropDownControl .current:hover {
+  color: #FFF;
+  background-color: #336;
+  border: 1px solid #999;
+}
+
+#DropDownControl .previous {
+  text-align: left;
+}
+
+#DropDownControl .next {
+  text-align: right;
+}
+
+#DropDownControl .previous,
+#DropDownControl .next {
+  padding: 1px 3px 1px 3px;
+  font-size: 1.4em;
+}
+
+#DropDownControl .previous a,
+#DropDownControl .next a {
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#DropDownControl .title {
+  text-align: center;
+  font-weight: bold;
+  color: #FFF;
+}
+
+#DropDownControl .empty {
+  background-color: #CCC;
+  border: 1px solid #FFF;
+}

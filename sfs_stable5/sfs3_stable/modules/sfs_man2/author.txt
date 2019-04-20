@@ -1,0 +1,5 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+sfs_man -- 學務程式設定
+sfs_man1.0 -- 2001-5-22 -- hami(cik@mail.wpes.tcc.edu.tw)
+sfs_man2.0 -- 2003-2-16 -- tad(tad@www.tnc.edu.tw) 修改加強

@@ -1,0 +1,55 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+
+
+
+
+<table  width='600'  border='0' align='left' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td nowrap width=33%><font color="#FF0000">*</font>1.班級幹部名稱</td>
+<td nowrap width=33%><font color="#FF0000">*</font>2.團體名稱</td>
+<td nowrap><font color="#FF0000">*</font>3幹部名稱</td>
+</tr>
+
+
+{{if $smarty.get.edit=='Y'}} 
+<form method="post" name="Fr1"  action="{{$smqrty.server.SCRIPT_NAME}}">
+<tr align=center  style='font-size:9pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td>
+<textarea name="kindA" rows="12" cols="16" style='font-size:9pt'>{{$this->data.A}}</textarea>
+</td><td>
+<textarea name="kindB" rows="12" cols="16" style='font-size:9pt'>{{$this->data.B}}</textarea>
+</td><td>
+<textarea name="kindC" rows="12" cols="16" style='font-size:9pt'>{{$this->data.C}}</textarea>
+</td>
+</tr>
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td colspan="3">※每行一個變數。<br />
+<INPUT TYPE='hidden' NAME='form_act' Value=''>
+<input  type="reset" value="重設" />
+<input type="button" value="還原為預設值" onclick="if( window.confirm('還原變數為預設值？')){this.form.form_act.value='resetvar';this.form.submit();}" />
+<input type="button" value="填好送出" onclick="if( window.confirm('填寫完整了？')){this.form.form_act.value='update';this.form.submit();}" />
+<input type="button" value="取消返回" onclick="location.href='{{$smarty.server.SCRIPT_NAME}}'"/>
+</tr>
+</form>
+{{else}}
+<tr align=left  style='font-size:12pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' valign="top">
+<td>{{$this->data.A|nl2br}}</td>
+<td>{{$this->data.B|nl2br}}</td>
+<td>{{$this->data.C|nl2br}}</td>
+</tr>
+<tr align=center  style='font-size:12pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' valign="top">
+<td colspan="3">
+<input type="button" value="名稱修改" onclick="location.href='{{$smarty.server.SCRIPT_NAME}}?edit=Y'"/>
+</td>
+</tr>
+{{/if}}
+</table>
+
+
+
+
+
+
+
+

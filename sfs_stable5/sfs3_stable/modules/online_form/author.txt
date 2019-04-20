@@ -1,0 +1,8 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+online_form - 線上調查系統
+原版作者：tad(tad@www.tnc.edu.tw)
+程式版本：v1.0
+
+線上調查系統
+

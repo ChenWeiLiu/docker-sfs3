@@ -1,0 +1,3 @@
+// $Id: author.txt 5310 2013-02-25 15:57:56 $
+contest_teacher  中市網競-學生模組
+contest_teacher 1.0 --- 2013-02-26 --- 台中市豐南國中 杜建忠 ( tea1258@mail.fnjh.tc.edu.tw )

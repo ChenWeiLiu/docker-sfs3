@@ -1,0 +1,9 @@
+// $Id: index.php,v 1.1.1.1 2003/08/30 04:20:24 prolin Exp $
+* stud_grade_class - 畢業班升學設定
+
+** 安裝法:
+
+由 "系統管理" --> "模組權限管理"
+
+需配合 stud_grade.php
+

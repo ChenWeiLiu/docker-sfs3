@@ -1,0 +1,8 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+news -- 校務公佈欄
+原版作者：prolin
+版本 1.0
+
+prolin@sy3es.tnc.edu.tw 2003/05/02
+
+校務公佈欄

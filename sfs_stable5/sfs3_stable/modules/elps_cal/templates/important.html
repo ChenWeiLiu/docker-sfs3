@@ -1,0 +1,26 @@
+<!-- //$Id: ind.html 5310 2009-01-10 07:57:56Z hami $ -->
+<table border='1' cellpadding='3' cellspacing='0' style='border-collapse: collapse' bordercolor='#008000' width='100%'>
+<TR bgcolor='#CCFF99' align='center'>
+<td>週別</td>
+<td>日期起迄</td>
+<td>學校大事</td>
+</tr>
+{{foreach from=$this->WK item=week }}
+<TR align='center'>
+<td>{{$week.No|string_format:"%02d"}}</td>
+<td>{{$week.st_day}}~{{$week.en_day}}</td>
+<td align='left'>
+{{foreach from=$this->unit item=unit}}
+{{foreach from=$week.event item=arr}}
+{{if $arr.important==1}}
+{{if $arr.unit==$unit}}<li>{{$arr.event}}</li>{{/if}}
+{{/if}}
+{{/foreach}}
+{{/foreach}}
+</td>
+</tr>
+{{/foreach}}
+
+</table>
+
+

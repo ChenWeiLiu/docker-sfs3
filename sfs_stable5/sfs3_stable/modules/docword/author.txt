@@ -1,0 +1,3 @@
+docword -- 公文管理
+docword1.0 --- 2001-4-17 --- HaMi(cik@mail.wpes.tcc.edu.tw)
+docword2.0 --- 2003-4-7 --- HaMi(cik@mail.wpes.tcc.edu.tw)

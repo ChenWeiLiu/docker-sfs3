@@ -1,0 +1,258 @@
+{{* $Id: schk_none_body.htm 5331 2009-01-17 03:30:56Z brucelyc $ *}}
+{{$break_page}}
+<P ALIGN=CENTER STYLE="font-size:16pt; font-family: 標楷體, cursive;">{{$school_name}} {{$class_info.ch_year}} {{$class_info.c_seme}}<br>
+日常行為及學習成績評量通知書<br></P>
+<DIV STYLE="font-size: 14pt; font-family: 標楷體, cursive; text-align:center;">班級：{{$class_info.c_year2}}{{$class_info.c_name}}　　座號：{{$stud.seme_num}}　　姓名：{{$stud.stud_name}}</DIV>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0>
+	<TR>
+		<TD COLSPAN=13 WIDTH=100% style="border-style: solid; border-width: 1.5pt 1.5pt 1.5pt 1.5pt;">
+			<DIV ALIGN=CENTER style="font-size:12pt;">日常生活表現(事實紀錄或具體建議)</DIV>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=19% style="border-style: solid; border-width: 0pt 1.5pt 0.75pt 1.5pt;">
+			<DIV ALIGN=CENTER>生活行為</DIV>
+		</TD>
+		<TD COLSPAN=13 style="border-style: solid; border-width: 0pt 1.5pt 0.75pt 0pt;">
+			<DIV><FONT FACE="新細明體" SIZE=2 STYLE="font-size: 11pt">{{if $seme_nor.chk0}}{{$seme_nor.chk0}}{{else}}--{{/if}}</FONT></DIV>
+		</TD>
+	</TR>
+	<TR>
+		<TD style="border-style: solid; border-width: 0pt 1.5pt 0.75pt 1.5pt;">
+			<DIV ALIGN=CENTER>團體活動</DIV>
+		</TD>
+		<TD COLSPAN=13 style="border-style: solid; border-width: 0pt 1.5pt 0.75pt 0pt;">
+			<DIV><FONT FACE="新細明體" SIZE=2 STYLE="font-size: 11pt">{{if $seme_nor.chk1}}{{$seme_nor.chk1}}{{else}}--{{/if}}</FONT></DIV>
+		</TD>
+	</TR>
+	<TR>
+		<TD style="border-style: solid; border-width: 0pt 1.5pt 0.75pt 1.5pt;">
+			<DIV ALIGN=CENTER>公共服務</DIV>
+		</TD>
+		<TD COLSPAN=13 style="border-style: solid; border-width: 0pt 1.5pt 0.75pt 0pt;">
+			<DIV><FONT FACE="新細明體" SIZE=2 STYLE="font-size: 11pt">校內服務：{{if $seme_nor.chk2}}{{$seme_nor.chk2}}{{else}}--{{/if}}<br>社區服務：{{if $seme_nor.chk3}}{{$seme_nor.chk3}}{{else}}--{{/if}}</FONT></DIV>
+		</TD>
+	</TR>
+	<TR>
+		<TD style="border-style: solid; border-width: 0pt 1.5pt 1.5pt 1.5pt;">
+			<DIV ALIGN=CENTER>特殊表現</DIV>
+		</TD>
+		<TD COLSPAN=13 style="border-style: solid; border-width: 0pt 1.5pt 1.5pt 0pt;">
+			<DIV><FONT FACE="新細明體" SIZE=2 STYLE="font-size: 11pt">校內特殊表現：{{if $seme_nor.chk4}}{{$seme_nor.chk4}}{{else}}--{{/if}}<br>校外特殊表現：{{if $seme_nor.chk5}}{{$seme_nor.chk5}}{{else}}--{{/if}}</FONT></DIV>
+		</TD>
+	</TR>
+	<TR>
+		<TD HEIGHT=28 style="border-style: solid; border-width: 0pt 1.5pt 1.5pt 1.5pt;vertical-align: middle;">
+			<DIV ALIGN=CENTER>學生缺席情況</DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>事假<BR>{{$unit}}數</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_absent.abs1}}{{$seme_absent.abs1}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>病假<BR>{{$unit}}數</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_absent.abs2}}{{$seme_absent.abs2}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD WIDTH=6% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>曠課<BR>{{$unit}}數</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_absent.abs3}}{{$seme_absent.abs3}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>集會<BR>次數</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_absent.abs4}}{{$seme_absent.abs4}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD WIDTH=6% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>公假<BR>{{$unit}}數</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_absent.abs5}}{{$seme_absent.abs5}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>其他<BR>{{$unit}}數</FONT></DIV>
+		</TD>
+		<TD WIDTH=7% style="border-style: solid; border-width: 0pt 1.5pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_absent.abs6}}{{$seme_absent.abs6}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+	</TR>
+{{if $IS_JHORES}}
+	<TR>
+		<TD HEIGHT=28 style="border-style: solid; border-width: 0pt 1.5pt 1.5pt 1.5pt;vertical-align: middle;">
+			<DIV ALIGN=CENTER>獎    懲</DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>大功<BR>次數</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_rew.sr1}}{{$seme_rew.sr1}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>小功<BR>次數</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_rew.sr2}}{{$seme_rew.sr2}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>嘉獎<BR>次數</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_rew.sr3}}{{$seme_rew.sr3}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>大過<BR>次數</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_rew.sr4}}{{$seme_rew.sr4}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>小過<BR>次數</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_rew.sr5}}{{$seme_rew.sr5}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 0.75pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2>警告<BR>次數</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0pt 1.5pt 1.5pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>{{if $seme_rew.sr6}}{{$seme_rew.sr6}}{{else}}0{{/if}}</FONT></DIV>
+		</TD>
+	</TR>
+{{/if}}
+	<TR>
+		<TD COLSPAN=13 style="border-style: solid; border-width: 0pt 1.5pt 1.5pt 1.5pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>學習領域評量</FONT></DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0>
+	<TR>
+		<TD WIDTH=32% style="border-style: solid; border-width: 0pt 0.75pt 0pt 1.5pt;">
+			<DIV ALIGN=CENTER>學習領域</DIV>
+		</TD>
+		<TD WIDTH=20% style="border-style: solid; border-width: 0pt 0.75pt 0pt 0pt;">
+			<DIV ALIGN=CENTER STYLE="margin-bottom: 0cm"><FONT SIZE=3>每週<BR>節數</FONT></DIV>
+		</TD>
+		<TD WIDTH=24% style="border-style: solid; border-width: 0pt 0.75pt 0pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>努力程度</FONT></DIV>
+		</TD>
+		<TD WIDTH=24% style="border-style: solid; border-width: 0pt 1.5pt 0pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=3>學習成就</FONT></DIV>
+		</TD>
+	</TR>
+<!------ 顯示成績迴圈 ---->
+{{foreach key=key from=$seme_scope item=data}}
+{{foreach key=skey from=$data.detail item=s_data}}
+{{if ($key=="語文"||$key=="彈性課程") && $skey!="avg"}}
+	<TR>
+		<TD style="border-style: solid; border-width: 0.75pt 0.75pt 0pt 1.5pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt" FACE="新細明體">{{$key}}-{{$s_data.sb}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0.75pt 0.75pt 0pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt" FACE="新細明體">{{$s_data.sector}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0.75pt 0.75pt 0pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt" FACE="新細明體">{{if $s_data.oth}}{{$s_data.oth}}{{else}}--{{/if}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0.75pt 1.5pt 0pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt" FACE="新細明體">{{if $s_data.level}}{{$s_data.level}}{{else}}--{{/if}}</FONT></DIV>
+		</TD>
+	</TR>
+{{elseif ($key!="語文" && $key!="彈性課程" && $data.items>1 && $skey=="avg") || $data.items==1}}
+	<TR>
+		<TD style="border-style: solid; border-width: 0.75pt 0.75pt 0pt 1.5pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt" FACE="新細明體">{{$key}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0.75pt 0.75pt 0pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt" FACE="新細明體">{{$s_data.sector}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0.75pt 0.75pt 0pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt" FACE="新細明體">{{if $s_data.oth}}{{$s_data.oth}}{{else}}--{{/if}}</FONT></DIV>
+		</TD>
+		<TD style="border-style: solid; border-width: 0.75pt 1.5pt 0pt 0pt;">
+			<DIV ALIGN=CENTER><FONT SIZE=2 STYLE="font-size: 9pt" FACE="新細明體">{{if $s_data.level}}{{$s_data.level}}{{else}}--{{/if}}</FONT></DIV>
+		</TD>
+	</TR>
+{{/if}}
+{{/foreach}}
+{{/foreach}}
+<!------ 結束顯示成績迴圈 ---->
+</TABLE>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0>
+	<THEAD>
+		<TR>
+			<TD COLSPAN=4 WIDTH=52% style="border-style: solid; border-width: 1.5pt 1.5pt 0pt 1.5pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=3>審核簽章</FONT></DIV>
+			</TD>
+			<TD WIDTH=48% style="border-style: solid; border-width: 1.5pt 1.5pt 0pt 0pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=3>家長意見</FONT></DIV>
+			</TD>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TR>
+			<TD WIDTH=13% style="border-style: solid; border-width: 1.5pt 0.75pt 0pt 1.5pt;line-height: 8pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=1 STYLE="font-size: 10pt;">導 師</FONT></DIV>
+			</TD>
+			<TD WIDTH=13% style="border-style: solid; border-width: 1.5pt 0.75pt 0pt 0pt;line-height: 8pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=1 STYLE="font-size: 10pt;">{{$sign_3_title}}</FONT></DIV>
+			</TD>
+			<TD WIDTH=13% style="border-style: solid; border-width: 1.5pt 0.75pt 0pt 0pt;line-height: 8pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=1 STYLE="font-size: 10pt;">教務主任</FONT></DIV>
+			</TD>
+			<TD WIDTH=13% style="border-style: solid; border-width: 1.5pt 1.5pt 0pt 0pt;line-height: 8pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=1 STYLE="font-size: 10pt;">校 長</FONT></DIV>
+			</TD>
+			<TD ROWSPAN=2 WIDTH=48% VALIGN=BOTTOM style="border-style: solid; border-width: 1.5pt 1.5pt 1.5pt 0pt;">
+				<DIV ALIGN=RIGHT><FONT SIZE=3>家長簽章</FONT></DIV>
+			</TD>
+		</TR>
+                <TR style="height:60pt;">
+                        <TD style="border-style: solid; border-width: 0.75pt 0.75pt 1.5pt 1.5pt;">
+                                <DIV ALIGN=CENTER><BR></DIV>
+                        </TD>
+                        <TD style="border-style: solid; border-width: 0.75pt 0.75pt 1.5pt 0pt;">
+				<DIV ALIGN=CENTER VALIGN=MIDDLE STYLE="margin-bottom: 0cm">
+{{if $sign_3_form==1}}
+                                {{if $img_3}}<IMG SRC="{{$img_3}}" ALIGN=CENTER WIDTH=48 HEIGHT=48 BORDER=0><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{elseif $sign_3_form==2}}
+                                {{if $sign_3_name}}<font size="4">{{$sign_3_name}}</font><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{else}}
+				<BR>
+{{/if}}
+				</DIV>
+                        </TD>
+                        <TD style="border-style: solid; border-width: 0.75pt 0.75pt 1.5pt 0pt;">
+				<DIV ALIGN=CENTER VALIGN=MIDDLE STYLE="margin-bottom: 0cm">
+{{if $sign_2_form==1}}
+                                {{if $img_2}}<IMG SRC="{{$img_2}}" ALIGN=CENTER WIDTH=48 HEIGHT=48 BORDER=0><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{elseif $sign_2_form==2}}
+                                {{if $sign_2_name}}<font size="4">{{$sign_2_name}}</font><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{else}}
+				<BR>
+{{/if}}
+				</DIV>
+                        </TD>
+                        <TD style="border-style: solid; border-width: 0.75pt 1.5pt 1.5pt 0pt;">
+				<DIV ALIGN=CENTER VALIGN=MIDDLE STYLE="margin-bottom: 0cm">
+{{if $sign_1_form==1}}
+                                {{if $img_1}}<IMG SRC="{{$img_1}}" ALIGN=CENTER WIDTH=48 HEIGHT=48 BORDER=0><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{elseif $sign_1_form==2}}
+                                {{if $sign_1_name}}<font size="4">{{$sign_1_name}}</font><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{else}}
+				<BR>
+{{/if}}
+				</DIV>
+                        </TD>
+                </TR>
+	</TBODY>
+</TABLE><BR>
+<DIV ALIGN=LEFT STYLE="margin-bottom: 0cm; font-size: 10pt; font-family: 標楷體, cursive;">
+{{if $add_memo_file}}{{include file="$add_memo_file"}}{{/if}}
+</DIV>

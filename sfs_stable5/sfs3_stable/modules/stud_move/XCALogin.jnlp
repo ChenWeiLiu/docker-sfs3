@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="XCALogin.jnlp">
+  <information>
+    <title>XCALogin</title>
+    <vendor>shengche</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="XCALogin.jar" size="229798" download="eager" />
+    <jar href="lib2/P11JNI.jar" size="152302" download="eager" />
+    <jar href="lib2/commons-codec-1.9.jar" size="288476" download="eager" />
+    <jar href="lib2/commons-lang3-3.3.2.jar" size="440289" download="eager" />
+    <jar href="lib2/commons-logging-1.2.jar" size="69262" download="eager" />
+    <jar href="lib2/httpasyncclient-4.1.jar" size="190820" download="eager" />
+    <jar href="lib2/httpasyncclient-cache-4.1.jar" size="40723" download="eager" />
+    <jar href="lib2/httpclient-4.4.1.jar" size="774264" download="eager" />
+    <jar href="lib2/httpclient-cache-4.4.1.jar" size="172338" download="eager" />
+    <jar href="lib2/httpcore-4.4.1.jar" size="353387" download="eager" />
+    <jar href="lib2/httpcore-nio-4.4.1.jar" size="385664" download="eager" />
+    <jar href="lib2/jfxmessagebox-1.1.0.jar" size="40451" download="eager" />
+    <jar href="lib2/joda-time-2.5.jar" size="659744" download="eager" />
+    <jar href="lib2/json.jar" size="42271" download="eager" />
+    <jar href="lib2/log4j-1.2.16.jar" size="513766" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <applet-desc  width="360" height="100" main-class="com.javafx.main.NoJavaFXFallback"  name="XCALogin" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="360" height="100" main-class="app.FXStudMoveUpload"  name="XCALogin" />
+  <update check="always"/>
+</jnlp>

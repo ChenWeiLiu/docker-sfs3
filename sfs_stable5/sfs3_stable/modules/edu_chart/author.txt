@@ -1,0 +1,7 @@
+edu_chart - 教育類報表作業
+原創作者：劉育彰
+
+brucelyc@seed.net.tw 2006-10-12
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+產生教育部所需報表之相關作業

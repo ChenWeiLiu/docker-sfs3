@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 教育部九年一貫課程學生成績評量及學籍電子資料交換規格標準之 學生學籍資料 DTD 2.0 版 2002.05 -->
+
+<!-- 學生學籍資料 DTD 資料起始 -->
+
+<!-- 1.學生基本資料 起始 -->
+<!ELEMENT 身份證字號 (基本資料, 學期資料, 異動資料, 期中資料?)>
+<!ELEMENT 基本資料 (基礎資料, 身分證證照, 連絡資料, 中輟時戶籍地址, 學生班級性質, 入學前教育資料?, 畢修業核准文號, 父親基本資料, 母親基本資料, 祖父基本資料, 祖母基本資料, 監護人, 兄弟姐妹, 其他親屬, 輔導個案資料)>
+<!ELEMENT 基礎資料 (學號, 學生姓名, 性別, 出生年月日, 血型, 出生地, 現在年級, 現在班級, 現在座號, 學生身份別+)>
+<!ELEMENT 學號 (#PCDATA)>
+<!ELEMENT 學生姓名 (#PCDATA)>
+<!ELEMENT 性別 (#PCDATA)>
+<!ELEMENT 出生年月日 (#PCDATA)>
+<!ELEMENT 血型 (#PCDATA)>
+<!ELEMENT 出生地 (#PCDATA)>
+<!ELEMENT 現在年級 (#PCDATA)>
+<!ELEMENT 現在班級 (#PCDATA)>
+<!ELEMENT 現在座號 (#PCDATA)>
+<!ELEMENT 學生身份別 (#PCDATA)>
+<!ELEMENT 身分證證照 (國籍, 證照種類, 身分證號碼, 僑居地)+>
+<!ELEMENT 國籍 (#PCDATA)>
+<!ELEMENT 證照種類 (#PCDATA)>
+<!ELEMENT 身分證號碼 (#PCDATA)>
+<!ELEMENT 僑居地 (#PCDATA)>
+<!ELEMENT 連絡資料 (戶籍地址, 連絡地址, 戶籍地址電話?, 聯絡電話?, 行動電話?, 電子郵件信箱)>
+<!ELEMENT 戶籍地址 (#PCDATA)>
+<!ELEMENT 連絡地址 (#PCDATA)>
+<!ELEMENT 戶籍地址電話 (#PCDATA)>
+<!ELEMENT 聯絡電話 (#PCDATA)>
+<!ELEMENT 行動電話 (#PCDATA)>
+<!ELEMENT 電子郵件信箱 (#PCDATA)>
+<!ELEMENT 中輟時戶籍地址 (縣市名, 鄉鎮市區名, 村里, 鄰, 路街, 段, 巷, 弄, 號, 之, 樓, 樓之, 其他)>
+<!ELEMENT 縣市名 (#PCDATA)>
+<!ELEMENT 鄉鎮市區名 (#PCDATA)>
+<!ELEMENT 村里 (#PCDATA)>
+<!ELEMENT 鄰 (#PCDATA)>
+<!ELEMENT 路街 (#PCDATA)>
+<!ELEMENT 段 (#PCDATA)>
+<!ELEMENT 巷 (#PCDATA)>
+<!ELEMENT 弄 (#PCDATA)>
+<!ELEMENT 號 (#PCDATA)>
+<!ELEMENT 之 (#PCDATA)>
+<!ELEMENT 樓 (#PCDATA)>
+<!ELEMENT 樓之 (#PCDATA)>
+<!ELEMENT 其他 (#PCDATA)>
+<!ELEMENT 學生班級性質 (班級性質, 特殊班類別, 特殊班班別, 特殊班上課性質)>
+<!ELEMENT 班級性質 (#PCDATA)>
+<!ELEMENT 特殊班類別 (#PCDATA)>
+<!ELEMENT 特殊班班別 (#PCDATA)>
+<!ELEMENT 特殊班上課性質 (#PCDATA)>
+<!ELEMENT 入學前教育資料 (幼稚園入學 | 國小入學)>
+<!ELEMENT 幼稚園入學 (幼稚園入學資格, 教育部學校代碼_幼稚園, 學校名稱_幼稚園)?>
+<!ELEMENT 幼稚園入學資格 (#PCDATA)>
+<!ELEMENT 教育部學校代碼_幼稚園 (#PCDATA)>
+<!ELEMENT 學校名稱_幼稚園 (#PCDATA)>
+<!ELEMENT 國小入學 (國小入學資格, 教育部學校代碼_國小, 學校名稱_國小)?>
+<!ELEMENT 國小入學資格 (#PCDATA)>
+<!ELEMENT 教育部學校代碼_國小 (#PCDATA)>
+<!ELEMENT 學校名稱_國小 (#PCDATA)>
+<!ELEMENT 畢修業核准文號 (畢修業別, 日期_畢修業, 字_畢修業, 號_畢修業)?>
+<!ELEMENT 畢修業別 (#PCDATA)>
+<!ELEMENT 日期_畢修業 (#PCDATA)>
+<!ELEMENT 字_畢修業 (#PCDATA)>
+<!ELEMENT 號_畢修業 (#PCDATA)>
+<!ELEMENT 父親基本資料 (姓名_父親, 出生年次_父親, 存歿_父親, 與父關係, 身分證證照_父親, 教育程度_父親, 職業_父親, 服務單位_父親, 職稱_父親, 電話號碼-公_父親, 電話號碼-宅_父親, 行動電話_父親, 電子郵件信箱_父親)?>
+<!ELEMENT 姓名_父親 (#PCDATA)>
+<!ELEMENT 出生年次_父親 (#PCDATA)>
+<!ELEMENT 存歿_父親 (#PCDATA)>
+<!ELEMENT 與父關係 (#PCDATA)>
+<!ELEMENT 身分證證照_父親 (#PCDATA)>
+<!ELEMENT 教育程度_父親 (#PCDATA)>
+<!ELEMENT 職業_父親 (#PCDATA)>
+<!ELEMENT 服務單位_父親 (#PCDATA)>
+<!ELEMENT 職稱_父親 (#PCDATA)>
+<!ELEMENT 電話號碼-公_父親 (#PCDATA)>
+<!ELEMENT 電話號碼-宅_父親 (#PCDATA)>
+<!ELEMENT 行動電話_父親 (#PCDATA)>
+<!ELEMENT 電子郵件信箱_父親 (#PCDATA)>
+<!ELEMENT 母親基本資料 (姓名_母親, 出生年次_母親, 存歿_母親, 與母關係, 身分證證照_母親, 教育程度_母親, 職業_母親, 服務單位_母親, 職稱_母親, 電話號碼-公_母親, 電話號碼-宅_母親, 行動電話_母親, 電子郵件信箱_母親)?>
+<!ELEMENT 姓名_母親 (#PCDATA)>
+<!ELEMENT 出生年次_母親 (#PCDATA)>
+<!ELEMENT 存歿_母親 (#PCDATA)>
+<!ELEMENT 與母關係 (#PCDATA)>
+<!ELEMENT 身分證證照_母親 (#PCDATA)>
+<!ELEMENT 教育程度_母親 (#PCDATA)>
+<!ELEMENT 職業_母親 (#PCDATA)>
+<!ELEMENT 服務單位_母親 (#PCDATA)>
+<!ELEMENT 職稱_母親 (#PCDATA)>
+<!ELEMENT 電話號碼-公_母親 (#PCDATA)>
+<!ELEMENT 電話號碼-宅_母親 (#PCDATA)>
+<!ELEMENT 行動電話_母親 (#PCDATA)>
+<!ELEMENT 電子郵件信箱_母親 (#PCDATA)>
+<!ELEMENT 祖父基本資料 (姓名_祖父, 存歿_祖父)?>
+<!ELEMENT 姓名_祖父 (#PCDATA)>
+<!ELEMENT 存歿_祖父 (#PCDATA)>
+<!ELEMENT 祖母基本資料 (姓名_祖母, 存歿_祖母)?>
+<!ELEMENT 姓名_祖母 (#PCDATA)>
+<!ELEMENT 存歿_祖母 (#PCDATA)>
+<!ELEMENT 監護人 (姓名_監護人, 與監護人之關係, 身分證證照_監護人, 地址_監護人, 服務單位_監護人, 職稱_監護人, 聯絡電話_監護人?, 行動電話_監護人?, 電子郵件信箱_監護人?)>
+<!ELEMENT 姓名_監護人 (#PCDATA)>
+<!ELEMENT 與監護人之關係 (#PCDATA)>
+<!ELEMENT 身分證證照_監護人 (#PCDATA)>
+<!ELEMENT 地址_監護人 (#PCDATA)>
+<!ELEMENT 服務單位_監護人 (#PCDATA)>
+<!ELEMENT 職稱_監護人 (#PCDATA)>
+<!ELEMENT 聯絡電話_監護人 (#PCDATA)>
+<!ELEMENT 行動電話_監護人 (#PCDATA)>
+<!ELEMENT 電子郵件信箱_監護人 (#PCDATA)>
+<!ELEMENT 兄弟姐妹 (姓名_兄弟姐妹, 兄弟姊妹稱謂, 就讀學校_兄弟姐妹)*>
+<!ELEMENT 姓名_兄弟姐妹 (#PCDATA)>
+<!ELEMENT 兄弟姊妹稱謂 (#PCDATA)>
+<!ELEMENT 就讀學校_兄弟姐妹 (#PCDATA)>
+<!ELEMENT 其他親屬 (姓名_其他親屬, 親屬稱謂, 聯絡電話_其他親屬, 行動電話_其他親屬, 電子郵件信箱_其他親屬)*>
+<!ELEMENT 姓名_其他親屬 (#PCDATA)>
+<!ELEMENT 親屬稱謂 (#PCDATA)>
+<!ELEMENT 聯絡電話_其他親屬 (#PCDATA)>
+<!ELEMENT 行動電話_其他親屬 (#PCDATA)>
+<!ELEMENT 電子郵件信箱_其他親屬 (#PCDATA)>
+<!ELEMENT 輔導個案資料 (個案編號, 個案來源, 接案日期, 認輔老師, 問題類別, 偏差行為, 適應不良原因, 結案否, 結案原因, 結案日期, 輔導日期*, 輔導內容*, 個案關聯編號?)>
+<!ELEMENT 個案編號 (#PCDATA)>
+<!ELEMENT 個案來源 (#PCDATA)>
+<!ELEMENT 接案日期 (#PCDATA)>
+<!ELEMENT 認輔老師 (#PCDATA)>
+<!ELEMENT 問題類別 (#PCDATA)>
+<!ELEMENT 偏差行為 (#PCDATA)>
+<!ELEMENT 適應不良原因 (#PCDATA)>
+<!ELEMENT 結案否 (#PCDATA)>
+<!ELEMENT 結案原因 (#PCDATA)>
+<!ELEMENT 結案日期 (#PCDATA)>
+<!ELEMENT 輔導日期 (#PCDATA)>
+<!ELEMENT 輔導內容 (#PCDATA)>
+<!ELEMENT 個案關聯編號 (#PCDATA)>
+<!-- 1.學生基本資料 結束 -->
+
+<!-- 2.學生學期資料 起始 -->
+<!ELEMENT 學期資料 (個別學期資料*)>
+<!ELEMENT 個別學期資料 (班級座號, 分散式班級, 學期缺席, 學期成績, 特殊優良表現, 心理測驗成績, 輔導基本資料, 輔導訪談記錄)>
+<!ATTLIST 個別學期資料
+	學年別 CDATA #REQUIRED
+	學期別 (一 | 二) #REQUIRED
+>
+<!ELEMENT 班級座號 (年級, 班級, 座號)>
+<!ELEMENT 年級 (#PCDATA)>
+<!ELEMENT 班級 (#PCDATA)>
+<!ELEMENT 座號 (#PCDATA)>
+<!ELEMENT 分散式班級 (年級_分散式, 班級_分散式, 座號_分散式)>
+<!ELEMENT 年級_分散式 (#PCDATA)>
+<!ELEMENT 班級_分散式 (#PCDATA)>
+<!ELEMENT 座號_分散式 (#PCDATA)>
+<!ELEMENT 學期缺席 (缺席類別, 缺席天數)*>
+<!ELEMENT 缺席類別 (#PCDATA)>
+<!ELEMENT 缺席天數 (#PCDATA)>
+<!ELEMENT 學期成績 (語文, 數學, 自然與生活科技?, 社會?, 藝術與人文?, 生活課程?, 健康與體育, 綜合活動, 彈性課程, 日常生活表現)>
+<!ELEMENT 語文 (學習領域百分制成績_語文, 學習領域文字描述_語文, 分項科目_語文)>
+<!ELEMENT 學習領域百分制成績_語文 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_語文 (#PCDATA)>
+<!ELEMENT 分項科目_語文 (本國語文百分制成績, 鄉土語文百分制成績, 英語百分制成績?)>
+<!ELEMENT 本國語文百分制成績 (#PCDATA)>
+<!ELEMENT 鄉土語文百分制成績 (#PCDATA)>
+<!ATTLIST 鄉土語文百分制成績
+	鄉土語言類別 (閩南語 | 客家語 | 阿美語 | 卑南語 | 布農語 | 排灣語 | 魯凱語 | 賽夏語 | 雅美語 | 泰雅語 | 鄒語 | 賽德克語 | 噶瑪蘭語 | 邵語 | 福州語) #REQUIRED
+>
+<!ELEMENT 英語百分制成績 (#PCDATA)>
+<!ELEMENT 數學 (學習領域百分制成績_數學, 學習領域文字描述_數學)>
+<!ELEMENT 學習領域百分制成績_數學 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_數學 (#PCDATA)>
+<!ELEMENT 自然與生活科技 (學習領域百分制成績_自然, 學習領域文字描述_自然)>
+<!ELEMENT 學習領域百分制成績_自然 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_自然 (#PCDATA)>
+<!ELEMENT 社會 (學習領域百分制成績_社會, 學習領域文字描述_社會)>
+<!ELEMENT 學習領域百分制成績_社會 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_社會 (#PCDATA)>
+<!ELEMENT 藝術與人文 (學習領域百分制成績_藝術, 學習領域文字描述_藝術)>
+<!ELEMENT 學習領域百分制成績_藝術 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_藝術 (#PCDATA)>
+<!ELEMENT 生活課程 (學習領域百分制成績_生活, 學習領域文字描述_生活)>
+<!ELEMENT 學習領域百分制成績_生活 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_生活 (#PCDATA)>
+<!ELEMENT 健康與體育 (學習領域百分制成績_健體, 學習領域文字描述_健體)>
+<!ELEMENT 學習領域百分制成績_健體 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_健體 (#PCDATA)>
+<!ELEMENT 綜合活動 (學習領域百分制成績_綜合, 學習領域文字描述_綜合)>
+<!ELEMENT 學習領域百分制成績_綜合 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_綜合 (#PCDATA)>
+<!ELEMENT 彈性課程 (分項科目_彈性*)>
+<!ELEMENT 分項科目_彈性 (彈性課程科目名稱, 彈性課程科目百分制成績)>
+<!ELEMENT 彈性課程科目名稱 (#PCDATA)>
+<!ELEMENT 彈性課程科目百分制成績 (#PCDATA)>
+<!ELEMENT 日常生活表現 (學習領域百分制成績_日常生活, 學習領域文字描述_日常生活)>
+<!ELEMENT 學習領域百分制成績_日常生活 (#PCDATA)>
+<!ELEMENT 學習領域文字描述_日常生活 (#PCDATA)>
+<!ELEMENT 特殊優良表現 (優良表現事蹟*)>
+<!ELEMENT 優良表現事蹟 (日期_優良表現, 優良表現事由)>
+<!ELEMENT 日期_優良表現 (#PCDATA)>
+<!ELEMENT 優良表現事由 (#PCDATA)>
+<!ELEMENT 心理測驗成績 (心理測驗施測*)>
+<!ELEMENT 心理測驗施測 (心理測驗編號, 測驗成績的中文簡稱, 成績編號, 資料來源, 使用的轉換表編號, 測驗成績的中文全名)>
+<!ELEMENT 心理測驗編號 (#PCDATA)>
+<!ELEMENT 測驗成績的中文簡稱 (#PCDATA)>
+<!ELEMENT 成績編號 (#PCDATA)>
+<!ELEMENT 資料來源 (#PCDATA)>
+<!ELEMENT 使用的轉換表編號 (#PCDATA)>
+<!ELEMENT 測驗成績的中文全名 (#PCDATA)>
+<!ELEMENT 輔導基本資料 (父母關係, 家庭類型, 家庭氣氛, 父管教方式, 母管教方式, 居住情形, 經濟狀況, 最喜愛科目, 最困難科目, 特殊才能, 興趣, 生活習慣, 人際關係, 外向行為, 內向行為, 學習行為, 不良習慣, 焦慮行為)>
+<!ELEMENT 父母關係 (#PCDATA)>
+<!ELEMENT 家庭類型 (#PCDATA)>
+<!ELEMENT 家庭氣氛 (#PCDATA)>
+<!ELEMENT 父管教方式 (#PCDATA)>
+<!ELEMENT 母管教方式 (#PCDATA)>
+<!ELEMENT 居住情形 (#PCDATA)>
+<!ELEMENT 經濟狀況 (#PCDATA)>
+<!ELEMENT 最喜愛科目 (#PCDATA)>
+<!ELEMENT 最困難科目 (#PCDATA)>
+<!ELEMENT 特殊才能 (#PCDATA)>
+<!ELEMENT 興趣 (#PCDATA)>
+<!ELEMENT 生活習慣 (#PCDATA)>
+<!ELEMENT 人際關係 (#PCDATA)>
+<!ELEMENT 外向行為 (#PCDATA)>
+<!ELEMENT 內向行為 (#PCDATA)>
+<!ELEMENT 學習行為 (#PCDATA)>
+<!ELEMENT 不良習慣 (#PCDATA)>
+<!ELEMENT 焦慮行為 (#PCDATA)>
+<!ELEMENT 輔導訪談記錄 (輔導訪談記錄內容*)>
+<!ELEMENT 輔導訪談記錄內容 (記錄日期, 連絡對象, 連絡事項, 內容要點)*>
+<!ELEMENT 記錄日期 (#PCDATA)>
+<!ELEMENT 連絡對象 (#PCDATA)>
+<!ELEMENT 連絡事項 (#PCDATA)>
+<!ELEMENT 內容要點 (#PCDATA)>
+<!-- 2.學生學期資料 結束 -->
+
+<!-- 3.學生異動資料 起始 -->
+<!ELEMENT 異動資料 (各筆異動資料*)>
+<!ELEMENT 各筆異動資料 (異動校名, 異動日期, 異動核准機關名稱, 異動核准文號)>
+<!ATTLIST 各筆異動資料
+	異動學年 CDATA #REQUIRED
+	異動學期 (一 | 二) #REQUIRED
+>
+<!ELEMENT 異動校名 (教育部學校代碼, 學校名稱)>
+<!ELEMENT 教育部學校代碼 (#PCDATA)>
+<!ELEMENT 學校名稱 (#PCDATA)>
+<!ELEMENT 異動日期 (年_異動日期, 月_異動日期, 日_異動日期)>
+<!ELEMENT 年_異動日期 (#PCDATA)>
+<!ELEMENT 月_異動日期 (#PCDATA)>
+<!ELEMENT 日_異動日期 (#PCDATA)>
+<!ELEMENT 異動核准機關名稱 (#PCDATA)>
+<!ELEMENT 異動核准文號 (日期_核准文號, 字_核准文號, 號_核准文號)>
+<!ELEMENT 日期_核准文號 (#PCDATA)>
+<!ELEMENT 字_核准文號 (#PCDATA)>
+<!ELEMENT 號_核准文號 (#PCDATA)>
+<!-- 3.學生異動資料 結束 -->
+
+<!-- 4.學生期中資料 起始 -->
+<!ELEMENT 期中資料 (期中缺席, 期中成績, 期中獎懲, 社團活動)>
+<!ELEMENT 期中缺席 (年_期中缺席, 月_期中缺席, 缺席類別_期中, 缺席天數_期中)*>
+<!ELEMENT 年_期中缺席 (#PCDATA)>
+<!ELEMENT 月_期中缺席 (#PCDATA)>
+<!ELEMENT 缺席類別_期中 (#PCDATA)>
+<!ELEMENT 缺席天數_期中 (#PCDATA)>
+<!ELEMENT 期中成績 (期中各科成績*)>
+<!ELEMENT 期中各科成績 (#PCDATA)>
+<!ELEMENT 期中獎懲 (期中獎懲記錄*)>
+<!ELEMENT 期中獎懲記錄 (日期_期中獎懲, 類別_期中獎懲, 次數_期中獎懲, 期中獎懲事由)>
+<!ELEMENT 日期_期中獎懲 (#PCDATA)>
+<!ELEMENT 類別_期中獎懲 (#PCDATA)>
+<!ELEMENT 次數_期中獎懲 (#PCDATA)>
+<!ELEMENT 期中獎懲事由 (#PCDATA)>
+<!ELEMENT 社團活動 (社團活動內容*, 班級活動, 學生自治會活動, 學校例行活動)>
+<!ELEMENT 社團活動內容 (社團名稱, 社團活動成績)>
+<!ELEMENT 社團名稱 (#PCDATA)>
+<!ELEMENT 社團活動成績 (#PCDATA)>
+<!ELEMENT 班級活動 (#PCDATA)>
+<!ELEMENT 學生自治會活動 (#PCDATA)>
+<!ELEMENT 學校例行活動 (#PCDATA)>
+<!-- 4.學生期中資料 結束 -->
+
+<!-- 學生學籍資料 DTD 資料結束 -->

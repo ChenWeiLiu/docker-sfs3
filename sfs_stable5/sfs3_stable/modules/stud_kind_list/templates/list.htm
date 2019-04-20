@@ -1,0 +1,120 @@
+<!-- $Id: list.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+-->
+</style>
+<table width="90%" class="formdata">
+  <caption>
+  學號：{{$data.stud_id}} -- {{$data.stud_name}} 
+  </caption>
+  <tr>
+    <th scope="row">班級</th>
+    <td>{{$data.current_class_name}}</td>
+    <th>座號</td>
+    <td>{{$data.curr_class_num}}</td>
+    <th>在學</td>
+    <td>{{$data.curr_stud_study_cond}}</td>    
+
+  </tr>
+  <tr>
+    <th scope="row">身分證號碼</th>
+    <td>{{$data.stud_person_id}}</td>
+    <th>生日</td>
+    <td>{{$data.stud_birthday}}</td>
+    <th>性別</td>
+    <td>{{$data.stud_sex}}</td>
+  </tr>
+  <tr>
+    <th scope="row">戶籍地址</th>
+    <td colspan="5">{{$data.stud_addr_1}}</td>
+  </tr>
+  <tr>
+    <th scope="row">聯絡地址</th>
+    <td colspan="5">{{$data.stud_addr_2}}</td>
+  </tr>  
+  <tr>
+    <th scope="row">電話</th>
+    <td>{{$data.stud_tel_1}}</td>
+    <th> 緊急電話 </td>
+    <td>{{$data.stud_tel_2}}</td>
+    <th>行動電話</td>
+    <td>{{$data.stud_tel_3}}</td>
+  </tr>
+  <tr>
+    <th scope="row">父親</th>
+    <td>{{$data.fath_name}}</td>
+    <th> 服務單位 </td>
+    <td>{{$data.fath_unit}}</td>    
+    <th> 職稱 </td>
+    <td>{{$data.fath_work_name}}</td> 
+  </tr>
+  <tr>    
+    <th> 電話(公) </td>
+    <td>{{$data.fath_phone}}</td>
+    <th> 電話(宅)</td>
+    <td>{{$data.fath_home_phone}}</td>
+    <th> 行動電話 </td>
+    <td>{{$data.fath_hand_phone}}</td>        
+  </tr>
+  <tr>
+    <th scope="row">母親</th>
+    <td>{{$data.moth_name}}</td>
+    <th> 服務單位 </td>
+    <td>{{$data.moth_unit}}</td>    
+    <th> 職稱 </td>
+    <td>{{$data.moth_work_name}}</td> 
+  </tr>
+  <tr>    
+    <th> 電話(公) </td>
+    <td>{{$data.moth_phone}}</td>
+    <th> 電話(宅)</td>
+    <td>{{$data.moth_home_phone}}</td>
+    <th> 行動電話 </td>
+    <td>{{$data.moth_hand_phone}}</td>        
+  </tr>  
+</table>
+<p>&nbsp;</p>

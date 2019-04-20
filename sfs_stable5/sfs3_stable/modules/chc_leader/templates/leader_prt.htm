@@ -1,0 +1,59 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; Charset=Big5">
+<head>
+<title>學生幹部服務紀錄表</title>
+</head>
+<body >
+{{foreach from=$this->allSN item=StuSN}}
+{{assign var="Stu" value=$this->OneStu($StuSN)}}
+<table width="700" align="center">
+
+<tr align="center">
+<td>
+<span style="font-size: 18pt; font-weight: bold; ">{{$this->sch.sch_cname}}學生幹部服務紀錄表</span>
+</td>
+</tr>
+
+<tr><td><div align="right">列印時間：{{$smarty.now|date_format:"%Y-%m-%d"}}</div></td></tr>
+<tr align="center"><td>
+<table border=0 width="100%"><tr>
+<td>姓名:<strong>{{$Stu.base.stud_name}}</strong></td>
+<td>學號:<strong>{{$Stu.base.stud_id}}</strong></td>
+<td>姓別:<strong>{{if $Stu.base.stud_sex=='1'}}男{{else}}女{{/if}}</strong></td>
+<td>生日:<strong>{{$this->Birth($Stu.base.stud_birthday)}}</strong></td>
+<td>字號:<strong>{{$Stu.base.stud_person_id}}</strong></td>
+</tr></table>
+<table   width="100%"  border='1' align='center' cellpadding='1' cellspacing='1' bgcolor='#FFFFFF'>
+<tr align='center'>
+<td>學期</td>
+<td>班級座號</td>
+<td>班級/社團名稱</td>
+<td>擔任職務</td>
+<td>備註</td>
+</tr>
+{{if $Stu.data==''}}
+<tr align='center'><td colspan=5><span style="font-size: 14pt; font-weight: bold; "><br />查無擔任幹部記錄<br /><br /></span></td></tr>
+{{else}}
+{{foreach from=$Stu.data item=ary}}
+<tr align='center'>
+<td>{{$ary.seme}}</td>
+<td>{{$ary.seme_class}}班{{$ary.seme_num}}號</td>
+<td align='left'>{{if $ary.kind==0}}{{$this->OName($ary.org_name)}}{{else}}
+{{$ary.org_name}}{{/if}}</td>
+<td align='left'>{{$ary.title}}</td>
+<td>{{$ary.memo}}&nbsp;</td>
+</tr>
+{{/foreach}}
+
+{{/if}}
+</table>
+
+</td></tr>
+
+<tr align="center"><td>學務處核章：</td></tr>
+</table>
+{{if $smarty.get.SN==''}}<P STYLE='page-break-before: always;'>{{/if}}
+{{/foreach}}
+
+</body>
+</html>

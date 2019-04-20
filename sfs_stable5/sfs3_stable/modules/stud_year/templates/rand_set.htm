@@ -1,0 +1,99 @@
+<!-- $Id: rand_set.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<table bgcolor="#9EBCDD" cellspacing="1" cellpadding="4" width=70% align=center>
+<tr align=center bgcolor="#FFFFFF"><td colspan=2><b>在籍生亂數編班作業流程--1.編班設定</b></td></tr>
+<tr><td colspan=2><b>■己存在之設定項目</b></td></tr>
+<tr bgcolor="#FFFFFF"><td colspan=2>
+{{foreach item=arr  from=$this->List}}
+□<font color="#0000FF"><b>{{$arr.rWord.Y}}</b>學年度 第<b>{{$arr.rWord.S}}</b>學期
+<b>{{$arr.rWord.Gw}}</b> 學生 亂數編班設定</font>
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&del={{$arr.file}}">×刪除</a>]
+<br>
+{{/foreach}}
+</td></tr>
+<tr align=center><td><b>設定項目</b></td><td><b>項目內容</b></td></tr>
+<FORM METHOD=POST ACTION="{{$smarty.server.PHP_SELF}}" name=f1 >
+<tr bgcolor="#FFFFFF" height=35>
+<td>A.舊生來源</td>
+<td>
+<select name="Seme" onChange="location.href='{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Seme='+this.options[this.selectedIndex].value;">
+<option value="">-=選擇學期=-</option>
+{{html_options  options=$this->sYear selected=$this->Seme}}
+</select>
+<select name="Grade"  onChange="location.href='{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Seme={{$this->Seme}}&Grade='+this.options[this.selectedIndex].value;">
+<option value="">-=選擇編班年級=-</option>
+{{html_options  options=$this->sGrade  selected=$this->Grade}}
+</select><INPUT TYPE=button  value='返回主頁' onclick="location.href='{{$smarty.server.PHP_SELF}}';">
+</td></tr>
+
+{{if $this->rWord!=''}}
+
+
+<tr bgcolor="#FFFFFF" height=35>
+<td>B.在{{$this->sGrade($this->Grade)}}舊生中，選擇參加班級<br>
+<input type="button" value="全選/取消/反向" onclick="tagall('f1')">
+</td>
+<td>
+{{foreach item=arr key=key from=$this->sClass}}
+
+<LABEL><INPUT TYPE='checkbox' NAME='Rand[class_id][{{$arr.class_id}}]'  value='{{$arr.c_name}}'>{{$arr.c_name}}班</LABEL>
+{{if $key!=0 && ($key%5)==4}}<br>{{/if}}
+{{/foreach}}
+</td></tr>
+<tr bgcolor="#FFFFFF" height=35>
+<td align=right><font color="#FF0000"><b>將進行→</b></font></td>
+<td>
+<font color="#0000FF"><b>{{$this->rWord.Y}}</b>學年度 第<b>{{$this->rWord.S}}</b>學期
+<b>{{$this->rWord.Gw}}</b> 學生 亂數編班作業</font>
+</td></tr>
+<tr bgcolor="#FFFFFF" height=35>
+<td>C.編為幾班(新班級數)</td>
+<td><input type="text" name="Rand[newTol]" value="{{$key+1}}" size="5" maxlength="5">
+</td></tr>
+<tr bgcolor="#FFFFFF" height=35>
+<td>D.刪除選項
+<div style="color: #FF0000; font-size: 10pt; ">※如果您不確定，請勿調整此項目。</div>
+</td>
+<td>
+<input type="radio" name="Rand[Test]" value="Y" checked>一般操作模式。<br>
+<input type="radio" name="Rand[Test]" value="N">固定模式，產生後您無法作任何變更。
+
+</td></tr>
+
+
+<tr bgcolor="#FFFFFF">
+<td colspan=2 align=center><br>
+<INPUT TYPE='hidden' NAME='form_act'  value=''>
+<INPUT TYPE='hidden' NAME='Rand[Sp]'  value=''>
+<INPUT TYPE='hidden' NAME='step'  value='{{$this->mod}}'>
+<INPUT TYPE=button  value='記錄目前設定，進行下一步驟' onclick="if (window.confirm('確定送出')){f1.form_act.value='setSave';f1.submit();}" >
+
+</td></tr>
+
+{{/if}}
+
+
+</FORM>
+</table>
+<script>
+<!--
+
+function tagall(ff) {
+
+//	var FF = document.all[ff];
+//	var FF=document.getElementById(ff);
+	var FF=document.getElementsByName(ff)[0];
+	var i =0;
+	while (i < FF.elements.length) {
+	var obj=FF.elements[i];
+	var objx=FF.elements[i].name;//取得名稱
+	// objx.substr(0,4)取得部分字串
+	if (obj.type=='checkbox' && objx.substr(0,4)=='Rand') {
+	if (obj.checked==1 ) {obj.checked=0;}
+	else { obj.checked=1;}
+	}
+	i++;
+	}
+}
+//-->
+</script>

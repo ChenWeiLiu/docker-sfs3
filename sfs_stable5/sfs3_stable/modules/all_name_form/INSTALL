@@ -1,0 +1,12 @@
+// $Id: INSTALL,v 1.1 2003-09-27 17:21:00 ols3 Exp $
+* 級務管理
+
+** 安裝法:
+
+請由 "模組權限管理" 進入
+
+
+註：這裡採用 outline 文件模式。
+
+關於 outline，請參考 http://linux.tnc.edu.tw/techdoc/otl/ 的說明。
+

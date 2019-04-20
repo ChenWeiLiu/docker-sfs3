@@ -1,0 +1,142 @@
+<!-- //$Id: chi_dom.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<script language="JavaScript">
+function Jrun(id){
+	var i =0;
+	var add =0;
+ 	var elm=document.getElementsByTagName("td");
+ 	var now=eval(document.f1.submit_tol.value);
+ 	//alert(elm.length);
+ while (i < elm.length) {
+  if(elm[i].className==id)
+  		{
+		if (elm[i].style.display=='none'){elm[i].style.display='';add=1;}
+		else{	elm[i].style.display='none';add=0;}
+		}
+	i++;
+  }
+  if(add==0) {document.f1.submit_tol.value=now-1;}else{document.f1.submit_tol.value=now+1;}
+  if (document.f1.submit_tol.value!=0){
+  document.f1.fact.disabled=0;document.f1.fact1.disabled=0;}else{
+  document.f1.fact.disabled=1;document.f1.fact1.disabled=1;} 
+  enedit(id);
+  if (eval(document.f1.submit_tol.value) > 7) alert('一次編太多項目，運作會不順暢喔！');
+}
+
+function enedit(id){
+	var i =0;
+	while (i < document.f1.elements.length) {
+		var obj=document.f1.elements[i];
+		var objx=document.f1.elements[i].className;//取得名稱
+		if ((obj.type=='text'||obj.type=='select-one'||obj.type=='radio')&& objx==id) {
+			if (obj.disabled==1 ) {obj.disabled=0;}else { obj.disabled=1;}
+			}
+		i++;
+	}
+	
+}
+
+function myReset(){
+	var AA=eval(document.f1.submit_tol.value);
+	f1.reset();
+	document.f1.submit_tol.value=AA;
+	}
+
+</script>
+
+
+<table><tr><td>
+<select name="{{$this->Y_name}}" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?{{$this->Y_name}}='+this.options[this.selectedIndex].value">
+{{html_options options=$this->YS_ary selected=$this->year_seme}}
+</select> 
+<select name="{{$this->S_name}}" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?{{$this->Y_name}}={{$this->year_seme}}&{{$this->S_name}}='+this.options[this.selectedIndex].value">
+<option value='' >未選擇</option>
+{{html_options options=$this->YC_ary selected=$this->Sel_class}}
+</select></td>
+<td>&nbsp;</td>
+</tr>
+</table>
+
+{{if $this->stu!=''}}
+<fieldset style='font-size:13px;color:#660000;background-color:#FFFFF3'>
+<LEGEND>■請自行鉤選欲整班編輯的資料項目--【父】指父親，【母】指母親，【監】指監護人</LEGEND>
+{{assign var=line value='0'}}
+{{foreach item=OO  from=$this->Option.txt key=OK}}
+{{if $line%8==7}}<br>{{/if}}
+<label style='fone-size:9pt;color:blue'>
+<input  type="checkbox" name="edit[{{$OK}}]" value='{{$OK}}' onclick="Jrun(this.value)">{{$OO}}
+</label>
+{{assign var=line value=$line+1}}
+{{/foreach}}
+</fieldset>
+
+
+
+
+<form action="{{$smarty.server.PHP_SELF}}" name='f1' method="post" enctype="multipart/form-data">
+<div>
+※鉤選過多的欄位將影響您電腦的速度。□編修欄位數
+<input type="text" name="submit_tol" value="0" readonly size=2>
+<INPUT TYPE='hidden' name='{{$this->Y_name}}' value='{{$this->year_seme}}'>
+<INPUT TYPE='hidden' name='{{$this->S_name}}' value='{{$this->Sel_class}}'>
+
+<INPUT TYPE='button' value='恢復原值' name=fact1 disabled onclick='myReset()'>
+<input type="button" name=fact value="【改完送出】"  onclick="if( window.confirm('要寫入了喔？確定？')){form_act.value='update';this.form.submit();}" disabled>
+<INPUT TYPE='hidden' name='form_act' value=''></div>
+<table  border=1 cellspacing='0' cellpadding='0' style="border-collapse: collapse;border-color:#8CCCCA;background-color:#8CCCCA " >
+<tr style='font-size:11pt;background-color:#FFFFF3' align=center>
+<td>SN</td>
+<td>座號</td>
+<td>姓名</td>
+<td>學籍情況</td>
+<td>學號</td>
+{{foreach item=OO  from=$this->Option.txt key=OK}}
+<td class='{{$OK}}'  style="display:none">{{$OO}}</td>
+{{/foreach}}
+
+</tr>
+{{foreach item=arr  from=$this->stu}}
+
+<tr style='font-size:11pt;' align=center bgcolor=white>
+<td><font color="#BFBFBF">{{$arr.student_sn}}</font></td>
+<td>{{$arr.seme_num}}</td>
+<td>{{if $arr.stud_sex=='1' }}
+<font color="#0000FF">{{$arr.stud_name}}</font>
+{{else}}
+<font color="#FF0000">{{$arr.stud_name}}</font>
+{{/if}}</td>
+<td>{{$this->Cond.A[$arr.stud_study_cond]}}</td>
+<td style="background-color:#7F7F7F;color:white">{{$arr.stud_id}}</td>
+
+{{foreach item=OO  from=$this->Option.txt key=OK}}
+<td class='{{$OK}}' style="display:none">
+{{if $this->Option.type[$OK]=='selectbox'}} 
+	<select class='{{$OK}}' name="{{$OK}}[{{$arr.student_sn}}]"  disabled="disabled">
+	{{html_options options=$this->Option.ary[$OK] selected=$arr.$OK}}
+	</select>
+{{elseif $this->Option.type[$OK]=='radio'}}
+	{{foreach item=Rvalue  from=$this->Option.ary[$OK] key=Rkey}}
+	{{if $Rkey==$arr.$OK}}
+	<input type="radio" class={{$OK}} name="{{$OK}}[{{$arr.student_sn}}]" value="{{$Rkey}}" checked disabled="disabled">{{$Rvalue}}
+	{{else}}
+	<input type="radio" class={{$OK}} name="{{$OK}}[{{$arr.student_sn}}]" value="{{$Rkey}}" disabled="disabled">{{$Rvalue}}
+	{{/if}}
+	{{/foreach}}
+{{else}}
+	<input type="text" class='{{$OK}}' name="{{$OK}}[{{$arr.student_sn}}]" value="{{$arr.$OK}}" size="{{$this->Option.long[$OK]}}" disabled="disabled">
+{{/if}} 
+</td>
+{{/foreach}}
+
+</tr>
+
+{{/foreach}}
+</tr>
+
+</table>
+</form>
+{{/if}}
+
+<br><br><br>
+<DIV style="color:blue;font-size:9pt">
+◎By 彰化縣學務系統開發小組 於 97.10.03</DIV>

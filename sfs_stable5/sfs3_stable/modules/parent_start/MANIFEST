@@ -1,0 +1,14 @@
+// $Id: MANIFEST,v 1.2 2003-05-28 03:49:59 jrh Exp $
+* 本模組檔案列表清單：(MANIFEST)
+
+parent_start/INSTALL
+parent_start/MANIFEST
+parent_start/NEWS
+parent_start/README
+parent_start/author.txt
+parent_start/config.php
+parent_start/index.php
+parent_start/module-cfg.php
+parent_start/module.sql
+parent_start/start.php
+

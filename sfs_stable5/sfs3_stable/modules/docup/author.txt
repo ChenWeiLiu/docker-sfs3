@@ -1,0 +1,4 @@
+docup - 文件管理
+       學校文件管理、分享系統       
+作者
+       docup2.0 -- HaMi( cik@mail.wpes.tcc.edu.tw )

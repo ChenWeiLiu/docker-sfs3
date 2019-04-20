@@ -1,0 +1,3 @@
+trans_data - 舊有行政系統資料匯入
+trans_data -- 2003-3-9 -- Bruce L.Y.C( brucelyc@seed.net.tw )
+台中縣潭秀國中 劉育彰 撰寫

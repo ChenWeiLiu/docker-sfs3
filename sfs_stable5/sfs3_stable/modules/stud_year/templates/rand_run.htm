@@ -1,0 +1,75 @@
+<!-- $Id: rand_run.htm 5310 2009-01-10 07:57:56Z hami $ -->
+{{include file=$this->header_tpl}}
+
+{{if $this->Info!='' && $smarty.get.act=='go'}} 
+<tr bgcolor="#FFFFFF"><td colspan=2>
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}' Name='f1' >
+<table  border='0' align='center' cellpadding='5' cellspacing='1' width="100%" bgcolor='#FFCC33' style='font-size:14pt'>
+<tr>
+<td width="100%" colspan="2" align='center'><H3>電腦亂數編班填寫表單</H3></td>
+</tr>
+<tr bgcolor=white align='center'>
+<td>作業名稱</td>
+<td>□<font color="#0000FF"><b>{{$this->Info.Rand.rWord.Y}}</b>學年度 第<b>
+{{$this->Info.Rand.rWord.S}}</b>學期
+<b>{{$this->Info.Rand.rWord.Gw}}</b> 學生 亂數編班作業</font>
+</td>
+
+</tr>
+<tr bgcolor=white align='center'>
+<td>班級數</td>
+<td>
+舊班級數：<b><u>&nbsp;{{$this->Info.Rand.oldTol}}&nbsp;</u>班</b>&nbsp;&nbsp;
+新(核定)班級數：<INPUT TYPE='text' NAME='sch_num' Value='{{$this->Info.Rand.newTol}}' style='border:0;color:red;background-color:#CCFFFF;font-size:14pt' size=6>
+</td>
+</tr>
+<tr bgcolor=white>
+<td align='center'>參加班級</td>
+<td>{{assign var='No' value='1'}}
+{{foreach item=arr key=id from=$this->Info.Rand.class_id}}
+<span id='{{$id}}' style="color:#A52A2A">□{{$arr}}班</span>
+{{if $No!=1 && ($No%5)==0}}<br>{{/if}}
+{{assign var='No' value=$No+1}}
+{{/foreach}}
+</td>
+</tr>
+
+
+<tr bgcolor=white>
+<td align='center'>亂數種子</td>
+<td><INPUT TYPE='text' NAME='random' Value='' style='border:0;color:red;background-color:#CCFFFF;font-size:14pt' size=6 onload="random.value=Math.random();"></td>
+</tr>
+<tr bgcolor=white>
+<td colspan=2 align='center' >
+<INPUT TYPE='hidden' Name='form_act' Value=''>
+<INPUT TYPE='hidden' Name='Fi' Value='{{$this->Fi}}'>
+<INPUT TYPE='hidden' Name='step' Value='{{$this->mod}}'>
+<INPUT TYPE='button' value='取得亂數種子' onclick="random.value=RR();">
+<INPUT TYPE='button' value='開始編班' onclick="if( window.confirm('開始編班了喔？確定嗎？')){f1.form_act.value='start';f1.submit();}">
+</FORM>
+</td>
+</tr>
+</table>
+</FORM>
+</td></tr>
+{{/if}}
+
+
+</table><br>
+
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+	function Mover(obj) {obj.style.backgroundColor='#FFDDDD';}
+	function Mout(obj) { obj.style.backgroundColor='#FFFFFF';}
+
+function jamp(id) {
+	location.href='{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$this->Fi}}&act=view&Nclass='+id;
+}
+
+function RR() {
+	num1=Math.floor( Math.random() * 9999 )+1;//無條件捨去
+	return num1;
+}
+
+
+
+</script>

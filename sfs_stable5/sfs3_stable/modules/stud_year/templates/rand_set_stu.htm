@@ -1,0 +1,93 @@
+<!-- $Id: rand_set_stu.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<table bgcolor="#9EBCDD" cellspacing="1" cellpadding="4" width=70% align=center>
+<tr align=center bgcolor="#FFFFFF"><td colspan=2><b>在籍生亂數編班作業流程--2.學生名冊設定</b></td></tr>
+<tr><td colspan=2><b>■點選作業項目</b></td></tr>
+<tr bgcolor="#FFFFFF"><td colspan=2 style="font-size:12pt">
+{{foreach item=arr  from=$this->List}}
+□<font color="#0000FF"><b>{{$arr.rWord.Y}}</b>學年度 第<b>{{$arr.rWord.S}}</b>學期
+<b>{{$arr.rWord.Gw}}</b> 學生 亂數編班作業</font>
+{{if $arr.f2=='Y' && $arr.f3==''}}
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}&act=delFile" onclick="return  window.confirm('確生刪除學生名冊檔嗎？')">×刪除名冊檔</a>]&nbsp;
+{{else}}[×刪除名冊檔]&nbsp;{{/if}}
+
+{{if $arr.f2=='' && $arr.f3==''}}
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}&act=mkFile">1.產生名冊檔</a>]&nbsp;
+{{else}}[1.產生名冊檔]&nbsp;{{/if}}
+
+
+{{if $arr.f2=='Y' && $arr.f3==''}}
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}">2.進行學生設定</a>]
+{{else}}[2.進行學生設定]{{/if}}
+
+
+
+
+
+
+<br>
+{{/foreach}}
+</td></tr>
+
+{{if $this->Info!=''}} 
+<tr bgcolor="#FFFFFF"><td colspan=2>
+{{foreach item=arr key=id from=$this->Info.Rand.class_id}}
+<span id='{{$id}}' style="cursor: move; color:#A52A2A" onclick="jamp('{{$id}}')">{{if $smarty.get.class_id==$id && $id!=''}}■{{else}}□{{/if}}
+{{$arr}}班</span>
+{{/foreach}}
+</td></tr>
+{{/if}}
+{{if $this->class_id!=''}}
+<tr bgcolor="#FFFFFF"><td colspan=2 align=center>
+<FORM METHOD=POST ACTION="{{$smarty.server.PHP_SELF}}" name='f1'>
+<INPUT TYPE=button  value='回首頁' onclick="location.href='{{$smarty.server.PHP_SELF}}';">
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='step'  value='{{$this->mod}}'>
+<INPUT TYPE='hidden' NAME='Fi'  value='{{$this->Fi}}'>
+<INPUT TYPE='hidden' NAME='class_id'  value='{{$this->class_id}}'>
+<input type="reset" value='恢復預設值'>
+<INPUT TYPE=button  value='儲存變更' onclick="if (window.confirm('確定變更？')){f1.act.value='stuSave';f1.submit();}" >
+<br>
+<table style="font-size:11pt" cellspacing="1" cellpadding="1" bgcolor="#9EBCDD" width=100%>
+<tr align=center>
+<td>No</td><td>學號</td>
+<td>班名</td>
+<td>座號</td><td>性別</td>
+<td>姓名</td><td>編班設定</td></tr>
+{{assign var='No' value='1'}}
+{{foreach item=stu key=sn from=$this->Stu}}
+<tr align=center bgcolor="#FFFFFF" height=25  onmouseover="Mover(this)" onmouseout="Mout(this)">
+<td><b>{{$No}}</b></td>
+<td>{{$stu.stud_id}}</td>
+<td>{{$stu.class_name}}班</td>
+<td>{{$stu.seme_num}}</td>
+<td>{{$this->sex1[$stu.stud_sex]}}</td>
+<td>{{$stu.stud_name}}</td>
+<td>
+{{foreach item=radio_word key=kk from=$this->join1}}
+{{if $stu.type==$kk}}
+<label style="color:#A52A2A">
+<input type="radio" name="type[{{$stu.sn}}]" value="{{$kk}}" checked />{{$radio_word}}
+</label>&nbsp;&nbsp;
+{{else}}
+<label><input type="radio" name="type[{{$stu.sn}}]" value="{{$kk}}" />{{$radio_word}}</label>&nbsp;&nbsp;
+{{/if}}
+{{/foreach}}
+</td>
+</tr>
+{{assign var='No' value=$No+1}}
+{{/foreach}}
+</table></form></td></tr>
+{{/if}}
+
+
+
+</table><br>
+<div align="center"><INPUT TYPE=button  value='返回主頁' onclick="location.href='{{$smarty.server.PHP_SELF}}';"></div>
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+	function Mover(obj) {obj.style.backgroundColor='#FFDDDD';}
+	function Mout(obj) { obj.style.backgroundColor='#FFFFFF';}
+
+function jamp(id) {
+	location.href='{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$this->Fi}}&class_id='+id;
+}
+</script>

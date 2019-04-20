@@ -1,0 +1,5 @@
+Authentication_class - 學習認證
+原創作者：曾文芳
+
+infodaes@seed.net.tw 2011-3-25
+

@@ -1,0 +1,6 @@
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+spec_test - 特殊測驗
+2004-09-08 -- brucelyc ( brucelyc@seed.net.tw )
+台中縣潭秀國中 教學組長 劉育彰 撰寫
+
+用來登錄、管理各類測驗，如：週考、模擬考等等。

@@ -1,0 +1,44 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; Charset=Big5"></head><body>
+
+<table border="1"  >
+  <tr>
+    <th>學生姓名</th>
+    <th>身分證統一編號</th>
+	<th>出生年(民國年)</th>
+    <th>出生月</th>
+    <th>出生日</th>
+    <th>經濟弱勢</th>
+    <th>就近入學</th>
+    <th>服務學習</th>
+    <th>獎勵紀錄</th>
+    <th>生活教育</th>
+    <th>品德服務</th>
+    <th>均衡學習</th>
+    <th>社團參與</th>
+    <th>競賽表現</th>
+    <th>體適能</th>
+    <th>績優表現</th>
+  </tr>
+  {{foreach key=key1 item=data from=$data_array }} 
+  <tr>
+    <td>{{$data.stud_name}}</td>
+    <td>{{$data.stud_person_id}}</td>
+    <td>{{$data.birth_year}}</td>
+    <td>{{$data.birth_month}}</td>
+    <td>{{$data.birth_day}}</td>
+    <td>{{$data.income}}</td>
+    <td>{{$data.score_nearby}}</td>
+    <td>{{$data.score_service}}</td>
+    <td>{{$data.score_reward}}</td>
+    <td>{{$data.score_fault}}</td>
+    <td>{{$data.score_morality}}</td>
+    <td>{{$data.score_balance}}</td>
+    <td>{{$data.score_club}}</td>
+    <td>{{$data.score_race}}</td>
+    <td>{{$data.score_physical}}</td>
+    <td>{{$data.score_display}}</td>
+  </tr>
+  {{/foreach}} 
+</table>
+
+</body></html>

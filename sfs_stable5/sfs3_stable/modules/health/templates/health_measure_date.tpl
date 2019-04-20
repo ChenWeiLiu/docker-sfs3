@@ -1,0 +1,3 @@
+{{* $Id: health_measure_date.tpl 5310 2009-01-10 07:57:56Z hami $ *}}
+
+測量日期<input type="text" name="update[myear]" value="{{if $smarty.post.update.myear}}{{$smarty.post.update.myear}}{{else}}{{$smarty.now|date_format:"%Y"}}{{/if}}" size="4">年<input type="text" name="update[mmonth]" value="{{if $smarty.post.update.mmonth}}{{$smarty.post.update.mmonth}}{{else}}{{$smarty.now|date_format:"%m"}}{{/if}}" size="2">月<input type="text" name="update[mday]" value="{{if $smarty.post.update.mday}}{{$smarty.post.update.mday}}{{else}}{{$smarty.now|date_format:"%d"}}{{/if}}" size="2">日

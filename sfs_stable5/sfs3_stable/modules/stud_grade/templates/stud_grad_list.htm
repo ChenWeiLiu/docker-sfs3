@@ -1,0 +1,123 @@
+
+<script>
+<!--
+function tagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,8)=='class_id') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=1;}
+}
+i++;
+}
+}
+function untagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,8)=='class_id') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=0;}
+}
+i++;
+}
+}
+
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+function bb2(a,b) {
+var objform=document.f2;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+
+//-->
+</script>   
+{{$css}}
+<body>
+
+<TABLE border=0 width=100% style='font-size:12pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<!-- 第1格內容 -->
+
+<TR bgcolor=white><td width=100%>
+<font color="#FF0000">■</font>目前作業：
+<div style="font-size: 10pt;color:#009900">{{foreach from=$menu key=mkey item=menu_name}}
+{{if $smenu!=$mkey}}
+□<a href="{{$phpself}}?smenu={{$mkey}}">{{$menu_name}}</a>
+{{else}}
+<font color="#FF0000">■</font>{{$menu_name}}
+{{/if}}
+{{/foreach}}</div>
+</td></tr>
+<FORM METHOD=POST ACTION="grad_chi_prt.php" name=f1 target=_blank>
+<TR  bgcolor=#9EBCDD>
+<td width=100%  style="vertical-align: top;font-size:10pt;">
+請選擇學年度：{{$sel_year}}
+<INPUT TYPE=button  value='全選/反向' onclick="tagall();"  class=bur2>
+<INPUT TYPE=button  value='取消' onclick="untagall();" class=bur2>
+<INPUT TYPE=button  value='選好送出' onclick="bb1('選好了？？有點久，請耐心等待！','OK');" class=bur2>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='smenu'  value='{{$smenu}}'>
+<INPUT TYPE='hidden' NAME='year_seme'  value='{{$year_seme}}'>
+</td></tr>
+{{if $school!=''}}
+<TR bgcolor=white><td>
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1>
+<TR>
+{{assign var="y" value=0}}
+{{foreach from=$school key=skey item=s_name}}
+{{if $y%4==0 && $y!=0 }}</tr><tr>{{/if}}
+<td width=25%>
+<LABEL><input type="radio" name="new_sch" value="{{$skey}}">{{$s_name}}&nbsp;</LABEL></td>
+{{assign var="y" value=$y+1}}
+{{/foreach}}
+
+</tr></TABLE>
+</td></tr>{{/if}}
+
+{{if $school2!=''}}
+<TR bgcolor=white><td>
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1>
+<TR>
+{{assign var="y" value=0}}
+{{foreach from=$school2 key=skey item=s_name}}
+{{if $y%4==0 && $y!=0 }}</tr><tr>{{/if}}
+<td width=25%>
+<LABEL><input type="radio" name="sel_school" value="{{$skey}}">{{$s_name}}&nbsp;</LABEL></td>
+{{assign var="y" value=$y+1}}
+{{/foreach}}
+</tr></TABLE><input type="hidden" name="class_id" value='all'>
+</td></tr>{{/if}}
+
+<!-- 班級選單  開始 -->
+{{if  $sel_class!='' && $school2==''}}
+<TR bgcolor=white>
+<td>
+{{assign var="i" value=1}}
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1   bgcolor='#CCCCCC'><TR bgcolor=white>
+{{foreach from=$sel_class item=data}}
+{{if $i!=1 && ($i%10)==1 }}  <TR bgcolor=white>{{/if}}
+{{$data.c_name}}
+{{if $i!=0 && ($i%10)==0 }} </TR>{{/if}}
+{{assign var="i" value=$i+1}}
+{{/foreach}}
+</TABLE>
+</td></tr></FORM>
+{{/if}}
+<!-- 班級選單  結束 -->
+</table>
+
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('小組人員：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n和美 葉國恭 大村 鄭培華');">
+◎By 彰化縣學務系統開發小組  村仔 於 94.05.01</DIV></FONT>
+

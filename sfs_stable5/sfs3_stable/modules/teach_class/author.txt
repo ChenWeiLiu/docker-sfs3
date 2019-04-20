@@ -1,0 +1,3 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+teach_class  教師基本資料
+teach_class2.0 --- 2001-10-1 --- HaMi( cik@mail.wpes.tcc.edu.tw )

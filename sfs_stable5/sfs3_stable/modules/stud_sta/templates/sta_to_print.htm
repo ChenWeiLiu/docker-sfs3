@@ -1,0 +1,137 @@
+<!-- //$Id: sta_to_print.htm 8803 2016-01-30 15:54:54Z qfon $ -->
+<html>
+<meta http-equiv="Content-Type" content="text/html; Charset=Big5">
+<head>
+<title>{{$this->sch.sch_cname}}在學證明書</title>
+<style type="text/css">
+<!--
+body{
+#		width:21cm;
+#		height:29cm;
+#		border-style: solid;
+		}
+.all{
+		width:18cm;
+		height:12cm;
+		border-style:dashed;
+		dispaly:block;
+		margin-top:0cm;
+		margin-left:0cm;
+		margin-right:0cm;
+	 	line-height:20pt;
+		font-family: 標楷體, cursive;
+		
+		}
+.title{
+		margin-top:0.5cm;
+		text-align: center;
+		font-size: 20pt;
+		font-weight: bold;
+		}
+.wordnum{
+		text-align: right;
+		font-size: 16pt;
+		font-weight: normal;
+	 	margin-top: 10pt;
+		margin-right:1cm;
+	 	margin-bottom: 8pt;
+	 	}
+.meat{
+		text-align: left;
+		font-size: 16pt;
+		font-weight: normal;
+
+	 	margin-top: 10pt;
+	 	margin-bottom: 8pt;
+		margin-left: 20pt;
+	 	margin-right: 20pt;
+	 	line-height:20pt;
+	 	text-indent: 30pt;
+}
+.sch{
+		text-align: right;
+		font-size: 32pt;
+		font-weight: bold;
+		margin-top:1cm;
+		margin-right:3cm;
+		margin-bottom: 1cm;
+		}
+.idate{
+		text-align: center;
+		font-size: 12pt;
+		font-weight: normal;
+		letter-spacing:12px;
+	 	margin-top: 10pt;
+	 	margin-bottom: 10pt;	
+		}
+hr{
+		text-align: center;
+#		margin-top:18pt;
+		width:17cm;
+		border-style:dashed;
+		margin-left:1cm;
+		}
+.tea{
+		text-align: right;
+		font-size: 16pt;
+		margin-right:0.5cm;
+
+}
+-->
+</style>
+</head>
+<body>
+{{assign var="tol" value=0 }}
+{{foreach from=$this->stu item=arr}}
+{{if $tol!=0}}<BR STYLE='page-break-before: always;'>{{/if}}
+<div class="all">
+<div class="title">{{$this->sch.sch_cname}}在學證明書</div>
+{{$arr.photo}}
+<div class="wordnum">({{$this->CD($arr.prove_date,"Y")}}){{$this->set.sta_word}}第{{$arr.prove_id}}號</div>
+<div class="meat">查學生 
+{{$arr.stud_name}}，
+中華民國{{$this->CD($arr.stud_birthday,"Y")}}年
+{{$this->CD($arr.stud_birthday,"m")}}月
+{{$this->CD($arr.stud_birthday,"d")}}日生。
+現在本校{{$arr.seme_class2}}年級
+第{{$arr.seme}}學期就讀屬實，特發給在學證明書以資證明。</div>
+<div class="meat">此證</div>
+<div class="sch">{{$this->set.signature}}</div>
+<div class="idate">
+中 華 民 國 {{$this->CD($arr.prove_date,"Y")}} 年 
+{{$this->CD($arr.prove_date,"m")}} 月 
+{{$this->CD($arr.prove_date,"d")}} 日
+</div>
+{{if $this->set.signwhere==0 || $this->set.signwhere==2}}
+<div class="tea">{{$this->need_teacher}}  校對：__________________</div>
+{{/if}}
+</div>
+<hr>
+
+<div class="all">
+<div class="title">{{$this->sch.sch_cname}}在學證明書存根</div>
+{{$arr.photo}}
+<div class="wordnum">({{$this->CD($arr.prove_date,"Y")}}){{$this->set.sta_word}}第{{$arr.prove_id}}號</div>
+<div class="meat">查學生 
+{{$arr.stud_name}}，
+中華民國{{$this->CD($arr.stud_birthday,"Y")}}年
+{{$this->CD($arr.stud_birthday,"m")}}月
+{{$this->CD($arr.stud_birthday,"d")}}日生。
+現在本校{{$arr.seme_class2}}年級
+第{{$arr.seme}}學期就讀屬實，特發給在學證明書以資證明。</div>
+<div class="meat">此證</div>
+<div class="sch">{{$this->set.signature2}}</div>
+<div class="idate">
+中 華 民 國 {{$this->CD($arr.prove_date,"Y")}} 年 
+{{$this->CD($arr.prove_date,"m")}} 月 
+{{$this->CD($arr.prove_date,"d")}} 日
+</div>
+{{if $this->set.signwhere==1 || $this->set.signwhere==2}}
+<div class="tea">{{$this->need_teacher}}  校對：__________________</div>
+{{/if}}
+</div>
+{{assign var="tol" value=$tol+1 }}
+{{/foreach}}
+
+</body>
+</html>

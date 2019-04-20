@@ -1,0 +1,101 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+
+
+
+<table  width='700'  border='0' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr>
+<td colspan=6>
+<span style='font-size:16pt;'>■補登班級幹部</span>
+<span style='font-size:10pt;color:red;'>若是轉學生請填原學校班級。</span>
+</td>
+</tr>
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td><font color="#FF0000">*</font>學生學號</td>
+<td><font color="#FF0000">*</font>學期</td>
+<td><font color="#FF0000">*</font>類型</td>
+<td><font color="#FF0000">*</font>班級名稱</td>
+<td><font color="#FF0000">*</font>幹部名稱</td>
+<td>備註(原校名)</td>
+</tr>
+<form method="post" name="Fr1"  action="{{$smarty.server.SCRIPT_NAME}}">
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' valign=top >
+<td><INPUT TYPE='text' NAME='NO'  value='' size=8></td>
+<td><INPUT TYPE='text' NAME='seme'  value='{{$this->year}}{{$this->seme}}' size=6>
+<br>※例:1021
+</td>
+<td>0.班級幹部
+<INPUT TYPE='hidden' NAME='kind' Value='0'>
+</td>
+<td><input type="text" name="org_name" value="{{$ss.org_name}}" size="12" />
+<br>※例:702(三碼)
+</td>
+<td><input type="text" name="title" value="{{$ss.title}}" size="12" /></td>
+<td align=left><input type="text" name="memo" value="{{$ss.memo}}" size="12" />
+<br>※可略
+</td>
+</tr>
+<tr align=center >
+<td colspan=6>
+<INPUT TYPE='hidden' NAME='form_act' Value=''>
+<input  type="reset" value="重設" />
+<input type="button" value="填好送出" onclick="if( window.confirm('填寫完整了？')){this.form.form_act.value='add1';this.form.submit();}" />
+
+
+</td>
+</tr>
+</form> 
+
+<tr>
+<td colspan=6>
+<span style='font-size:16pt;'>■補登社團幹部</span>
+</td>
+</tr>
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td><font color="#FF0000">*</font>學生學號</td>
+<td><font color="#FF0000">*</font>學期</td>
+<td><font color="#FF0000">*</font>類型</td>
+<td><font color="#FF0000">*</font>團體名稱</td>
+<td><font color="#FF0000">*</font>職務名稱</td>
+<td>備註</td>
+</tr>
+<form method="post" name="Fr2"  action="{{$smarty.server.SCRIPT_NAME}}">
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' valign=top >
+<td><INPUT TYPE='text' NAME='NO'  value='' size=8></td>
+<td><INPUT TYPE='text' NAME='seme'  value='{{$this->year}}{{$this->seme}}' size=6>
+<br>※例:1021
+</td>
+<td align=left>
+
+<label><input type="radio" name="kind" value="1" />社團幹部</label><br>
+<label><input type="radio" name="kind" value="2" />全校性幹部</label>
+</td>
+<td><input type="text" name="org_name" value="{{$ss.org_name}}" size="12" />
+<br>※例:樂隊
+</td>
+<td><input type="text" name="title" value="{{$ss.title}}" size="12" /></td>
+<td><input type="text" name="memo" value="{{$ss.memo}}" size="12" />
+<br>※可略</td>
+</tr>
+<tr align=center >
+<td colspan=6>
+<INPUT TYPE='hidden' NAME='form_act' Value=''>
+<input  type="reset" value="重設" />
+<input type="button" value="填好送出" onclick="if( window.confirm('填寫完整了？')){this.form.form_act.value='add2';this.form.submit();}" />
+
+
+</td>
+</tr>
+</form>
+
+
+
+
+
+
+
+</table>
+
+
+
+

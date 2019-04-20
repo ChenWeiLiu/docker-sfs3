@@ -1,0 +1,95 @@
+<!-- //$Id: chc_score_memo.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<table><tr><td>
+<select name="year_seme" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?year_seme='+this.options[this.selectedIndex].value">
+{{html_options options=$this->YS_ary selected=$this->year_seme}}
+</select> 
+<select name="class_id" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?year_seme={{$this->year_seme}}&class_id='+this.options[this.selectedIndex].value">
+<option value='' >未選擇</option>
+{{html_options options=$this->YC_ary selected=$this->class_id}}
+</select></td>
+
+</tr>
+
+</table>
+
+{{if $this->class_id!='' && $this->stu!=''}}
+
+<table>
+
+
+<table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; font-size=12px;' bordercolor='#111111' width='100%'>
+	<tr  align='center' bgcolor='#ccffcc'>
+		<td width=4% nowrap>座號</td>
+		<td width=6% nowrap>姓　名</td>
+		<td width=5% nowrap>學　號</td>
+		<td width=6% nowrap>狀況</td>
+		<td>
+			<table width='100%'>
+				<tr align=center>
+					<td width=12%>記錄日期</td>
+					<td width=8%>對象</td>
+					<td width=50%>連絡事項</td>
+					<td width=10%>訪談者</td>
+					<td width=10%>訪談方式</td>
+					<td width=10%>建檔者</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+
+{{foreach from=$this->stu item=stu key=sn}}
+{{assign var="BB" value=$this->get_One($stu.stud_id)}}
+
+	<tr align=center  style='font-size:12pt' bgcolor='white'>
+		<td nowrap>{{$stu.seme_num}}</td>
+		<td nowrap>{{$stu.stud_name}}</td>
+		<td nowrap>{{$stu.stud_id}}</td>
+		<td nowrap>
+		{{if $stu.stud_study_cond==0}}<font color="#0000FF">{{$stu.cond}}</font>
+		{{else}}<font color="#FF0000">{{$stu.cond}}</font>
+		{{/if}}
+		</td>
+		<td>
+			<table width='100%' align=center>
+			{{foreach from=$BB.event item=AA key=A}}
+			<tr style='font-size:11pt'>
+				<td width=12%>{{$AA.sst_date}}</td>
+				<td width=8%>{{$AA.sst_name}}</td>
+				<td width=50%>{{$AA.sst_main}}</td>
+				<td width=10% align=center>{{$AA.interview}}</td>
+				<td width=10% align=center>{{$AA.interview_method}}</td>
+				<td width=10% align=center>{{$AA.name}}</td>
+			</tr>
+			{{/foreach}}
+			</table>
+		</td>
+	</tr>
+{{/foreach}}
+</table>
+
+
+<br>※訪談方式統計※
+<table border='2' cellpadding='3' cellspacing='0' style='border-collapse: collapse; font-size=12px;' bordercolor='#111111' width='50%'>
+	<tr align='center' bgcolor='#ffcccc'>
+		<td>方式</td>
+		<td>次數</td>
+	</tr>
+
+	{{foreach from=$summary item=counter key=method}}
+	<tr align='center' bgcolor='white'>
+		<td nowrap>{{$method}}</td>
+		<td nowrap>{{$counter}}</td>
+	</tr>
+	{{/foreach}}
+</table>
+
+{{/if}}
+<br><br>
+
+
+
+<DIV style="color:blue;font-size:9pt">
+
+◎By 彰化縣學務系統開發小組 於 100.02.17</DIV>
+
+

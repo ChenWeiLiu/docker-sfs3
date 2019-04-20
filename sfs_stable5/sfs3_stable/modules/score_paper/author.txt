@@ -1,0 +1,7 @@
+score_paper - 自訂成績單
+原創作者：tad
+
+tad@www.tnc.edu.tw 2003-12-02
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+學校可以利用 OpenOffice.org 來自己做成績單

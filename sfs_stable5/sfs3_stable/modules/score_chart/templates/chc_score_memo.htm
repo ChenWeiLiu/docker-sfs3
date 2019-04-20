@@ -1,0 +1,118 @@
+<!-- //$Id: chc_score_memo.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<table><tr bgcolor=#9EBCDD><td>
+<select name="year_seme" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?year_seme='+this.options[this.selectedIndex].value">
+{{html_options options=$this->YS_ary selected=$this->year_seme}}
+</select> 
+<select name="class_id" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?year_seme={{$this->year_seme}}&class_id='+this.options[this.selectedIndex].value">
+<option value='' >未選擇</option>
+{{html_options options=$this->YC_ary selected=$this->class_id}}
+</select></td>
+<td>
+{{if $this->class_id!=''}}
+<a  onclick="location.href='{{$smarty.server.PHP_SELF}}?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}&mods=year'"><lable><input  type="checkbox"  class=b3 {{if $smarty.get.mods=='year'}} checked{{/if}}
+>年級課程</lable></a><a  onclick="location.href='{{$smarty.server.PHP_SELF}}?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}&mods=cla'"><lable >
+<input  type="checkbox" class=b3  {{if $smarty.get.mods=='cla'}} checked{{/if}}
+>班級課程</a>
+</lable>
+{{/if}}
+&nbsp;</td>
+</tr>
+{{if $this->class_id!='' && $smarty.get.mods!=''}}
+
+<tr><td colspan=2>
+請選科目:
+<select name="SSID" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}&mods={{$smarty.get.mods}}&SSID='+this.options[this.selectedIndex].value">
+<option value='' >未選擇</option>
+{{foreach from=$this->sub item=arr key=key}}
+{{if $arr.enable==1}} 
+<option value='{{$key}}' style='color: #0000FF;' {{if $key==$smarty.get.SSID}}selected{{/if}}>{{$key}}.{{$arr.list_name}}</option>
+{{else}}
+<option value='{{$key}}' style='color: #FF0000;' {{if $key==$smarty.get.SSID}}selected{{/if}}>{{$key}}.{{$arr.list_name}}</option>
+{{/if}}
+{{/foreach}}
+</select>
+<font color="#0000FF">藍色</font>:為有效的課程
+<font color="#FF0000">紅色</font>:為無效的課程
+</td>
+</tr>
+{{/if}}
+
+</table>
+
+{{if $this->class_id!='' && $this->stu!=''}}
+
+<table>
+
+<table  width='90%'  border='0' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td width=4% nowrap>座號</td>
+<td width=6% nowrap>姓　名</td>
+<td width=5% nowrap>學　號</td>
+<td width=6% nowrap>狀況</td>
+<td width=6% nowrap>原始成績</td>
+<td width=6% nowrap>學習描述文字(未出現格子表示尚無成績資料)</td>
+</tr>
+<form action="{{$smarty.server.PHP_SELF}}" method="post">
+
+
+{{foreach from=$this->stu item=stu key=sn}}
+<tr align=center  style='font-size:12pt' bgcolor='white'>
+
+
+
+<td nowrap>{{$stu.seme_num}}</td>
+<td nowrap>{{$stu.stud_name}}</td>
+<td nowrap>{{$stu.stud_id}}</td>
+<td nowrap>
+{{if $stu.stud_study_cond==0}}<font color="#0000FF">{{$stu.cond}}</font>
+{{else}}<font color="#FF0000">{{$stu.cond}}</font>
+{{/if}}
+</td>
+<td>{{$this->sco.$sn.ss_score}}</td>
+<td align=left>
+{{if  $this->sco.$sn.sss_id!=''}}
+<input type="text" name="memo[{{$this->sco.$sn.sss_id}}]" value="{{$this->sco.$sn.ss_score_memo}}" size=50 class=like_button>
+{{else}}&nbsp;
+{{/if}}
+</td>
+
+
+
+
+</tr>
+{{/foreach}}
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>
+
+<input type="reset" class=b1>
+<input type="hidden" name="form_act" value=''>
+<input type="hidden" name="mods" value='{{$smarty.get.mods}}'>
+<input type="hidden" name="SSID" value='{{$this->SSID}}'>
+<input type="hidden" name="year_seme" value='{{$this->year_seme}}'>
+<input type="hidden" name="class_id" value='{{$this->class_id}}'>
+<input type="button"  value="填好送出" onclick="if(window.confirm('填寫好了？')){this.form.form_act.value='update_memo';this.form.submit();}" class=b1>
+
+
+</td>
+</tr>
+
+</form>
+
+</table>
+
+
+{{/if}}
+
+
+
+
+<DIV style="color:blue;font-size:9pt">
+<a href="http://163.23.89.65/pub/sfs_tool/ay_memo.exe">下載ay評語輸入器</a><br><br>
+◎By 彰化縣學務系統開發小組 於 96.01.23</DIV>
+
+

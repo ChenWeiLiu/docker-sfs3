@@ -1,0 +1,10 @@
+<{if $paper_list.include_mode }>
+
+<table width='100%'  border=' 1' cellspacing='0' cellpadding='4' align='center' bordercolor='#CCCCCC'>
+
+  <tr class =' td_htm'><td>
+   <{ $html_doc }>   
+</td></tr></table>  
+<{else}>
+<iframe width=540 height=450 src="<{ $htmlpath }><{ $paper_list.book_path}>/<{ $paper_list.chap_path}>/"></iframe>
+<{/if}>

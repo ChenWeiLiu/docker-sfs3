@@ -1,0 +1,87 @@
+<script>
+<!--
+function tagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,8)=='class_id') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=1;}
+}
+i++;
+}
+}
+function untagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,8)=='class_id') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=0;}
+}
+i++;
+}
+}
+
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+function bb2(a,b) {
+var objform=document.f2;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+
+//-->
+</script>  
+
+<body>
+<TABLE border=0 width=100% style='font-size:12pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<TR bgcolor=#9EBCDD>
+<FORM METHOD=POST ACTION="chc_disgrad.php" name=f1>
+
+
+<td width=100%  style="vertical-align: top;" colspan=2></h2>
+<!-- 第1格內容 -->
+<font color="#FF0000">■</font>請選擇班級：{{$sel_year}}{{$sel_grade}}
+{{if $smarty.get.grade!='' && $smarty.get.year_seme!=''}}
+<INPUT TYPE=button  value='全選/反向' onclick="tagall();"  class=bur2>
+<INPUT TYPE=button  value='取消' onclick="untagall();" class=bur2>
+<INPUT TYPE=submit  name='save_csv' value='匯出csv檔' onclick="bb1('選好了？？匯出csv檔有點久，請耐心等待！','OK');" >
+<INPUT TYPE='hidden' NAME='act'  value=''>
+{{/if}}
+</td>
+</tr>
+<TR bgcolor=white>
+<td colspan=2>
+{{if $smarty.get.grade!='' && $smarty.get.year_seme!=''}}
+{{assign var="i" value=1}}
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  bgcolor='lightGray'><TR bgcolor=white>
+{{foreach from=$sel_class item=data}}
+
+{{if $i!=1 && ($i%10)==1 }}  <TR bgcolor=white>{{/if}}
+
+{{$data.c_name}}
+{{if $i!=0 && ($i%10)==0 }} </TR>{{/if}}
+{{assign var="i" value=$i+1}}
+{{/foreach}}
+</TABLE>
+{{/if}}
+</td></tr></FORM>
+
+</table>
+註：<div style="font-size:9pt;color:red">
+如果貴校人數很多，而主機不太好，不要一次選多個班級。<br>
+</div><br><br>
+<FONT SIZE="2" >
+<DIV style="color:blue">
+◎By 彰化縣學務系統開發小組  98.11.25於螺陽國小</DIV></FONT>
+

@@ -1,0 +1,49 @@
+<TABLE width='600'  border='0'>
+<TR><TD align=left>
+<strong>幹部登錄資料統計</strong>
+<br />
+說明：<br />
+
+◎轉學生補登流程：<br />
+1.請先到 【<a href="{{$this->SFS_PATH_HTML}}modules/stud_year/stud_site_num.php" target="_blank">編班作業 / 學生座號管理</a>】確定該生的學期有記錄。<br /><br />
+2.再回到本模組，選取當時的年班就可以補登資料，並在備註欄註明當時所在的學校。<br />
+<br />
+</td></tr>
+<tr><td>
+
+<table  width='500'  border='0' align='left' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'  align=center>
+<TD>學年度</TD>
+<td>班級幹部</td>
+<td>社團幹部</td>
+<td>全校性幹部</td>
+<td>筆數統計</td>
+</TR>
+{{foreach from=$this->all.data item=arr key=K}}
+<TR align=center  style='font-size:12pt' bgcolor='white'>
+<TD>{{$K}}</TD>
+<td>{{$arr.0}}</td>
+<td>{{$arr.1}}</td>
+<td>{{$arr.2}}</td>
+<td>{{$arr.Tol}}</td>
+</TR>
+{{/foreach}}
+<tr style='font-size:11pt' bgcolor='#9EBCDD'  align=center>
+<TD>--</TD>
+<td>{{$this->all.kind.0}}</td>
+<td>{{$this->all.kind.1}}</td>
+<td>{{$this->all.kind.2}}</td>
+<td>{{$this->all.kind.Tol}}</td>
+</TR>
+
+</TABLE>
+</td></tr>
+<tr><td>
+<br /><p>
+上次統計於：{{$this->all.utime}}&nbsp;&nbsp;
+<input type="button" value="更新統計" onclick="location.href='{{$smarty.server.SCRIPT_NAME}}?act=update';"/>
+<br /><br />
+※本模組配合彰化縣12年國教免試入學記錄用。<br /></p>
+</TD></TR>
+
+</TABLE>

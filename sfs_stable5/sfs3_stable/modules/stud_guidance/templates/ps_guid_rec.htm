@@ -1,0 +1,39 @@
+{{* $Id: ps_guid_rec.htm 7273 2013-04-23 08:14:38Z infodaes $ *}}
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=big5">
+<title>個別輔導紀錄冊--輔導記錄資料列印</title>
+<meta name="generator" content="彰化縣學務系統開發小組">
+	<STYLE>
+	<!--
+	.memo{font-size:10pt;font-family:細明體;line-height:14pt}
+	-->
+	</STYLE>
+
+</head>
+<CENTER><H2>個別輔導紀錄</H2></CENTER>
+<body style="font-family:標楷體" bgcolor="white" text="black"  onload="self.print();">
+<table width='90%' align=center border="1" cellpadding="0" cellspacing="0" style='border-collapse:collapse;font-size:14pt;line-height:20pt'>
+<tr align=center>
+<td width="10%" nowrap>日期</td>
+<td width="10%" nowrap>時間</td>
+<td width="10%" nowrap>方式</td>
+<td width="60%">輔 導 記 要</td>
+</tr>
+
+
+{{foreach from=$the_rec item=the_rec}}
+<tr>
+
+<tr align=center>
+<td width="10%" nowrap>{{$the_rec.guid_l_date|date_format:"%Y-%m-%d"}}</td>
+<td width="10%" nowrap>{{$the_rec.guid_l_date|date_format:"%H:%M"}}</td>
+<td width="10%" nowrap>{{$tkind[$the_rec.guid_kind]}}</td>
+<td width="60%" align=left>{{$the_rec.guid_l_con}}</td>
+</tr>
+
+
+{{/foreach}}
+
+
+
+</table>

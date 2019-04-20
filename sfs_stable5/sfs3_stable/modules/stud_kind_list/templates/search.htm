@@ -1,0 +1,187 @@
+<!-- $Id: search.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+<!--
+input.txt {
+  color: #00008B;
+  background-color: #E3F2F7;
+  border: 1px inset #00008B;
+  width: 200px;
+}
+input.btn {
+  color: #00008B;
+  background-color: #ADD8E6;
+  border: 1px outset #00008B;
+}
+form p {
+  clear: left;
+  margin: 0;
+  padding: 0;
+  padding-top: 5px;
+}
+form p label {
+  float: left;
+  width: 25%;
+  font: bold ;
+}
+fieldset {
+  border: 1px dotted #61B5CF;
+  margin-top: 16px;
+  padding: 10px;
+}
+legend {
+  font: bold 0.8em Arial, Helvetica, sans-serif;
+  color: #00008B;
+  background-color: #FFFFFF;
+}
+
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+-->
+</style>
+<form name="form1" method="post" action="">
+  <fieldset>
+    <legend>搜尋條件</legend>
+    <p>
+      <label for="searchname">姓名：(部份姓名)</label>
+      <input type="text" name="searchname" id="searchname" class="txt" />
+    </p>	
+    <p>
+      <label for="search_id">學號：</label>
+      <input type="text" name="search_id" id="search_id" class="txt" />
+      
+    </p>	
+  <p>
+      <label for="search_f_name">監護人：</label>
+	  <input type="text" name="search_f_name" id="search_f_name" class="txt" />
+    </p>	
+    <p>
+      <label for="search_phon">電話：</label>
+      <input type="text" name="search_phon" id="search_phon" class="txt" />
+    </p>	
+    <p>
+      <label for="search_town">地址：</label>
+      <input type="text" name="search_town" id="search_town" class="txt" />
+</p>
+    <p>
+	  <label for="chk_view_old" class="ttt">包含非在學生</label>
+	  <input type="checkbox" name="chk_view_old" value="1" id ="chk_view_old">含非在學生
+      
+  </p>
+	  <input type="submit" name="Submit" value="送出" id="Submit" class="btn">
+  </fieldset>
+  
+</form>
+
+{{if $have_in == 1 }} 
+<table class="formdata" >
+	<caption>在校生</caption>  
+  <tr> 
+    <th>學號</th>
+    <th>班級</th>
+    <th>座號</th>
+    <th>姓名</th>
+	<th>身份証號</th>
+	<th>生日</th>
+	<th>電話</th>
+    <th>父親</th>
+    <th>母親</th>
+    <th>監護人</th>
+	<th>檢視資料</th>
+  </tr>
+  {{foreach key=key1 item=data from=$data_array_in }} 
+  {{if $key1 is not div by 2}} 
+  <tr class="altrow">
+  {{else }} 
+  <tr>
+  {{/if}} 
+    <th>{{$data.stud_id}}</td>
+    <td>{{$data.s_classname}}</td>
+    <td>{{$data.s_num}}</td>
+    <td>{{$data.stud_name}}</td>
+    <td>{{$data.stud_person_id}}</td>
+    <td>{{$data.s_birthday}}</td>
+    <td>{{$data.s_home_phone}}</td>
+    <td>{{$data.fath_name}}</td>
+    <td>{{$data.moth_name}}</td>
+    <td>{{$data.d_guardian_name}}</td>
+	<td>{{$data.link}}</td>
+  </tr>
+  {{/foreach}} 
+</table>
+{{/if}}
+
+{{if $have_out == 1 }} 
+<table class="formdata" >
+	<caption>非在校生</caption> 
+  <tr> 
+    <th>學號</th>
+    <th>姓名</th>
+	<th>身份証號</th>
+	<th>生日</th>
+	<th>電話</th>
+    <th>父親</th>
+    <th>母親</th>
+    <th>監護人</th>
+
+  </tr>
+  {{foreach key=key1 item=data from=$data_array_out }} 
+  {{if $key1 is not div by 2}} 
+  <tr class="altrow">
+  {{else }} 
+  <tr>
+  {{/if}} 
+    <th>{{$data.stud_id}}</td>
+    <td>{{$data.stud_name}}</td>
+    <td>{{$data.stud_person_id}}</td>
+    <td>{{$data.s_birthday}}</td>
+    <td>{{$data.s_home_phone}}</td>
+    <td>{{$data.fath_name}}</td>
+    <td>{{$data.moth_name}}</td>
+    <td>{{$data.d_guardian_name}}</td>
+
+  </tr>
+  {{/foreach}} 
+</table>
+{{/if}}

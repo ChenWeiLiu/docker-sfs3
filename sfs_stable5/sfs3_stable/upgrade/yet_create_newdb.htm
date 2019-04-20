@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>尚未建立資料庫</title>
+</head>
+<body>
+
+<h3>請按下列步驟建立sfs3 資料庫，再做升級動作</h3>
+<ul>
+<li>備份sfs2資料庫<br>
+<table cellpadding="1" cellspacing="1" bgcolor="#CABADB" width="400">
+<tr><td>mysqldump -uroot -p sfs2 > sfs3.sql </td></tr>
+</table>
+
+<li>建立sfs3資料庫<br>
+<table cellpadding="1" cellspacing="1" bgcolor="#CABADB" width="400">
+<tr><td>mysqladmin -uroot -p create sfs3  </td></tr>
+</table>
+
+<li>匯入資料至sfs3<br>
+<table cellpadding="1" cellspacing="1" bgcolor="#CABADB" width="400">
+<tr><td>mysql -uroot -p sfs3 < sfs3.sql </td></tr>
+</table>
+
+</ul>
+
+</body>
+</html>

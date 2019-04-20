@@ -1,0 +1,109 @@
+<!-- $Id: main.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:0 ;
+	margin:0;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+-->
+</style>
+
+
+<form name="form1" method="post" action="">
+  檢視啟始日期 :
+<input name="beg_date" type="text" id="beg_date" value="{{$beg_date}}"> 
+結束日期:
+<input name="end_date" type="text" id="end_date" value="{{$end_date}}">
+<input type="submit" name="Submit" value="查看">
+<input type="submit" name="Submit" value="匯出轉入學生資料">
+</form>
+<table width="85%" class="formdata" >
+  <tr >
+    <th width="13%" class="out"> 轉出日期 </th>
+    <th width="12%" class="out"> 學號 </th>
+    <th width="26%" class="out"> 轉出班級 </th>
+    <th width="24%" class="out">座號</th>
+    <th width="25%" class="out">姓名</th>
+  </tr>
+{{foreach key=key1 item=data from=$arr_out }}  
+  {{if $key1 is div by 2}}
+    <tr class="altrow">
+  {{else }}  	
+    <tr>
+  {{/if}}
+    <td>{{$data.move_date}}</td>
+    <td>{{$data.stud_id}}</td>
+    <td>{{$data.class_num}}</td>
+    <td>{{$data.class_seat_num}}</td>
+    <td>{{$data.stud_name}}</td>
+  </tr>
+{{/foreach}}
+</table>
+<br>
+<table width="85%" class="formdata" >
+  <tr>
+    <th width="13%"> 轉入日期 </th>
+    <th width="12%"> 學號 </th>
+    <th width="26%"> 轉入班級  </th>
+    <th width="24%">座號</th>
+    <th width="25%">姓名</th>
+  </tr>
+{{foreach key=key1 item=data from=$arr_in }}
+  {{if $key1 is div by 2}}
+    <tr class="altrow">
+  {{else }}  	
+    <tr>
+  {{/if}}
+  
+    <td>{{$data.move_date}}</td>
+    <td>{{$data.stud_id}}</td>
+    <td>{{$data.class_num}}</td>
+    <td>{{$data.class_seat_num}}</td>
+    <td>{{$data.stud_name}}</td>
+  </tr>
+{{/foreach}}  
+</table>
+<br>
+
+

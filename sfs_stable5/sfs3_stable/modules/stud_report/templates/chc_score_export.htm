@@ -1,0 +1,34 @@
+<table cellPadding='0' border=1 cellSpacing='0' width='96%' align=center>
+	<tr>
+		<td colspan=4>&nbsp;</td>
+		{{foreach from=$sub_arys key=seme_key item=subs}}
+			<td colspan={{$subs.items}}>{{$seme_key}}</td>
+		{{/foreach}}
+	</tr>
+	<tr>
+		<td>班</td>
+		<td>號</td>
+		<td>姓名</td>
+		<td>學號</td>
+		{{foreach from=$sub_arys key=seme_key item=subs}}
+			{{foreach from=$subs.name key=sub_name item=tmp}}
+			<td >{{$sub_name}}</td>
+			{{/foreach}}
+		{{/foreach}}
+	</tr>
+	{{foreach from=$class_data key=class_id item=class_ary}}
+		{{foreach from=$class_ary key=student_sn item=stud}}
+		<tr>
+			<td>{{$stud.base.cla_no}}</td>
+			<td>{{$stud.base.seme_num}}</td>
+			<td nowrap>{{$stud.base.stud_name}}</td>
+			<td>{{$stud.base.stud_id}}</td>
+			{{foreach from=$stud.seme_ary key=seme_key item=seme_data}}
+				{{foreach from=$seme_data.seme_score key=sub_name item=score}}
+				<td>{{$score}}</td>
+				{{/foreach}}
+			{{/foreach}}
+		</tr>
+		{{/foreach}}
+	{{/foreach}}
+</table>

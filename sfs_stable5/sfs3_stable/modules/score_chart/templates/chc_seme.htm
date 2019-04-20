@@ -1,0 +1,52 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'>
+<td>{{$this->select}}</td>
+
+</tr>
+</table>
+<table  width='100%'  border='0' align='center' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td rowspan=2 colspan="1" width=4% nowrap>座號</td>
+<td rowspan=2 colspan="1" width=6% nowrap>姓　名</td>
+<td rowspan=2 colspan="1" width=5% nowrap>學　號</td>
+{{foreach from=$this->subj item=subj key=ss}}
+{{if $subj.mon_test!='0'}}<td colspan={{$subj.mon_test*2}}>{{else}}<td rowspan=2 >{{/if}}
+{{$subj.sb}}<br>{{$ss}}</td>
+{{/foreach}}
+<td rowspan=2 colspan="1" width=5% nowrap>日常生活</td>
+</tr>
+<tr bgcolor='white'>
+{{foreach from=$this->subj item=subj}}
+{{if $subj.mon_test!='0'}}
+{{section name=foo   loop=$subj.mon_test}}
+<td style='font-size:8pt' nowrap>月考{{$smarty.section.foo.index+1}}</td>
+<td style='font-size:8pt' nowrap>平時{{$smarty.section.foo.index+1}}</td>
+{{/section}}
+{{/if}}
+{{/foreach}}
+</tr>
+
+{{foreach from=$this->stu item=stu key=st_sn}}
+
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td>{{$stu.seme_num}}</td>
+<td>{{if $stu.stud_study_cond!='0' }}<font color="#0000FF">{{$stu.stud_name}}</font>
+{{else}}{{$stu.stud_name}}{{/if}}</td>
+<td>{{$stu.stud_id}}</td>
+{{foreach from=$this->subj item=subj key=ss}}
+{{if $subj.mon_test!='0'}}
+{{section name=foo  start=1 loop=$subj.mon_test+1 }}
+<td>{{$this->sco($st_sn,$ss,$smarty.section.foo.index,"mon")}}</td>
+<td>{{$this->sco($st_sn,$ss,$smarty.section.foo.index,"nor")}}</td>
+{{/section}}
+
+{{else}}
+<td>{{$this->sco($st_sn,$ss,255,'all')}}</td>
+{{/if}}
+{{/foreach}}
+<td>{{$this->sco_nor($st_sn)}}</td>
+</tr>
+
+{{/foreach}}
+</table>

@@ -1,0 +1,54 @@
+<!-- //$Id: school_report_things.htm 6088 2010-09-02 12:13:21Z hami $ -->
+{{assign var=weeks value=$this->get_week($smarty.request.year_seme)}}
+{{if $smarty.request.week_num}}
+ {{if $smarty.request.week_num == 99}}
+ {{assign var=week_num value=0}}
+ {{else}}
+{{assign var=week_num value=$smarty.request.week_num}}
+{{/if}}
+{{else}}
+{{assign var=week_num value=$this->getCurrweek()}}
+{{/if}}
+{{assign var=year_seme_arr value=$this->get_year_seme()}}
+{{if $smarty.request.year_seme}}
+{{assign var=year_seme value=$smarty.request.year_seme}}
+{{else}}
+{{assign var=year_seme value=$year_seme_arr|@array_keys|@current}}
+{{/if}}
+<table cellspacing='1' cellpadding='3' bgcolor='#C6D7F2' width="100%">
+	<tr bgcolor='#FFFFFF'><td>
+	<form action='{{$smarty.server.PHP_SELF}}' method='post'>
+	<select name="year_seme" onChange="this.form.submit()">
+	{{html_options options=$year_seme_arr selected=$year_seme}}
+	</select>
+	<select name="week_num" onChange="this.form.submit()">
+	<option value="99">寒暑假期間</option>
+	{{html_options options=$weeks selected=$week_num}}
+	</select>
+	<input type='hidden' name='act' value='view'>
+	<input type='hidden' name='this_date' value='$year-$month-$day'>
+	晨夕會報告事項 &nbsp;&nbsp;
+	<input type="submit" name="act" value="新增" {{if $smarty.post.act eq '新增' }}disabled="true"{{/if}}>
+	</form>
+	</td>
+	</tr>
+
+<tr bgcolor='#FFFFFF'><td>
+
+<table  width='90%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+{{if $smarty.request.act=="新增"  or $smarty.get.edit}}
+<!-- 新增表單   開始  -->
+<tr align=center><td colspan="7">
+{{include file="`$temp_path`/add.tpl"}}
+</td></tr>
+{{else}}
+{{include file="`$temp_path`list.tpl"}}
+
+{{/if}}
+</td>
+</tr>
+</table>
+
+
+</table>
+

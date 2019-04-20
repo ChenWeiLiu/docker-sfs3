@@ -1,0 +1,39 @@
+<!-- $Id: chc_940531.htm 5310 2009-01-10 07:57:56Z hami $ -->  
+
+<TABLE border=0 width=100% style='font-size:12pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<TR  bgcolor=#ffffff>
+<td width=30%  style="vertical-align: top;" align=center>
+<FORM METHOD=POST ACTION="chc_prn_score.php" name=f1 target=_blank>
+<INPUT TYPE="submit" value='印出本班網頁式學籍記錄表'>
+<INPUT TYPE="hidden"  NAME='class_id[{{$class_id}}]' value='{{$class_id}}'>
+<INPUT TYPE="hidden"  NAME='act' value='OK'>
+</FORM>
+</td><td width=70%  style="vertical-align: top;font-size:10pt">
+1.本(彰化)縣開發之學籍程式均將加權與節數視為相當，並不理會實際授課節數為何！統一以加權為實際授課節數。<BR>
+2.列表產生之科目均以貴校[學期初設定]所訂之[課程設定]為主。<BR>
+3.紙張使用建議國小B4橫印，國中B4直印。
+
+</td></tr>
+<TR bgcolor=#ffffff>
+<td  style="vertical-align: top;" align=center>
+<FORM METHOD=POST ACTION="chc_score_export.php" name=f2 target=_blank>
+<INPUT TYPE="submit" value='列出本班歷屆成績'>
+<INPUT TYPE="hidden"  NAME='class_id[{{$class_id}}]' value='{{$class_id}}'>
+<INPUT TYPE="hidden"  NAME='act' value='OK'>
+</FORM>
+</td><td style="vertical-align: top;font-size:10pt">
+本程式主要為應付『擷取歷屆各科成績』資料的需求而設計。
+使用方式，可先開啟OpenOffice的Calc或Excel
+選出您要的班級送出原始成績資料後
+再用滑鼠選取開啟後的成績資料，複製後再貼到
+OpenOffice的Calc或Excel中
+然後您可以在您OpenOffice的Calc或Excel中
+作額外的、特別的運算需求。
+</td></tr>
+
+</TABLE>
+<br><br>
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('作者群：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n和美 葉國恭 大村 鄭培華');">
+◎By 彰化縣學務系統開發小組  94.05.26於芙朝國小</DIV></FONT>
+

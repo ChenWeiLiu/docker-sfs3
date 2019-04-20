@@ -1,0 +1,4 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+stud_sta  在學證明書
+stud_sta 1.0 --- 2003-5-19 --- 台中縣建平國小 陳榮原 chen( chen@mail.jpps.tcc.edu.tw )

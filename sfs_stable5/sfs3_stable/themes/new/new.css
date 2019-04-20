@@ -1,0 +1,233 @@
+/* $Id:$ */
+
+body	{
+	background-color: #FFFFFF;
+}
+
+form {
+	margin: 0px;
+	display: inline;
+}
+
+.main_body {
+	font-size: 12px ; 
+	background-color: #9EBCDD;
+}
+
+.title_sbody2 {
+	font-size: 12px;
+	background-color: #E1ECFF ;
+	text-align: right
+}
+
+.title_sbody1 {
+	font-size: 12px; 
+	background-color: #F7F7F7 ;
+	text-align: right;
+}
+
+.title_mbody { 
+	font-size: 12px; 
+	font-weight: bold; 
+}
+
+
+.title {
+	font-size: 24px;
+	background-color: #FFF878 ; 
+	color: #1E3EBE; 
+	padding: 4px;
+}
+
+.title1 {
+	font-size: 14px;
+	background-color: #FFF878 ; 
+	color: #FF0000; 	
+}
+.title2 {	
+	background-color: #B2B9F6 ; 
+	color: #FF0000; 	
+}
+
+.topmenu { font-family:"mingliu, taipei"; font-size: 16px; font-weight: bold; color: #000000 }
+.loation { font-family:"mingliu, taipei"; font-size: 12px;  }
+.leftmenu { font-family:"mingliu, taipei"; font-size: 12px;    }
+.title_top1 { font-family:"mingliu", "taipei"; font-size: 16px;  background-color: #EEDDCC ;font-weight: bold;}
+.grid {BACKGROUND-COLOR: #d7d7d7; COLOR: black; FONT-FAMILY: Lucida, Verdana, Arial, 細明體; FONT-SIZE: 10pt; FONT-STYLE: normal; FONT-WEIGHT: bold; LINE-HEIGHT: 125%}
+.tableBg { font-family:"mingliu", "taipei"; font-size: 12px;  background-color: #CCCCCC;}
+.gendata { font-family:"mingliu", "taipei"; font-size: 12px;  background-color: #CCCCCC;}
+.nom_1 { font-family:"mingliu", "taipei"; font-size: 13px;  background-color: #E1E1E1 ;}
+.nom_2 { font-family:"mingliu", "taipei"; font-size: 13px;  background-color: #FFFFFF ;}
+
+.module_body { font-family:"taipei"; font-size: 15px ;   color: black ;  background-color: #F2FFD7 }
+.li { font-family:"mingliu, taipei"; font-size: 16px;  }
+.t4 {  font-family: "新細明體";font-size: 16px;line-height:22px}
+.maf { font-family:"mingliu, taipei"; font-size: 12px;  }
+.rbody { font-family:"mingliu", "taipei"; font-size: 13px;  ; color: red}
+.nav {font-family: MS Sans Serif,Geneva,sans-serif;font-size: 8pt;}
+
+a:link{color:#0000cc;text-decoration: none}
+a:visited{color:#551a8b;text-decoration: none}
+a:active{color:#ff0000;text-decoration: none}
+a:hover {color: #E96606;text-decoration: underline}
+
+.box:hover {
+	background-color: #ffffff;
+	text-decoration: none;
+}
+
+.small{ font-family: "Arial,taipei,新細明體";font-size: 12px}
+
+
+td.tab          {
+    border-top: 1px solid #999;
+    border-right: 1px solid #666;
+    border-left: 1px solid #999;
+    border-bottom: none;
+    font-size: 12px;
+    -moz-border-radius: 2px;
+}
+
+td.tab_left          {
+    border-top: 1px solid #999;
+    border-right: 1px solid #666;
+    border-left: none;
+    border-bottom: 1px solid #999;
+    font-size: 12px;
+    -moz-border-radius: 2px;
+}
+
+td.tab_all          {
+    border-top: 1px solid #999;
+    border-right: 1px solid #666;
+    border-left: 1px solid #999;
+    border-bottom: 1px solid #999;
+    font-size: 12px;
+    -moz-border-radius: 2px;
+}
+
+table.tabs{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #666;
+}
+
+.table-sfs3 {
+	border-collapse:collapse;
+	border-color:#999;
+	border-width: thin;
+	border-style: solid;
+}
+
+.table-sfs3 td{
+	border-top: 1px solid #999;
+	border-right: 1px solid #999;
+	border-left: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+
+.btn-closed {
+	border-radius:50%;
+}
+
+
+.like_button	{
+	font-size: small;
+	background-color: lightGray; 
+	border-width: 2px;
+	border-color: #efefef #696969 #696969 #efefef;
+	border-style: solid; 
+	padding: 2px;
+}
+
+.link_button	{
+	font-size: 12px;
+	background-color: #ffff99; 
+	border-width: 1px;
+	border-color: #000000;
+	border-style: solid; 
+	padding: 3px
+}
+
+.border_thin{
+	font-family: "Arial,taipei,新細明體";
+	border-width: thin;
+	border-style: solid;
+	border-color: #EAF6FF;
+	background-color: #FAFAFA ;
+}
+
+.border_no{
+	border-style: none;
+}
+
+
+.button{
+	border: 1px outset #EAF6FF
+}
+
+/*新系列*/
+
+.b1{
+	background-image: url('images/bbg.jpg');
+	border:1px groove gray;padding:2px;
+	font-size:12px;
+}
+
+.b2{
+	background-image: url('images/bbg2.jpg');
+	border:1px groove gray;padding:2px;
+	font-size:12px;
+}
+
+.b3{
+	background-image: url('images/bbg3.jpg');
+	border:1px groove gray;padding:2px;
+	font-size:12px;
+}
+
+.b4{
+	background-image: url('images/bbg4.jpg');
+	border:1px groove gray;padding:2px;
+	font-size:12px;
+}
+
+.like_button	{
+	background-image: url('images/bbg.jpg');
+	border:1px groove gray;
+	padding:4px;
+	font-size:12px;
+}
+
+.new1{
+	background-color: #f1efff; 
+}
+
+.main_body {
+	font-size: 12px ; 
+	background-color: #AEBCDD;
+}
+
+
+.title_mbody { 
+	font-size: 12px; 
+	background-color: #efefef;
+	font-weight: bold; 
+}
+
+.title_sbody2 {
+	font-size: 12px;
+	background-color: #f1efff ;
+	text-align: right
+}
+
+.nom_1 {
+	font-family:"mingliu", "taipei";
+	background-color: #FAFAFA ;
+}
+
+.nom_2 {
+	font-family:"mingliu", "taipei"; 
+	background-color: #FFFFFF ;
+}

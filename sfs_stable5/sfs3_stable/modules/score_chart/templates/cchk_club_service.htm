@@ -1,0 +1,124 @@
+{{* $Id: cchk_body.htm 5522 2009-07-09 04:48:15Z infodaes $ *}}
+<P STYLE='page-break-before: always;'>
+
+<P ALIGN=CENTER STYLE="font-size:16pt; font-family: 標楷體, cursive;">{{$school_name}} {{$class_info.ch_year}} {{$class_info.c_seme}}<br>
+社團活動與服務學習記錄<br></P>
+<DIV STYLE="font-size: 14pt; font-family: 標楷體, cursive; text-align:center;">班級：{{$class_info.c_year2}}{{$class_info.c_name}}　　座號：{{$stud.seme_num}}　　姓名：{{$stud.stud_name}}</DIV>
+<BR>
+<table border="0" width="100%">
+	<tr>
+	 <td align="center">社團活動記錄</td>
+	</tr>
+</table>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=0 style="border-collapse:collapse" bordercolor="#000000">
+	<TR>
+		<td align="center">參加社團</td>
+		{{if $stud_club_score=="checked" }}
+		<td align="center">成績</td>
+		{{/if}}
+		<td align="center">教師評語</td>
+		<td align="center">自我省思</td>
+	</TR>
+<!------ 顯示社團迴圈 ---->
+{{foreach from=$club_detail item=club}}
+
+  <tr>
+    <td align="center">{{$club.association_name}}</td>
+    {{if $stud_club_score=="checked" }}
+    <td align="center">{{$club.score}}</td>
+    {{/if}}
+    <td>{{$club.description}}</td>
+    <td>{{$club.stud_feedback}}</td>
+  </tr>
+{{/foreach}}
+<!------ 結束顯示社團迴圈 ---->
+</TABLE>
+<br>
+<table border="0" width="100%">
+	<tr>
+	 <td align="center">服務學習記錄</td>
+	</tr>
+</table>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=0 style="border-collapse:collapse" bordercolor="#000000">
+	<TR>
+		<td align="center">日期</td>
+		<td align="center">參加校內外公共服務學習事項及活動項目</td>
+		<td align="center">時數</td>
+		<td align="center">主辦單位</td>
+		<td align="center">自我省思</td>
+	</TR>
+<!------ 顯示服務學習迴圈 ---->
+{{foreach from=$service_detail item=service key=sn}}
+  <tr>
+  	<td align="center">{{$service.service_date}}</td>
+    <td>【{{$service.item}}】{{$service.memo}}</td>
+    <td align="center">{{$service.hour}}</td>
+    <td align="center">{{$service.sponsor}}</td>
+    <td>{{$service.feedback}}</td>
+  </tr>
+{{/foreach}}
+<!------ 結束顯示服務學習迴圈 ---->
+</TABLE>
+<table border="0" width="100%">
+ <tr>
+ 	<td>	本學期服務學習總時數共計<b> {{$HOURS}} </b>小時</td>
+ 	</tr>
+</table>
+<BR>
+
+
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0>
+	<THEAD>
+		<TR>
+			<TD COLSPAN=3 style="border-style: solid; border-width: 1.5pt 1.5pt 0pt 1.5pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=3>審核簽章</FONT></DIV>
+			</TD>
+			<TD style="border-style: solid; border-width: 1.5pt 1.5pt 0pt 0pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=3>家長意見：</FONT></DIV>
+			</TD>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TR>
+			<TD WIDTH=17% style="border-style: solid; border-width: 1.5pt 0.75pt 0pt 1.5pt;line-height: 8pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=1 STYLE="font-size: 10pt;">導 師</FONT></DIV>
+			</TD>
+			<TD WIDTH=17% style="border-style: solid; border-width: 1.5pt 0.75pt 0pt 0pt;line-height: 8pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=1 STYLE="font-size: 10pt;">{{$sign_3_title}}</FONT></DIV>
+			</TD>
+			<TD WIDTH=17% style="border-style: solid; border-width: 1.5pt 1.5pt 0pt 0pt;line-height: 8pt;">
+				<DIV ALIGN=CENTER><FONT SIZE=1 STYLE="font-size: 10pt;">校 長</FONT></DIV>
+			</TD>
+			<TD ROWSPAN=2 WIDTH=49% VALIGN=BOTTOM style="border-style: solid; border-width: 1.5pt 1.5pt 1.5pt 0pt;">
+				<DIV ALIGN=RIGHT><FONT SIZE=3>家長簽章</FONT></DIV>
+			</TD>
+		</TR>
+		<TR style="height:60pt;">
+			<TD style="border-style: solid; border-width: 0.75pt 0.75pt 1.5pt 1.5pt;">
+				<DIV ALIGN=CENTER><BR></DIV>
+			</TD>
+			<TD style="border-style: solid; border-width: 0.75pt 0.75pt 1.5pt 0pt;">
+				<DIV ALIGN=CENTER VALIGN=MIDDLE STYLE="margin-bottom: 0cm">
+{{if $sign_3_form==1}}
+                                {{if $img_3}}<IMG SRC="{{$img_3}}" ALIGN=CENTER WIDTH=48 HEIGHT=48 BORDER=0><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{elseif $sign_3_form==2}}
+                                {{if $sign_3_name}}<font size="4">{{$sign_3_name}}</font><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{else}}
+				<BR>
+{{/if}}
+				</DIV>
+			</TD>
+			<TD style="border-style: solid; border-width: 0.75pt 1.5pt 1.5pt 0pt;">
+				<DIV ALIGN=CENTER VALIGN=MIDDLE STYLE="margin-bottom: 0cm">
+{{if $sign_1_form==1}}
+				{{if $img_1}}<IMG SRC="{{$img_1}}" ALIGN=CENTER WIDTH=48 HEIGHT=48 BORDER=0><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{elseif $sign_1_form==2}}
+				{{if $sign_1_name}}<font size="4">{{$sign_1_name}}</font><BR CLEAR=LEFT>{{else}}<BR>{{/if}}
+{{else}}
+				<BR>
+{{/if}}
+				</DIV>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>

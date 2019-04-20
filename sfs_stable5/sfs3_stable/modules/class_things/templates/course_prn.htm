@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>功課表</title>
+<style type="text/css">
+<!--
+
+table.formdata {
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse;
+	font-size: 12pt;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000;
+	text-align:center;
+	font-weight:normal;
+	padding:2px 4px 2px 4px;
+	margin:0;
+	width:2.8cm;
+	height: 1.5cm;
+	vertical-align: middle;
+}
+
+
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px;
+	margin:0;
+	height:2cm;
+	text-align: center;
+	vertical-align: middle;
+}
+
+table.formdata td.ot {
+	color: #FF0000;
+}
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata tr.lunch {
+	height:1.3cm ;
+}
+table.formdata td.lunch {
+	height:1.3cm ;
+}
+table.formdata th.lunch {
+	height:1.3cm ;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+h1 {
+	font-size: 18pt;
+	margin-left: 4cm;
+}
+h2 {
+	font-size: 16pt;
+	margin-left: 7cm;
+}
+-->
+</style>
+</head>
+
+<body>
+<h1>{{$school_name}}第{{$year}}學年第{{$seme}}學期</h1>
+<h2> {{$class_name}}功課表</h2>
+<h2>  導師：{{$class_teacher}}</h2>
+<table class="formdata" >
+  <tr>
+    <th scope="row">節</th>
+{{ foreach key=day item=wi from=$weekN  name=weeki }}  
+    <th>星期{{$wi}}</th>
+{{/foreach }}
+  </tr>
+  
+{{section name=sector start=1 loop = $sections+1 step=1}}  
+  <tr> 
+  	<th scope="row">
+  		第{{$smarty.section.sector.index}}節<br>
+      {{$section_table[$smarty.section.sector.index][0]}} ~ {{$section_table[$smarty.section.sector.index][1] }}
+    </th>
+{{ foreach key=day item=wi from=$weekN  name=weeki }}   
+    {{if $all_class.b[$smarty.foreach.weeki.iteration][$smarty.section.sector.index] neq  $class_teacher }}
+    <td class="ot">
+      {{$all_class.a[$smarty.foreach.weeki.iteration][$smarty.section.sector.index]}}<br>	
+    	{{$all_class.b[$smarty.foreach.weeki.iteration][$smarty.section.sector.index]}}<br>	
+    	{{$all_class.c[$smarty.foreach.weeki.iteration][$smarty.section.sector.index]}}	
+    </td>	
+    {{else}}
+    <td >
+      {{$all_class.a[$smarty.foreach.weeki.iteration][$smarty.section.sector.index]}}<br>	
+    	{{$all_class.c[$smarty.foreach.weeki.iteration][$smarty.section.sector.index]}}	
+    </td>	    
+    {{/if}}
+{{/foreach }}   
+  </tr> 
+  
+{{if $smarty.section.sector.index eq $midnoon}}
+  <tr class="lunch">
+    <th scope="row" class="lunch" ></th>
+    <td colspan="5" class="lunch" >午休時間</td>
+  </tr>
+{{/if}}  
+
+{{/section }}
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!-- $Id: chc_check_view.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  bgcolor='#9EBCDD'>
+<tr align=center  bgcolor=#9EBCDD>
+<td nowrap width=100%><FONT size=6 COLOR='#800000'>{{$class_name}}學期成績輸入概況</FONT></td>
+</tr>
+</table>
+<TABLE  border=0 width=100%  cellspacing='1' cellpadding=1  bgcolor='#9EBCDD' >
+	<tr align=center  bgcolor=white>
+		<td rowspan="2" >座號</td>
+		<td rowspan="2" >學號</td>
+		<td   width=30  rowspan="2" nowrap >姓名</td>
+		{{foreach from=$ss_id key=seme_key item=subs}}
+		<td  style='font-size:10pt' colspan="3" >{{$subs.sb}}<br>{{$seme_key}}</td>
+		{{/foreach}}
+		<td  style='font-size:10px' colspan="6" >生活表現</td>
+	</tr>
+	<tr align=center  bgcolor=white>
+		{{foreach from=$ss_id  item=subs}}
+		<td  style='font-size:10px' nowrap >成績</td>
+		<td  style='font-size:10px' nowrap >評語</td>
+		<td  style='font-size:10px' nowrap >努力<BR>程度</td>
+		{{/foreach}}
+		<td  style='font-size:10px' nowrap >日常<BR>成績</td>
+		<td  style='font-size:10px' nowrap >日常</td>
+		<td  style='font-size:10px' nowrap >團體</td>
+		<td  style='font-size:10px' nowrap >公共</td>
+		<td  style='font-size:10px' nowrap >校外</td>
+		<td  style='font-size:10px' nowrap >評語</td>
+	</tr>
+
+{{foreach from=$stu key=sn item=stu}}
+	<tr align=center bgcolor=white style='line-height:20px;font-size:9pt'>
+	<td>{{$stu.seme_num}}</td>
+	<td>{{$stu.stud_id}}</td>
+	<td  nowrap style='font-size:12pt'>{{$stu.stud_name}}</td>
+	{{foreach from=$ss_id key=skey item=subs2}}
+{{if $stu.$skey.score=='' || $stu.$skey.score==0}}<td><FONT  COLOR='red'>Ｘ</FONT></td>
+{{else}}
+
+{{if $stu.$skey.score < 60}}<td bgcolor='#FF9900'>{{$stu.$skey.score}}</td>
+{{else}}<td>{{$stu.$skey.score}}</td>{{/if}}
+{{/if}}
+	<td title='{{$stu.$skey.memo}}'>{{if $stu.$skey.memo==''}}<FONT  COLOR='red'>Ｘ</FONT>{{else}}Ｏ{{/if}}</td>
+	<td title='{{$stu.$skey.ss_val}}'>{{if $stu.$skey.ss_val==''}}<FONT  COLOR='red'>Ｘ</FONT>{{else}}Ｏ{{/if}}</td>
+	{{/foreach}}
+	<td>{{if $stu.nor.score=='' || $stu.nor.score==0}}<FONT  COLOR='red'>Ｘ</FONT>{{else}}{{$stu.nor.score}}{{/if}}</td>
+	<td title='{{$stu.nor.ss_val_1}}'>{{if $stu.nor.ss_val_1==''}}<FONT  COLOR='red'>Ｘ</FONT>{{else}}Ｏ{{/if}}</td>
+	<td title='{{$stu.nor.ss_val_2}}'>{{if $stu.nor.ss_val_2==''}}<FONT  COLOR='red'>Ｘ</FONT>{{else}}Ｏ{{/if}}</td>
+	<td title='{{$stu.nor.ss_val_3}}'>{{if $stu.nor.ss_val_3==''}}<FONT  COLOR='red'>Ｘ</FONT>{{else}}Ｏ{{/if}}</td>
+	<td title='{{$stu.nor.ss_val_4}}'>{{if $stu.nor.ss_val_4==''}}<FONT  COLOR='red'>Ｘ</FONT>{{else}}Ｏ{{/if}}</td>
+	<td title='{{$stu.nor.memo}}'>{{if $stu.nor.memo==''}}<FONT  COLOR='red'>Ｘ</FONT>{{else}}Ｏ{{/if}}</td>
+	</tr>
+	{{/foreach}}
+</table>

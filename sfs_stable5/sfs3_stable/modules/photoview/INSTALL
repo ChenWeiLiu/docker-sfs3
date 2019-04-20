@@ -1,0 +1,24 @@
+// $Id: INSTALL,v 1.1.2.2 2004-08-24 08:30:33 prolin Exp $
+* photoview - 相片館
+
+** 安裝法:
+
+由 "系統管理" --> "模組權限管理"
+
+  請先安裝以下套件(linux)(本程式無法在windows 下正確執行)
+  libjpeg-6b-9
+  libgr-progs-2.0.13-20
+  unzip-*
+  
+  
+  redhat 7 以後版本，改用套件
+  netpbm-progs-9*** 
+  
+  
+  2004/08/24 修改支援 windows 下使用 ，但在 windows 系統中不做縮圖。
+  php需載入模組： php_zip.dll 、php_gd.dll (已內含在php windwos 版中)，
+  修改後記得要重新啟動 apache。
+
+    修改方法： {windows}\php.ini (表示 c:\winnt c:\windiws)
+    extension = php_gd.dll
+    extension = php_zip.dll (前方的 ; 去掉)   

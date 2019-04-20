@@ -1,0 +1,4 @@
+{{* $Id: stud_basic_test_distest2_txt.tpl 5821 2010-01-05 16:36:47Z brucelyc $ *}}
+{{foreach from=$student_sn item=d key=seme_class}}{{foreach from=$d item=sn key=site_num}}
+{{$seme_class|@substr:-2:2}}{{$site_num|string_format:"%02d"}}{{$stud_data.$sn.stud_name|string_format:"%-20s"}}{{$stud_data.$sn.stud_person_id|string_format:"%-10s"}}{{$stud_data.$sn.stud_sex}}{{$stud_data.$sn.stud_birthday|@substr:0:2}}{{$stud_data.$sn.stud_birthday|@substr:2:2}}{{$stud_data.$sn.stud_birthday|@substr:4:2}}00011{{$stud_data.$sn.parent_name|string_format:"%-20s"}}{{$stud_data.$sn.stud_tel|string_format:"%-10s"}}{{$stud_data.$sn.addr_zip|@substr:0:3}}{{$stud_data.$sn.stud_addr_1|string_format:"%-80s"}}{{$stud_data.$sn.stud_id|string_format:"%-8s"}}{{foreach from=$ss_link item=sl}}{{s2n score=$fin_score.$sn.$sl semes=$semes}}{{/foreach}}{{tavg score=$fin_score.$sn semes=$semes ss_link=$ss_link}}{{php}}echo "\r\n";{{/php}}
+{{/foreach}}{{/foreach}}

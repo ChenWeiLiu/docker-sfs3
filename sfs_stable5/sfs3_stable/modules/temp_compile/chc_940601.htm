@@ -1,0 +1,91 @@
+<!-- $Id: chc_940601.htm 9256 2018-05-26 09:41:19Z chiming $ -->
+<TABLE border=0 width=100% style='font-size:12pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<TR bgcolor='white'>
+<td width=50%  valign=top nowrap >
+<form action="{{$PHP_SELF}}" method="post" target="_blank">
+<h3><font color="#FF0000">□</font><a href="chc_940622.php">1.特殊生註記</a></h3>
+<h3><font color="#FF0000">□</font>2.編班檔案轉出</h3>
+<FONT COLOR="green">A.核定班級數:</FONT><input type="text" name="class_num" size=4 style='border-style: solid; border-width: 0px; background-color:#FFCCCC'><BR>
+<FONT COLOR="green">B.各班　導師:</FONT><BR>
+<FONT SIZE="2" COLOR="blue">
+1.若新生導師不由編班中心處理時,可不填寫,視各區要求而異。<BR>
+2.填寫順序處理方式依各區說明規定。<BR>
+3.填寫格式:每位導師均以小寫逗號(<FONT COLOR="red">,</FONT>)隔開。</FONT><BR>
+<TEXTAREA NAME="teacher" ROWS="4" COLS="40" style='border-style: solid; border-width: 0px; background-color:#FFCCCC'></TEXTAREA><BR>
+<input type="submit" name="AA" value="輸出亂數編班格式(國小用)"> <input type="submit" name="AA-1" value="輸出亂數編班格式(國中用)">
+</form>
+
+</td><td width=50%  valign=top nowrap >
+1.請輸入今年一年級的總班級數。<br>
+2.輸出的檔案即是交由編班中心的檔案。<br>
+3.產生的檔案格式如下:<br>
+<TABLE  cellspacing='1' cellpadding=0 style='color:#7F7F7F;font-size:9pt'>
+<TR><TD valign=top nowrap><FONT COLOR="red">第1行<BR>第2行<BR>第3行<BR>第4行</FONT></TD>
+<TD valign=top nowrap>校名,XXX國中(小),班級數,5,總人數,163<br>
+導師1,導師2,導師3,導師4,導師5<BR>
+流水號,班級,座號,性別,姓名,身分証字號,原就讀學校,編班類別,相關流水號,備註<br>
+A0009,,,1,張九,A123456789,快樂國小,0,,<br>
+A0010,,,1,張十,A123456788,快樂國小,0,,<br>
+A0011,,,2,張十一,A123456749,快樂國小,0,,<br>
+A0012,,,2,張十二,A123456759,快樂國小,0,,<BR>
+</TD></TR>
+</TABLE>
+<BR>
+4.編班類別:0為一般生,1為特教生,2為雙胞胎。<BR>
+5.相關流水號:指另位雙胞胎的流水號<BR>
+6.特別注意:若雙胞胎無家長出具証明,亦視為一般生處理。
+
+</td></tr>
+<tr bgcolor='white'>
+<td>
+<h3><font color="#FF0000">□</font>3.編班檔案轉入</h3>
+<form name='score' enctype="multipart/form-data" action="{{$PHP_SELF}}" method="post" >
+	<input type="hidden" name="MAX_FILE_SIZE"  />
+	<input type="hidden" name="uptype"  >
+	<input type=file size=20 name='upfile' >
+	<input type=submit value='上傳亂數編班結果檔案' onClick="document.score.uptype.value='sum_grade'">
+</form>
+
+
+</td><td>
+<OL>
+	<LI>左列項目是將編班中心檔案轉入到新生編班模組內，並依結果轉為正式編班的資料。
+<LI>檔案傳入後，再利用 『<font color="#FF0000">設定學號</font> 』『<font color="#FF0000">寫入學籍表</font> 』即可轉入到學籍系統成為新年度的新生資料。
+<LI>轉入的檔案格式如下：
+</OL>
+<TABLE  cellspacing='1' cellpadding=0 style='color:#7F7F7F;font-size:9pt'>
+<TR><TD valign=top nowrap><FONT COLOR="red">第1行<BR>第2行<BR>第3行<BR>第4行</FONT></TD>
+<TD valign=top nowrap>校名,XXX國中(小),班級數,5,總人數,163<br>
+導師1,導師2,導師3,導師4,導師5<BR>
+流水號,班級,座號,性別,姓名,身分証字號,原就讀學校,編班類別,相關流水號,備註<br>
+A0011,1,7,2,張十一,A123456749,快樂國小,0,,<br>
+A0012,3,21,2,張十二,A123456759,快樂國小,0,,<BR>
+A0009,4,6,1,張九,A123456789,快樂國小,0,,<br>
+A0010,7,32,1,張十,A123456788,快樂國小,0,,<br>
+</TD></TR>
+</TABLE>
+
+</td></tr>
+<tr bgcolor='white'><td colspan=2>
+<b><font color="#FF0000">■</font>配合新生亂數編班中心作業流程</b>
+<pre>
+1.請到【學期初設定→班級設定】去設定班級。
+
+2.由【新生編班】模組匯入新生的資料。
+
+3.由【新生編班→管理新生 】標記是否就讀本校。
+
+4.額外應用，例如:《臨時編班 》，產生《入學通知單 》...等。(本部分國小可略)
+
+5.由【新生編班→資料匯出入(彰縣用)】產生給編班中心的資料檔。 
+
+6.由【新生編班→資料匯出入(彰縣用)】匯入編班中心輸出的編班結果資料檔。 
+
+7.由【新生編班→ 設定學號】設定好新生的正式學號。
+
+8.待新學期後，至【教務處 / 註冊組 / 編班作業】將其他年級參照上學期資料升級。
+
+9.由【新生編班→ 寫入學籍表】正式將新生寫入學籍系統。
+</pre>
+</td></tr>
+</table>

@@ -1,0 +1,50 @@
+<!-- $Id: rand_run_view.htm 5511 2009-06-25 04:10:15Z yjtzeng $ -->
+
+{{include file=$this->header_tpl}}
+
+<table bgcolor="#9EBCDD" cellspacing="1" cellpadding="4" width=800 align=center>
+<tr><td colspan=6 align=center>
+<h3>{{$this->Info.Rand.rWord.Y}}學年度 第
+{{$this->Info.Rand.rWord.S}}學期
+{{$this->Info.Rand.rWord.Gw}} 學生 亂數編班作業結果
+</h3>
+</td></tr>
+{{foreach item=arr key=id from=$this->New.stu}}
+<tr bgcolor=white>
+<td colspan=6><b>班序 {{$id}}：
+{{$this->New.tol.$id.tol}}
+{{if $this->New.tol.$id.stol!=''}}
+(+{{$this->New.tol.$id.stol}})
+{{/if}}人
+
+<span style="font-size: 9pt; "><font color="#0000FF">男:{{$this->New.tol.$id.boy}}</font>
+<font color="#FF0000">女:{{$this->New.tol.$id.girl}}</font>
+&nbsp;&nbsp;
+<font color="#0000FF">♂:{{$this->New.tol.$id.sboy+0}}</font>
+<font color="#FF0000">♀:{{$this->New.tol.$id.sgirl+0}}</font></span>
+
+</b>
+
+
+</td></tr>
+<tr bgcolor=white>
+{{foreach item=stu  from=$this->Full_TD($arr,'6')}}
+<td style="font-size: 11pt; ">
+{{if $stu.stud_id!=''}}
+{{if $stu.stud_sex=='1' }}
+<span style="color: #FFA500; font-size: 9pt; ">{{$stu.stud_id}}</span>
+{{else}}
+<span style="color: #A52A2A; font-size: 9pt; ">{{$stu.stud_id}}</span>
+{{/if}}
+{{$stu.stud_name}}
+{{/if}}
+{{if $stu.type==2}} {{/if}}
+{{if $stu.type==3}} {{/if}} 
+</td>
+{{if $stu.next_line=='yes' && $stu.stud_id!=''}}</tr>
+<tr bgcolor=white>{{/if}}
+{{/foreach}}
+</tr>
+{{/foreach}}
+
+</table>

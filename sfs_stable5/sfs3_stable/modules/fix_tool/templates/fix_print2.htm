@@ -1,0 +1,88 @@
+
+
+
+
+
+<TABLE width='90%'  border='0' align='center'>
+
+<TR><TD>{{$this->select(0)}}::課程資料總數 <b>{{$this->tol}}</b> 筆</TD></TR>
+<TR><TD>
+{{foreach from=$this->aTol item=arr}}
+{{$arr.year}}學年第{{$arr.semester}}學期(<b>{{$arr.tol}}</b>)&nbsp;、
+{{/foreach}}
+<br>
+顏色表示：<font color=red>紅色為成績數</font>、<font color=blue>藍色為啟用課程</font>、
+<font>灰色為刪除課程</font>
+</TD></TR>
+
+</TABLE>
+<table  width='90%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr align=center  style='font-size:11pt' bgcolor='#E5E5E5'>
+<td width=20%>班級</td>
+<td width=40%>課程設定</td>
+<td width=40%>課表設定</td>
+</tr>
+<tr align=center  style='font-size:11px' bgcolor='#E5E5E5'>
+<td width=20%>不分班級</td>
+<td width=40% align=left >
+{{foreach from=$this->class_ss() item=arr2}}
+{{if $arr2.enable=='1'}}
+<font color=#0000FF>
+{{else}}
+<font color=#7F7F7F>
+{{/if}}
+{{$arr2.ss_id}}
+{{$this->Subj[$arr2.scope_id]}}
+{{$this->Subj[$arr2.subject_id]}}
+:<b style='color:red'>{{$this->gScoTol($arr.class_id,$arr2.ss_id)}}</b><br>
+
+</font>
+{{/foreach}}
+
+</td>
+<td width=40%>
+
+
+</td>
+</tr>
+{{foreach from=$this->aGrade item=arr}}
+<!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+<tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' style='font-size:12px'>
+<td>{{$arr.class_id}}({{$arr.c_sort}}班)</td>
+<td  align=left>
+{{foreach from=$this->class_ss($arr.class_id) item=arr2}}
+{{if $arr2.enable=='1'}}
+<font color=#0000FF>
+{{else}}
+<font color=#7F7F7F>
+{{/if}}
+{{$arr2.ss_id}}
+{{$this->Subj[$arr2.scope_id]}}-
+{{$this->Subj[$arr2.subject_id]}}
+:<b style='color:red'>{{$this->gScoTol($arr.class_id,$arr2.ss_id)}}</b><br>
+
+</font>
+{{/foreach}}
+
+</td>
+<td  align=left>
+{{foreach from=$this->gCourse($arr.class_id) item=arr3 key=KK}}
+{{$KK}}{{$this->SsidToName.$KK}}
+:<b style='color:red'>{{$this->gScoTol($arr.class_id,$KK)}}</b><br>
+
+{{/foreach}}
+
+ </td>
+
+
+</tr>
+
+{{/foreach}}
+
+
+
+
+</table>
+
+
+

@@ -1,0 +1,23 @@
+<table width='60%' border='0' cellspacing='0' cellpadding='4' align='center' bordercolor='#CCCCCC'>
+
+<tr><td class =' td_title'><{ $paper_list.chap_name }></td></tr></table>
+
+
+<table width='100%'  border=' 1' cellspacing='0' cellpadding='4' align='center' bordercolor='#CCCCCC'>
+  <tr class =' td_fixed'>
+                          <td>班級</td>
+                          <td>姓名</td>
+                          <td>作品</td>
+
+                          <td>名稱</td>
+                          <td>指導老師</td>
+                          <td>家長姓名</td>
+                        </tr> 
+<{foreach name=item_name key=key1 item=v from=$paper_list.item }>  
+ <tr class =' td_list'> 
+ <td><{$v.classname}></td><td><{$v.name}></td><td><a href="<{$v.link}>" ><img src="<{$htmlpath}><{ $v.pic_name }>" border="0"></td> 
+ <td><a href="<{$v.link}>" ><{$v.title}></a></td>      <td><{$v.teacher}></td><td><{$v.parent}></td>
+
+ </tr>     
+<{/foreach}> 
+</table>

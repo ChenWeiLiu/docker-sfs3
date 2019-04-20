@@ -1,0 +1,45 @@
+{{* $Id: fix-1.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+{{foreach from=$arr_a item=data}}
+
+{{if $smarty.get.act eq "edit" && $smarty.get.student_sn eq $data.student_sn }}
+<tr bgcolor="#ffffff" style="color:#000000;font-size:11pt;" align="center">
+<td  colspan=4 align="left">
+學　　號：<INPUT TYPE="text" NAME="stud_id" value="{{$data.stud_id}}" size=10  class=mei><BR>
+姓　　名：<INPUT TYPE="text" NAME="stud_name" value="{{$data.stud_name}}" size=10  class=mei><BR>
+性　　別：<INPUT TYPE="text" NAME="stud_sex" value="{{$data.stud_sex}}" size=10  class=mei><BR>
+就學狀態：<INPUT TYPE="text" NAME="stud_study_cond" value="{{$data.stud_study_cond}}" size=10  class=mei><BR>
+入 學 年：<INPUT TYPE="text" NAME="stud_study_year" value="{{$data.stud_study_year}}" size=10  class=mei><BR>
+目前年班：<INPUT TYPE="text" NAME="curr_class_num" value="{{$data.curr_class_num}}" size=10  class=mei>
+
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='student_sn'  value='{{$data.student_sn}}'>
+</td><td  colspan=3  align="left">
+<BR>
+<INPUT TYPE=button  value='將本筆資料刪除' onclick=" bb1('真的要將本筆資料刪除？確定這麼做？','del_base');" class=bur2>
+<BR><BR>
+<INPUT TYPE=button  value='寫入資料' onclick="bb1('寫入資料？OK？','write_base');" class=bu1>
+<INPUT TYPE=button  value='取消返回' onclick="location.href='{{$PHP_SELF}}?student_sn={{$data.student_sn}}';" class=bu1>
+<BR>
+
+
+</td></tr>
+
+
+
+
+{{else}}
+
+<tr bgcolor="#ffffff" style='color:#000000;font-size:12px;' align='center'>
+<td nowrap>{{$data.stud_id}}</td>
+<td nowrap>
+<A HREF='{{$PHP_SELF}}?act=edit&student_sn={{$data.student_sn}}'>編修{{$data.student_sn}}</A></td>
+<td nowrap>{{$data.stud_name}}</td>
+<td nowrap>{{$data.stud_sex}}</td>
+<td nowrap>{{$data.stud_study_cond}}</td>
+<td nowrap>{{$data.stud_study_year}}</td>
+<td nowrap>{{$data.curr_class_num}}</td>
+</tr>
+
+
+{{/if}}
+{{/foreach}}

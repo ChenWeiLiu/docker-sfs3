@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="EDUXCAFileUpload.jnlp">
+  <information>
+    <title>EDUXCAFileUpload</title>
+    <vendor>shengche</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" java-vm-args="-Xms512m "  href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="EDUXCAFileUpload.jar" size="94817" download="eager" />
+    <jar href="JfxMessageBox.jar" size="23964" download="eager" />
+    <jar href="P11JNI.jar" size="152303" download="eager" />
+    <jar href="SouthernLightUtils.jar" size="76485" download="eager" />
+    <jar href="commons-codec-1.8.jar" size="288508" download="eager" />
+    <jar href="commons-io-2.4.jar" size="201219" download="eager" />
+    <jar href="commons-lang3-3.3.2.jar" size="440291" download="eager" />
+    <jar href="commons-logging-1.1.3.jar" size="69497" download="eager" />
+    <jar href="fluent-hc-4.4.jar" size="37026" download="eager" />
+    <jar href="httpasyncclient-4.0.2.jar" size="171278" download="eager" />
+    <jar href="httpclient-4.4.jar" size="772630" download="eager" />
+    <jar href="httpcore-4.4.jar" size="352770" download="eager" />
+    <jar href="httpcore-nio-4.3.2.jar" size="344479" download="eager" />
+    <jar href="httpmime-4.4.jar" size="47852" download="eager" />
+    <jar href="jackson-annotations-2.5.1.jar" size="48757" download="eager" />
+    <jar href="jackson-core-2.5.1.jar" size="242215" download="eager" />
+    <jar href="jackson-databind-2.5.1.jar" size="1195665" download="eager" />
+    <jar href="joda-time-2.7.jar" size="660193" download="eager" />
+    <jar href="json-20141113.jar" size="72478" download="eager" />
+    <jar href="log4j-1.2.17.jar" size="522669" download="eager" />
+    <jar href="ninestd.jar" size="19507" download="eager" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <applet-desc  width="120" height="480" main-class="com.javafx.main.NoJavaFXFallback"  name="EDUXCAFileUpload" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="120" height="480" main-class="eduxcafileupload.EDUXCAFileUpload"  name="EDUXCAFileUpload" />
+  <update check="always"/>
+</jnlp>

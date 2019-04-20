@@ -1,0 +1,89 @@
+<!--  $Id: all_year.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+
+<TABLE  border=0 width="95%" cellspacing='1' cellpadding=1  align=center >
+<TR align=center ><TD style='font-size:20pt;font-weight: 700' >歷年學生異動表統計與人數總表</TD></TR></TABLE>
+
+<TABLE  border=0 width="95%" style='font-size:12pt;' cellspacing='1' cellpadding=2  align=center  bgcolor='#9EBCDD' >
+<TR align=center bgcolor='#E1ECFF'>
+<TD>學期</TD>
+{{foreach from=$this->stud_coud item=coud  key=key}}
+<TD  style='font-size:8px;'>{{$key}}{{$coud}}</TD>
+{{/foreach}}
+<TD  style='font-size:10px;'>15在家<BR>自學</TD>
+<TD  style='font-size:10px;'>學期表<BR>資料數</TD>
+
+<TD  style='font-size:10px;'>增加</TD>
+<TD  style='font-size:10px;'>減少</TD>
+<TD  style='font-size:10px;'>總人數</TD>
+
+</TR>
+
+{{foreach from=$this->SEME item=arr}}
+<TR align=center  bgcolor='#FFFFFF'>
+<TD nowrap>{{$arr.year}}學年{{$arr.C_seme}}</TD>
+{{assign var="mar" value=$this->move_all($arr.seme)}}
+{{foreach from=$this->stud_coud item=coud key=key}}
+<TD>{{$mar.$key}}</TD>
+{{/foreach}}
+
+{{if $arr.seme==$this->now_seme}}
+	<TD>{{$this->con_all}}</TD>
+	<TD>{{$arr.tol}}</TD>
+	<TD><FONT COLOR="#0000FF">{{$this->add }}</FONT></TD>
+	<TD><FONT COLOR="#FF0000">{{$this->del}}</FONT></TD>
+	<TD>{{ $arr.tol-$this->del+$this->con_add}}</TD>
+{{else}}
+	<TD>---</TD>
+	<TD>{{$arr.tol}}</TD>
+	<TD><FONT COLOR="#0000FF">{{$this->add}}</FONT></TD>
+	<TD><FONT COLOR="#FF0000">{{$this->del}}</FONT></TD>
+	<TD>{{ $arr.tol-$this->del}}</TD>
+{{/if}}
+
+</TR>
+{{/foreach}}
+</TABLE>
+<TABLE  border=0 width="95%" style='font-size:10pt;' cellspacing='1' cellpadding=1  align=center >
+<TR><TD><B>PS:在家自學僅能計算目前學期。</B></TD></TR></TABLE>
+
+
+
+<TABLE  border=0 width="95%" style='font-size:10pt;' cellspacing='1' cellpadding=1  align=center >
+<TR align=center ><TD style='font-size:20pt;font-weight: 700'>歷年學期資料統計表</TD></TR></TABLE>
+
+<TABLE  border=0 width="95%" style='font-size:12pt;' cellspacing='1' cellpadding=2  align=center  bgcolor='#9EBCDD' >
+<TR align=center bgcolor='#E1ECFF'>
+<TD  rowspan="2">學期</TD>
+{{foreach from=$this->Cgrade_ary item=GG}}
+<TD colspan=3>{{$GG}}</TD>
+{{/foreach}}
+<TD rowspan="2">總班級數</TD>
+<TD rowspan="2">總人數</TD>
+</TR>
+<TR align=center bgcolor='#E1ECFF'>
+{{foreach from=$this->Cgrade_ary item=GG}}
+<TD>男</TD>
+<TD>女</TD>
+<TD>班</TD>
+{{/foreach}}
+</TR>
+
+
+
+{{foreach from=$this->all item=arr}}
+<TR align=center  bgcolor='#FFFFFF'>
+<TD>{{$arr.year}}學年{{$arr.C_seme}}</TD>
+{{foreach from=$arr.ary item=ary}}
+<TD>{{$ary.boy}}</TD>
+<TD>{{$ary.girl}}</TD>
+<TD>{{$ary.class_num}}</TD>
+{{/foreach}}
+<TD>{{$arr.class_tol}}</TD>
+<TD>{{$arr.tol}}</TD>
+</TR>
+{{/foreach}}
+</TABLE>
+<TABLE  border=0 width="95%" style='font-size:10pt;' cellspacing='1' cellpadding=1  align=center >
+<TR><TD><B>PS:本表取自stud_seme學生學期資料表與school_class計算的結果,當學期資料會有轉出入的誤差，實際總人數以上表為準。</B></TD></TR></TABLE>
+

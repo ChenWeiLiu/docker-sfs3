@@ -1,0 +1,65 @@
+
+{{$break_page}}
+<div align="center"><h3>{{$title}}</h3></div>
+<table cellPadding='2' border=1 cellSpacing='2' width='90%' align=center style='border-collapse:collapse'>
+<!-- 產生表頭  開始 -->
+<tr>
+<td ROWSPAN=2 class=th1 nowrap>學號</td>
+<td ROWSPAN=2 class=th1 nowrap>座號</td>
+<td ROWSPAN=2 class=th1 nowrap>姓名</td>
+{{foreach from=$grad_num key=k1 item=th}}
+<td colspan=6 class=th1>{{$th}}
+<div class=th2>{{$one_stu.$k1.seme_title}}</div>
+</td>
+{{/foreach}}
+<td colspan=6 class=th1 nowrap>統計</td>
+
+</tr><tr>
+
+{{foreach from=$grad_num key=k1 item=th}}
+{{foreach from=$abs_kind key=k2 item=td}}
+<td class=th2>{{$td}}</td>
+{{/foreach}}
+{{/foreach}}
+
+{{foreach from=$abs_kind key=k2 item=td}}
+<td class=th2>{{$td}}</td>
+{{/foreach}}
+</tr>
+<!-- 產生表頭  結束 -->
+
+
+<!-- 開始列示學生資料  開始 -->
+{{foreach from=$arys key=sn item=stu}}
+<tr>
+<td class=tha nowrap>{{$stu.stud_id}}</td>
+<td class=tha nowrap>{{$stu.seme_num}}</td>
+<td class=tha nowrap>{{$stu.stud_name}}</td>
+
+<!-- 指派記錄  開始 -->
+
+{{foreach from=$grad_num key=k1 item=th}}
+{{foreach from=$abs_kind key=k2 item=td}}
+<td class=th2>
+{{$stu.seme_abs.$k1.abs.$k2}}
+</td>
+{{/foreach}}
+{{/foreach}}
+<!-- 指派記錄  結束 -->
+<!-- 該學生統計資料  開始 -->
+{{foreach from=$abs_kind key=k3 item=td}}
+<td class=thb>
+{{$stu.seme_abs.abs_sum.abs.$k3}}
+</td>
+{{/foreach}}
+<!-- 該學生統計資料  結束 -->
+
+
+
+</tr>
+{{/foreach}}
+<!-- 開始列示學生資料  結束 -->
+
+
+</table>
+

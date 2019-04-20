@@ -1,0 +1,104 @@
+<!-- $Id: chc_940809s.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<TABLE border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<TR bgcolor='white'>
+<td>
+請選擇學年度：
+{{foreach from=$this->all_year item=yarr}}
+{{if $smarty.get.Year==$yarr.stud_study_year}}
+<b>[<a href="{{$PHP_SELF}}?Year={{$yarr.stud_study_year}}">{{$yarr.stud_study_year}}年</a>]</b>
+{{else}}
+<a href="{{$PHP_SELF}}?Year={{$yarr.stud_study_year}}">{{$yarr.stud_study_year}}年</a>
+{{/if}}
+&nbsp;
+{{/foreach}}
+
+
+</td>
+</tr>
+</table>
+
+<script language="JavaScript">
+function num_chk() {
+	var Lng = new Array();
+	var cLng= new Array();
+	var Num=0,Num2=0,i =0;
+	while (i < document.N1.elements.length) {
+		var obj=document.N1.elements[i];
+		var objx=document.N1.elements[i].name;//取得名稱
+		if (obj.type=='select-one' && objx.substr(0,5)=='class') {
+				//alert(obj.type );
+				//var key=obj.value;
+				Lng.push(obj.value);
+				}
+		if (obj.type=='hidden' && objx.substr(0,7)=='T_class') {	cLng.push(obj.value);Num++;}
+		i++;
+	}
+	//比對兩陣列
+	for(i=0;i<cLng.length;i++){
+		var err=1;
+		for(y=0;y<Lng.length;y++){
+			if (cLng[i]==Lng[y]) err=0; 
+		}
+		if (err==0) Num2++;
+	}
+
+	if (Num!=Num2 ) alert("ＸＸＸＸ\n\n有重複選擇的班級！");
+	else{
+	if( window.confirm('編排確定了嗎？')) {document.N1.form_act.value='move_it';document.N1.submit();}
+	}
+
+}
+</script>
+
+
+<FORM METHOD=POST ACTION='{{$PHP_SELF}}' Name='N1'>
+<table  border='0' align='center' cellpadding='5' cellspacing='1' width="50%" bgcolor='#FFCC33' style='font-size:14pt'>
+<col width=50%></col>
+<col width=50%></col>
+<tr>
+<td width="100%" colspan="2" align='center'><b>編排班級順序</b></td>
+</tr>
+<tr align='center'><td>原班級</td><td>新班級</td></tr>
+{{foreach from=$this->move_data  item=arr}}
+<tr bgcolor=white ><td colspan=2>
+<b>{{$arr.grade}}年級 班級數：{{$arr.tol}}</b>
+</td></tr>
+{{foreach from=$arr.cla_no2  item=arr2 key=SS}}
+
+<tr bgcolor=white align='center'> 
+<td>原班級<b> {{$SS}} </b>： {{$arr.cla.$SS}} 人 </td>
+<td>
+<INPUT TYPE="hidden" name="T_class[]" value="{{$arr2}}">
+變更為 班級
+<SELECT NAME="class_id[{{$arr2}}]"  style='font-size:12pt' >
+
+{{foreach from=$arr.cla_no2  item=ar3 key=k3}}
+{{if $SS==$k3}}
+<option value="{{$ar3}}" selected>{{$k3}}</option>
+{{else}}
+<option value="{{$ar3}}">{{$k3}}</option>
+{{/if}}
+{{/foreach}}
+</SELECT>
+
+</td></tr>
+{{/foreach}}
+
+
+{{/foreach}}
+<tr bgcolor=white>
+<td colspan=2 align='center'>
+<INPUT TYPE='hidden' Name='form_act' Value=''>
+<INPUT TYPE='hidden' Name='Year' Value='{{$this->Year}}'>
+<INPUT TYPE="reset" value='重新設定'>
+<INPUT TYPE='button' value='取消返回' onclick="location.href='{{$smarty.server.PHP_SELF}}?Year={{$this->Year}}';" class=bur2>
+<INPUT TYPE='button' value='排定送出' onclick="num_chk()">
+</FORM>
+</td>
+</tr>
+
+</table>
+
+
+

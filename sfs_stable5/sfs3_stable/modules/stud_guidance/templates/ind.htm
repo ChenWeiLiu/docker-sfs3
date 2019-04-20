@@ -1,0 +1,153 @@
+<!-- $Id: ind.htm 7420 2013-08-09 23:58:53Z infodaes $ -->
+<html><head>
+<meta content="text/html; charset=Big5" http-equiv="content-type">
+<title>個別輔導紀錄</title>
+</head>
+<script>
+function bb2(a,b) {
+	var objform=document.f2;
+if (window.confirm(a)){
+	objform.act.value=b;
+	objform.submit();
+	}
+}
+</script>
+<body>
+
+<TABLE border=0 width='100%'  cellspacing=1 cellpadding=2 bgcolor='#9EBCDD'>
+<TR bgcolor='#FEFBDA' width='100%'><TD colspan=11 align=right>
+{{if $smarty.get.view=='old'}}
+<A HREF="{{$PHP_SELF}}?view=now"><img src="images/now.gif" border=0>認輔個案列表</A>
+<A HREF="{{$PHP_SELF}}?view=old"><img src="images/here.gif" border=0>已結案列表</A>
+<A HREF="tol.php"><img src="images/tol.gif" border=0>統計資料</A>
+{{else}}
+<A HREF="{{$PHP_SELF}}?view=now"><img src="images/here.gif" border=0>認輔個案列表</A>
+<A HREF="{{$PHP_SELF}}?view=old"><img src="images/old.gif" border=0>已結案列表</A>
+<A HREF="tol.php"><img src="images/tol.gif" border=0>統計資料</A>
+{{/if}}
+</td></tr>
+
+<tr style='font-size:9pt' align=center>
+<td width='6%' class=tth>個案<BR>編號</td>
+<td width='10%' class=tth>班級座號</td>
+<td width='8%' class=tth>姓名</td>
+<td width='15%' class=tth>問題類型</td>
+<td width='12%' class=tth>轉介自</td>
+<td width='10%' class=tth>接案日期</td>
+<td width='10%' class=tth>認輔教師</td>
+<td width='5%' class=tth>結案否</td>
+<td width='10%' class=tth>結案日期</td>
+<td width='10%' class=tth>結案原因</td>
+<td width='14%' class=tth>編修與列印</td>
+</tr>
+{{foreach from=$stud_list item=arr}}
+{{if $smarty.get.edit_id==$arr.guid_c_id}}
+<form method='post' action='{{$PHP_SELF}}' name='f2'>
+
+<TR bgcolor=#ffffff align=center>
+<td class=ttd>{{$arr.guid_c_id}}</td>
+<td class=ttd>{{$arr.cgrade}}{{$arr.seme_num}}號</td>
+<td class=ttd>{{$arr.stud_name}}</td>
+<td class=ttd colspan=5 align=left>
+<TABLE cellspacing=5 cellpadding=5  style="font-size:10pt">
+<TR>
+<TD>轉 介 自:</TD>
+<TD><select name="c_from">{{html_options options=$c_from selected=$arr.guid_c_from}}</select></TD>
+</TR><TR>
+<TD>接案日期:</TD>
+<TD><INPUT TYPE="text" NAME="c_bdate" value="{{$arr.begin_date}}" size=10></TD>
+</TR>
+<TR>
+<TD>認輔教師:</TD>
+<TD><select name="tea_sn">
+{{html_options options=$sel_tea selected=$arr.guid_tea_sn}}
+</select></TD>
+</TR>
+<TR>
+<TD>問題類型:</TD>
+<TD>{{html_checkboxes name="c_kind" options=$question_kind selected=$arr.guid_all_kind separator="<br />"}}
+</TD>
+</TR>
+<TD>結案原因:</TD>
+<TD><TEXTAREA NAME="guid_over_reason" cols=40 rows=5>{{$arr.guid_over_reason}}</TEXTAREA></TD>
+</TR>
+<TR>
+<TD>是否結案:</TD>
+<TD><select name="c_isover">{{html_options options=$c_isover selected=$arr.guid_c_isover}}</select></TD>
+</TR>
+<TR>
+<TD>結案時間:</TD>
+<TD><INPUT TYPE="text" NAME="end_date" value="{{$arr.end_date}}" size=10></TD>
+</TR>
+<TR>
+
+</TABLE>
+</td><td class=ttd colspan=2>
+<INPUT TYPE=button  value='儲存' onclick=" bb2('確定儲存變更？True？','write');" class=bur2>
+<INPUT TYPE='hidden' NAME='guid_c_id'  value='{{$arr.guid_c_id}}'>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='view'  value='{{$smarty.get.view}}'>&nbsp;
+<INPUT TYPE="button" value='取消'  onclick="history.back();" class=bur2><BR><BR><BR>
+
+<INPUT TYPE=button  value='ｘ刪除個案所有資料' onclick="
+if (confirm('這個動作可是無法復原喔！\n\n而且該生的輔導記錄也會一并刪除喔！\n\n真的刪除嗎？')){
+location='{{$PHP_SELF}}?del_id={{$arr.guid_c_id}}&view={{$view}}';}" class=bu1>
+
+
+
+</td></tr>
+</form>
+
+{{else}}
+
+<tr align=center>
+<td class=ttd>{{$arr.guid_c_id}}</td>
+<td class=ttd>{{$arr.cgrade}}{{$arr.seme_num}}號</td>
+<td class=ttd>{{$arr.stud_name}}</td>
+<td class=ttd>{{$arr.guid_c_kind}}</td>
+<td class=ttd>{{$c_from[$arr.guid_c_from]}}</td>
+<td class=ttd>{{$arr.begin_date}}</td>{{assign var="XXX" value=$arr.guid_tea_sn}}
+<td class=ttd>{{$teach.$XXX.name}}</td>
+<td class=ttd>{{$arr.guid_c_isover}}</td>
+<td class=ttd>{{$arr.end_date}}</td>
+<td class=ttd>{{$arr.guid_over_reason}}</td>
+<td class=ttd>
+<A HREF="{{$PHP_SELF}}?edit_id={{$arr.guid_c_id}}&view={{$view}}&page={{$page}}">修改</A>&nbsp;
+<A HREF="guid_prt.php?guid={{$arr.guid_c_id}}&kind=base" target=_bank>基本</A>
+<A HREF="guid_prt.php?guid={{$arr.guid_c_id}}&kind=REC" target=_bank>記錄</A>
+</td>
+</tr>
+{{/if}}
+
+{{/foreach}}
+<TR bgcolor='#FEFBDA' width='100%'><TD colspan=11 align=right>
+{{$page_link}}
+</td></tr>
+<TR bgcolor='#FEFBDA' width='100%'><TD colspan=11 align=left style="color:green;font-size:9pt">
+{{assign var="i" value=0}}
+{{foreach  key=key from=$question_kind item=kk}}
+<FONT COLOR="#FF0000">{{$key}}</FONT>: {{$kk}}&nbsp;&nbsp;&nbsp;
+{{if $i%4==0 && $i!=0}}<br>{{/if}}
+
+{{assign var="i" value=$i+1}}
+{{/foreach}}
+</td></tr>
+
+
+</table>
+<DIV style="color:#660000;font-size:10pt">
+<fieldset><legend><IMG SRC="images/pen_orange.gif">&nbsp;<B style="color:blue">操作說明：</B></legend>
+1.本模組應置放於輔導室中，由相關人員管理。<BR>
+2.使用前，先做個案指派。
+<UL><LI>同一位學生如果重複指派，會視為<FONT COLOR="#FF0000">不同的兩個個案</FONT>。
+<LI>同一個個案可能會跨學年，但認輔老師可能會變動，變動時請用修改的，不要重複指派。
+<LI>個案指派中如果未出現年班下拉選單，表示尚未進行『學期初設定』，可參考<A HREF="http://sfs.chc.edu.tw/pub/doc/sfs_change.htm" target="_blank">學期輔換綱要</A>進行設定。
+</UL>
+3.個案指派後，尚須做『個別輔導紀錄冊』的修改：轉介自、接案日期、問題類型等，指派錯誤也由這邊修改。<BR>
+4.欲刪除個案請先按修改，但刪除則會連同填寫過的記錄一并除去。<BR>
+5.認輔教師則由另一個模組『stud_guidance_tea [個別輔導紀錄冊(認輔教師用)]』中填寫輔導資料。<BR>
+6.其他問題請至<A HREF="http://sfshelp.tcc.edu.tw/"  target="_blank" >台中縣學務系統交流網</A>反映。
+</fieldset></DIV>
+<BR><BR><BR>
+<DIV style="color:blue" onclick="alert('作者群：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n大村 鄭培華');">
+◎By 彰化縣學務系統開發小組</DIV>

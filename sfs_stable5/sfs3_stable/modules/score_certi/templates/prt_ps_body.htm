@@ -1,0 +1,87 @@
+{{if $page%2==1 }}
+<table cellPadding='0' border=0 cellSpacing='0' width='90%' align=center style='border-collapse:collapse;font-size:12pt;line-height:16pt'>
+<tr><td colspan=8 align=center><H3>{{$school_name}} 成績證明</H3><BR></td></tr>
+<TR align=right>
+<TD width=10>&nbsp;</TD>
+<TD >學生姓名：</TD>
+<TD align=left><B><U>{{$stud_data->stud_name}}</U></B></TD>
+<TD align=left>出生年月日：<U><B>{{$stud_data->C_birth}}</B></U></TD>
+<TD>&nbsp;</TD>
+<TD align=left>學號：<B><U>{{$stud_data->stud_id}}</U></B></TD>
+<TD>&nbsp;</TD>
+</TR>
+<TR align=right>
+<TD width=10>&nbsp;</TD>
+<TD>入 學 年：</TD>
+<TD align=left>{{$stud_data->stud_study_year}}&nbsp;</TD>
+<TD align=left>就學狀態：目前{{$stud_coud}}</TD>
+<TD>&nbsp;</TD>
+<TD align=left>開立日期：{{$smarty.now|date_format:"%Y-%m-%d"}}</TD>
+<TD><I>頁{{$pr_page}}/{{$pr_all_page}}</I></TD>
+</TR>
+</table>
+{{/if}}
+<table cellPadding='0' border=1 cellSpacing='0' width='90%' align=center style='border-collapse:collapse;font-size:10pt'>
+<tr><td width=10>
+<!------格1 顯示學期 ---->
+
+<B>{{$Class_DETAIL[0]}}<BR>學<BR>年<BR>度<BR>第<BR>
+{{$Class_DETAIL[1]}}<BR>學<BR>期<BR>
+</B>
+
+</td><td colspan=7 width=99% valign=top>
+<!------格2 顯示成績 ---->
+
+<table cellPadding='0' border=1 cellSpacing='0' width='100%' align=center style='border-bottom-style:none;border-top-style:none;border-left-style:none;border-right-style:none;border-collapse:collapse;line-height:14pt;font-size:10pt'>
+
+<tr align=center style='font-size:11pt;font-weight:bold;'>
+<td nowrap width=8%>領域</td>
+<td nowrap width=8%>科目</td>
+<td nowrap width=8%>每週<BR>節數</td>
+<td nowrap width=8%>成績</td>
+<td nowrap width=8%>量化<BR>記錄</td>
+<td nowrap width=10%>努力程度</td>
+<td nowrap width=50%>學習狀況文字具體描述</td>
+</tr>
+<!------ 顯示成績迴圈 ---->
+{{foreach  key=key from=$data item=data}}
+{{assign var="i" value=0}}
+
+{{foreach  key=skey from=$data.ITEM_DETAIL item=s_data}}
+{{if ($data.ITEMS==1 || $data.ITEMS=='')&& $i==0}}
+<tr align=center><td nowrap colspan=2>{{$key}}</td>
+{{elseif  $data.ITEMS==1 && $i!=0}}
+<td >{{$s_data.SB}}</td>
+{{elseif  $data.ITEMS!=1 && $i==0}}
+<tr align=center><td nowrap rowspan="{{$data.ITEMS+1}}">{{$key}}</td>
+<td>{{$s_data.SB}}</td>
+{{elseif  $data.ITEMS!=1 && $i!=0}}
+<tr align=center><td nowrap>{{$s_data.SB}}</td>
+{{/if}}
+<td>{{if $s_data.RATE  && $key!='日常生活表現'}}{{$s_data.RATE}}{{else}}--{{/if}}</td>
+<td>{{if $s_data.LEVEL}}{{$s_data.LEVEL}}{{else}}--{{/if}}</td>
+<td>{{if $s_data.SCORE}}{{$s_data.SCORE}}{{else}}--{{/if}}</td>
+<td>{{if $s_data.VAL}}{{$s_data.VAL}}{{else}}--{{/if}}</td>
+<td align=left style="line-height:12pt">{{if $s_data.MEMO}}{{$s_data.MEMO}}{{else}}--{{/if}}</td>
+</tr>
+{{assign var="i" value=$i+1}} 
+{{/foreach}}
+{{/foreach}}
+
+<!------ 結束顯示成績迴圈 ---->
+</table>
+<!------格2 結束 ---->
+</td></tr></table>
+{{if $page%2==0 || $all_page==$page}}
+<table cellPadding='0' border=0 cellSpacing='0' width='90%' align=center >
+<tr style='font-size:12pt;line-height:20pt'  align=center >
+<td width=33%>承辦：
+<td width=33%>
+主任：
+<td width=34%>
+校長：
+</td></tr>
+</table>
+{{/if}}
+{{$break_page}}
+

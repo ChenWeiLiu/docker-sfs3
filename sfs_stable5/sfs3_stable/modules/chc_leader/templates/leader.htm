@@ -1,0 +1,155 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<script>
+<!--
+
+///----- 選擇的主函式  by chi -----------------
+
+function goA(sn,stuName) {
+	// alert(stuName);
+	//var objx=document.F2.ID.value;//取得名稱
+	var i=0;
+	var R=0;
+	var X=0;
+while (i < document.Fr1.elements.length) {
+	var obj=document.Fr1.elements[i];
+	// objx.substr(0,4)取得部分字串
+	//判斷物件的值是否和傳入的教師碼一樣,如果一樣要取消它的值
+	if ( obj.type=='radio' && obj.checked==true) {
+		R=i+1;//alert(stuName);
+		X=i+2;
+		document.Fr1.elements[R].value=stuName;
+		document.Fr1.elements[X].value=sn;
+		obj.disabled=true;
+		}
+	i++;
+	}
+}
+
+//-->
+</script>
+
+
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'>
+<td>{{$this->select}}
+{{if $this->class_id!=''}}
+<input type="button" value="列印本班" onclick="return window.open('leader_prt.php?class_id={{$this->class_id}}');">
+
+{{/if}}
+
+</td>
+</tr>
+</table>
+<table width='100%' border=0>
+<tr><td width='30%' valign="top">
+{{if $this->class_id!=''}}
+ ※先選職稱,再點學生。<br />
+<table>
+<form method="post" name="Fr1">
+<INPUT TYPE='hidden' NAME='class_id'  value='{{$this->class_id}}'>
+{{foreach from=$this->kind0 item=Item key=K}}
+<tr>
+<td><label>
+<INPUT TYPE='radio' NAME='class_tmp'  value='{{$Item}}'>{{$Item}}</label>
+</td>
+<td>
+<INPUT TYPE='text'  Value='' size='8' class='in1' readonly>
+<INPUT TYPE='hidden' NAME="title[{{$Item}}]" Value=''>
+
+</td>
+
+</tr>
+{{/foreach}}
+<tr><td colspan="2">
+<INPUT TYPE='hidden' NAME='form_act' Value=''>
+<input  type="reset" value="重設" />
+<input type="button" name="" value="填好送出" onclick="if( window.confirm('填寫完整了？')){this.form.form_act.value='add';this.form.submit();}" />
+</td></tr>
+
+
+
+</form>
+</table>
+{{/if}}
+
+</td><td width='70%' valign="top">
+
+<table  width='100%'  border='0' align='left' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td width=4% nowrap>座號</td>
+<td width=6% nowrap>姓　名</td>
+<td width=5% nowrap>列印</td>
+<td width=5% nowrap>學　號</td>
+<td width=15% nowrap>班級幹部名稱</td>
+</tr>
+
+
+{{foreach from=$this->stu item=stu key=st_sn}}
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td>{{$stu.seme_num}}</td>
+<td onclick="javascript:this.style.color='red';goA('{{$stu.student_sn}}','{{$stu.stud_name}}');">
+{{if $stu.stud_study_cond!='0' }}
+<font color="#0000FF">{{$stu.stud_name}}</font>
+{{else}}{{$stu.stud_name}}{{/if}}</td>
+<td>
+<a href="leader_prt.php?SN={{$stu.student_sn}}" target="_blank">
+<img src="images/printer.gif" width="16" height="16" alt="" border='0' />
+</a>
+</td>
+<td>{{$stu.stud_id}}</td>
+
+{{if count($this->StuTitle.$st_sn)>0}}
+
+<td style='color:blue;' align=left >
+<table>
+{{foreach from=$this->StuTitle.$st_sn item=Me}}
+
+{{if $Me.id==$smarty.get.id}}
+<tr>
+<td style='color:blue;'  colspan='2' align="left">
+<form method="post" name="Fr2" action="{{$smarty.server.SCRIPT_NAME}}">
+學生學號:{{$stu.stud_id}}<br>
+幹部名稱:<input type="text" name="edit_title" value="{{$Me.title}}" size="12" /><br>
+原就讀校:<input type="text" name="edit_memo" value="{{$Me.memo}}" size="12" /><br>
+※<span style="color: #FF0000; ">可略，補登外校記錄才填</span>。<br>
+<INPUT TYPE='hidden' NAME='form_act' Value=''>
+<INPUT TYPE='hidden' NAME='id' Value='{{$Me.id}}'><br />
+<input  type="reset" value="重設" />
+<input type="button" name="" value="改好送出" onclick="if( window.confirm('改好送出？')){this.form.form_act.value='update';this.form.submit();}" />
+<input type="button" name="" value="返回" onclick="location.href='{{$smarty.server.SCRIPT_NAME}}?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}';" />
+<INPUT TYPE='hidden' NAME='class_id'  value='{{$this->class_id}}'>
+<INPUT TYPE='hidden' NAME='year_seme'  value='{{$this->year_seme}}'>
+</form>
+</td>
+</tr>
+
+
+{{else}}
+
+<tr><td>{{$Me.title}}</td>
+<td>
+<a href="{{$smarty.server.SCRIPT_NAME}}?form_act=del&id={{$Me.id}}&year_seme={{$this->year_seme}}&class_id={{$this->class_id}}" onclick="return  window.confirm('確定刪除？');">刪除</a>
+<a href="{{$smarty.server.SCRIPT_NAME}}?act=edit&id={{$Me.id}}&year_seme={{$this->year_seme}}&class_id={{$this->class_id}}">修改</a>
+</td>
+</tr>
+{{/if}}
+{{/foreach}}	
+</table>
+</td>
+
+
+{{else}}
+<td>-</td>
+{{/if}}
+</tr>
+{{/foreach}}
+</table>
+
+</td></tr></table>
+
+
+
+
+
+

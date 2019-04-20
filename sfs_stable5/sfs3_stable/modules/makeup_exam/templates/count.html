@@ -1,0 +1,121 @@
+{{$Id:$}}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>補行評量統計表</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5">
+</HEAD>
+<BODY>
+{{foreach from=$base_arr item=d key=sn name=datarows}}
+{{assign var=show value=0}}
+{{if $data_arr.$sn.language.avg.score<60}}{{assign var=l value=$l+1}}{{assign var=show value=1}}{{assign var=l1 value=1}}{{else}}{{assign var=l1 value=0}}{{/if}}
+{{if $data_arr.$sn.math.avg.score<60}}{{assign var=m value=$m+1}}{{assign var=show value=1}}{{assign var=m1 value=1}}{{else}}{{assign var=m1 value=0}}{{/if}}
+{{if $data_arr.$sn.nature.avg.score<60}}{{assign var=n value=$n+1}}{{assign var=show value=1}}{{assign var=n1 value=1}}{{else}}{{assign var=n1 value=0}}{{/if}}
+{{if $data_arr.$sn.social.avg.score<60}}{{assign var=s value=$s+1}}{{assign var=show value=1}}{{assign var=s1 value=1}}{{else}}{{assign var=s1 value=0}}{{/if}}
+{{if $data_arr.$sn.health.avg.score<60}}{{assign var=h value=$h+1}}{{assign var=show value=1}}{{assign var=h1 value=1}}{{else}}{{assign var=h1 value=0}}{{/if}}
+{{if $data_arr.$sn.art.avg.score<60}}{{assign var=a value=$a+1}}{{assign var=show value=1}}{{assign var=a1 value=1}}{{else}}{{assign var=a1 value=0}}{{/if}}
+{{if $data_arr.$sn.complex.avg.score<60}}{{assign var=c value=$c+1}}{{assign var=show value=1}}{{assign var=c1 value=1}}{{else}}{{assign var=c1 value=0}}{{/if}}
+{{if $oldclass<>$d.seme_class && $oldclass<>""}}
+        <TR style="height: 0pt;">
+          <TD style="border-top: windowtext 1.5pt solid;" colSpan="12"></TD>
+		</TR>
+		<TR>
+          <TD width="9%">&nbsp;</TD>
+          <TD width="9%">&nbsp;</TD>
+          <TD width="9%">&nbsp;</TD>
+          <TD width="9%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+		</TR>
+		</TBODY>
+	  </TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+{{/if}}
+{{if $oldclass<>$d.seme_class}}
+<TABLE style="border-collapse: collapse; margin: auto; page-break-after: always;" cellSpacing="0" cellPadding="0" width="640" border="0">
+  <TBODY>
+  <TR>
+    <TD style="PADDING-RIGHT: 1pt; PADDING-LEFT: 1pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm;" width="640">
+      <TABLE style="BORDER-COLLAPSE: collapse; text-align: center; vertical-align: middle; font: 16pt 標楷體;" cellSpacing="0" cellPadding="2" width="640" border="0">
+        <TBODY>
+        <TR style="height: 20pt;">
+          <TD colSpan="12" style="font: 14pt 標楷體; font-weight: bold;"><span style="font-family: Times New Roman; font-weight: bold;">{{$sel_year}}</span>學年度第<span style="font-family: Times New Roman; font-weight: bold;">{{$sel_seme}}</span>學期「補行評量」名冊</TD>
+		</TR>
+        <TR style="height: 27pt;font-size: 12pt; background-color: #EEEEEE;">
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid; border-left: windowtext 1.5pt solid; text-align: center;" 
+          >學號</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >班級</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >座號</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >姓名</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >語文</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >數學</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >自然</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >社會</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >健體</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >藝文</TD>
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >綜合</TD>
+          <TD style="border-right: windowtext 1.5pt solid; border-top: windowtext 1.5pt solid;" 
+          >總數</TD>
+		</TR>
+{{/if}}
+{{if $show}}
+{{assign var=total value=$total+1}}
+{{assign var=t1 value=$t1+$l1+$m1+$n1+$s1+$h1+$a1+$c1}}
+        <TR style="height: 24pt;font-size: 12pt;">
+			<TD style="border-right: windowtext 0.75pt solid; border-left: windowtext 1.5pt solid; border-top: windowtext 0.75pt solid; font-size: 12pt;">{{$d.stud_id}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{$d.seme_class}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{$d.seme_num}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;" nowrap>{{$d.stud_name}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.language.avg.score<60}}{{$data_arr.$sn.language.avg.score}}{{else}}--{{/if}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.math.avg.score<60}}{{$data_arr.$sn.math.avg.score}}{{else}}--{{/if}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.nature.avg.score<60}}{{$data_arr.$sn.nature.avg.score}}{{else}}--{{/if}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.social.avg.score<60}}{{$data_arr.$sn.social.avg.score}}{{else}}--{{/if}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.health.avg.score<60}}{{$data_arr.$sn.health.avg.score}}{{else}}--{{/if}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.art.avg.score<60}}{{$data_arr.$sn.art.avg.score}}{{else}}--{{/if}}</TD>
+			<TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.complex.avg.score<60}}{{$data_arr.$sn.complex.avg.score}}{{else}}--{{/if}}</TD>
+			<TD style="border-right: windowtext 1.5pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{$l1+$m1+$n1+$s1+$h1+$a1+$c1}}</TD>
+		</TR>
+{{/if}}
+{{assign var=oldclass value=$d.seme_class}}
+{{/foreach}}
+        <TR style="height: 0pt;">
+          <TD style="border-top: windowtext 1.5pt solid;" colSpan="12"></TD>
+		</TR>
+        <TR>
+          <TD width="9%">&nbsp;</TD>
+          <TD width="9%">&nbsp;</TD>
+          <TD width="9%">&nbsp;</TD>
+          <TD width="9%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+          <TD width="8%">&nbsp;</TD>
+		</TR>
+		</TBODY>
+	  </TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+</BODY></HTML>

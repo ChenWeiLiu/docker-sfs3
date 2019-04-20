@@ -1,0 +1,126 @@
+{{* $Id: photo.htm 6343 2011-02-23 06:17:17Z infodaes $ *}}
+{{if !$stand_alone}}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+{{/if}}
+
+<script language="JavaScript">
+
+ 
+function chk_empty(item) {
+   if (item.value=="") { return true; } 
+}
+
+function dosearch() {
+   var errors='' ;
+   if (chk_empty(document.myform.query))   {
+      errors = '搜尋文字不可以空白' ; }
+
+   
+   if (errors=='') { 
+     window.location.href="{{$PHP_SELF}}?do=search&query="   + document.myform.query.value  ;}
+   else      alert(errors) ;
+}	
+
+function changepage() { 
+   var errors='' ;
+
+   if (errors=='')
+      window.location.href="{{$PHP_SELF}}?showpage="  + document.myform.selpage.options[document.myform.selpage.selectedIndex].value  ;
+   else     
+      alert(errors) ;
+}
+
+function gotourl(id,selpage,dirstr) {
+   var PROFILE = null;	
+        PROFILE =  window.open ("view.php?updir="+dirstr);
+
+   window.location.href="{{$PHP_SELF}}?showpage="  + selpage +"&id=" +id;
+}
+
+
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<style type="text/css">
+<!--
+.daystyl {  font-size: 12pt; background-color: #FF9999}
+.tdbody {  font-size: 12pt; color: #000000}
+.info {  font-size: 12pt; color: #3333FF}
+.auth {  font-size: 10pt}
+ 
+	
+-->
+</style>
+</head>
+<form method="post" action="{{$PHP_SELF}}" name="myform"  id="myform">
+  <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center" style="font-size:{{$font_size}}; color:{{$font_color}}">
+  <tr>
+    <td align='center'> 
+        {{if $show_title}}<font size='5'>{{$view_title}}</font>　　　　　{{/if}}   
+    {{ if $showpage >1 }}
+     <a href="{{$PHP_SELF}}?showpage={{$prev_page}}"><img src='images/prev.gif' border=0 title='前一頁' alt='前一頁' ></a>&nbsp;&nbsp;
+    {{/if}}  
+	<select name="selpage" onChange="changepage()">
+	{{foreach from=$paper_list  key=myId item=i }}
+	    <option value={{$i}}
+	    {{if $i == $showpage}} selected {{/if}}
+	    >跳到第{{$i}}頁</option>
+	{{/foreach}}
+     </select> 
+     {{ if ($showpage < $totalpage)}}
+ 	<a href="{{$PHP_SELF}}?showpage={{$next_page}}"><img src='images/next.gif' border=0 title='後一頁' alt='後一頁' ></a>&nbsp;&nbsp;
+      {{/if}}  
+&nbsp;&nbsp;&nbsp;搜尋:
+	<input type="text" name="query" size="10">
+        <a href="Javascript:dosearch();"><img src="images/go.gif" width="41" height="20" border="0"></a> 
+
+<a href="photo_admin2.php">&nbsp;&nbsp;&nbsp;新增</a></td>
+
+  </tr>
+</table>
+
+<table style="font-size: {{$font_size}}; color: {{$font_color}}">
+<tr>
+{{foreach from=$data_list item=data key=data_key  name=foo }}
+
+{{if $memo_pos}}
+	<td valign="top">
+		<a href = " view.php?id={{$data.act_ID}}"><img src="{{$data.pic}}" style="padding:4px;border:1px solid #ddd;" > </a> 
+		<div  >{{if $show_title}}<a href = " view.php?id={{$data.act_ID}}">{{$data.act_name}}</a></div>{{/if}}
+		{{if $show_intro}}{{$data.act_info|nl2br}} <br/>{{/if}}
+		{{if $show_date}}({{$data.act_date}}) <br/>{{/if}}
+		{{if $show_date}}{{$data.act_auth}}公佈<br/>{{/if}}
+		{{if $show_op}}
+		<a href="photoshow.php?id={{$data.act_ID}}"  target="photoshow"><img src="images/show_time.gif"   border="0" alt="展示" title="展示"></a> 
+ 		<a href="photo_admin.php?do=edit&id={{$data.act_ID}}"><img src="images/edit.gif"   border="0" alt="編修"  title="編修"></a> 
+		<a href="photo_admin.php?do=delete&id={{$data.act_ID}}"><img src="images/delete.gif"   border="0" alt="刪除" title="刪除"></a> 
+		<br />
+		{{/if}}
+	</td>
+{{else}}
+	<td valign="top">
+		<a href = " view.php?id={{$data.act_ID}}"><img src="{{$data.pic}}" style="padding:4px;border:1px solid #ddd;" > </a> 
+	</td>
+	<td valign="top">
+		<div  >{{if $show_title}}<a href = " view.php?id={{$data.act_ID}}">{{$data.act_name}}</a></div>{{/if}}
+		{{if $show_intro}}{{$data.act_info|nl2br}} <br/>{{/if}}
+		{{if $show_date}}({{$data.act_date}}) <br/>{{/if}}
+		{{if $show_date}}{{$data.act_auth}}公佈<br/>{{/if}}
+		{{if $show_op}}
+		<a href="photoshow.php?id={{$data.act_ID}}"  target="photoshow"><img src="images/show_time.gif"   border="0" alt="展示" title="展示"></a> 
+ 		<a href="photo_admin.php?do=edit&id={{$data.act_ID}}"><img src="images/edit.gif"   border="0" alt="編修"  title="編修"></a> 
+		<a href="photo_admin.php?do=delete&id={{$data.act_ID}}"><img src="images/delete.gif"   border="0" alt="刪除" title="刪除"></a> 
+		<br />
+		{{/if}}
+	</td>	
+{{/if}}
+	{{if ($smarty.foreach.foo.index+1)  %  $show_col== 0}}
+  		</tr>
+	{{/if}}
+{{/foreach}}
+
+</table>
+</form>
+{{if !$stand_alone}}
+{{include file="$SFS_TEMPLATE/footer.tpl"}}
+{{/if}}

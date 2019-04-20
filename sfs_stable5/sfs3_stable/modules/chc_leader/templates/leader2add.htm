@@ -1,0 +1,121 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<script>
+<!--
+
+///----- 選擇的主函式  by chi -----------------
+
+function goA(stuName) {
+	// alert(stuName);
+
+	var i=document.Fr1.No.value;//取得名稱
+	var obj=document.Fr1.elements[i];
+	obj.value=stuName;
+	retrun ;
+}
+
+
+function goB(NameA){
+	var i=0;
+	while (i < document.Fr1.elements.length) {
+		var obj=document.Fr1.elements[i];
+		if ( obj.type=='text' && obj.name==NameA) {
+			document.Fr1.No.value=i;
+			return ;
+			}
+ 	i++;
+	}
+}
+
+
+//-->
+</script>
+
+
+<table  width='700'  border='0' align='left' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'>
+<td>{{$this->select}}</td>
+</tr>
+</table>
+<br />
+
+
+<table width="100%" border="0">
+<form method="post" name="Fr1"  action="{{$smqrty.server.SCRIPT_NAME}}">
+<tr><td valign="top" align='left'  width='80%'>
+
+<table  width='100%'  border='0' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+{{if $this->class_id!=''}}
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td colspan="4" align="left">
+※說明：<br /><u style="color:blue;">1.該生的123項均填完整時，才會寫入。<br />
+2.同一人在同一社團,僅能填一種幹部。</u>
+
+</td>
+<td colspan="2">
+<INPUT TYPE='hidden' NAME='class_id'  value='{{$this->class_id}}'>
+<INPUT TYPE='hidden' NAME='form_act' Value=''>
+<input  type="reset" value="重設" />
+
+<input type="button" value="填好送出" onclick="if( window.confirm('填寫完整了？')){this.form.form_act.value='add';this.form.submit();}" />
+<input type="button" name="" value="返回" onclick="location.href='{{$smarty.server.SCRIPT_NAME}}?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}';" />
+
+<INPUT TYPE='hidden' NAME='No' Value=''>
+</tr>
+{{/if}}
+
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td width=5% nowrap>座號</td>
+<td width=8% nowrap>姓　名</td>
+<td width=8% nowrap>學　號</td>
+<td nowrap width=38%><font color="#FF0000">*</font>1類型</td>
+<td nowrap width=18%><font color="#FF0000">*</font>2團體名稱</td>
+<td nowrap><font color="#FF0000">*</font>3幹部名稱</td>
+</tr>
+
+{{foreach from=$this->stu item=stu key=st_sn}}
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td>{{$stu.seme_num}}</td>
+<td>
+{{if $stu.stud_study_cond!='0' }}
+<font color="#0000FF">{{$stu.stud_name}}</font>
+{{else}}{{$stu.stud_name}}{{/if}}</td>
+<td>{{$stu.stud_id}}</td>
+<td style='color:#4D4D4D;' align=left>
+{{html_radios name=kind[$st_sn] options=$this->kind   separator='&nbsp;'}}
+</td>
+<td style='color:blue;' align=left>
+<input type="text" name="org_name[{{$st_sn}}]" value="" size="12"  onclick="goB(this.name)">
+
+</td>
+<td style='color:blue;' align=left>
+<input type="text" name="title[{{$st_sn}}]" value="" size="12"  onclick="goB(this.name)"/>
+</td>
+</tr>
+{{/foreach}}
+</table>
+
+</td><td valign="top" align="left" width="20%">
+<b>※【快填小幫手】</b><br />
+團體名稱:<br />
+{{foreach from=$this->getLeaderKind('B') item=B }}
+<input type="button" value="{{$B}}" onclick="javascript:goA('{{$B}}');"/><br />
+{{/foreach}}
+幹部名稱:<br />
+{{foreach from=$this->getLeaderKind('C') item=B }}
+<input type="button" value="{{$B}}" onclick="javascript:goA('{{$B}}');"/><br />
+{{/foreach}}<br />
+<span style="color: #0000FF; font-size: 9pt; ">將游標移到格子內，<br />
+再按下按鈕，<br />
+就可以將字帶入<br />
+格子內。</span>
+ </td></tr>
+</form> 
+ </table>
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+//$Id:$
+makeup_exam - 補行評量成績作業
+2015-01-05 -- brucelyc ( brucelyc@tc.edu.tw )
+臺中市教育網路中心 劉育彰 撰寫
+
+補行評量作業及管理用。

@@ -1,0 +1,77 @@
+<!-- //$Id: run_test.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<script language="JavaScript">
+	function add(VAL) {
+	var obj=document.f1.ord_key;
+	if (obj.value=='') {document.f1.ord_key.value=VAL;}
+	else{ obj.value=obj.value+','+VAL;}
+	var i =0;
+	while (i < document.f1.elements.length) {
+		var objA=document.f1.elements[i];
+		if (objA.name=="Ord_Key["+VAL+"]" ) {
+			objA.disabled=false;//variable = documents.forms[0].elements['var[]'];
+//			var V="serch_Key["+VAL+"]";
+			var x = document.f1.elements["serch_Key["+VAL+"]"];
+			x.disabled=false;
+//			obj_SS.disabled=false;
+			//本身可以選擇
+			return;
+			}
+		i++;
+		}
+	}
+</script>
+
+<TABLE width='90%'  border='0' align='center'>
+<FORM METHOD=POST ACTION="{{$smarty.server.PHP_SELF}}?DB={{$this->DB}}&TB={{$this->TB}}&page={{$this->page}}" name='f1'>
+
+<TR><TD align="right" colspan="{{$this->count_field}}">
+{{$this->links->show_page()}}</TD></TR>
+<tr align=center>
+{{foreach from=$this->field  item=arr}}
+<td style='font-size:9pt'><INPUT TYPE="radio" NAME="" value="{{$arr}}" onclick='add(this.value)'>{{$arr}}</td>
+{{/foreach}}
+</tr>
+<tr align=center >
+{{foreach from=$this->field  item=arr}}
+<td><SELECT NAME="Ord_Key[{{$arr}}]" disabled style=' border:1px;font-size:9pt'>
+<option value='desc'>▼遞減</option>
+<option value='asc'>▲遞增</option>
+</SELECT>
+</td>
+{{/foreach}}
+</tr>
+<tr align=center >
+{{foreach from=$this->field  item=arr}}
+<td>
+<INPUT TYPE="text" NAME="serch_Key[{{$arr}}]" disabled size=6 style=' border:1px;font-size:10pt' value=''>
+</td>
+{{/foreach}}
+</tr>
+
+<TR><TD  colspan="{{$this->count_field}}">
+排序順序<INPUT TYPE="text" NAME="ord_key" value='' size=40 readonly style=' border:1px;font-size:10pt'  >
+<INPUT TYPE="reset">
+<input type="button" value='選好送出' onclick="if( window.confirm('填寫完整了？')){f1.act.value='new_ord';f1.submit();}" style=' border:1px;font-size:10pt'  ><BR><FONT  COLOR="#0000FF">{{$this->Add_SQL}}</FONT>
+<INPUT TYPE="hidden" name='act' value=''>
+<INPUT TYPE="hidden" name='TB' value='{{$this->TB}}'>
+<INPUT TYPE="hidden" name='DB' value='{{$this->DB}}'>
+<INPUT TYPE="hidden" name='page' value='{{$this->page}}'>
+</TD></TR>
+</FORM>
+</TABLE>
+
+<table  width='90%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr align=center  style='font-size:11pt' bgcolor='#E5E5E5'>
+{{foreach from=$this->field  item=arr}}
+<td><b>{{$arr}}</b></td>
+{{/foreach}}
+</tr>
+
+{{foreach from=$this->all  item=arr2}}
+<tr align=center  style='font-size:11pt' bgcolor='{{cycle values="#FFC0CB,#E6ECF0"}}'>
+{{foreach from=$this->field  item=arr}}
+<td>{{$arr2.$arr}}</td>
+{{/foreach}}
+</tr>
+{{/foreach}}
+</table>

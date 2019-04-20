@@ -1,0 +1,67 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; Charset=Big5"></head><body>
+
+<table border="1"  >
+  <tr>
+    <th>地區代碼</th>
+    <th>集報單位代碼</th>
+	<th>序號</th>
+    <th>學號</th>
+    <th>班級</th>
+    <th>座號</th>
+    <th>學生姓名</th>
+    <th>身分證</th>
+    <th>性別</th>
+    <th>出生年(民國年)</th>
+    <th>出生月</th>
+    <th>出生日</th>
+    <th>畢業學校代碼</th>
+    <th>畢業年(民國年)</th>
+    <th>畢肄業</th>
+    <th>學生身分</th>
+    <th>身心障礙</th>
+    <th>就學區</th>
+    <th>低收入戶</th>
+    <th>中低收入戶</th>
+    <th>失業勞工</th>
+    <th>資料授權</th>
+    <th>家長姓名</th>
+    <th>市內電話</th>
+    <th>行動電話</th>
+    <th>郵遞區號</th>
+    <th>地址</th>
+  </tr>
+  {{foreach key=key1 item=data from=$data_array }} 
+  <tr>
+    <td>="{{$data.area}}"</td>
+    <td>="{{$data.sch_id}}"</td>
+    <td>="{{$data.sn}}"</td>
+    <td>="{{$data.stud_id}}"</td>       
+    <td>{{$data.class}}</td>
+    <td>{{$data.num}}</td>
+    <td>{{$data.stud_name}}</td>
+    <td>{{$data.stud_person_id}}</td>  
+    <td>{{$data.stud_sex}}</td>
+    <td>{{$data.birth_year}}</td>
+    <td>{{$data.birth_mon}}</td>
+    <td>{{$data.birth_day}}</td>
+    <td>="{{$data.sch_id}}"</td>
+    <td>{{$data.year}}</td>
+    <td>{{$data.graduation}}</td>
+    <td>{{$data.kind_id}}</td>
+    <td>{{$data.special}}</td>
+    <td>{{$data.stu_area}}</td>
+    <td>{{$data.low_income}}</td>
+    <td>{{$data.mlow_income}}</td>
+    <td>{{$data.unemployed}}</td>
+    <td>{{$data.authorize}}</td>
+    <td>{{$data.guardian_name}}</td>
+    <td>="{{$data.stud_tel_2}}"</td>
+    <td>="{{$data.stud_tel_3}}"</td>
+    <td>="{{$data.addr_zip}}"</td>
+    <td>{{$data.stud_addr_2}}</td>
+  </tr>
+  {{/foreach}}
+</table>
+
+</body></html>

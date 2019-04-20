@@ -1,0 +1,74 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<table  width='600'  border='0' align='left' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'>
+<td>{{$this->select}}
+※ <a href="{{$smarty.server.SCRIPT_NAME}}?act=add&year_seme={{$this->year_seme}}&class_id={{$this->class_id}}">新增</a>
+</td>
+</tr>
+</table>
+<br />
+
+
+<table  width='600'  border='0' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td nowrap>座號</td>
+<td nowrap>姓　名</td>
+<td nowrap>類型</td>
+<td nowrap>社團</td>
+<td nowrap>擔任幹部</td>
+<td nowrap>編修</td>
+
+</tr>
+{{if $this->StuB!=''}}
+{{foreach from=$this->StuB item=ss}}
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td>{{$ss.seme_num}}</td>
+<td><font color="#0000FF">{{$ss.stud_name}}</font></td>
+{{if $ss.id==$smarty.get.edit}}
+<td colspan=4 align="left">
+<form method="post" name="Fr1"  action="{{$smarty.server.SCRIPT_NAME}}">
+<font color="#FF0000">*</font>類型:<select name="kind" size="1">
+{{html_options options=$this->kind selected=$ss.kind}}
+</select>
+<font color="#FF0000">*</font>社團:<input type="text" name="org_name" value="{{$ss.org_name}}" size="12" />
+<font color="#FF0000">*</font>幹部:<input type="text" name="title" value="{{$ss.title}}" size="12" /><br /><br />
+原就讀校:<input type="text" name="memo" value="{{$ss.memo}}" size="12" />
+※<span style="color: #FF0000; ">可略，補登外校記錄才填</span>。<br>
+<div align="center">
+<INPUT TYPE='hidden' NAME='class_id'  value='{{$this->class_id}}'>
+<INPUT TYPE='hidden' NAME='form_act' Value=''>
+<INPUT TYPE='hidden' NAME='student_sn' Value='{{$ss.student_sn}}'>
+<INPUT TYPE='hidden' NAME='id' Value='{{$ss.id}}'>
+<input  type="reset" value="重設" />
+<input type="button" value="填好送出" onclick="if( window.confirm('填寫完整了？')){this.form.form_act.value='update';this.form.submit();}" />
+<input type="button" name="" value="返回" onclick="location.href='{{$smarty.server.SCRIPT_NAME}}?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}';" />
+</div>
+</form> 
+</td>
+
+
+
+
+{{else}}
+<td>{{$this->kind[$ss.kind]}}</td>
+<td>{{$ss.org_name}}</td>
+<td>{{$ss.title}}</td>
+<td>
+<a href="{{$smarty.server.SCRIPT_NAME}}?form_act=del&id={{$ss.id}}&year_seme={{$this->year_seme}}&class_id={{$this->class_id}}" onclick="return  window.confirm('確定刪除？');">刪除</a>
+<a href="{{$smarty.server.SCRIPT_NAME}}?edit={{$ss.id}}&year_seme={{$this->year_seme}}&class_id={{$this->class_id}}">修改</a>
+</td>
+{{/if}}
+</tr>
+{{/foreach}}
+
+{{else}}
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td colspan="6"><h3>!尚無登錄資料!</h3></td>
+</tr>
+{{/if}}
+</table>
+
+
+

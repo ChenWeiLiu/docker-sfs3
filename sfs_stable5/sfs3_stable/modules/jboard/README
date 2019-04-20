@@ -1,0 +1,9 @@
+本模組是利用學務系統內原有 board 模組改版而來, 加了插圖功能, 並修改附件掛載方式,
+以利 joomla! 系統的對應模組可以讀取學務系統資料庫內的資料而呈現在版面上.
+
+* 請參考 INSTALL 的說明
+
+註：這裡採用 outline 文件模式。
+
+關於 outline，請參考 http://linux.tnc.edu.tw/techdoc/otl/ 的說明。
+

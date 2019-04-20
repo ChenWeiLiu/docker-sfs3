@@ -1,0 +1,15 @@
+<!--- // $Id: chc_prn_week.html 7565 2013-09-24 02:16:34Z smallduh $-->
+<form name=chc_prn action='chc_report.php' method='post' target=_blank> 
+請選擇週次
+<select name=week_no>
+{{foreach from=$week_ary key=k item=v}}
+ 	<option value="{{$k}}"{{ if $week_no==$k }} selected{{/if}}>{{$v}}</option>
+{{/foreach}}	
+</select>
+<input type=submit value='分班列印' onClick="document.chc_prn.action='chc_report.php'">
+<input type=submit value='合併列印' onClick="document.chc_prn.action='chc_report_all.php'">
+</form>
+<br>
+報表產生後，請記得將紙張設成橫印
+<br><br>
+◎By 彰化縣學務系統開發小組

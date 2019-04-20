@@ -1,0 +1,9 @@
+// $Id: README,v 1.1.1.1 2003-09-20 01:16:55 prolin Exp $
+* 請參考 INSTALL 的說明
+
+註：這裡採用 outline 文件模式。
+
+關於 outline，請參考 http://linux.tnc.edu.tw/techdoc/otl/ 的說明。
+
+1.01 92/5/12 
+   修正signAdmin.php 修改報名單時的錯誤。

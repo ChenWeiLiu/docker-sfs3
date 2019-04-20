@@ -1,0 +1,13 @@
+// $Id: NEWS,v 1.1.4.1 2004-08-24 08:59:39 prolin Exp $
+
+* 2003-05-05 v1.0.0
+
+提供圖像展示。
+
+
+* 2004-08-24
+支援 windows 解開zip 檔案。
+
+在php.ini 中要載入 php_zip.dll (已內含在php windwos 版中)，修改後記得要重新啟動 apache。
+修改 {windows}\php.ini (表示 c:\winnt c:\windiws)
+extension = php_zip.dll (前方的; 去掉)

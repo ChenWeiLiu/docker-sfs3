@@ -1,0 +1,69 @@
+{{$break_page}}
+<table cellPadding='0' border=0 cellSpacing='0' width='96%' style='border-collapse:collapse;font-size:14pt;text-align:center'>
+<tr><td>{{$prn_title}}</td></tr>
+</table>
+<!--- –痁夹肈 -->
+<table cellPadding='0' border=1 cellSpacing='0' width='96%' align=center style='border-collapse:collapse;line-height:12pt;font-size:10pt;vertical-align:middle;text-align:center'>
+	<tr>
+		<td rowspan=3>腹</td><td rowspan=3>﹎</td>
+		<td rowspan=3>厩腹</td>
+		<td colspan=6>{{$week_date.1}}</td>
+		<td colspan=6>{{$week_date.2}}</td>
+		<td colspan=6>{{$week_date.3}}</td>
+		<td colspan=6>{{$week_date.4}}</td>
+		<td colspan=6>{{$week_date.5}}</td>
+		<td colspan=6 rowspan=2>セ秅璸</td>
+		<td colspan=6 rowspan=2>セ秅仓璸</td>
+	</tr>
+	<tr>
+		<td colspan=6>琍戳</td>
+		<td colspan=6>琍戳</td>
+		<td colspan=6>琍戳</td>
+		<td colspan=6>琍戳</td>
+		<td colspan=6>琍戳き</td>
+	</tr>
+	<tr>
+		<td>そ<br>安<br></td><td>ㄆ<br>安<br></td><td>痜<br>安<br></td><td>胢<br>揭<br></td>
+		<td>ど<br><br>篨</td><td>ㄤ<br><br></td>
+		<td>そ<br>安<br></td><td>ㄆ<br>安<br></td><td>痜<br>安<br></td><td>胢<br>揭<br></td>
+		<td>ど<br><br>篨</td><td>ㄤ<br><br></td>
+		<td>そ<br>安<br></td><td>ㄆ<br>安<br></td><td>痜<br>安<br></td><td>胢<br>揭<br></td>
+		<td>ど<br><br>篨</td><td>ㄤ<br><br></td>
+		<td>そ<br>安<br></td><td>ㄆ<br>安<br></td><td>痜<br>安<br></td><td>胢<br>揭<br></td>
+		<td>ど<br><br>篨</td><td>ㄤ<br><br></td>
+		<td>そ<br>安<br></td><td>ㄆ<br>安<br></td><td>痜<br>安<br></td><td>胢<br>揭<br></td>
+		<td>ど<br><br>篨</td><td>ㄤ<br><br></td>
+		<td>そ<br>安<br></td><td>ㄆ<br>安<br></td><td>痜<br>安<br></td><td>胢<br>揭<br></td>
+		<td>ど<br><br>篨</td><td>ㄤ<br><br></td>
+		<td>そ<br>安<br></td><td>ㄆ<br>安<br></td><td>痜<br>安<br></td><td>胢<br>揭<br></td>
+		<td>ど<br><br>篨</td><td>ㄤ<br><br></td>
+	</tr>
+	{{foreach from=$stud_ary item=stud}}
+	<tr>
+		<td>{{$stud.SEME_NUM}}</td><td>{{$stud.STUD_NAME}}</td>
+		<td>{{$stud.STUD_ID}}</td>
+		<td>{{$stud.W1.ABS5}}</td><td>{{$stud.W1.ABS1}}</td><td>{{$stud.W1.ABS2}}</td>
+		<td>{{$stud.W1.ABS3}}</td><td>{{$stud.W1.ABS4}}</td>
+		<td>{{$stud.W1.ABS6}}</td>
+		<td>{{$stud.W2.ABS5}}</td><td>{{$stud.W2.ABS1}}</td><td>{{$stud.W2.ABS2}}</td>
+		<td>{{$stud.W2.ABS3}}</td><td>{{$stud.W2.ABS4}}</td>
+		<td>{{$stud.W2.ABS6}}</td>
+		<td>{{$stud.W3.ABS5}}</td><td>{{$stud.W3.ABS1}}</td><td>{{$stud.W3.ABS2}}</td>
+		<td>{{$stud.W3.ABS3}}</td><td>{{$stud.W3.ABS4}}</td>
+		<td>{{$stud.W3.ABS6}}</td>
+		<td>{{$stud.W4.ABS5}}</td><td>{{$stud.W4.ABS1}}</td><td>{{$stud.W4.ABS2}}</td>
+		<td>{{$stud.W4.ABS3}}</td><td>{{$stud.W4.ABS4}}</td>
+		<td>{{$stud.W4.ABS6}}</td>
+		<td>{{$stud.W5.ABS5}}</td><td>{{$stud.W5.ABS1}}</td><td>{{$stud.W5.ABS2}}</td>
+		<td>{{$stud.W5.ABS3}}</td><td>{{$stud.W5.ABS4}}</td>
+		<td>{{$stud.W5.ABS6}}</td>
+		<td>{{$stud.ABSENT.ABS5}}</td><td>{{$stud.ABSENT.ABS1}}</td><td>{{$stud.ABSENT.ABS2}}</td>
+		<td>{{$stud.ABSENT.ABS3}}</td><td>{{$stud.ABSENT.ABS4}}</td>
+		<td>{{$stud.ABSENT.ABS6}}</td>
+		<td>{{$stud.ABSENT.ABS5_SEME}}</td><td>{{$stud.ABSENT.ABS1_SEME}}</td><td>{{$stud.ABSENT.ABS2_SEME}}</td>
+		<td>{{$stud.ABSENT.ABS3_SEME}}</td><td>{{$stud.ABSENT.ABS4_SEME}}</td>
+		<td>{{$stud.ABSENT.ABS6_SEME}}</td>
+	</tr>
+	{{/foreach}}
+</table>
+

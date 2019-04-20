@@ -1,0 +1,44 @@
+<center>{{$school_name}}--全班歷屆段考成績</center>
+<br>
+注意：<br>
+1.請檢查段考及科目名稱成績異常者。<br>
+2.「**」表示該科目無分數。<br>
+3.「7_1」表示七年級第一學期。<br>
+<br>
+<table cellPadding='0' border=1 cellSpacing='0' width='96%' align=center>
+	<tr>
+		<td colspan=5>&nbsp;</td>
+		{{foreach from=$sub_arys key=seme_key item=subs}}
+			<td colspan={{$subs.items}}>{{$seme_key}}</td>
+		{{/foreach}}
+	</tr>
+	<tr>
+		<td>班</td>
+		<td>號</td>
+		<td>姓名</td>
+		<td>學號</td>
+		<td>性別</td>
+		{{foreach from=$sub_arys key=seme_key item=subs}}
+			{{foreach from=$subs.name key=sub_name item=tmp}}
+			<td >{{$sub_name}}</td>
+			{{/foreach}}
+		{{/foreach}}
+	</tr>
+
+	{{foreach from=$class_ary key=student_sn item=stud}}
+	<tr>
+		<td>{{$stud.base.cla_no}}</td>
+		<td>{{$stud.base.seme_num}}</td>
+		<td nowrap>{{$stud.base.stud_name}}</td>
+		<td>{{$stud.base.stud_id}}</td>
+		<td>{{$stud.base.stud_sex}}</td>
+		{{foreach from=$stud.seme_ary key=seme_key item=seme_data}}
+			{{foreach from=$seme_data.stage_score key=sub_name item=score}}
+			<td>{{$score.1}}<br>{{$score.2}}<br>{{$score.3}}</td>
+			{{/foreach}}
+		{{/foreach}}
+	</tr>
+	{{/foreach}}
+
+</table>
+{{$break_page}}

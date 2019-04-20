@@ -1,0 +1,26 @@
+<!-- //$Id: week_abs_tol.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<table width=width=220  style='font-size:10pt'  bgcolor='#BFBFBF' align=center cellpadding=3 cellspacing=1>
+<tr width=100% align=center bgcolor='#FFFFF3'><td colspan={{$this->cla_year.tol+1}}>本週出缺席現況</a></td></tr>
+<tr align=center bgcolor='#FFFFF3'><td nowarp rowspan="2">日期</td>
+<td colspan="{{$this->cla_year.tol}}">
+年級</td>
+</tr>
+<tr align=center bgcolor='#FFFFF3'>
+{{foreach from=$this->cla_year.info item=yy}}
+<td nowarp>{{$yy.name}}</td>
+{{/foreach}}
+</tr>
+{{foreach from=$this->week item=arr}}
+<tr align=center bgcolor='#FFFFF3'>
+<td nowarp>{{$arr.day}}({{$arr.name}})</td>
+{{foreach from=$this->cla_year.info item=yy}}
+<td>
+{{foreach from=$this->wabs[$arr.day] item=ary}}
+{{if $yy.key==($ary.cla_year+0) }}{{$ary.nu}}{{/if}}
+{{/foreach}}
+</td>
+{{/foreach}}
+</tr>
+{{/foreach}}
+</table>

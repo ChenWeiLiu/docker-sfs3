@@ -1,0 +1,114 @@
+<!-- $Id: data_dump.htm 5310 2009-01-10 07:57:56Z hami $ -->
+{{ if not $act  }}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+{{/if}}
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+
+{{ if not $act  }}
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+
+br.pageEnd {
+        page-break-after:always
+}
+-->
+</style>
+{{/if}}
+
+{{ if not $act  }}
+<form name='form1' method='post' action=''> 
+	選擇班級:{{$class_select}}  
+	<input name='allyear' type='checkbox' value='1' >全學年
+	{{$import_option}}
+	<input type='submit' name='Submit1' value='下載班級資料'>
+
+</form>
+{{ /if }}
+
+{{foreach key=class_key item=data_class from=$data_array name=all_data }} 
+<table class="formdata" >
+  <caption>{{$class_name_arr[$class_key]}}</caption>
+  <tr> 
+    {{foreach key=fname item=cname from=$fields name=fields_title }}     
+    <th>{{$fname}}</th>
+    {{/foreach}}
+  </tr>
+  <tr> 
+    {{foreach key=fname item=cname from=$fields name=fields_title }}     
+    <th>{{$cname}}</th>
+    {{/foreach}}
+  </tr>  
+  
+  {{foreach key=key1 item=data from=$data_class }} 
+  
+{{ if not $act  }}  
+  {{if $key1 is not div by 2}} 
+  <tr class="altrow">
+  {{else }} 
+  <tr>
+  {{/if}} 
+{{else}}
+  <tr>
+  
+{{ /if }}  
+
+
+    {{foreach key=fname item=cname from=$fields name=fields_title }}     
+    <td>{{$data[$fname]}}</td>
+    {{/foreach}}
+
+  </tr>
+  {{/foreach}} 
+</table>
+<br class="pageEnd" >
+  {{/foreach}} 
+{{ if not $act  }}
+{{include file="$SFS_TEMPLATE/footer.tpl"}}
+{{/if}}
+

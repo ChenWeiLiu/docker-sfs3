@@ -1,0 +1,28 @@
+{{* $Id: work_a.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<TABLE border=0 width='100%'  cellspacing=1 cellpadding=2 bgcolor='#9EBCDD'>
+<tr bgcolor=#FEFBDA align=center valign=top>
+<td width="15%"><H4>認輔個案列表</H4></td>
+<td width="85%"><H4>認輔資料填寫</H4></td>
+</tr>
+<TR bgcolor='#FFFFFF'>
+<td width="15%" align=center valign=top>
+{{foreach from=$stud_list item=arr}}
+<TABLE  cellspacing=1 cellpadding=1 bgcolor='#EAECEE' style="font-size:10pt">
+<TR align=center><TD rowspan="2">
+{{$SEX[$arr.stud_sex]}}<BR>
+<FONT COLOR="#336600">{{$arr.stud_name}}</FONT>
+</TD><TD><A HREF="{{$PHP_SELF}}?act=base&guid={{$arr.guid_c_id}}">基本資料</A></TD>
+</TR><TR align=center>
+<TD><A HREF="{{$PHP_SELF}}?act=event&guid={{$arr.guid_c_id}}">輔導紀錄</A></TD></TR>
+</TABLE><HR size=1>
+{{/foreach}}
+</td>
+<td width="80%" valign=top>
+{{if $tpl_file!='' }}
+{{include file="$tpl_file"}}{{/if}}
+</td>
+</tr>
+</TABLE><BR><BR><BR>
+<DIV style="color:blue" onclick="alert('作者群：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n大村 鄭培華');">
+◎By 彰化縣學務系統開發小組</DIV>
+<BR><BR>

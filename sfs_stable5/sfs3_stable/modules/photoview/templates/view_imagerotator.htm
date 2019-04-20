@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<title>幻燈片動態展示</title>
+<script type="text/javascript" src="swfobject.js"></script>
+<script type="text/javascript" src="../../javascripts/prototype.js"></script>
+
+<p id="player2"><a href="http://www.macromedia.com/go/getflashplayer">Get the Flash Player</a> to see this player.</p>
+<script type="text/javascript">
+	var s2 = new SWFObject("imagerotator.swf","rotator","750","500","7");
+	s2.addVariable("file","photoxml.php?id={{$id}}");
+	s2.addVariable("transition","random");
+	s2.addVariable("shownavigation","true");
+	s2.addVariable("overstretch","true");
+	s2.write("player2");
+</script>
+		內嵌語法:<input    id="embed_code" name="embed_code" value="<embed src='{{$web_url}}/imagerotator.swf'
+  		width='410'
+  		height='310
+  		allowscriptaccess='always'
+  		flashvars='file={{$web_url}}/photoxml.php?id={{$id}}&transition=random&shownavigation=true&overstretch=transparent&allowScriptAccess=true&autostart=false'
+		/>" 
+		onclick="javascript:$('embed_code').focus();$('embed_code').select();" 
+		readonly="readonly" type="text">
+</html>

@@ -1,0 +1,55 @@
+{{* $Id: fix-2.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+{{foreach from=$arr_b item=data}}
+
+{{if $smarty.get.act eq "edit2" && $smarty.get.student_sn eq $data.student_sn
+ && $smarty.get.stud_id eq $data.stud_id 
+ && $smarty.get.seme_year_seme eq $data.seme_year_seme 
+ && $smarty.get.seme_class eq $data.seme_class 
+}}
+
+<tr bgcolor="#ffffff" style='color:#000000;font-size:11pt;' align='center'>
+<td nowrap colspan=3  align="left" valign="top">
+流水號：{{$data.student_sn}}<BR>
+學　號：<INPUT TYPE='text' NAME='stud_id' value='{{$data.stud_id}}' size=12 class=mei><BR>
+學年度：<INPUT TYPE='text' NAME='seme_year_seme' value='{{$data.seme_year_seme}}' size=12 class=mei><BR>
+班　級：<INPUT TYPE='text' NAME='seme_class' value='{{$data.seme_class}}' size=12 class=mei><BR>
+座　號：<INPUT TYPE='text' NAME='seme_num' value='{{$data.seme_num}}' size=12 class=mei>
+
+<INPUT TYPE='hidden' NAME='old_stud_id'  value='{{$data.stud_id}}'>
+<INPUT TYPE='hidden' NAME='old_seme_year_seme'  value='{{$data.seme_year_seme}}'>
+<INPUT TYPE='hidden' NAME='old_seme_class'  value='{{$data.seme_class}}'>
+<INPUT TYPE='hidden' NAME='old_seme_num'  value='{{$data.seme_num}}'>
+
+<INPUT TYPE='hidden' NAME='student_sn'  value='{{$data.student_sn}}'>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+</td><td  colspan=3  align="left"  valign="top">
+
+<INPUT TYPE=button  value='XX 刪除所有stud_seme表記錄' onclick=" bb2('真的要將該生的學期資料全部刪除？真的嗎？','del_seme_all');" class=bur2><BR><BR>
+<INPUT TYPE=button  value='X 僅刪除本筆記錄' onclick=" bb2('真的要將本筆資料刪除？確定這麼做？','del_seme');"  class=bur2>
+<BR><BR>
+
+<INPUT TYPE=button  value='寫入資料' onclick=" bb2('寫入資料？OK？','write_seme');" class=bu1>
+<INPUT TYPE=button  value='取消返回' onclick="location.href='{{$PHP_SELF}}?stud_id={{$data.stud_id}}&seme_year_seme={{$data.seme_year_seme}}&seme_class={{$data.seme_class}}&student_sn={{$data.student_sn}}';"  class=bu1><BR><BR>
+</td>
+    </tr>
+
+
+{{else}}
+
+{{if $now_seme eq $data.seme_year_seme}}
+<tr bgcolor="#ffffff" style='color:#ff0000;font-size:12px;' align='center'>
+{{else}}
+<tr bgcolor="#ffffff" style='color:#000000;font-size:12px;' align='center'>
+{{/if}}
+
+<td nowrap>
+<A HREF='{{$PHP_SELF}}?act=edit2&stud_id={{$data.stud_id}}&seme_year_seme={{$data.seme_year_seme}}&seme_class={{$data.seme_class}}&student_sn={{$data.student_sn}}'>
+編修{{$data.student_sn}}</A></td>
+<td nowrap>{{$data.stud_id}}</td>
+<td nowrap>{{$data.seme_year_seme}}</td>
+<td nowrap>{{$data.seme_class}}</td>
+<td nowrap>{{$data.seme_class_name}}</td>
+<td nowrap>{{$data.seme_num}}</td>
+</tr>
+{{/if}}
+{{/foreach}}

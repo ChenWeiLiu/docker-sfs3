@@ -1,0 +1,5 @@
+// $Id: README,v 1.0 2013-02-26 10:07:37
+
+SFS3 RESTful API 服務.
+
+讓 SFS3 可以提供 API 呼叫服務。

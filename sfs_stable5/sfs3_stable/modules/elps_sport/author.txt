@@ -1,0 +1,7 @@
+elps_sport - 運動會競賽檢錄系統
+原創作者：紀明村
+
+chi@mail.elps.chc.edu.tw 2004-04-04
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+

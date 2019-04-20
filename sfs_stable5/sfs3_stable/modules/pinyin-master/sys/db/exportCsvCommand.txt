@@ -1,0 +1,6 @@
+/usr/bin/sqlite3 ./ph.sqlite
+.headers on
+.separator ","
+.output result.csv
+select * from ph;
+.exit

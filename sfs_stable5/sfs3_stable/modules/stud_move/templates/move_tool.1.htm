@@ -1,0 +1,14 @@
+{{* $Id: move_tool.1.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+{{foreach from=$arr_a item=data}}
+<tr bgcolor="#ffffff" style='color:#000000;font-size:11pt;' align='center'>
+<td nowrap>{{$data.stud_id}}</td>
+<td nowrap>{{$data.stud_name}}</td>
+<td nowrap>{{$data.stud_sex}}</td>
+<td nowrap>{{$data.stud_study_year}}</td>
+<td nowrap>{{$data.curr_class_num}}</td>
+<td nowrap>{{$stud_coud[$data.stud_study_cond]}}</td>
+<td nowrap><A HREF='{{$PHP_SELF}}?Seme={{$smarty.get.Seme}}&Sclass={{$smarty.get.Sclass}}&St_sn={{$data.student_sn}}'>ÀËµø{{$data.student_sn}}</A></td>
+
+</tr>
+
+{{/foreach}}

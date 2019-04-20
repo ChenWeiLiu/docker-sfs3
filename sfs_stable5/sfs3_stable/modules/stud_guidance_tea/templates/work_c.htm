@@ -1,0 +1,68 @@
+{{* $Id: work_c.htm 7850 2014-01-13 04:54:05Z infodaes $ *}}
+<script>
+<!--
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+//-->
+</script>  
+
+<TABLE border=0 width='100%'  cellspacing=1 cellpadding=3 bgcolor='#9EBCDD' style="font-size:10pt">
+<FORM METHOD=POST ACTION="{{$PHP_SELF}}" name=f1>
+<tr bgcolor="white">
+<td width="100%" colspan=6>
+<FONT COLOR="#336600">填寫 <B style='color:blue'>{{$the_stu.cgrade}} {{$the_stu.seme_num}}</B>號
+學生 <B style='color:blue'>{{$the_stu.stud_name}}</B> 的輔導記錄</FONT>
+
+</td></tr>
+<tr bgcolor="white"><td width="100%" colspan=6>
+資料號&nbsp;&nbsp;{{$event_one.guid_l_id}}
+<BR>
+時　間：
+{{html_select_date field_order=YMD start_year=-5 end_year=+5 time=$event_one.guid_l_date}}日
+{{html_select_time use_24_hours=true display_minutes=false display_seconds=false time=$event_one.guid_l_date}}時
+{{html_select_time  minute_interval=5 display_seconds=false display_hours=false time=$event_one.guid_l_date}}分
+&nbsp;&nbsp;
+方式：{{$temp_select}}
+<TEXTAREA NAME="guid_l_con" ROWS="5" COLS="60" class='ip12'>{{$event_one.guid_l_con}}</TEXTAREA><BR>
+{{if $event_one!=''}}
+<INPUT TYPE=button  value='儲存資料' onclick=" bb1('確定存入？True？','write_event_updata');" class=bur2>
+<INPUT TYPE='hidden' NAME='guid_l_id'  value='{{$event_one.guid_l_id}}'>
+{{else}}
+<INPUT TYPE=button  value='儲存資料' onclick=" bb1('確定存入？True？','write_event');" class=bur2>
+
+{{/if}}
+<INPUT TYPE=button  value='取消' onclick="location.href='{{$PHP_SELF}}?act=event&guid={{$smarty.get.guid}}';" class=bur2>
+<INPUT TYPE="hidden" name='guid_c_id' value='{{$smarty.get.guid}}'>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+
+
+</td>
+</tr>
+</FORM>
+
+<tr align=center>
+<td width="10%">資料號</td>
+<td width="10%">日期*</td>
+<td width="10%">時間</td>
+<td width="10%">輔導方式</td>
+<td width="50%">輔導經過*</td>
+<td width="10%">編修</td>
+</tr>
+{{if $event_all!=''}}
+{{foreach from=$event_all item=event_all}}
+<tr bgcolor="white" align=center><td color=red>{{$event_all.guid_l_id}}</td>
+<td>{{$event_all.guid_l_date|date_format:"%Y-%m-%d"}}</td>
+<td>{{$event_all.guid_l_date|date_format:"%H:%M"}}</td>
+<td>{{$talk_gui_stud[$event_all.guid_kind]}}</td>
+<td align=left>{{$event_all.guid_l_con}}</td>
+<td>
+<A HREF="{{$PHP_SELF}}?act=event&guid={{$event_all.guid_c_id}}&edit={{$event_all.guid_l_id}}">修改</A>|
+<A HREF="{{$PHP_SELF}}?act=del&guid={{$event_all.guid_c_id}}&del={{$event_all.guid_l_id}}" onclick="return window.confirm('真的刪除嗎？');">刪除</A>
+</td></tr>
+{{/foreach}}
+{{/if}}
+</table>

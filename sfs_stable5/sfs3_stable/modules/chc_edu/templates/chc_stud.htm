@@ -1,0 +1,79 @@
+<!-- $Id: chc_stud.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+-->
+</style>
+
+
+
+
+<table class="formdata" >
+  <tr> 
+    <th>學校編號</th>
+    <th>學校名稱</th>
+  <th>班級</th>
+	<th>學生姓名</th>
+	<th>家長(監護人)</th>
+    <th>關係</th>
+  </tr>
+
+{{foreach item=data from=$this->stu}} 
+  <tr>
+      <td>{{$this->sch.sch_id}}</td>
+      <td>{{$this->sch.sch_cname}}</td>   
+     <td>{{$data.seme_class}}</td>
+	    <td>{{$data.stud_name}}</td>
+      <td>{{$data.guardian_name}}</td>
+      <td>{{$this->GR[$data.guardian_relation]}}</td>  
+  </tr>
+ 
+  {{/foreach}} 
+</table>
+<br>
+
+

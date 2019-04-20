@@ -1,0 +1,22 @@
+<div ng-controller="articleCtrl">
+	<label><input ng-model="articleId" type="hidden"></label>
+	<div class="container">
+	  <ul class="list-group" ng-repeat="article in articles | filter:articleId |limitTo:1">
+	    <li class="list-group-item">標題:{{article.headline}}</li>
+	    <li class="list-group-item">本文:<p ng-bind-html="article.content"> </p></li>
+	    <li class="list-group-item">公告日期:{{article.postTime}}</li>
+	    <li class="list-group-item">發文單位:{{article.jobUnit}}-{{article.jobTitle}}</li>
+	    <li class="list-group-item">
+
+				作為 DEMO 不能下載為正常結果
+	      <ul ng-repeat="attach in article.attachFile">
+						 <li> 附件:<a href="download/{{articleId}}/{{attach.linkFile}}">{{attach.displayFile}}</a></li>
+					</ul>
+			</li>
+			<li class="list-group-item">
+	 <a href="#/page/{{$routeParams.page}}" class="btn btn-info" role="button">返回</a>
+			</li>
+	</div>
+		</ul>
+
+</div>

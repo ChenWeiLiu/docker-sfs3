@@ -1,0 +1,34 @@
+<title>報名單</title><div>
+<h1>{{$school_name}}</h1>
+<p>通訊地址：</p>
+<p>聯絡人：</p>
+<p>電話：</p>
+{{foreach  key=member_data_t_id item=member_data_g_list   from=$member_data_arr }}
+{{php}} $i=0  ;{{/php}}
+<div>
+組別：{{$team_id[$member_data_t_id]}}
+<table width="95%" border="1" cellspacing="0">
+  <tr> 
+    <th>序號</th>
+    <th>職稱</th>
+    <th>姓名</th>
+    {{foreach  key=fields_id item=fields   from=$fields_set_arr }}
+    <th>{{$fields[0]}}</th>
+    {{/foreach }}
+  </tr>
+  {{foreach  key=member_data_g_id item=member_data_g_list   from=$member_data_g_list }}
+  {{if ($member_data_arr[$member_data_t_id][$member_data_g_id][0])}}
+  <tr> 
+    <td>{{php}} echo ++$i  ;{{/php}}</td>
+    <td>{{$group_user_title[$member_data_g_id]}}</td>
+    {{foreach key=member_data_id item=member_data from=$member_data_g_list  }}
+    <td>{{$member_data}}&nbsp;</td>
+    {{/foreach }}
+  </tr>
+  {{/if}}
+  {{/foreach }}
+</table>
+負責人簽章： <br /><br />
+</div>
+{{/foreach }}
+</div>

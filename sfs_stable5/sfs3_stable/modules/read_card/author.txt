@@ -1,0 +1,6 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+read_card - 匯入讀卡成績
+2003-12-04 -- brucelyc ( brucelyc@seed.net.tw )
+台中縣教育網路中心 研發組組長 劉育彰 撰寫
+
+可將電腦讀卡成績匯入學務系統。

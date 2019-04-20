@@ -1,0 +1,72 @@
+<!--- // $Id: prn_all_absent.html 5310 2009-01-10 07:57:56Z hami $-->
+{{$break_page}}
+<table cellPadding='0' border=0 cellSpacing='0' width='96%' style='border-collapse:collapse;font-size:14pt;text-align:center'>
+<tr><td>{{$prn_title}}</td></tr>
+</table>
+<!--- 以上為每班的標題 -->
+<table cellPadding='0' border=1 cellSpacing='0' width='96%' align=center style='border-collapse:collapse;line-height:12pt;font-size:10pt;vertical-align:middle;text-align:center'>
+	<tr>
+		<td rowspan=3>年</td><td rowspan=3>班	</td>
+		<td rowspan=3>號</td><td rowspan=3>姓名</td>
+		<td rowspan=3>學號</td>
+		<td colspan=5>{{$week_date.1}}</td>
+		<td colspan=5>{{$week_date.2}}</td>
+		<td colspan=5>{{$week_date.3}}</td>
+		<td colspan=5>{{$week_date.4}}</td>
+		<td colspan=5>{{$week_date.5}}</td>
+		<td colspan=5 rowspan=2>本週合計</td>
+		<td colspan=5 rowspan=2>至本週累計</td>
+	</tr>
+	<tr>
+		<td colspan=5>星期一</td>
+		<td colspan=5>星期二</td>
+		<td colspan=5>星期三</td>
+		<td colspan=5>星期四</td>
+		<td colspan=5>星期五</td>
+	</tr>
+	<tr>
+		<td>事<br>假<br></td><td>病<br>假<br></td><td>曠<br>課<br></td>
+		<td>升<br>降<br>旗</td><td>其<br>他<br></td>
+		<td>事<br>假<br></td><td>病<br>假<br></td><td>曠<br>課<br></td>
+		<td>升<br>降<br>旗</td><td>其<br>他<br></td>
+		<td>事<br>假<br></td><td>病<br>假<br></td><td>曠<br>課<br></td>
+		<td>升<br>降<br>旗</td><td>其<br>他<br></td>
+		<td>事<br>假<br></td><td>病<br>假<br></td><td>曠<br>課<br></td>
+		<td>升<br>降<br>旗</td><td>其<br>他<br></td>
+		<td>事<br>假<br></td><td>病<br>假<br></td><td>曠<br>課<br></td>
+		<td>升<br>降<br>旗</td><td>其<br>他<br></td>
+		<td>事<br>假<br></td><td>病<br>假<br></td><td>曠<br>課<br></td>
+		<td>升<br>降<br>旗</td><td>其<br>他<br></td>
+		<td>事<br>假<br></td><td>病<br>假<br></td><td>曠<br>課<br></td>
+		<td>升<br>降<br>旗</td><td>其<br>他<br></td>
+	</tr>
+	{{foreach from=$stud_ary item=stud}}
+	<tr>
+		<td>{{$stud.GRADE}}</td><td>{{$stud.CLANO}}</td>
+		<td>{{$stud.SEME_NUM}}</td><td>{{$stud.STUD_NAME}}</td>
+		<td>{{$stud.STUD_ID}}</td>
+		<td>{{$stud.W1.ABS1}}</td><td>{{$stud.W1.ABS2}}</td>
+		<td>{{$stud.W1.ABS3}}</td><td>{{$stud.W1.ABS4}}</td>
+		<td>{{$stud.W1.ABS6}}</td>
+		<td>{{$stud.W2.ABS1}}</td><td>{{$stud.W2.ABS2}}</td>
+		<td>{{$stud.W2.ABS3}}</td><td>{{$stud.W2.ABS4}}</td>
+		<td>{{$stud.W2.ABS6}}</td>
+		<td>{{$stud.W3.ABS1}}</td><td>{{$stud.W3.ABS2}}</td>
+		<td>{{$stud.W3.ABS3}}</td><td>{{$stud.W3.ABS4}}</td>
+		<td>{{$stud.W3.ABS6}}</td>
+		<td>{{$stud.W4.ABS1}}</td><td>{{$stud.W4.ABS2}}</td>
+		<td>{{$stud.W4.ABS3}}</td><td>{{$stud.W4.ABS4}}</td>
+		<td>{{$stud.W4.ABS6}}</td>
+		<td>{{$stud.W5.ABS1}}</td><td>{{$stud.W5.ABS2}}</td>
+		<td>{{$stud.W5.ABS3}}</td><td>{{$stud.W5.ABS4}}</td>
+		<td>{{$stud.W5.ABS6}}</td>
+		<td>{{$stud.ABSENT.ABS1}}</td><td>{{$stud.ABSENT.ABS2}}</td>
+		<td>{{$stud.ABSENT.ABS3}}</td><td>{{$stud.ABSENT.ABS4}}</td>
+		<td>{{$stud.ABSENT.ABS6}}</td>
+		<td>{{$stud.ABSENT.ABS1_SEME}}</td><td>{{$stud.ABSENT.ABS2_SEME}}</td>
+		<td>{{$stud.ABSENT.ABS3_SEME}}</td><td>{{$stud.ABSENT.ABS4_SEME}}</td>
+		<td>{{$stud.ABSENT.ABS6_SEME}}</td>
+	</tr>
+	{{/foreach}}
+</table>
+

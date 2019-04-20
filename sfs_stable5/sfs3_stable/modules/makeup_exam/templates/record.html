@@ -1,0 +1,79 @@
+{{* $Id:$ *}}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%" bgcolor="#cccccc">
+<form name="myform" method="post" action="{{$smarty.server.SCRIPT_NAME}}">
+<tr>
+<td style="background-color:white;">
+<table class="small"><tr><td>
+選擇學生：{{$year_seme_menu}}{{$class_year_menu}}<span style="color: red;">(注意：僅處理所選學期之在籍學生)</span>
+<br>{{if $smarty.post.class_year}}處理學期：{{$year_seme_menu2}}{{/if}}
+</td></tr></table><br>
+{{if $smarty.post.act_year_seme}}
+<span class="small">選擇領域：
+<input type="radio" name="subj" value="" OnCLick="this.form.submit();" {{if $smarty.post.subj==''}}checked{{/if}}>全部
+<input type="radio" name="subj" value="lang" OnCLick="this.form.submit();" {{if $smarty.post.subj=='lang'}}checked{{/if}}>語文 
+<input type="radio" name="subj" value="math" OnCLick="this.form.submit();" {{if $smarty.post.subj=='math'}}checked{{/if}}>數學 
+<input type="radio" name="subj" value="natu" OnCLick="this.form.submit();" {{if $smarty.post.subj=='natu'}}checked{{/if}}>自然 
+<input type="radio" name="subj" value="soci" OnCLick="this.form.submit();" {{if $smarty.post.subj=='soci'}}checked{{/if}}>社會 
+<input type="radio" name="subj" value="heal" OnCLick="this.form.submit();" {{if $smarty.post.subj=='heal'}}checked{{/if}}>健體 
+<input type="radio" name="subj" value="art" OnCLick="this.form.submit();" {{if $smarty.post.subj=='art'}}checked{{/if}}>藝文 
+<input type="radio" name="subj" value="comp" OnCLick="this.form.submit();" {{if $smarty.post.subj=='comp'}}checked{{/if}}>綜合
+<br>
+選擇顯示： <input type="checkbox" name="simple" value="1" OnChange="this.form.submit();" {{if $smarty.post.simple}}checked{{/if}}>僅顯示補行評量優於原成績記錄
+</span>
+<br><br>
+{{/if}}
+{{if $score_arr && $seme_arr && $base_arr}}
+{{assign var=i value=1}}
+{{if $msg}}<span style="color: red;">{{$msg}}</span><br>{{/if}}
+<input type="submit" name="writeAll" value="確定全部寫入學期成績"> <input type="submit" name="undoAll" value="確定全部回復原始成績"><br>
+<table bgcolor='#9EBCDD' cellspacing=1 cellpadding=4 class='small'>
+<tr style="background-color: #E1ECFF; text-align: center;"><td>序次</td><td>學號</td><td>班級</td><td>座號</td><td>姓名</td><td>領域</td><td>原分數</td><td>補評實際分數</td><td>處理</td><td>分科</td><td>加權</td><td>科目代碼</td><td>原分數</td><td>補評擇優後分數</td><td>實際分數</td></tr>
+{{foreach from=$seme_arr item=d key=sn name=datarows}}
+{{assign var=m value=$col_arr.$sn}}
+<tr style="background-color: white; text-align: center;">
+<td rowSpan="{{$m}}">{{$i}}</td>
+<td rowSpan="{{$m}}">{{$base_arr.$sn.stud_id}}</td>
+<td rowSpan="{{$m}}">{{$d.seme_class}}</td>
+<td rowSpan="{{$m}}">{{$d.seme_num}}</td>
+<td rowSpan="{{$m}}" style="color: {{if $base_arr.$sn.stud_sex==1}}blue{{else}}red{{/if}};">{{$base_arr.$sn.stud_name}}</td>
+{{assign var=j value=1}}
+{{foreach from=$score_arr.$sn item=dd key=scope_ename}}
+{{assign var=k value=1}}
+{{foreach from=$dd item=ddd key=ss_id}}
+{{assign var=n value=$score_arr.$sn.$scope_ename|@count}}
+{{if $j>1}}
+<tr style="background-color: white; text-align: center;">
+{{/if}}
+{{if $k==1}}
+<td rowSpan="{{$n}}">{{$cscope_arr.$scope_ename}}</td>
+<td rowSpan="{{$n}}" style="color: {{if $scope_arr.$sn.$scope_ename.oscore<60}}red{{else}}black{{/if}};">{{$scope_arr.$sn.$scope_ename.oscore}}</td>
+<td rowSpan="{{$n}}" style="color: {{if $scope_arr.$sn.$scope_ename.nscore<60}}red{{else}}black{{/if}};">{{$scope_arr.$sn.$scope_ename.nscore}}</td>
+<td rowSpan="{{$n}}">
+{{if $scope_arr.$sn.$scope_ename.chg==1}}<input type="image" src="images/undo.png" name="undo[{{$sn}}]" style="width: 18pt; height: 18pt;" title="回復">
+{{elseif $scope_arr.$sn.$scope_ename.nscore>$scope_arr.$sn.$scope_ename.oscore}}<input type="image" src="images/write.png" name="write[{{$sn}}]" style="width: 18pt; height: 18pt;" title="寫入">{{/if}}</td>
+{{/if}}
+<td>{{$ss_arr.$ss_id}}</td>
+<td>{{$ddd.rate}}</td>
+<td>{{$ss_id}}</td>
+<td style="color: {{if $ddd.oscore<60}}red{{else}}black{{/if}};">{{$ddd.oscore}}</td>
+<td style="color: {{if $ddd.nscore<60}}red{{else}}black{{/if}};">{{$ddd.nscore}}</td>
+<td style="color: {{if $ddd.rscore<60}}red{{else}}black{{/if}}; background-color: #FFFFA6;">{{$ddd.rscore}}</td>
+</tr>
+{{assign var=j value=$j+1}}
+{{assign var=k value=$k+1}}
+{{/foreach}}
+{{/foreach}}
+{{assign var=i value=$i+1}}
+{{/foreach}}
+<tr style="background-color: #E1ECFF; text-align: center;"><td>序次</td><td>學號</td><td>班級</td><td>座號</td><td>姓名</td><td>領域</td><td>原分數</td><td>補評實際分數</td><td>處理</td><td>分科</td><td>加權</td><td>科目代碼</td><td>原分數</td><td>補評擇優後分數</td><td>實際分數</td></tr>{{else}}
+{{if $smarty.post.subj}}<span style="color: red;">查無補行評量記錄</span>{{/if}}
+{{/if}}
+</table>
+</td>
+</tr>
+</form>
+</table>
+{{include file="$SFS_TEMPLATE/footer.tpl"}}

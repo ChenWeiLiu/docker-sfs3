@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>電子校刊</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<base href="<{ $templetdir }><{ $themes }>/" />
+<link href="user.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+<table width="100%" cellspacing="0" cellpadding="0" summary="網站名稱與標誌排版表格">
+  <tr bgcolor="#000033"> 
+    <td bgcolor="#0084AD"><img src="logo.jpg" width="700" height="94" border="0" alt="網站名稱與標誌"></td>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="6" summary="版型表格：主要網頁內容" bgcolor="#FFFFFF">
+  <tr valign="top"> <td width="150" valign="top" bgcolor="#D7DFF7"> 
+      <ul class="style1">
+<{* 選單 *}>          
+<{foreach name=menu key=key1 item=menu1 from=$menu_list }>
+ 
+         <li><a href="<{ $menu1.link }>"><{ $menu1.chap_name }></a></li>
+<{/foreach}>	  
+
+      </ul>
+
+<table width="100%" cellspacing="2" cellpadding="4" summary="相關資訊排版表格" bgcolor="#cccccc">
+<tr> 
+   		 <td width="100%">
+   		 <div align="center" class="text">
+<{ $publish }> <br />
+<{ $publish_date }> 發行 <br /> 
+<form name="myform" method="post" action="<{ $PHP_SELF }>">
+期別:<select name="book_num" onchange="this.form.submit()" > 
+<{html_options values=$mbooks_num selected=$book_num output=$mbooks_name}>
+</select>
+</form>
+</div>
+		 </td>
+	    </tr>
+	 </table>
+
+            <hr> <div align="center" class="text"><a href="<{ $HOME_URL }>">回學校首頁</a></div>
+
+    </td>	
+
+    <td width="*%" valign="top"> 
+    <{ include file=$dyn_page }>
+        </td>
+  </tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0" summary="頁尾排版表格">
+  <tr bgcolor="#dcdcdc"> 
+    <td width="100%">
+	<div align="center" class="stext">prolin 設計</div>
+	</td>
+  </tr>
+</table>
+</body>
+
+</html>

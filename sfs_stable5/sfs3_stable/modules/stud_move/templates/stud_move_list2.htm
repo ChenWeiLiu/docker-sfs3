@@ -1,0 +1,94 @@
+<!-- $Id: main.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:0 ;
+	margin:0;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+-->
+</style>
+
+
+<form name="form1" method="post" action="">
+<table border=2 cellpadding=7 cellspacing=0 style='border-collapse: collapse' bordercolor='#111111' width='100%'>
+<tr><td align='center'>異動類別</td><td>
+{{foreach key=key1 item=data from=$study_cond_array}}
+<input name="move_kind[{{$key1}}]" type="checkbox" value="{{$key1}}"{{if $move_kind[$key1]}} checked{{/if}}>{{$data}}
+{{/foreach}}
+</td></tr>
+<tr align='center'><td width=100>
+日期區段</td><td align='left'><input name="beg_date" type="text" size=10 id="beg_date" value="{{$beg_date}}">～<input name="end_date" type="text" size=10 id="end_date" value="{{$end_date}}">
+ <input type="submit" name="go" value="顯示" onclick="document.form1.target='';"> <input type="submit" name="go" value="HTML輸出" onclick="document.form1.target='_BLANK';">
+</td></tr>
+</table>
+</form>
+<br>
+<table border=2 cellpadding=7 cellspacing=0 style='border-collapse: collapse' bordercolor='#111111' width='100%'>
+  <tr align='center' bgcolor='#ffcccc'>
+    <td class="out">異動類別</td>
+	<td class="out">異動學期</td>
+	<td class="out">異動日期</td>
+    <td class="out">學號</td>
+    <td class="out">姓名</td>
+	<td class="out">出生年月日</td>
+	<td class="out">異動時班級座號</td>
+	<td class="out">轉入/轉出 學校</td>    
+  </tr>
+{{foreach key=key1 item=data from=$arr}}  
+  {{if $key1 is div by 2}}
+    <tr align='center'>
+  {{else }}  	
+    <tr align='center'>
+  {{/if}}
+    <td>{{$data.move_kind}}</td>
+	<td>{{$data.move_year}}學年度第{{$data.move_semester}}學期</td>
+	<td>{{$data.move_date}}</td>	
+    <td>{{$data.stud_id}}</td>
+	<td>{{$data.stud_name}}</td>
+	<td>{{$data.stud_birthday}}</td>
+	<td>{{$data.curr_class_num}}</td>
+    <td>{{$data.school_id}}{{$data.school}}</td>    
+  </tr>
+{{/foreach}}
+</table>

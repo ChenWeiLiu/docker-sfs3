@@ -1,0 +1,5 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+teach_report1.0 
+--- 2001-3-30 --- prolin (prolin@sy3es.tnc.edu.tw)
+--- 2003-2-15 --- tad (tad@www.tnc.edu.tw) ­×§ï¥[±j
+

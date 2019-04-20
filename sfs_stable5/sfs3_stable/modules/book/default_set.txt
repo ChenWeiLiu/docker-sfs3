@@ -1,0 +1,24 @@
+/** 模組資訊 **/
+$MODULE_NAME=book
+$MODULE_DISPLAY_NAME=圖書管理
+$MODULE_GROUP_NAME=校務行政
+$MODULE_VER=2.0
+$MODULE_CREATE_DATE=2002-12-15
+
+/** 模組設定預設值
+系統名稱::顯示名稱::值
+**/
+
+$lib_name::圖書室條碼顯示部份::外埔圖書室
+$barcore_cols::圖書室條碼顯示行數::4
+$barcare_type::圖書室條碼圖型格式(Png or Gif)::Png
+$man_name::系統管理員姓名::系統管理員
+$man_mail::管理員 email::
+$data_name::資料管理員::資料管理員
+$data_mail::資料管理員 email::
+$man_ip1::借還書限定IP 1::163.17.169
+$man_ip2::借還書限定IP 2::163.17.169.10
+$man_ip3::借還書限定IP 3::163.17.169.11
+$yetdate::學生借閱日數::14
+$tea_yetdate::教師借閱日數::28
+$sort_num::排行榜顯示名次::40

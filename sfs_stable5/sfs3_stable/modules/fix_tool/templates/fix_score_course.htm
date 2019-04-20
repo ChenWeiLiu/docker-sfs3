@@ -1,0 +1,99 @@
+
+<style type="text/css">
+
+.red{color:red;}
+.blue{color:blue;}
+.cc{text-align:center;}
+</style>
+
+<TABLE width='95%'  border='0' align='center'>
+
+<TR><TD>{{$this->select(0)}}{{$this->select_tea()}}::教師本學期課程資料數 <b>{{$this->tol}}</b> 筆 
+{{if $this->Tsn!=''}}
+<input type="button"  value="清除該教師這學期所有課表" onclick="if(window.confirm('真的全部刪除嗎？')){location.href='{{$smarty.server.PHP_SELF}}?YS={{$this->year_seme}}&Tsn={{$this->Tsn}}&act=delall';}">{{/if}}
+</TD></TR>
+</TABLE>
+<table  width='95%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr align=center  style='font-size:13pt'  bgcolor=#9EBCDD>
+<td width=10%>班級</td>
+<td width=6%>年級</td>
+<td width=6%>班級</td>
+<td width=6%>星期</td>
+<td width=6%>節次</td>
+<td width=25%>年級/課程/代碼</td>
+<td width=12%>協同教師</td>
+<td width=10%>教室</td>
+<td width=5%>兼課</td>
+<td width=10%>編修</td>
+</tr>
+
+{{foreach from=$this->all item=arr}}
+{{if $smarty.get.edit==$arr.course_id}}
+<tr align=center  style='font-size:12pt' bgcolor='#FFFF00'>
+{{else}}
+<tr align=center  style='font-size:12pt' bgcolor='#FFFFFF'>
+{{/if}}
+<td style='font-size:10pt'>{{$arr.class_id}}</td>
+<td>{{$arr.class_year}}</td>
+<td>{{$arr.class_name}}</td>
+<td>{{$arr.day}}</td>
+<td>{{$arr.sector}}</td>
+<td style='font-size:10pt' align=left>{{$this->SsidToName[$arr.ss_id]}}</td>
+<td>{{if $arr.cooperate_sn > '0'}}{{$arr.cooperate_sn}}.{{$this->getTeaOne($arr.cooperate_sn)}}{{/if}}</td>
+<td>{{$arr.room}}</td>
+<td>{{if $arr.c_kind > '0'}}{{$arr.c_kind}}是{{/if}}</td>
+<td>
+<a href='{{$smarty.server.PHP_SELF}}?YS={{$this->year_seme}}&Tsn={{$this->Tsn}}&act=del&id={{$arr.course_id}}' onclick="return window.confirm('真的刪除嗎？');">X刪除</a>
+<a href='{{$smarty.server.PHP_SELF}}?YS={{$this->year_seme}}&Tsn={{$this->Tsn}}&edit={{$arr.course_id}}' >E修改</a>
+</td>
+</tr>
+{{if $smarty.get.edit==$arr.course_id}}
+<form action="{{$smarty.server.SCRIPT_NAME}}" method="post">
+<tr align=center  style='font-size:12pt' bgcolor='#ADD8E6'>
+<td style='font-size:10pt'>{{$arr.class_id}}</td>
+<td><input type="text" name="class_year" value="{{$arr.class_year}}" size="3" class=cc /></td>
+<td><input type="text" name="class_name" value="{{$arr.class_name}}" size="3" class=cc /></td>
+<td><input type="text" name="day" value="{{$arr.day}}" size="3" class=cc /></td>
+<td><input type="text" name="sector" value="{{$arr.sector}}" size="3" class=cc /></td>
+<td style='font-size:10pt' align=left>
+任課教師：<select name="teacher_sn">
+{{html_options  options=$this->TeaName selected=$arr.teacher_sn}}
+</select>
+<br>
+科目：<select name="ss_id">
+{{html_options  options=$this->SsidToName selected=$arr.ss_id}}
+</select>
+
+</td>
+<td><select name="cooperate_sn">
+<option label="--無--" value="0">--無--</option>
+{{html_options  options=$this->TeaName selected=$arr.cooperate_sn}}
+</select>
+
+
+</td>
+<td><input type="text" name="room" value="{{$arr.room}}" size="8" class=cc /></td>
+<td>{{html_options name=c_kind options=$this->YesNo selected=$arr.c_kind}}</td>
+<td>
+<INPUT TYPE='hidden' Name='form_act' value=''>
+<INPUT TYPE='hidden' Name='YS' value='{{$this->year_seme}}'>
+<INPUT TYPE='hidden' Name='Tsn' value='{{$arr.teacher_sn}}'>
+<INPUT TYPE='hidden' Name='course_id' value='{{$arr.course_id}}'>
+<input type="button" value="確定修改"  class='rr'  
+ onclick="if( window.confirm('送出修改喔？確定？')){this.form.form_act.value='update';this.form.submit()}">
+<br><input type ="button" onclick="history.back()" value="取消返回">
+
+</td>
+</tr>
+</form>
+{{/if}}
+
+{{/foreach}}
+
+
+
+
+</table>
+
+
+

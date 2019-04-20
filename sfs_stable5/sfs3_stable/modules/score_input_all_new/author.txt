@@ -1,0 +1,7 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+score_input_all_new - 成績輸入
+原版作者：brucelyc 2003/08/26
+程式版本：v1.0
+
+提供：成績輸入 的操作
+

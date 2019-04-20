@@ -1,0 +1,5 @@
+// $Id: author.txt 5310 2013-02-26 10:24:56 $
+
+career_leader 班級幹部管理 
+
+--- 2013-07-24 --- 台中市豐南國中 杜建忠 ( tea1258@mail.fnjh.tc.edu.tw )

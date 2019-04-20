@@ -1,0 +1,2 @@
+stud_top - 學生獎勵名單
+stud_top 1.1 --- 2003/09/10 --- brucelyc( brucelyc@seed.net.tw )

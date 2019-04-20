@@ -1,0 +1,2 @@
+stud_reg  註冊組學籍管理
+stud_reg1.0 --- 2001-10-1 --- HaMi( cik@mail.wpes.tcc.edu.tw )

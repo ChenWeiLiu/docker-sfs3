@@ -1,0 +1,66 @@
+<?php
+
+
+//
+// mig.cfg - Configuration file for MiG
+//
+//	http://tangledhelix.com/software/mig/
+//	Dan Lowe <dan@tangledhelix.com>
+//
+// Lines starting with "//" are comments.
+// You can also use the C style of comments, i.e.
+//       /* this is a comment */
+//
+// Please see the files in the docs/ subdirectory, especially the
+// docs/Install.txt file.
+//
+
+// String to use for page titles
+//
+$pageTitle = "外埔國小數位相館";
+
+// Email address of the person who runs this software
+//
+// Example:
+//   $maintAddr = "webmaster@mydomain.com";
+//
+$maintAddr = "rray@mail.wpes.tcc.edu.tw";
+
+// "Home" link (optional) -- a "home" page to "go back" to from the
+// main page.  Leave value at "" if you don't want one.
+//
+// Example:
+//   $homeLink = "http://mydomain.com/";
+//
+$homeLink = "http://hami.wpes.tcc.edu.tw/board/board_view.php";
+
+// "Home" link label (optional) -- the link label associated with the
+// $homeLink.  Leave value at "" if you don't want one.
+//
+// Example:
+//   $homeLabel = "My Home Page";
+//
+$homeLabel = "外埔國小全球資訊網";
+
+// Maximum number of columns to use (how many images across the
+// screen in a single row) in thumbnail views
+//
+$maxColumns = 4;
+
+// Should I use a prefix or a suffix for thumbnails?
+// (see docs/Install.txt and docs/Utilities.txt)
+//
+// Valid values are "prefix" and "suffix"
+//
+$markerType = "suffix";
+
+// String to use as marker for thumbnails (see docs/Install.txt and
+// docs/Utilities.txt)
+//
+$markerLabel = "th";
+
+// You can add things to your "jump" map.  See docs/Jump.txt.
+//
+$jumpMap["example"] = "currDir=./Example_Gallery";
+
+?>

@@ -1,0 +1,2 @@
+<text:p text:style-name="Text body"/><text:p text:style-name="Text body"/>
+<table:table table:name="tab2" table:style-name="tab2"><table:table-column table:style-name="tab2.A"/><table:table-column table:style-name="tab2.B"/><table:table-column table:style-name="tab2.C"/><table:table-column table:style-name="tab2.D"/><table:table-column table:style-name="tab2.E"/><table:table-column table:style-name="tab2.F"/>

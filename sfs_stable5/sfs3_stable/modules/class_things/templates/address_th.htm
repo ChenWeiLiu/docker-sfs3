@@ -1,0 +1,99 @@
+<!-- $Id: address_th.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+	width:2.7cm;
+	height:1.5cm;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+	width:2.7cm;
+	height:1.5cm;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+-->
+</style>
+
+
+
+<form name='form1' method='post' action=''> 
+
+	<input type='submit' name='Submit1' value='下載班級通訊錄' target="_blank" >
+		<br>下載列印時，紙張設為為 A4橫向，瀏灠器字型不設限最小字、頁首頁尾設定要去除！
+</form>
+			
+<table class="formdata" >
+	<caption>{{ $class_name }}</caption> 
+  <tr> 
+    <th>座號</th>
+    <th>姓名</th>
+	  <th>性別</th>
+    <th>生日</th>
+    <th>地址</th>
+    <th>監護人</th>
+    <th>關係</th>
+    <th>職稱</th>
+    <th>電話</th>
+  </tr>
+  {{foreach key=key1 item=data from=$data_array }} 
+  
+  {{if $key1 is not div by 2}} 
+  <tr class="altrow">
+  {{else }} 
+  <tr>
+  {{/if}} 
+    <td>{{$data.site_num}}</td>
+    <td>{{$data.stud_name}}</td>
+	  <td>{{$data.stud_sex}}</td>
+    <td>{{$data.stud_birthday}}</td>
+    <td>{{$data.stud_addr_1}}</td>
+
+    <td>{{$data.d_guardian_name}}</td>
+    <td>{{$guardian_relation[$data.guardian_relation]}}</td>
+    <td>{{$data.guardian_work_name}}</td>
+    <td>{{$data.stud_tel_1}}<br>{{$data.stud_tel_2}}</td>    
+
+  </tr>
+  {{/foreach}} 
+</table>
+
+

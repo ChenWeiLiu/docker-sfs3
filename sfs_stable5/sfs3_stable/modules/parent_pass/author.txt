@@ -1,0 +1,8 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+parent_pass - 家長帳號管理
+原版作者：jrh
+
+jrh@www.tnc.edu.tw 2003/05/20
+
+提供管理者管理家長的帳號和密碼查詢
+

@@ -1,0 +1,8 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+school_calendar - 校園行事曆
+2003-03-22 -- tad(tad@www.tnc.edu.tw )
+台南縣教育網路中心 網管研發組組長 吳弘凱 撰寫
+
+calendar行事曆模組的校務端介面，換言之必須有安裝calendar行事曆模組才能使用此模組。
+在calendar行事曆模組中，若是事件歸類為「校務」者，該事件便會出現在此模組中。

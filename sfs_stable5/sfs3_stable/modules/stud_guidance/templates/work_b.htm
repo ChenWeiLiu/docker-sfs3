@@ -1,0 +1,135 @@
+{{* $Id: work_b.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<script>
+<!--
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+//-->
+</script>
+<FORM METHOD=POST ACTION="{{$PHP_SELF}}" name=f1>
+
+
+
+<TABLE border=0 width='100%'  cellspacing=1 cellpadding=2 bgcolor='' style="font-size:10pt">
+<TR  align="center">
+<td width="50%" colspan=2>填寫個案基本資料</td>
+<td width="50%" colspan=2>
+<INPUT TYPE=button  value='儲存資料' onclick=" bb1('確定存入？True？','write');" class=bur2>
+</td>
+</tr><TR>
+<td width="20%">個案姓名</td>
+<td width="30%">{{$the_stu.stud_name}}</td>
+<td width="20%">性　　別</td>
+<td width="30%">{{$SEX[$the_stu.stud_sex]}}</td>
+</tr><TR>
+<td width="20%">出生日期</td>
+<td width="30%">{{$the_stu.stud_birthday}}</td>
+<td width="20%">籍　　貫</td>
+<td width="30%">{{$birth_state[$the_stu.stud_birth_place]}}</td>
+</tr><TR>
+<td width="20%">班　　級</td>
+<td width="30%">{{$the_stu.cgrade}}&nbsp;{{$the_stu.seme_num}}號</td>
+<td width="20%">身份證字號</td>
+<td width="30%">{{$the_stu.stud_person_id}}</td>
+</tr><TR>
+<td width="20%">家長或監護人</td>
+<td width="30%">{{$the_stu.guardian_name}}</td>
+<td width="20%">職　　業</td>
+<td width="30%">{{$the_stu.guardian_unit}}</td>
+</tr><TR>
+<td width="20%">聯絡人住址</td>
+<td width="30%">{{$the_stu.guardian_address}}</td>
+<td width="20%">電　　話</td>
+<td width="30%">{{$the_stu.guardian_phone}}{{$the_stu.guardian_hand_phone}}</td>
+</tr><TR>
+<td width="20%">重要關係人</td>
+<td width="30%">
+<INPUT TYPE='text' NAME='about_man' size='20'  class='ip12' value='{{$gui_stu.about_man}}'></td>
+<td width="20%">關　　係</td>
+<td width="30%">
+<INPUT TYPE='text' NAME='relation' size='20'  class='ip12' value='{{$gui_stu.relation}}'></td>
+</tr><TR>
+<td width="20%">聯絡住址</td>
+<td width="30%">
+<INPUT TYPE='text' NAME='ab_man_addr' size='20'  class='ip12' value='{{$gui_stu.ab_man_addr}}'></td>
+<td width="20%">電　　話</td>
+<td width="30%">
+<INPUT TYPE='text' NAME='ab_man_tel' size='20'  class='ip12' value='{{$gui_stu.ab_man_tel}}'></td>
+</tr><TR>
+<td width="20%">輔導者*</td>
+<td width="30%">{{assign var="tea_sn" value=$gui_stu.guid_tea_sn}}{{$teach.$tea_sn.name}}</td>
+<td width="20%">接案日期*</td>
+<td width="30%"><INPUT TYPE='text' NAME='begin_date' size='10'  class='ip12' value='{{$gui_stu.begin_date}}'></td>
+</tr><TR>
+<td width="20%">問題類別*</td>
+<td width="30%">
+{{html_checkboxes name="guid_c_kind" options=$question_kind selected=$gui_stu.guid_all_kind separator="<br />"}}
+</td>
+<td width="20%">偏差行為*</td>
+<td width="30%">
+<INPUT TYPE='text' NAME='guid_c_behave' size='20'  class='ip12' value='{{$gui_stu.guid_c_behave}}'></td>
+</tr>
+<tr><td width="100%" colspan=4><HR size=1></td></tr>
+<TR>
+<td width="20%">一、個案源起</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="guid_begin_why" ROWS="3" COLS="50" class=ip12>{{$gui_stu.guid_begin_why}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%">二、問題行為概述<BR>　　(適應不良原因)*</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="guid_c_reason" ROWS="3" COLS="50" class=ip12>{{$gui_stu.guid_c_reason}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%" >三、家庭背景</td>
+<td width="80%" colspan=3>&nbsp;</td>
+</tr><TR>
+<td width="20%" align="center">1.家庭結構</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="about_home" ROWS="3" COLS="50" class=ip12>{{$gui_stu.about_home}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%" align="center">2.學校生活</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="about_school" ROWS="3" COLS="50" class=ip12>{{$gui_stu.about_school}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%" align="center">3.身心特質</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="person_specific" ROWS="3" COLS="50" class=ip12>{{$gui_stu.person_specific}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%" align="center">4.其他　　</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="about_oth" ROWS="3" COLS="50" class=ip12>{{$gui_stu.about_oth}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%">四、分析與診斷</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="st_analysis" ROWS="3" COLS="50" class=ip12>{{$gui_stu.st_analysis}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%">五、輔導策略</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="guidance_method" ROWS="3" COLS="50" class=ip12>{{$gui_stu.guidance_method}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%">六、特殊記錄</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="st_oth_record" ROWS="3" COLS="50" class=ip12>{{$gui_stu.st_oth_record}}</TEXTAREA></td>
+</tr><TR>
+<td width="20%" align="center">結案否*</td>
+<td width="80%" colspan=3>
+<select name="guid_c_isover">
+<option value="0"{{if $gui_stu.guid_c_isover=='0'}} selected{{/if}}>否</option>
+<option value="1"{{if $gui_stu.guid_c_isover=='1'}} selected{{/if}}>是</option>
+</select>
+</td>
+</tr><TR>
+<td width="20%">七、結案原因*</td>
+<td width="80%" colspan=3>
+<TEXTAREA NAME="guid_over_reason" ROWS="3" COLS="50" class=ip12>{{$gui_stu.guid_over_reason}}</TEXTAREA></td>
+</tr><TR>
+<td width="100%" colspan=4 align="center">
+<INPUT TYPE=button  value='儲存資料' onclick=" bb1('確定存入？True？','write');" class=bur2>
+<INPUT TYPE="hidden" name='guid_c_id' value='{{$gui_stu.guid_c_id}}'>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+</tr>
+</table>
+</FORM>
+

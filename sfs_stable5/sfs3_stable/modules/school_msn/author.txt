@@ -1,0 +1,7 @@
+School_msn - 校園MSN
+原創作者：杜建忠
+
+tea1258@mail.fnjh.tcc.edu.tw 2011-02-19
+//$Id$
+
+校園MSN , 協助校內人員資訊及檔案交換

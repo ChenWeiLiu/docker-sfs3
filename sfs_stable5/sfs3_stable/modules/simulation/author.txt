@@ -1,0 +1,8 @@
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+simulation - 身分模擬
+原創作者：Hami
+
+cik@boe.tcc.edu.tw 2006-1-6
+
+
+提供系統管理者模擬使用者身分,以便了解其作業。

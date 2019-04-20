@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+{{ if not $print  }}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+{{/if}}
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>家長委員圈選單</title>
+<style type="text/css">
+<!--
+table.formdata {
+	border: 1px solid #000000;
+	border-collapse:collapse;
+	padding-right: 1cm;
+	font-size: 14pt;
+}
+table.formdata caption  {
+    font-size: 16pt;
+}
+table.formdata th {
+	border: 1px solid #000000;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:center;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+	width:3cm;
+	height:1cm;
+}
+table.formdata th.sp {
+    width:0.2cm;
+}
+table.formdata td {
+	border: 1px solid #000000;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+	width:3cm;
+	height:1cm;	
+}
+
+table.formdata td.sp {
+    width:0.2cm;
+}
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+p.foot{
+	font-size: 16pt;
+	margin-left: 1cm;
+
+}
+-->
+</style>
+</head>
+
+<body>
+{{ if not $print  }}	
+	<a href="?print=1" target="_blank"><span class='like_button'>網頁輸出列印</span></a>，說明：紙張設定為 A4直向。
+{{ /if}}	
+<table class="formdata">
+  <caption>{{$school_name}}{{$year}}學年度{{$class_name}}家長委員圈選名冊</caption>
+  <tr>
+    <th > 圈選處 </th>
+    <th> 家長姓名 </th>
+    <th>學生姓名</th>
+    <th class="sp"></th>
+    <th> 圈選處 </th>
+    <th> 家長姓名 </th>
+    <th>學生姓名</th>
+  </tr>
+  <tr>
+{{section name=id loop=$data_order }}
+{{if $smarty.section.id.iteration is not div by 2 }}
+    <td>&nbsp;</td>
+    <td>{{ $data_fname[id] }}</td>
+    <td>{{ $data_name[id] }}</td>
+    <td class="sp"></td>
+    <td>&nbsp;</td>
+
+    <td>{{  $data_fname[id.index_next] }}</td>
+    <td>{{ $data_name[id.index_next] }}</td>
+  </tr>
+{{/if}}  
+{{/section}}  
+</table>
+<p class="foot">每班圈選兩名</p>
+{{ if not $print  }}
+{{include file="$SFS_TEMPLATE/footer.tpl"}}
+{{/if}}

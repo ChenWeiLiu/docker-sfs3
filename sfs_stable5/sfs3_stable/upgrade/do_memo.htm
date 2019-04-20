@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>升級準備</title>
+</head>
+<body>
+<h3>SFS3 升級說明</h3>
+<form action="upgrade2-3.php" method="POST">
+<table cellpadding="0" bgcolor="#BEE0EE" width="600">
+<tr><td>
+您已經完成了升級前的準備動作，接下來的動作將費一些時間，更新程式執行時間，因資料量及主機速度，而有不同。 
+</td></tr>
+<tr>
+<td>
+舊班名設定
+<?php
+	echo "<select name=\"class_kind\">";
+	while(list($tid,$tname) = each($class_name_kind)){
+		if($tid>0 && $tid < (count($class_name_kind)-1) )
+			echo "<option value=\"$tid\">$tname</option>";
+	}
+	
+?>
+</select><br><font color=red> (如班名未在選項中，須自行修改 sfs3/include/config.php 中，有關班名的設定)</font>
+<br>
+</td>
+</tr>
+<tr><td>
+<input name="do_it" value="執行升級" type="submit">
+</td></tr>
+
+</table>
+</form>
+</body>
+</html>

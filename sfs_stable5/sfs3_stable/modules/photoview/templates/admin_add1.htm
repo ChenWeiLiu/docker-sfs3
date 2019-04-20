@@ -1,0 +1,60 @@
+{{* $Id: admin_add1.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+<script language="JavaScript">
+
+function chk_empty(item) {
+   if (item.value=="") { return true; } 
+}
+
+function check() { 
+   var errors='' ;
+   
+   if (chk_empty(document.myform.Iact_name) || chk_empty(document.myform.Iact_date) || chk_empty(document.myform.Iact_info))  {
+      errors = '活動名稱、日期、簡介部份不可以空白！' ; }
+
+   if (errors) alert (errors) ;
+   document.returnValue = (errors == '');
+ 
+}
+
+</script>
+<form name=myform enctype="multipart/form-data" method="post" action="{{$PHP_SELF}}"  onSubmit="check();return document.returnValue">
+  <h2>相片管理--新增 </h2>
+  <table width="95%" border="1" cellspacing="0" cellpadding="4" bordercolorlight="#FFFFFF" bordercolordark="#3333FF" bgcolor="#CCFFFF" bordercolor="#33CCFF">
+     <tr> 
+      <td width="21%" bgcolor="#66CCFF">使用前提醒</td>
+      <td width="79%"> 
+        上傳檔案，不要使用中文檔名！<br />
+        不要上傳過多的圖片，20張內是比較恰當的！！
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">相片名稱：</td>
+      <td width="79%"> 
+        <input type="text" name="Iact_name" size="60">
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">建製日期：</td>
+      <td width="79%"> 
+        <input type="text" name="Iact_date" size="60" value="{{$now_date}}" >
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">簡介：</td>
+      <td width="79%"> 
+        <textarea name="Iact_info" cols="60" rows="3"></textarea>
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">&nbsp;</td>
+      <td width="79%"> 
+        <input type="Submit" name="Submit" value="下一步" >
+        <input type="reset" name="Submit2" value="重設">
+        <input type="hidden" name="Iuser" value="{{$session_tea_name}}" >
+      </td>
+    </tr>
+  </table>
+</form>
+{{include file="$SFS_TEMPLATE/footer.tpl"}}

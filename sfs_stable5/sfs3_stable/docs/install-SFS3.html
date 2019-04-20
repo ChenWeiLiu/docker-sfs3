@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=Big5">
+  <title>SFS3</title>
+  <style type="text/css">
+  body,td{line-height:1.8}
+  </style>
+</head>
+<body>
+<div style="text-align: center;"><a name="top"></a><font size="+2">從無到有學務系統SFS3.0安裝全紀錄</font><br>
+<font size="2">原著：<a href="mailto:jrh@www.tnc.edu.tw">jrh@www.tnc.edu.tw</a><br>
+修改：<a href="mailto:tad@www.tnc.edu.tw">tad@www.tnc.edu.tw</a></font><br>
+<br>$Id: install-SFS3.html 5310 2009-01-10 07:57:56Z hami $
+</div>
+<br>
+<table cellpadding="12" cellspacing="1" border="0"
+ style="text-align: left; width: 100%; background-color: rgb(0, 0, 153);">
+  <tbody>
+    <tr>
+      <td
+ style="vertical-align: top; background-color: rgb(255, 255, 204);"><a
+ href="#p1"> 	  一.安裝作業系統RedHat7.3</a><br>
+      <a href="#p2"> 二.安裝MySQL</a><br>
+      <a href="#p3"> 三.安裝Apache與PHP等相關套件</a><br>
+      <a href="#p4"> 四.安裝phpMyAdmin-2.3.3</a><br>
+      <a href="#p5"> 五.學務系統的安裝</a><a href="#p7"></a></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<a name="p1"></a> 一.安裝Linux作業系統<a href="#top">[回目錄]</a><br>
+<ol>
+  <li>若是版本太舊，建議至少升級到redhat7.3。</li>
+  <li>若您將來正式安裝上線的話請記得參照 <a href="http://linux.tnc.edu.tw/techdoc/autourpm/exec-autourpm.html">『架設自動更新 RedHat RPM 套件服務』</a>，並做好防駭設定。</li>
+</ol>
+<br>
+<a name="p2"></a> 二.安裝MySQL<a href="#top">[回目錄]</a><br>
+<ol>
+  <li>停止現有MySQL服務：<br>
+rpm版：/etc/rc.d/init.d/mysql stop<br>
+tar版：/usr/local/mysql/bin/mysqladmin -u root -p shutdown<br>
+研習時：kill -9 MySQL程序編號(MySQL程序編號可由ps aux查詢之)<br>
+  </li>
+  <li>研習時，請直接將/usr/local/mysql 移除，可跳過3.4步驟
+    <table cellpadding="4" cellspacing="1"
+ style="text-align: left; width: 100%;" bgcolor="#744aa0">
+      <tbody>
+        <tr bgcolor="#fff8fb">
+          <td style="vertical-align: top;" bgcolor="#fff8fb">rm -Rf
+/usr/local/mysql</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>先檢查有無rpm版本的MySQL<br>
+    <table cellpadding="4" cellspacing="1"
+ style="text-align: left; width: 100%;" bgcolor="#744aa0">
+      <tbody>
+        <tr bgcolor="#fff8fb">
+          <td style="vertical-align: top;" bgcolor="#fff8fb">rpm -qa
+|grep MySQL<br>
+若是有請先把資料備份出來：cp 資料庫位置 欲備份位置 -Rp (如： cp /var/mysql /var/mysql_bak -Rp)<br>
+然後移除掉MySQL：rpm -e 套件名稱</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>若有舊版MySQL記得先備份<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">把資料備份出來：cp
+資料庫位置 欲備份位置 -Rp (如： cp /usr/local/mysql/var /home/mysql_var_bak -Rp)<br>
+或是直接將/usr/local/mysql 改名，(如： mv&nbsp; /usr/local/mysql&nbsp;
+/usr/local/mysql_bak)</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>下載MySQL：ftp://ftp2.tnc.edu.tw/pub/database/MySql/Downloads/MySQL-3.23/mysql-3.23.54a.tar.gz
+到 /usr/local/src<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">tar xzvf
+mysql-3.23.54a.tar.gz<br>
+cd mysql-3*<br>
+./configure&nbsp; --prefix=/usr/local/mysql&nbsp;
+--localstatedir=/usr/local/mysql/var<br>
+make<br>
+make install</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>以下步驟若是升級MySQL者請跳過，重裝者或第一次安裝者才需操作。<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">scripts/mysql_install_db（若是升級mysql的話，這一行不要執行）<br>
+adduser mysql<br>
+chown -R mysql:mysql /usr/local/mysql<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>啟動MySQL<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">
+/usr/local/mysql/bin/safe_mysqld&nbsp; --user=mysql&nbsp; &amp; </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>設定資料庫管理者密碼：是升級MySQL者請跳過，重裝者或第一次安裝者才需操作。
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb"> 		  cd
+/usr/local/mysql/bin<br>
+		  ./mysqladmin -u root password '密碼' </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li> 如果希望一開機就啟動 mysql 的話，請將以下的啟動指令加入/etc/rc.d/rc.local
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">
+/usr/local/mysql/bin/safe_mysqld&nbsp; --user=mysql&nbsp; &amp; </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>OK!<br>
+    <br>
+  </li>
+</ol>
+<br>
+<a name="p3"></a> 三.安裝Apache與PHP等相關套件<a href="#top">[回目錄]</a><br>
+<ol>
+  <li>查看zlib是否已經安裝<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">rpm -q zlib</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <br>
+  <li>若尚未安裝，則開始進行安裝：
+zlib-1.1.4.tar.gz(下載位置：ftp://ftp.info-zip.org/pub/infozip/zlib/zlib-1.1.4.tar.gz
+或http://unc.dl.sourceforge.net/sourceforge/libpng/zlib-1.1.4.tar.gz ）   
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">tar zxvf
+zlib-1.1.4.tar.gz<br>
+cd zlib-1.1.4<br>
+./configure<br>
+make<br>
+make install</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>查看iconv是否已經安裝<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">rpm -q
+libiconv</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>若尚未安裝，則開始進行安裝：
+libiconv-1.8.tar.gz(下載位置：ftp://ftp.tnc.edu.tw/Sysop/libiconv/libiconv-1.8.tar.gz）
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">tar zxvf
+libiconv-1.8.tar.gz<br>
+cd libiconv-1.8<br>
+./configure<br>
+make<br>
+make install</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <br>
+  <li>停止現有Apache服務：<br>
+rpm版：/etc/rc.d/init.d/httpd stop<br>
+tar版：/usr/local/apache/bin/apachectl stop</li>
+  <li>研習時，請直接將/usr/local/apache移除，可跳過7.8步驟<br>
+    <table cellpadding="4" cellspacing="1"
+ style="text-align: left; width: 100%;" bgcolor="#744aa0">
+      <tbody>
+        <tr bgcolor="#fff8fb">
+          <td style="vertical-align: top;" bgcolor="#fff8fb">rm -Rf
+/usr/local/apache</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>先檢查有無rpm版本的Apache
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">rpm -qa
+|grep apache<br>
+若是有請先把資料備份出來，然後移除掉Apache：rpm -e 套件名稱</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>若有舊版Apache記得先備份<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">把資料備份出來或是直接將/usr/local/apache
+改名，(如： mv&nbsp; /usr/local/apache /usr/local/apache_bak)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <br>
+  <li>下載apache_1.3.27.tar.gz(下載位置：ftp://ftp.tnc.edu.tw/Sysop/Apache/apache_1.3.27.tar.gz）</li>
+  <li> 下載
+php-4.3.0.tar.gz(下載位置：ftp://ftp.tnc.edu.tw/Sysop/PHP/php-4.3.0.tar.gz）</li>
+  <li> 解壓縮，開始進行安裝php和apache：
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb"> tar zxvf
+apache_1.3.27.tar.gz<br>
+tar zxvf php-4.3.0.tar.gz<br>
+cd apache*<br>
+./configure --prefix=/usr/local/apache<br>
+cd ../php*<br>
+          <span style="color: rgb(51, 51, 255);">./configure
+--with-mysql=/usr/local/mysql --with-apache=../apache_1.3.27
+--enable-track-vars --with-zlib --with-iconv=/usr/local/lib/ --with-gd</span><br>
+make<br>
+make install<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li> 安裝apache：
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">cd
+../apache*<br>
+./configure --prefix=/usr/local/apache
+--activate-module=src/modules/php4/libphp4.a<br>
+make<br>
+make install</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <br>
+  <li>複製php.ini-dist到/usr/local/lib/並更名為php.ini
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">cd&nbsp;
+../php*<br>
+cp php.ini-dist /usr/local/lib/php.ini<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>啟動Apache
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">/usr/local/apache/bin/apachectl
+start</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <br>
+  <li>修改httpd.conf
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb"> vi
+/usr/local/apache/conf/httpd.conf </td>
+        </tr>
+      </tbody>
+    </table>
+加入以下幾列：<br>
+AddType application/x-httpd-php&nbsp; .php .php3 .phtml<br>
+AddType application/x-httpd-php-source&nbsp; .phps<br>
+修改&nbsp; DirectoryIndex&nbsp; 變成:<br>
+DirectoryIndex&nbsp; index.php&nbsp; index.html&nbsp; index.php3&nbsp;
+index.phtml&nbsp; index.shtml </li>
+  <li>修改php.ini
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">vi&nbsp;
+/usr/local/lib/php.ini</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+將以下兩個設定打開：<br>
+zlib.output_compression = On<br>
+register_globals = On<br>
+  <br>
+  <li>重新啟動Apache
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">/usr/local/apache/bin/apachectlrestart</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <br>
+  <li>試試看是否安裝成功
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">vi&nbsp;
+/usr/local/apache/htdocs/phpinfo.php</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+加入以下幾列：<br>
+&lt;?php<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; phpinfo();<br>
+?&gt;<br>
+  <li> 存成phpinfo.php，打開瀏覽器於網址列輸入http://your.domain/phpinfo.php，看看是否安裝成功</li>
+  <br>
+  <br>
+</ol>
+<a name="p4"></a> 四.安裝phpMyAdmin<a href="#top">[回目錄]</a><br>
+<ol>
+  <li>下載位置：ftp://ftp.tnc.edu.tw/Sysop/PHP/phpMyAdmin-2.3.3pl1-php.tar.gz，並將之存放於&nbsp;
+/usr/local/apache/htdocs&nbsp; 之下</li>
+  <li>解壓縮：<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">cd
+/usr/local/apache/htdocs<br>
+tar xzvf phpMyAdmin*</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>修改config.inc.php&nbsp; 若原本不存在，請由cpnfigure.inc.php.sample&nbsp;
+複製過來，並修改屬性，始能編輯<br>
+    <table cellpadding="4" cellspacing="1" border="0" bgcolor="#744aa0"
+ style="text-align: left; width: 100%;">
+      <tbody>
+        <tr>
+          <td style="vertical-align: top;" bgcolor="#fff8fb">vi&nbsp;
+configure<br>
+修改以下兩行&nbsp; <br>
+$cfg['PmaAbsoluteUri'] = 'http://localhost/phpMyAdmin';&nbsp;&nbsp;
+(請改成您放置phpMyAdmin的網路位置）<br>
+$cfg['Servers'][$i]['auth_type'] = 'http';（預設為config，請改成http）</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li> 現在你可以透過瀏覽器來操作MySQL了！</li>
+</ol>
+<br>
+<br>
+<a name="p5"></a> 五.學務系統的安裝<a href="#top">[回目錄]</a><br>
+<ol>
+  <li> 下載sfs3到/usr/local/apache/htdocs<br>下載位置：<br>ftp://ftp.tnc.edu.tw/Sysop/sfs3/<br>http://163.17.40.18/tnc/sfs3/</li>
+  <li> 解壓縮 tar xzvf sfs-*.tar.gz </li>
+  <li> 執行 ./setup.sh (2003/02/27 以後的版本適用) <br>注意! 若是 2003/02/24 以前的版本，請：<br> mkdir sfs3/data<br>chmod 777 sfs3/data<br>chmod 666 sfs3/include/config.php</li>
+  <li> 於瀏覽器上執行&nbsp; http://your.school.domain/sfs3/install.php</li>
+  <li> 依照網頁上的指示填入相關資料(除了管理者密碼和mysql密碼之外其餘可以依照預設值）</li>
+</ol>
+<br>
+</body>
+</html>
+

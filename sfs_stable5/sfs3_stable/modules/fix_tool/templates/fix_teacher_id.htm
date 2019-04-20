@@ -1,0 +1,27 @@
+<HR size=1 color=red>
+<strong>全校身份證字號重複檢查結果列表(共{{$this->tol}}組重複)</strong>
+<br />
+<table bgcolor='#E6ECF0'>
+<tr align=center><td>重複的字號</td><td>重複之人員列表</td></tr>
+{{foreach from=$this->check key=K item=Ar}}
+<tr bgcolor='#FFFFFF'>
+{{if $K==''}}<td>--空值--</td>{{else}}<td>{{$K}}</td>{{/if}}
+<td><table>
+{{foreach from=$Ar item=arr}}
+<tr>
+{{if $arr.kind=='T'}}
+<td><font color='#8B6914'>教師</font></td>
+<td>{{$arr.cname}}</td>
+<td><a href='../teach_class/teach_list.php?teacher_sn={{$arr.SN}}&sel=0' target=_blank>基本資料</a></td>
+{{else}}
+<td><font color='#4D4D4D'>學生</font></td>
+<td>{{$arr.cname}}</td>
+<td><a style='color:#008000;' href='../stud_search/stu_list.php?student_sn={{$arr.SN}}' target=_blank>學籍</a>、
+<a style='color:#008000;' href='fix_tool.php?student_sn={{$arr.SN}}' target=_blank>工具箱</a>
+</td>
+{{/if}}
+</tr>
+{{/foreach}}
+</table></td></tr>
+{{/foreach}}
+</table>

@@ -1,0 +1,4 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+health_act_data - 匯出健康中心資料
+health_act_data 1.0 -- 2005-1-6 -- sula( sula@ms.tceb.edu.tw )

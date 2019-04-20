@@ -1,0 +1,223 @@
+<TABLE border=0 width=100% cellspacing='1' cellpadding=1>
+  <TR bgcolor=#9EBCDD>
+    <td width=100%  style="vertical-align: top;" colspan=2>
+    <!-- 第1格內容 -->
+      {{$this->sel_year}}{{$this->sel_grade}} ==> <FONT  COLOR="#FF0000">先選學期,再選年級,請點選全部領域,幾個領域以上不及格,幾個學期成績列表,就會出現網頁列表與CSV！！</FONT>
+      <br><FONT  COLOR="#FF0000">如要知道各班補考人數，請下載CSV，再用EXCEL做班級排序即可知道細節。如有疑問請先看未執行程式前的說明與注意事項</FONT>
+    </td>
+  </tr>  
+  <TR bgcolor=#9EBCDD>
+    <td colspan=2>
+    <!-- 班級資料區段 --開始-->
+    {{if $smarty.get.Y!='' && $smarty.get.G!=''}}
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  >
+    <TR bgcolor=white>
+     {{foreach from=$this->scope item=ii key=KK}}
+       {{if $smarty.get.S==$KK}}
+       <td bgcolor="#9EBCDD"><label><input type="checkbox" value="{{$KK}}" 
+         onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$KK}}&Sfailnum={{$this->Sfailnum}}&Semesnum={{$this->Semesnum}}'" checked="checked">{{$ii}}</label></td>
+       {{else}}
+         <td><label><input type="checkbox" value="{{$KK}}" 
+          onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$KK}}&Sfailnum={{$this->Sfailnum}}&Semesnum={{$this->Semesnum}}'">{{$ii}}</label></td>
+       {{/if}}
+     {{/foreach}}
+    </TR>
+    <TR bgcolor=white>
+     {{foreach from=$this->scopefailnum item=ii key=KKa}}
+       {{if $smarty.get.Sfailnum==$KKa}}
+       <td bgcolor="#9EBCDD"><label><input type="checkbox" value="{{$KKa}}" 
+         onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$this->S}}&Sfailnum={{$KKa}}&Semesnum={{$this->Semesnum}}'" checked="checked">{{$ii}}</label></td>
+       {{else}}
+         <td><label><input type="checkbox" value="{{$KKa}}" 
+          onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$this->S}}&Sfailnum={{$KKa}}&Semesnum={{$this->Semesnum}}'">{{$ii}}</label></td>
+       {{/if}}
+     {{/foreach}}
+    </TR>
+    <TR bgcolor=white>
+     {{foreach from=$this->Semesfailnum item=ii key=KKb}}
+       {{if $smarty.get.Semesnum==$KKb}}
+       <td bgcolor="#9EBCDD"><label><input type="checkbox" value="{{$KKb}}" 
+         onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$this->S}}&Sfailnum={{$this->Sfailnum}}&Semesnum={{$KKb}}'" checked="checked">{{$ii}}</label></td>
+       {{else}}
+         <td><label><input type="checkbox" value="{{$KKb}}"
+          onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$this->S}}&Sfailnum={{$this->Sfailnum}}&Semesnum={{$KKb}}'">{{$ii}}</label></td>
+       {{/if}}
+     {{/foreach}}
+    </TR>
+    <tr>
+    {{if $smarty.get.S!='' && $smarty.get.Sfailnum!='' && $smarty.get.Semesnum!=''}}
+    <button onClick="javascript:window.open('{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$this->S}}&Sfailnum={{$this->Sfailnum}}&Semesnum={{$this->Semesnum}}&op=CSV','_blank')">{{$this->Y}}學期{{$this->G}}年級{{$this->Sfailnum}}領域以上不及格{{$this->Semesnum}}學期平均成績列表CSV檔</button>   
+    {{/if}} 
+    </tr>
+</TABLE>
+    {{if $smarty.get.S!='' && $smarty.get.Sfailnum!='' && $smarty.get.Semesnum!=''}}
+      <table>
+      <tr><td align=center>學生修業警示通知單</td></tr>
+        <form method='POST'>
+          <tr><td>通知事項：<textarea name='note_up' cols='100' rows='10'>{{$this->oldnote_up}}</textarea></td>
+          <input type='hidden' name='act_up' value='send_up'>
+          <td><input type='submit' value='修改通知事項'></td></tr>
+          <tr><td align=center>學生修業警示通知單家長回條</td></tr>         
+          <tr><td>家長回條事項：<textarea name='note_down' cols='100' rows='10'>{{$this->oldnote_down}}</textarea></td>
+          <input type='hidden' name='act_down' value='send_down'>
+          <td><input type='submit' value='修改家長回條事項'></td></tr>
+        </form>
+         <tr>
+           <td>
+             <button onClick="javascript:window.open('{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$this->S}}&Sfailnum={{$this->Sfailnum}}&Semesnum={{$this->Semesnum}}&op=ungraduate_note_print_up&show_score=1','_blank')">列印{{$this->Y}}學期{{$this->G}}年級{{$this->Semesnum}}學期平均成績{{$this->Sfailnum}}領域以上不及格修業警示單_顯示成績</button>
+             <button onClick="javascript:window.open('{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$this->S}}&Sfailnum={{$this->Sfailnum}}&Semesnum={{$this->Semesnum}}&op=ungraduate_note_print_up&show_score=0','_blank')">列印{{$this->Y}}學期{{$this->G}}年級{{$this->Semesnum}}學期平均成績{{$this->Sfailnum}}領域以上不及格修業警示單_顯示不及格</button>
+           </td>
+         </tr>
+     </table>
+    {{/if}}  
+
+    {{/if}}
+<!-- 班級資料區段 --結束-->
+<!-- 課程資料區段 --開始-->
+{{if $this->stu_data!=''}}
+<TABLE  border="0" cellspacing="1" cellpadding="4" width="100%" bgcolor="#cccccc" class="main_body" >
+<TR  bgcolor="#E1ECFF" align="center">
+<TD rowspan=2>學號</TD>
+<TD rowspan=2>班級</TD>
+<TD rowspan=2>座號</TD>
+<TD rowspan=2>姓名</TD>
+<TD rowspan=2>性別</TD>
+<TD rowspan=2>學期</TD>
+<td colspan=3>語文</td>
+<td colspan=3>數學</td>
+<td colspan=3>自然與生活科技</td>
+<td colspan=3>社會</td>
+<td colspan=3>健康與體育</td>
+<td colspan=3>藝術與人文</td>
+<td colspan=3>綜合活動</td>
+<TD rowspan=2>補考領域數</TD>
+<TD rowspan=2>通過領域數</TD>
+<TD rowspan=2>未通過領域數</TD>
+</tr>
+<tr>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計成績</TD>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計成績</TD>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計成績</TD>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計成績</TD>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計成績</TD>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計成績</TD>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計成績</TD>
+</TR>
+{{foreach from=$this->stu_data.A item=stu key=SN}}
+{{if $this->stu_data.H.$SN.total_ss_Nopass>=$smarty.get.Sfailnum}}
+ 
+<TR bgcolor=white  align=center>
+  <TD rowspan={{$smarty.get.Semesnum+1}} align=center>{{$stu.stud_id}}</TD>
+  <TD rowspan={{$smarty.get.Semesnum+1}} align=center>{{$stu.seme_class}}</TD>
+  <TD rowspan={{$smarty.get.Semesnum+1}} align=center>{{$stu.seme_num}}</TD>
+  <TD rowspan={{$smarty.get.Semesnum+1}} align=center>{{$stu.stud_name}}</TD>
+  <TD rowspan={{$smarty.get.Semesnum+1}} align=center>{{if $stu.stud_sex==1}}男{{else}}女{{/if}}</TD>
+            
+         
+    {{foreach from=$this->all_seme_array_smarty item=allsemes key=asK}}
+     <TD bgcolor=white align=center>{{$allsemes}}</TD>
+       {{foreach from=$this->scope2 item=SS key=K}}
+        <TD bgcolor=white align=left><font {{if $this->stu_data.B.$SN.$allsemes.$K.score_src<60}}color=#FF0000{{/if}}>{{$this->stu_data.B.$SN.$allsemes.$K.score_src}}</font></TD>
+        <TD bgcolor=white align=left><font {{if $this->stu_data.B.$SN.$allsemes.$K.score_test<60}}color=#FF0000{{/if}}>{{$this->stu_data.B.$SN.$allsemes.$K.score_test}}</font></TD>
+        <TD bgcolor=#E5E5E5 align=left><font {{if $this->stu_data.B.$SN.$allsemes.$K.score_end<60}}color=#FF0000{{/if}}>{{if $this->stu_data.B.$SN.$allsemes.$K.score_end!=""}}{{$this->stu_data.B.$SN.$allsemes.$K.score_end}}{{else}}<font color=#1A1A1A>{{$this->stu_data.F.$SN.$allsemes.$K.score}}</font>{{/if}}</font></TD>      
+       {{/foreach}}
+       <TD bgcolor=white align=center>{{$this->stu_data.E.$SN.$allsemes.total_ss}}</TD>
+       <TD bgcolor=#E5E5E5 align=center>{{$this->stu_data.E.$SN.$allsemes.total_ss_pass}}</TD>
+       <TD bgcolor=white align=center>{{$this->stu_data.E.$SN.$allsemes.total_ss_Nopass}}</TD>        
+</TR><TR> 
+    {{/foreach}}
+    <TD bgcolor=white align=center>平均</TD>
+     {{foreach from=$this->scope2 item=SS key=K}}
+       <TD bgcolor=white align=left><font color=#FF0000></font></TD>
+       <TD bgcolor=white align=left><font color=#FF0000></font></TD>
+       <TD bgcolor=#E5E5E5 align=left><font {{if $this->stu_data.H.$SN.$K<60}}color=#FF0000{{/if}}>{{if $this->stu_data.H.$SN.$K!=""}}{{$this->stu_data.H.$SN.$K}}{{else}}<font color=#1A1A1A>{{$this->stu_data.H.$SN.$K}}</font>{{/if}}</font></TD>      
+     {{/foreach}}
+       <TD bgcolor=white align=center></TD>
+       <TD bgcolor=#E5E5E5 align=center>{{$this->stu_data.H.$SN.total_ss_pass}}</TD>
+       <TD bgcolor=white align=center>{{$this->stu_data.H.$SN.total_ss_Nopass}}</TD>  </tr>
+       
+ 
+{{/if}}
+{{/foreach}}
+</TABLE>
+{{/if}}
+<!-- 課程資料區段 --結束-->
+</td></tr>
+</table>
+註：<div style="font-size:9pt;color:blue">
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('開發小組：\n陽明 江添河 湖南 許銘堯\n二林 紀明村 和仁 曾彥鈞\n大成 黃俊凱 和東 王麒富\n鳳霞 林建伸 伸港 梁世憲\n\n意見提供：\n線西 許毅貞 北斗 顏淑兒\n埤頭 洪淑瓊 二中 王文村\n花壇 施皇仰 舊社 徐千惠');">
+◎By 彰化縣學務系統開發小組  於 103.10 
+</FONT>
+
+
+
+
+
+
+
+
+
+
+<FONT SIZE="2" >
+<p class="MsoListParagraph" style="text-indent: -18.0pt; margin-left: 18.0pt">
+<span lang="EN-US">1、</span><span style="font-family: 新細明體,serif">注意！由於本程式運算需要大量記憶體，針對大型學校，程式執行到一半可能會發生中斷情況（畫面呈現空白），此時請網管人員調整</span><span lang="EN-US"> 
+php.ini </span><span style="font-family: 新細明體,serif">中</span><span lang="EN-US"> 
+memory_limit </span><span style="font-family: 新細明體,serif">的設定值，將預設值</span><span lang="EN-US"> 
+128MB </span><span style="font-family: 新細明體,serif">改為</span><span lang="EN-US"> 
+256MB </span><span style="font-family: 新細明體,serif">即可。</span></p>
+<p class="MsoListParagraph" style="text-indent: -18.0pt; margin-left: 18.0pt">
+<span lang="EN-US">2、</span><span style="font-family: 新細明體,serif">在</span><span lang="EN-US">103</span><span style="font-family: 新細明體,serif">學年上學期中操作時，由於三年級學生只有前四學期成績，分別為</span><span lang="EN-US">101</span><span style="font-family: 新細明體,serif">學年第</span><span lang="EN-US">1</span><span style="font-family: 新細明體,serif">學期、</span><span lang="EN-US">101</span><span style="font-family: 新細明體,serif">學年第</span><span lang="EN-US">2</span><span style="font-family: 新細明體,serif">學期、</span><span lang="EN-US">102</span><span style="font-family: 新細明體,serif">學年第</span><span lang="EN-US">1</span><span style="font-family: 新細明體,serif">學期、</span><span lang="EN-US">102</span><span style="font-family: 新細明體,serif">學年第</span><span lang="EN-US">2</span><span style="font-family: 新細明體,serif">學期。而</span><span lang="EN-US">103</span><span style="font-family: 新細明體,serif">學年三年級學生在</span><span lang="EN-US">102</span><span style="font-family: 新細明體,serif">學年第</span><span lang="EN-US">2</span><span style="font-family: 新細明體,serif">學期中，為二年級。</span></p>
+<p class="MsoListParagraph" style="text-indent: -18.0pt; margin-left: 18.0pt">
+<span style="font-family: 新細明體,serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+請如下圖點選</span></p>
+<p>
+<img border="0" src="images/ungraduate_stu02_00_01.JPG" width="885" height="268"></p>
+<p>3、新版注意。無班級與座號，表示該生為轉學生，其補考科目為轉學前，原學校期間不及格科目。若要其班級與座號，可由學號搜尋。</p>
+<p><img border="0" src="images/ungraduate_stu02_03.png" width="985" height="368"></p>
+<p>4、新版注意。表示該生，在8年級以前有補考科目。8年級以後無補考科目。由學期可知，在101-1~102-1有補考科目。目前年班，可直接將8改為9即可。可藉由學號查詢。</p>
+<p><img border="0" src="images/ungraduate_stu02_04.png" width="985" height="368"></p>
+<p>5、新版注意。CSV檔，出現,,,,,0,0,0,0,0,0,0,,7，表示該生為轉出生。已離開本校。</p>
+<p><img border="0" src="images/ungraduate_stu02_05.png" width="985" height="368"></p>
+<p>6、四個領域不及格的判斷標準為下圖所示</p>
+<p><img border="0" src="images/ungraduate_stu02_000.JPG" width="885" height="268"></p>
+<p>7、紅色字的成績為補考模組中的成績；黑色字的成績為原始成績</p>
+<p><img border="0" src="images/ungraduate_stu02_01.JPG" width="885" height="268"></p>
+<p>8、若出現下方的情況，表示補考成績還未輸入。若輸入，就會變成紅字。目前由原始成績取代。下圖中黑色框旁，有一排0分，表示補考成績輸入成績為零分。</p>
+<p><img border="0" src="images/ungraduate_stu02_02.JPG" width="885" height="268"></p>
+<p>　</DIV>
+</FONT>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

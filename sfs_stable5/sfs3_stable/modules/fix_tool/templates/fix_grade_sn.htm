@@ -1,0 +1,60 @@
+<!-- $Id: view_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<TABLE border=0 width=100% cellspacing='1' cellpadding=1>
+<TR bgcolor=#FFFFFF>
+<td width=100%  style="color:red;font-size:16pt;" colspan=2>
+本程式請在開發人員指示下修正，請勿任意操作，造成資料錯置！</td></tr>
+<TR bgcolor=#9EBCDD>
+<td width=100%  style="vertical-align: top;" colspan=2>
+<!-- 第1格內容 -->
+<FONT  COLOR="#FFFFFF"><B>學生畢業字號資料表grad_stud的重複狀況</B></FONT>
+</td>
+</tr>
+
+<TR  bgcolor=#9EBCDD>
+<td width=100% colspan=2 style='font-size:11pt;' >
+<table cellspacing='1' cellpadding=1 border=0>
+<tr bgcolor="#ffffff" style='color:#800000;font-size:13px;' align='center'>
+<td nowrap>流水號<br>grad_sn</td>
+<td nowrap>學號<br>stud_id</td>
+<td nowrap>學生流水號<br>student_sn</td>
+<td nowrap>畢業年<br>stud_grad_year</td>
+<td nowrap>畢業年級<br>class_year.</td>
+<td nowrap>畢業班級<br>class_sort</td>
+<td nowrap>[流水號]入學年.姓名<br>
+<font color=blue>！！點選後，就會修正該筆資料！！<br>！！只能點選有問題的資料！！</font>
+</td>
+</tr>
+{{foreach from=$this->all item=arr}}
+<tr align=center bgcolor=white>
+<td>{{$arr.grad_sn}}</td>
+<td>{{$arr.stud_id}}</td>
+<td>{{$arr.student_sn}}</td>
+<td>{{$arr.stud_grad_year}}</td>
+<td>{{$arr.class_year}}</td>
+<td>{{$arr.class_sort}}</td>
+<td align=left>{{foreach from=$this->GetID($arr.stud_id) item=ar2}}
+{{if $arr.student_sn==$ar2.student_sn}}
+
+[{{$ar2.student_sn}}] {{$ar2.stud_study_year}}.{{$ar2.stud_name}}
+{{else}}
+<label title="改用流水號{{$ar2.student_sn}}.{{$ar2.stud_name}}" style='color:red;'>
+<input type="checkbox" value="{{$arr.grad_sn}}_{{$arr.stud_id}}_{{$ar2.student_sn}}"
+ onclick="if(window.confirm('真的修改這筆嗎？')){location.href='{{$smarty.server.SCRIPT_NAME}}?form_act=update&data='+this.value;}">
+[{{$ar2.student_sn}}] {{$ar2.stud_study_year}}.{{$ar2.stud_name}}</label>
+{{/if}}
+
+{{/foreach}}
+</td>
+
+</tr>
+
+
+
+
+{{/foreach}}
+
+</table>
+</td>
+</tr>
+
+</TABLE>

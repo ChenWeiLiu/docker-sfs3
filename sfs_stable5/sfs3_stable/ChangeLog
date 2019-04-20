@@ -1,0 +1,40 @@
+$Id: ChangeLog,v 1.7.2.2 2005-01-26 01:50:09 brucelyc Exp $
+2005-01-26  brucelyc  <brucelyc@seed.net.tw>
+
+	* 2005/01/26 10:02 將 smarty 更新至 2.6.6 版
+	
+2003-10-13  OLS3  <ols3@www.tnc.edu.tw>
+
+	* 2003/10/13 10:53 加上 stable_200310131053 這個 tag ，做為 sfs_stable 分支的識別
+	
+2003-10-03  OLS3  <ols3@www.tnc.edu.tw>
+
+	* 2003/10/03 13:32 加上 sfs_exp 這個 tag , 做為 sfs_exp_br 分支的識別.
+	
+2003-05-09  OLS3  <ols3@www.tnc.edu.tw>
+
+	* 權限體系將 refine，使權限設定較為明確。
+	
+2003-03-19  OLS3  <ols3@www.tnc.edu.tw>
+
+	* 確立模組的管理及寫作規範，並開始撰寫模組設計的指引文件，期待有更多好用的模組能貢獻進來。
+
+2003-03-19  OLS3  <ols3@www.tnc.edu.tw>
+
+	* 決定增加一個學制的欄位，以因應未來完全中學等特殊學制共存的情況。
+
+2003-03-19  OLS3  <ols3@www.tnc.edu.tw>
+
+	* tools/setup.php 已移除，改放在 administrator/install_module 中
+	
+	並且，採用 sfs_check 認證，不必再由表單來輸入 db 的 user / password。
+
+
+2003-03-15  OLS3  <ols3@www.tnc.edu.tw>
+
+	* tools/setup.php
+	
+	安裝模組的程式，由 SFS 提供，不包裹在各模組中。
+
+2009-01-11 hami	<cik@boe.tcc.edu.tw>
+	* 將合作平台由 CVS 轉至 SVN，放棄 upsfs 更新方式。

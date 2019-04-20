@@ -1,0 +1,43 @@
+
+"Jump" URL tags
+---------------
+
+What is a "jump" tag?  Well, many people (including the author) didn't like
+the really long URLs that MiG uses because it made it clumsy to paste them
+into an email, or a chat window, etc.
+
+"Jump" tags were invented to address this problem.  Take this URL for
+example:
+
+  http://tangledhelix.com/gallery/index.php?pageType=folder&currDir=./Our%20House/Before%20We%20Redecorated
+
+At 105 characters long, and having tons of URL-encoded %xx type things in
+it, it's not a pretty URL to have to send someone.  But here's what you can
+do.  Add a line to your mig.cfg that adds to the Jump Map.  There's an
+example of this in mig.cfg.default.
+
+  $jumpMap["example"] = "currdir=./Example_Gallery";
+
+That one goes to the example gallery.  To go to the above URL is a little
+more like this:
+
+  $jumpMap["house"] = "currDir=./Our%20House/Before%20We%20Redecorated";
+
+See, all I did here was copy the value of "currDir".  Then you can give out
+this URL instead:
+
+  http://tangledhelix.com/gallery/?jump=house
+
+Much smaller and nicer.  Imaging if you have albums four or five levels
+deep (I know I do) and the URL gets hugely long.  Hopefully this will
+address that trouble.
+
+That much said, I will warn you of two things:
+
+1. The label in [] marks in the mig.cfg has to be in double quotes, i.e. ""
+   because PHP doesn't seem to like it using single quotes, like ''.
+
+2. This works with Apache web servers.  I don't know if it works with
+   anything else.  If you're running something other than Apache, let me
+   know how you fare with this feature.
+

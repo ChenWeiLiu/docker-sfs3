@@ -1,0 +1,62 @@
+<!-- //$Id: sta_view.htm 7304 2013-06-06 07:34:36Z hsiao $ -->
+<div align='left'>
+    <TABLE width='800'  border='0'>
+        <TR><TD align=right>{{$this->links->show_page()}}</TD></TR>
+    </TABLE>
+    <form action="sta_print.php" method="post" target="_blank">
+        <input type="hidden" name="form_act" value=""><font size=2 color="brown">
+        <input type="checkbox" name="need_photo" checked>需要學生照片 
+        <input type="checkbox" name="need_teacher" checked>需要導師簽章 </font>
+        <input type="button" value="HTML列印鉤選" onclick="if (window.confirm('將鉤選者列印？確定？\n\n若無法印出,請至[系統管理/模組權限管理/模組更新狀態]\n將學生在學證明書重新升級！')) {
+            this.form.form_act.value = 'prt';
+            this.form.submit()
+        }">
+        <input type="button" value="列印英文版在學證明" onclick="if (window.confirm('將鉤選者列印？確定？\n\n若無法印出,請至[系統管理/模組權限管理/模組更新狀態]\n將學生在學證明書重新升級！')) {
+            this.form.form_act.value = 'prteng';
+            this.form.submit()
+        }">
+        <table  width='800'  border='0'  cellpadding='3' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+            <tr align=center  style='font-size:11pt' bgcolor='#E5E5E5'>
+                <td width=6%>文號</td>
+                <td width=8%>學號</td>
+                <td width=12%>姓名<br>
+                </td>
+                <td width=6%>學期</td>
+                <td width=30%>証明目的</td>
+                <td width=12%>開立日期</td>
+                <td width=10%>開立者</td>
+                <td width=6%>效力</td>
+                <td width=8%>OO格式</td>
+            </tr>
+            {{foreach from=$this->all item=arr}}
+            <!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+            <tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' style='font-size:12pt'>
+                <td>{{$arr.prove_id}}</td>
+                <td>{{$arr.stud_id}}</td>
+                <td>{{if $arr.prove_cancel=='0'}}
+                    <LABEL><input type="checkbox" name="stu[{{$arr.prove_id}}]">{{$arr.stud_name}}</LABEL>
+                    {{else}}
+                    {{$arr.stud_name}}
+                    {{/if}}
+                </td>
+                <td>{{$arr.prove_year_seme}}</td>
+                <td align=left>{{$arr.purpose}}</td>
+                <td>{{$arr.prove_date}}</td>
+                <td>{{$this->tea[$arr.set_id]}}</td>
+                <td>{{if $arr.prove_cancel=='0'}}
+                    <a href="{{$smarty.server.PHP_SELF}}?form_act=del&id={{$arr.prove_id}}&page={{$this->page}}" onclick="return window.confirm('將{{$arr.stud_name}}証明書作癈？');">有效</a>
+                </td><td>
+                    <a href="stud_sta_rep.php?stud_id={{$arr.stud_id}}&prove_id={{$arr.prove_id}}" onclick="return window.confirm('列印{{$arr.stud_name}}的在學証明書？');">
+                        列印</a>
+                </td>
+                {{else}}
+            <a href="{{$smarty.server.PHP_SELF}}?form_act=enable&id={{$arr.prove_id}}&page={{$this->page}}" onclick="return window.confirm('將{{$arr.stud_name}}証明書啟用？');"><font color="#FF0000">作廢</font></a>
+            </td>
+            <td>---</td>
+            {{/if}}
+            </tr>
+            {{/foreach}}
+        </table>
+    </form>
+</div>
+

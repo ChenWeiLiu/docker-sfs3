@@ -1,0 +1,5 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+graduate_score - 畢業生成績試算
+作者：<a href='mailto:info@mail.daes.tcc.edu.tw'>infodaes  2005/05/13</a>
+本模組係自[註冊組]-[畢業生升學資料]的[畢業成績]修改而來
+因考量導師使用的便利性  故將其獨立出來

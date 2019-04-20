@@ -1,0 +1,13 @@
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl26 style='height:17.0pt;border-top:none'>{brank}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{nm}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{year}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{class}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{number}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{name}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{score}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{rank}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{pr}</td>
+  <td class=xl26 style='border-top:none;border-left:none'>{ud}</td>
+ </tr>
+ 

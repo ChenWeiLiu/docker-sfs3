@@ -1,0 +1,68 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:16pt' bgcolor='#9EBCDD'>
+<td>新班舊班對照檢視</td>
+</tr>
+</table>
+<table>
+<tr><td>依舊班級</td><td>依新班級</td></tr>
+<tr><td valign=top>--選取區A開始--<br>
+<table  width='100%'  border='0' align='center' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td width=10%>班級代碼&座號</td>
+<td width=10%>姓　名</td>
+<td width=10%>學　號</td>
+<td width=10%>新班級</td>
+<td width=10%>新座號</td>
+</tr>
+
+{{foreach from=$this->Old item=Cla key=K}}
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td width=100% colspan=5>{{$K}}班學生</td>
+</tr>
+{{foreach from=$Cla item=stu}}
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td width=10%>{{$stu.old_class}}</td>
+<td width=10%>{{$stu.stud_name}}</td>
+<td width=10%>{{$stu.stud_id}}</td>
+<td width=10%>{{$stu.new_class}}</td>
+<td width=10%>{{$stu.site_num}}</td> 	 
+</tr>
+{{/foreach}}
+{{/foreach}}
+</table>
+--選取區A結束--<br>
+</td><td valign=top>--選取區B開始--<br>
+<!--新班級-->	
+<table  width='100%'  border='0' align='center' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td width=10%>新班級</td>
+<td width=10%>新座號</td>
+<td width=10%>姓　名</td>
+<td width=10%>學　號</td>
+<td width=10%>舊班級代碼&座號</td>
+</tr>
+
+{{foreach from=$this->New item=Cla key=K}}
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td width=100% colspan=5>{{$K}}班學生</td>
+</tr>
+{{foreach from=$Cla item=stu}}
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td width=10%>{{$stu.new_class}}</td>
+<td width=10%>{{$stu.site_num}}</td> 	 
+<td width=10%>{{$stu.stud_name}}</td>
+<td width=10%>{{$stu.stud_id}}</td>
+<td width=10%>{{$stu.old_class}}</td>
+</tr>
+{{/foreach}}
+{{/foreach}}
+</table>
+	
+	
+--選取區B結束--<br>
+	
+</td></tr>
+</table>

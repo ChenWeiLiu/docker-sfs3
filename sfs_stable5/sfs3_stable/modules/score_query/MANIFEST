@@ -1,0 +1,14 @@
+// $Id: MANIFEST,v 1.1 2003-06-02 03:58:03 jrh Exp $
+* 本模組檔案列表清單：(MANIFEST)
+
+score_query/INSTALL
+score_query/MANIFEST
+score_query/NEWS
+score_query/README
+score_query/author.txt
+score_query/config.php
+score_query/index.php
+score_query/module-cfg.php
+score_query/module.sql
+score_query/select_query1.php
+

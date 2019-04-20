@@ -1,0 +1,108 @@
+{{* $Id: move_tool.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<style type="text/css">
+.mei{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:12pt;}
+.bu1{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bur{border-style: groove;border-width:1px: groove;background-color:#FFFFFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bur2{color:red;border-style: groove;border-width:1px: black;background-color:#FFFFFF;font-size:10pt;Padding-left:0 px;Padding-right:0 px;}
+.ipmei{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:14pt;}
+.ipme2{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:14pt;color:red;font-family:標楷體 新細明體;}
+A:link  {text-decoration:none;color:blue; }
+A:visited {text-decoration:none;color:blue; }
+A:hover {background-color:rgb(230, 236, 240);color: #000000;text-decoration: underline; }
+
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+function bb2(a,b) {
+var objform=document.f2;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+//-->
+</SCRIPT>
+
+<HR size=1 color=red>
+<DIV style='font-size:10pt;'><FONT COLOR='#FF0000'>■</FONT><FONT  COLOR='#336600'>就學狀況代碼含意與操作注意事項</FONT>：<BR>
+<I>{{foreach from=$stud_coud item=Scorn key=key}}
+{{if $key % 10 eq 9 }}<br>{{/if}}
+{{$key}}:{{$Scorn}}&nbsp;
+{{/foreach}}</I>
+<BR><FONT  COLOR='red'>1.就學代碼中的1轉出己經不使用，請用8調校取代，請特別注意。<BR>
+2.新生入學的入學字號若要修改，可整批於『輸入異動字號』中處理，本處僅能編修單筆。<BR>
+3.本程式僅提供作stud_move表的新增修改刪除，不連帶運作其他資料表。
+</FONT></DIV>
+
+<table border="0" width=100%>
+<tr><td width=40% valign=top style="font-size:10pt;" >
+
+<TABLE border=0 width=100%   cellspacing=1 cellpadding=0 bgcolor=#9EBCDD>
+<tr bgcolor="#ffffff" style='color:#800000;font-size:11px;' align='center'>
+<td nowrap>學號<br>stud<BR>id</td>
+<td nowrap>姓名<br>stud<BR>name</td>
+<td nowrap>性別<br>stud<BR>sex</td>
+<td nowrap>入學年<br>stud<BR>study<BR>year</td>
+<td nowrap>目前年班<br>curr<BR>class<BR>num</td>
+<td nowrap>目前<BR>就學狀況<br>stud<BR>study<BR>cond</td>
+<td nowrap>學生流水號<br>student<BR>sn</td>
+</tr>
+{{include file="$template_dir/move_tool.1.htm"}}
+</table>
+
+</td><td width="60%" valign=top>
+
+<TABLE border=0 width=100% style='font-size:10pt;'  cellspacing=1 cellpadding=0 bgcolor=#9EBCDD>
+<TR bgcolor=#FAFAFA>
+<td width="100%" colspan="7">
+{{if $arr_c eq '' }}
+<B>未選學生</B>
+{{else}}
+<fieldset style='font-size:12pt;'><legend><B>stud_move異動表-----列示結果</B></legend>
+<TABLE width=100%>
+<tr><td>學生姓名：<U style='color:#009900;'>{{$arr_c.stud_name}}</U> 
+<td>學生性別：<U style='color:#009900;'>{{$arr_c.stud_sex}}</U>
+</tr><tr><td>學生學號：<U style='color:#009900;'>{{$arr_c.stud_id}}</U>
+
+<td>資料編號：<U style='color:#009900;'>{{$arr_c.student_sn}}</U>
+</tr><tr><td>
+入 學 年：<U style='color:#009900;'>{{$arr_c.stud_study_year}}</U>
+<td>
+於base表中記錄的就學狀況：<U style='color:#009900;'>{{$arr_c.stud_study_cond}} {{$stud_coud[$arr_c.stud_study_cond]}}</U>
+</tr></TABLE>
+</fieldset>
+
+{{/if}}
+</td>
+</tr>
+<tr bgcolor="#ffffff" style='color:#800000;font-size:11px;' align='center'>
+<td nowrap>編號<BR>move_id</td>
+<td nowrap>學年度<br>move_year_seme</td>
+<td nowrap>日期<BR>move_c_date</td>
+<td nowrap>異動代碼<br>move_kind</td>
+<td nowrap>字號<br>move_c_word<BR>move_c_num</td>
+<td nowrap>原學校<br>school</td>
+<td nowrap>核準單位<br>move_c_unit</td>
+</tr>
+<form name="f2" method="post" action="{{$PHP_SELF}}">
+{{if $count_b=='0'}}
+{{include file="$template_dir/move_tool.add.htm"}}
+{{else}}
+{{include file="$template_dir/move_tool.2.htm"}}
+{{/if}}
+
+</form>
+</table>
+</td></tr>
+<tr style="font-size:9pt;" ><td valign=top>
+
+
+</td><td valign="top">
+
+</td></tr>
+</table><BR>

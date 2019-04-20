@@ -1,0 +1,145 @@
+<!-- $Id: stud_grad.htm 5310 2009-01-10 07:57:56Z hami $ -->
+{{$break_page}}
+<!-- 格式a開始 -->
+{{if $grad_stu!=''}}
+<table width=90% align="center">
+<tr><td width=100% align="right">
+<div align="center"><h2>{{$school_name}}{{$year_seme}}學年度畢業生一覽表</h2></div>
+頁:{{$now_page}}&nbsp;{{$smarty.now|date_format:"%Y-%m-%d"}}印製
+</td></tr></table>
+<table border=1 width=90% style='border-collapse:collapse;font-size:13pt;font-family:標楷體  AR PL KaitiM Big5' align=center>
+<tr  align="center">
+<td nowrap width=10%>班級</td>
+<td nowrap width=10%>姓名</td>
+<td nowrap width=10%>性別</td>
+<td nowrap width=30%>出生年月日</td>
+<td nowrap width=30%>畢業證書字號</td>
+<td nowrap width=10%>備註</td>
+
+</tr>
+{{foreach from=$grad_stu item=arr}}
+<tr>
+<td align="center">{{$class_base[$arr.seme_class]}}</td>
+<td align="center">{{$arr.stud_name}}</td>
+<td align="center">{{$arr.stud_sex}}</td>
+<td>{{$arr.birth}}</td>
+<td>{{$arr.grad_word}}第{{$arr.grad_num}}號</td>
+<td>&nbsp;</td>
+</tr>
+{{/foreach}}
+
+</table>
+<table width=90% align="center"><tr>
+<td width=33%>班級任教師</td>
+<td width=33%>教務主任(分校主任)</td>
+<td width=33%>校長</td>
+</tr></table>
+{{/if}}
+<!-- 格式a結束 -->
+
+<!-- 格式B開始 -->
+{{if $grad_stu2!=''}}
+
+<table width=90% align="center">
+<tr><td width=100%  align="center">
+<h3>{{$school_name}}{{$year_seme}}學年度{{$grad_class}}畢業生一覽表</h2>
+</td></tr></table>
+<table border=1 width=90% style='border-collapse:collapse;font-size:13pt;font-family:標楷體  AR PL KaitiM Big5' align=center>
+<tr  align="center">
+<td nowrap width=6%>學號</td>
+<td nowrap width=8%>姓名</td>
+<td nowrap width=8%>身份證號</td>
+<td nowrap width=5%>性別</td>
+<td nowrap width=8%>生日</td>
+<td nowrap width=8%>家長</td>
+<td nowrap width=41%>住址</td>
+<td nowrap width=8%>証書號</td>
+<td nowrap width=8%>備註</td>
+</tr>
+
+{{foreach from=$grad_stu2 item=arr}}
+<tr align="center">
+<td>{{$arr.stud_id}}</td>
+<td>{{$arr.stud_name}}</td>
+<td>{{$arr.stud_person_id}}</td>
+<td>{{$arr.stud_sex}}</td>
+<td>{{$arr.stud_birthday}}</td>
+<td>{{$arr.guardian_name}}</td>
+<td style='font-size:9pt' align="left">{{$arr.stud_addr_1}}</td>
+<td>{{$arr.grad_num}}</td>
+<td style='font-size:9pt'>{{$class_base[$arr.seme_class]}}</td>
+</tr>
+{{/foreach}}
+</table>
+{{/if}}
+<!-- 格式B結束 -->
+
+<!-- 格式C開始 -->
+{{if $grad_school!=''}}
+<table width=90% align="center">
+<tr><td width=80% >
+<h3>{{$school_name}}{{$year_seme}}學年度畢業生名冊</h2>
+<td width=20%  align="center">屬{{$NewSchool}}
+</td></tr></table>
+<table border=1 width=90% style='border-collapse:collapse;font-size:13pt;font-family:標楷體  AR PL KaitiM Big5' align=center>
+<tr  align="center">
+<td nowrap width=10%>姓名</td>
+<td nowrap width=6%>性別</td>
+<td nowrap width=10%>電話</td>
+<td nowrap width=10%>生日</td>
+<td nowrap width=10%>家長</td>
+<td nowrap width=46%>住址</td>
+<td nowrap width=8%>備註</td>
+</tr>
+{{foreach from=$grad_school item=arr}}
+<tr align="center">
+<td>{{$arr.stud_name}}</td>
+<td>{{$arr.stud_sex}}</td>
+<td>{{$arr.stud_tel_1}}</td>
+<td>{{$arr.stud_birthday}}</td>
+<td>{{$arr.guardian_name}}</td>
+<td style='font-size:9pt' align="left">{{$arr.stud_addr_1}}</td>
+<td style='font-size:9pt'>{{$class_base[$arr.seme_class]}}</td>
+</tr>
+{{/foreach}}
+
+</table>
+
+{{/if}}
+<!-- 格式C結束 -->
+
+
+<!-- 格式D開始 -->
+{{if $grad_school2!=''}}
+<table width=90% align="center">
+<tr><td width=80% >
+<h3>{{$school_name}}{{$year_seme}}學年度畢業生名冊</h2>
+<td width=20%  align="center">屬{{$NewSchool}}
+</td></tr></table>
+<table border=1 width=90% style='border-collapse:collapse;font-size:13pt;font-family:標楷體  AR PL KaitiM Big5' align=center>
+<tr  align="center">
+<td nowrap width=10%>姓名</td>
+<td nowrap width=6%>性別</td>
+<td nowrap width=10%>電話</td>
+<td nowrap width=10%>生日</td>
+<td nowrap width=10%>家長</td>
+<td nowrap width=46%>住址</td>
+<td nowrap width=8%>備註</td>
+
+</tr>
+{{foreach from=$grad_school2 item=arr}}
+<tr align="center">
+<td>{{$arr.stud_name}}</td>
+<td>{{$arr.stud_sex}}</td>
+<td>{{$arr.stud_tel_1}}</td>
+<td>{{$arr.stud_birthday}}</td>
+<td>{{$arr.guardian_name}}</td>
+<td style='font-size:9pt' align="left">{{$arr.stud_addr_1}}</td>
+<td style='font-size:9pt'>{{$class_base[$arr.seme_class]}}</td>
+</tr>
+{{/foreach}}
+
+</table>
+
+{{/if}}
+<!-- 格式D結束 -->

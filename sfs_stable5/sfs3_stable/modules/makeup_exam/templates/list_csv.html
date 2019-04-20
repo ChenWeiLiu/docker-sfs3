@@ -1,0 +1,6 @@
+"班級","座號","姓　　名","科目代號","科目名稱","作答成績","人工閱卷","實得分數 $Id:$"
+{{foreach from=$base_arr item=d key=sn name=datarows}}
+{{if $data_arr.$sn.$ename.avg.score<60}}
+"{{$d.seme_class}}","{{$d.seme_num}}","{{$d.stud_name}}","","{{$cname}}","","","{{$data_arr.$sn.$ename.avg.score}}"
+{{/if}}
+{{/foreach}}

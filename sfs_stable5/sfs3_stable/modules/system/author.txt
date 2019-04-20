@@ -1,0 +1,8 @@
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+system - 系統維護與管理
+原創作者：brucelyc
+
+brucelyc@seed.net.tw 2007-01-17
+
+學務系統維護與管理
+

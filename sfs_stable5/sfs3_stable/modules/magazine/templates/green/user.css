@@ -1,0 +1,45 @@
+<!--
+body 
+  {     font-family:新細明體, mingliu, taipei; 
+	background-color: #ffffff; 
+	color: #000000; 
+	margin-top: 0px; 
+	margin-right: 0px; 
+	margin-bottom: 0px; 
+	margin-left: 0px  }
+
+a:link {  color:#0000FF}
+a:visited {  color:#660099}
+a:hover {  color:#ff0000}
+
+.mlink:link { font-size: 100%;  text-decoration: none;  color: #0000FF }
+.mlink:visited { font-size: 100%; text-decoration: none; color: #660099 }
+.mlink:hover { text-decoration: underline;  color: #ff0000 }
+
+/* for accesskey */
+.blue:link { text-decoration: none;  color: #D7DFF7 }
+.blue:visited { text-decoration: none; color: #D7DFF7 }
+.blue:hover { text-decoration: none;  color: #ff0000 }
+
+.white:link { text-decoration: none;  color: #ffffff }
+.white:visited { text-decoration: none; color: #ffffff }
+.white:hover { text-decoration: none;  color: #ff0000 }
+
+p { font-size: 100%; line-height: 150%}
+.text { font-size: 100%; line-height: 150%}
+.stext { font-size: 80%; line-height: 120% }
+
+H1 { font-family:標楷體, 新細明體; font-size:  150%; font-weight: bold ; line-height: 1em ; text-align: center}
+H2 { font-family:新細明體;  font-size:  120%; font-weight: bold; line-height: 1em }
+ul.style1 { margin:0.5em 0em 1em 0em;}
+li { font-size: 100%; line-height: 1.3em;}
+
+td {  text-align: left;}
+th {  text-align: center;}
+
+.white { color: #ffffff}
+.blue { color:#D7DFF7}
+
+
+
+--!>

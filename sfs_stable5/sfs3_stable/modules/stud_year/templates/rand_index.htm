@@ -1,0 +1,33 @@
+<!-- $Id: rand_index.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<table bgcolor="#9EBCDD" cellspacing="1" cellpadding="4" width=70% align=center>
+<tr align=center bgcolor="#FFFFFF"><td colspan=2><b>在籍生亂數編班作業流程</b></td></tr>
+<tr align=center><td><b>步驟流程</b></td><td><b>作業內容說明</b></td></tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><a href="{{$smarty.server.PHP_SELF}}?step=rand_set">1.編班設定</a></td>
+<td>設定所屬學年度、參加年級與班級</td></tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><a href="{{$smarty.server.PHP_SELF}}?step=rand_set_stu">2.學生名冊設定</a></td>
+<td>設定特殊生身分及核對參加學生名冊
+</td></tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><a href="{{$smarty.server.PHP_SELF}}?step=rand_run">3.進行編班作業</a></td>
+<td>開始進行編班作業及印列編班結果名冊</td></tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><a href="{{$smarty.server.PHP_SELF}}?step=rand_input">4.寫入學籍系統</a></td>
+<td>將編班結果寫到新(本)學期內
+<div style="color: #FF0000; font-size: 10pt; ">
+這是無法復原的動作，如果您不確定請連絡資訊組事先進行備份。</div>
+</td></tr>
+<tr bgcolor="#FFFFFF">
+<td align=center>※其他說明</td>
+<td>
+<ol style="color: #0000FF; font-size: 11pt; ">
+	<li>系統區分為：設定檔、原始名冊檔、結果名冊檔三個檔案。<br>
+建立時；先有前項才有後項。刪除時；先刪後項才能刪前項。</li>
+	<li>【教育部規定】國小僅能使用公開抽籤或電腦亂數編班兩種方式。</li>
+	<li>【依據規定】編班名冊至少保留三年，以供備查。</li>
+</ol>
+
+
+</td></tr>
+</table>

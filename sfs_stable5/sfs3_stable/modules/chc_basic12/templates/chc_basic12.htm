@@ -1,0 +1,22 @@
+<TABLE width='100%'  border='0' align='center'>
+<TR><TD  align=left>
+<br />
+
+說明：<br />
+※1.學生獎勵紀錄與懲處紀錄取自系統【<a href='{{$this->sfsURL}}modules/reward/' target="_blank">學生獎懲</a>】模組。<br />
+※2.學生曠課紀錄取自系統【<a href='{{$this->sfsURL}}modules/absent/' target="_blank">缺曠課獎懲管理</a>】模組。<br />
+※3.競賽表現請至【<a href='{{$this->sfsURL}}modules/career_race/' target="_blank">生涯輔導競賽記錄</a>】模組登錄。<br />
+※4.服務時數請至【<a href='{{$this->sfsURL}}modules/stud_service/' target="_blank">服務學習</a>】模組登錄。<br />
+※5.幹部記錄請至【<a href='{{$this->sfsURL}}modules/chc_leader/' target="_blank">[彰]幹部管理</a>】模組登錄。<br />
+※6.社團參與請至【<a href='{{$this->sfsURL}}modules/stud_club/' target="_blank">社團活動</a>】模組登錄。<br />
+<br />
+
+<strong>12年國教彰化區免試入學歷年列表</strong>
+<br />
+<table bgcolor='#E6ECF0'>
+<tr align=center><td>學年度</td><td>參加人數</td></tr>
+{{foreach from=$this->all item=arr}}
+<tr align=center bgcolor='#FFFFFF'><td>{{$arr.academic_year}}</td><td>{{$arr.tol}}</td></tr>
+{{/foreach}}
+</table>
+</TD></TR></TABLE>

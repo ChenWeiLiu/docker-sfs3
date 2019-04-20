@@ -1,0 +1,57 @@
+
+// $Id: README,v 1.0 2013-06-26 10:07:37 
+
+本模組允許 sfs3 學務系統可透過 LDAP伺服器進行帳號檢核登入
+
+關連的程式：
+login.php		登入時，若啟用LDAP模組，直接向LDAP認證，認證通過，
+						將學務密碼改為LDAP密碼，之後取用學務資料，再自動登入
+						目前僅允許教師及家長的帳號。
+/modules/chpass/teach_cpass.php			檢驗是否啟用LDAP，若啟用，不能由此更改密碼
+/modules/stud_eduh_self/stud_cpass.php	檢驗是否啟用LDAP，若啟用，不能由此更改密碼
+
+注意! 你安裝的 PHP5 必須包含 OpenLDAP 套件, 預設並不支援
+
+請參考 http://www.php.net/manual/en/ldap.installation.php 安裝文件
+
+以 FreeBSD 為例, 利用 ports 安裝 php-extensions 會非常簡單
+#cd /usr/ports/lang/php5-extensions
+#make config (之後勾選 OpenLDAP support)
+#make install FORCE_PKG_REGISTER="yes"
+即可安裝完成
+
+2013/10/10
+
+LDAP模組(ldap)更新與設定說明
+
+※感謝陳瑩光老師氶及外埔國中郭特全組長協助，目前已確認 Windows AD 及 Linux OpenLDAP 皆適用本模組。
+※本模組僅適合由系統管理者操作，請注意安裝位置。
+※安裝 LDAP 模組後，會有三個功能選項
+1.說明：安裝說明檔，請詳閱此說明文件，內含檢測您的 php 系統是否有安裝 LDAP 套件。
+2.LDAP伺服器設定：
+(1)登入模式：由此選擇學務系統的登入認證方式是驗證本機內的帳號或驗證LDAP伺服器內的帳號。
+亦即安裝本模組，並不會讓系統立即啟用LDAP驗證。在學務系統的登入畫面，會提示目前系統使用的是「本機驗證」或「LDAP驗證」。
+(2)LDAP伺服器IP：設定您的LDAP伺服器IP。
+(3)Windows AD的Bind dn：若您的LDAP帳號管理是 Windows AD，則只要設定這一欄即可。
+Windows AD接受 LDAP 繫結的帳號格式相對簡單，只要送出類似 email書寫的格式即可。所以這邊您只要輸入您的 AD網域的 Domain Name 即可。
+ 
+(4)OpenLDAP的Bind dn：若您的LDAP帳號管理是 OpenLDAP，則必須設定這一欄。
+a.欄號欄位：即系統在搜尋帳號的欄位名，一般設定值為 uid 。
+b.教師帳號 ou 值：也就是在 OpenLDAP裡，教師帳號被放在那個 ou (以AD的管理來講，就是組織單位)。
+c.學生帳號 ou 值：也就是在 OpenLDAP裡，學生帳號被放在那個 ou 。
+d.Base dn：舉例，假如您的OpenLDAP伺服器的 Domain Name 為 fnjh.tcc.edu.tw  就要寫成 DC=fnjh,DC=tcc,DC=edu,DC=tw
+最後，學務系統在進行 OpenLDAP的認證時，帳號部份就會送出 
+「uid=[帳號],ou=[教師或學生的ou值],[Base dn值]」，例如：「uid=smallduh,ou=people,dc=fnjh,dc=tcc,dc=edu,dc=tw」
+當然，若貴校的LDAP裡，教師或學生都是同一個ou，或根本沒設學生帳號，
+您也可以 ou值設定全留空白，直接把 ou值設在 Base dn 裡，如 「ou=xxxx,dc=xxxx,dc=xxxx」
+但是千萬別 ou 值有設定， Base dn 裡又有一個 ou=xxxx，否則登入會失敗。
+
+(5)更改密碼的網址url：當(1)登入模式裡啟用了 LDAP驗證，學務系統便無法進行密碼更改，使用者若選擇了變更密碼，系統會提示這個網址，讓使用者點選前往變更。
+※注意！
+(a)啟用 LDAP驗證後，若教師忘記密碼，管理者在學務系統裡替使用者進行「密碼復原成原始密碼」是無效的，因為密碼並非在本機進行驗證！！
+(b)若學生忘記密碼，在學務系統裡替學生查詢密碼，仍然有效，因為只要LDAP驗證登入成功，系統裡會自動回寫一份剛剛輸入的正確密碼。
+
+3.LDAP認證測試：當您決定啟用 LDAP驗證，並將設定值都設好了，請務必先由此功能進行測試，以免啟用後發生無法登入的悲劇。
+※注意！萬一啟用後真的發生無法登入的悲劇時怎麼辦？
+請直接登入 MySQL，找到學務系統資料庫裡的 ldap這個資料表，把 enable 這個欄位的值，由 1 改為 0 ，即可恢復本機登入模式。
+

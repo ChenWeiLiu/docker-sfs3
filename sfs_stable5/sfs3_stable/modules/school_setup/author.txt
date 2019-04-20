@@ -1,0 +1,6 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+school_base - 學校基本資料設定
+school_base2.0 -- 2001-10-1 -- HaMi( cik@mail.wpes.tcc.edu.tw )
+
+2003-01-01 -- tad(tad@www.tnc.edu.tw )台南縣教育網路中心 網管研發組組長 吳弘凱 修改

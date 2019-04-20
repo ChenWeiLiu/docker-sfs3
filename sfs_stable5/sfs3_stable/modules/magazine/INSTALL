@@ -1,0 +1,11 @@
+//$Id: INSTALL,v 1.1.2.1 2005-01-04 01:20:28 prolin Exp $
+
+** 安裝法:
+
+由 "系統管理" --> "模組權限管理"
+
+縮圖的製作需安裝 (windows 中無法使用)
+netpbm-progs-9*** 
+
+把 templates_c 目錄權限設定為可寫入
+chmod 777 templates_c 

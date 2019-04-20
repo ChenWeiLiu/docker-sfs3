@@ -1,0 +1,64 @@
+<!-- //$Id: chk_ss.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<table width=700><tr align=center><td><b style='font-size:16px'>錯誤課程檢查</b></td></tr>
+<tr><td style='font-size:13px'>
+以下檢查出來的課程為有問題的課程，其課程所屬的年度、學期與班級碼內所記錄的並不一致。<br>
+這將會造成直正「正確的課程」無法被設定在課表上。<br>
+程式也對這個課程是否有成績作了檢查，以讓您安心的在執行刪除前，先作確認的核對動作。
+</td></tr></table>
+
+{{if $this->show==''}}
+
+<div style="margin-left: 50pt; "><br>
+<h2>【檢查結果】：無本類型錯誤課程</h2>
+<br>
+</div>
+{{else}}
+<table width=700>
+<form action="{{$smarty.server.PHP_SELF}}" method="post">
+<tr><td>
+<tr bgcolor=white align=right style="color:#800000">
+<td>
+<input type="button"  value="將鉤選者課程刪除" onclick="if(window.confirm('真的刪除了喔？')){this.form.form_act.value='updata';this.form.submit();}" class=b1>
+<INPUT TYPE='hidden' NAME='form_act'  value=''>
+</td></tr><tr><td>
+
+<TABLE  width=100% border=0  style='font-size:11pt;background-color:#9EBCDD' cellspacing='1' cellpadding=1 >
+<tr  bgcolor=#9EBCDD align=center style="color:#800000">
+<td>科目碼</td>
+<td>領域</td>
+<td>科目</td>
+<td>學年</td>
+<td>學期</td>
+<td>年級</td>
+<td>班級碼</td>
+<td>成績數</td>
+<td>啟用</td>
+<td>九年一貫對映</td>
+<td>刪除</td>
+</tr>
+{{foreach item=arr key=key from=$this->show}}
+<tr bgcolor=white align=center onMouseOver="this.style.backgroundColor='#FFEBD6'" onMouseOut="this.style.backgroundColor=''">
+<td >{{$key}}</td>
+<td>{{$arr.scope}}</td>
+<td>{{$arr.subject}}</td>
+<td>{{$arr.year}}</td>
+<td>{{$arr.semester}}</td>
+<td>{{$arr.class_year}}</td>
+<td>{{$arr.class_id}}</td>
+<td>{{$arr.tol}}</td>
+<td>{{$arr.enable}}</td>
+<td>{{$arr.link_ss}}</td>
+<td><LABEL><input type="checkbox" name="delete_id[{{$key}}]" value="">&nbsp;是</LABEL></td>
+</tr>
+{{/foreach}}
+
+</table>
+</form>
+
+</td></tr></table>
+{{/if}}
+
+<DIV style="color:blue;font-size:9pt">
+◎By 彰化縣學務系統開發小組 於 97.11.7</DIV>
+

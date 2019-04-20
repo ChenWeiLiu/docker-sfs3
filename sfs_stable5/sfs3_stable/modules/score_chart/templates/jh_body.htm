@@ -1,0 +1,129 @@
+<!-- $Id: jh_body.htm 7051 2012-12-28 08:21:30Z smallduh $  -->
+{{$break_page}}
+<table cellPadding='0' border=0 cellSpacing='0' width='96%' align=center style='border-collapse:collapse;font-size:12pt;line-height:16pt'>
+<tr><td align=center><H3>
+{{$school_name}}
+{{$class_info.ch_year}} {{$class_info.c_seme}} 成績通知書<BR>
+{{$class_info.c_year2}}{{$class_info.c_name}}
+&nbsp;&nbsp;座號：<U>{{$stud.seme_num}}</U>
+&nbsp;&nbsp;姓名：<U>{{$stud.stud_name}}</U>
+&nbsp;&nbsp;學號：<U>{{$stud.stud_id}}</U>
+</H3></td></tr>
+</table>
+
+<table cellPadding='0' border=1 cellSpacing='0' width='96%' align=center style='border-collapse:collapse;line-height:14pt;font-size:10pt'>
+<tr align=center style='font-size:11pt;font-weight:bold;'>
+<td nowrap width=8%>領域</td>
+<td nowrap width=8%>科目</td>
+<td nowrap width=8%>每週<BR>節數</td>
+<td nowrap width=8%>成績</td>
+<td nowrap width=8%>量化<BR>記錄</td>
+<td nowrap width=10%>努力程度</td>
+<td nowrap width=50%>學習狀況文字具體描述</td>
+</tr>
+<!------ 顯示成績迴圈 ---->
+{{foreach  key=key from=$seme_scope item=data}}
+{{assign var="i" value=0}}
+
+{{foreach  key=skey from=$data.detail item=s_data}}
+{{if ($data.items==1 || $data.items=='')&& $s_data.sb==$key && $i==0}}
+<tr align=center><td nowrap colspan=2>{{$key}}</td>
+
+{{elseif ($data.items==1 || $data.items=='')&& $s_data.sb!=$key && $i==0}}
+<tr align=center><td>{{$key}}</td><td>{{$s_data.sb}}</td>
+
+{{elseif  $data.items==1 && $i!=0}}
+<td >{{$s_data.sb}}</td>
+{{elseif  $data.items!=1 && $i==0}}
+<tr align=center><td nowrap rowspan="{{$data.items+1}}">{{$key}}</td>
+<td>{{$s_data.sb}}</td>
+{{elseif  $data.items!=1 && $i!=0}}
+<tr align=center><td nowrap>{{$s_data.sb}}</td>
+{{/if}}
+
+
+<td>{{if $s_data.rate }}{{$s_data.rate}}{{else}}--{{/if}}</td>
+<td>{{if $s_data.level}}{{$s_data.level}}{{else}}--{{/if}}</td>
+<td>{{if $s_data.score}}{{$s_data.score}}{{else}}--{{/if}}</td>
+<td>{{if $s_data.oth}}{{$s_data.oth}}{{else}}--{{/if}}</td>
+<td align=left style="line-height:12pt">{{if $s_data.memo}}{{$s_data.memo}}{{else}}--{{/if}}</td>
+</tr>
+{{assign var="i" value=$i+1}} 
+{{/foreach}}
+{{/foreach}}
+<!------ 結束顯示成績迴圈 ---->
+</table>
+<BR>
+<table cellPadding='0' border=1 cellSpacing='0' width='96%' align=center style='border-collapse:collapse;line-height:14pt;font-size:10pt'>
+
+<tr >
+<td width="16%" align="center"><b>日常生活評量</b></td>
+<td width="16%" align="center"><b>努力說明</b></td>
+<td width="60%" align="center"><b>導師評語</b></td>
+<td width="8%" align="center">{{if $chk_prt==1}}<b>等第</b>{{/if}}</td></tr>
+<tr><td width="16%" align="center">日常行為</td>
+<td width="16%" align="center">{{$seme_nor.nor1}}</td>
+<td width="60%" rowspan="4">{{$seme_nor.nor_memo}}</td>
+<td width="8%" rowspan="4" align="center">
+{{if $chk_prt==1}}
+<B>
+{{$seme_nor.nor_level}}<BR>{{$seme_nor.nor_score}}</B>
+{{/if}}
+</td>
+</tr>
+
+<tr>
+<td width="16%" align="center">團體活動</td>
+<td width="16%" align="center">{{$seme_nor.nor2}}</td>
+</tr>
+<tr>
+<td width="16%" align="center">公共服務</td>
+<td width="16%" align="center">{{$seme_nor.nor3}}</td>
+</tr>
+<tr>
+<td width="16%" align="center">校外活動</td>
+<td width="16%" align="center">{{$seme_nor.nor4}}</td>
+</tr>
+<tr>
+<td width="16%" align="center"><b>學生出席情形</b></td>
+<td width="84%" colspan="3">
+{{if $seme_absent.abs1>0}} {{$subject_abs.abs1}}：{{$seme_absent.abs1}}&nbsp;&nbsp;{{/if}}
+{{if $seme_absent.abs2>0}} {{$subject_abs.abs2}}：{{$seme_absent.abs2}}&nbsp;&nbsp;{{/if}}
+{{if $seme_absent.abs3>0}} {{$subject_abs.abs3}}：{{$seme_absent.abs3}}&nbsp;&nbsp;{{/if}}
+{{if $seme_absent.abs4>0}} {{$subject_abs.abs4}}：{{$seme_absent.abs4}}&nbsp;&nbsp;{{/if}}
+{{if $seme_absent.abs5>0}} {{$subject_abs.abs5}}：{{$seme_absent.abs5}}&nbsp;&nbsp;{{/if}}
+{{if $seme_absent.abs6>0}} {{$subject_abs.abs6}}：{{$seme_absent.abs6}}&nbsp;&nbsp;{{/if}}
+{{if $seme_absent.abs1=='' && $seme_absent.abs2=='' && $seme_absent.abs3=='' && $seme_absent.abs4=='' && $seme_absent.abs5=='' && $seme_absent.abs6==''}}
+----{{/if}}
+</td></tr>
+<tr width='100%'>
+<td width="16%" align="center"><b>學生獎懲情形</b></td>
+<td width="84%" colspan="3">
+{{if $seme_rew.sr1>0}} {{$subject_rew.sr1}}：{{$seme_rew.sr1}}&nbsp;&nbsp;{{/if}}
+{{if $seme_rew.sr2>0}} {{$subject_rew.sr2}}：{{$seme_rew.sr2}}&nbsp;&nbsp;{{/if}}
+{{if $seme_rew.sr3>0}} {{$subject_rew.sr3}}：{{$seme_rew.sr3}}&nbsp;&nbsp;{{/if}}
+{{if $seme_rew.sr4>0}} {{$subject_rew.sr4}}：{{$seme_rew.sr4}}&nbsp;&nbsp;{{/if}}
+{{if $seme_rew.sr5>0}} {{$subject_rew.sr5}}：{{$seme_rew.sr5}}&nbsp;&nbsp;{{/if}}
+{{if $seme_rew.sr6>0}} {{$subject_rew.sr6}}：{{$seme_rew.sr6}}&nbsp;&nbsp;{{/if}}
+{{if $seme_rew.sr1=='' && $seme_rew.sr2=='' && $seme_rew.sr3=='' && $seme_rew.sr4=='' && $seme_rew.sr5=='' && $seme_rew.sr6==''}} ---- {{/if}}
+</td></tr></table>
+<table cellPadding='0' border=1 cellSpacing='0' width='96%' align=center style='border-top-style:none;border-collapse:collapse;line-height:30pt;font-size:10pt'>
+<tr align=center width='100%'>
+<td width=6%>承辦<td width=27%>&nbsp;
+<td width=6%>主任<td width=27%>{{if $img_2!=''}}<img src="{{$img_2}}" width=48>{{/if}}
+<td width=6%>校長<td width=28%>{{if $img_1!=''}}<img src="{{$img_1}}" width=48>{{/if}}
+</td></tr>
+<tr align=center width='100%'>
+<td width=6%>家長<BR>簽章<td width=27%>&nbsp;
+<td width=6%>家長<BR>意見<td width=61% colspan=3>&nbsp;
+</td></tr>
+
+</table>
+<table cellPadding='0' border=0 cellSpacing='0' width='96%' align=center >
+<tr style='font-size:10pt'>
+<td width=100%>
+{{if $add_memo_file}}{{include file="$add_memo_file"}}{{/if}}
+</td></tr></table>
+<!-- 是否加印服務學習或社團記錄 -->
+{{if $stud_club=="checked" || $stud_service=="checked" }}{{include file="cchk_club_service.htm"}}{{/if}}
+

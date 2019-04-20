@@ -1,0 +1,42 @@
+<!-- //$Id: PHP_tmp.html 5310 2009-01-10 07:57:56Z hami $ -->
+
+<TABLE width='100%'  border='0' align='center'>
+<TR><TD align=right>
+【{{$this->Y}}年統計表】
+【<a href="{{$smarty.server.PHP_SELF}}?Y={{$this->Y-1}}">{{$this->Y-1}}年</a>】
+【<a href="{{$smarty.server.PHP_SELF}}">回到今年</a>】
+【<a href="{{$smarty.server.PHP_SELF}}?Y={{$this->Y+1}}">{{$this->Y+1}}年</a>】
+</TD></TR></TABLE>
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr bgcolor=#FFC0CB align=center style='font-size:10px'>
+<td>姓名</td>
+<td>職稱</td>
+{{foreach from=$this->ABS item=im key=K}}
+<td>{{$im}}</td>
+{{/foreach}}
+</tr>
+
+{{foreach from=$this->all item=arr key=K2}}
+{{if ($K2%8)==7}}
+<tr bgcolor=#FFC0CB align=center style='font-size:10px'>
+<td colspan=2>--</td>
+{{foreach from=$this->ABS item=im key=K}}
+<td>{{$im}}</td>
+{{/foreach}}
+</tr>
+{{/if}}
+<!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+<tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' style='font-size:13px'>
+<td>{{$this->post_kind[$arr.post_kind]}}-{{$arr.name}}</td>
+<td>{{$arr.title_name}}</td>
+{{assign var="Me" value=$this->getABS($arr.teacher_sn)}}
+{{foreach from=$this->ABS item=im key=K}}
+<td>{{if $Me.$K.day>0}}{{$Me.$K.day}}日{{/if}}{{if $Me.$K.hour>0}}{{$Me.$K.hour}}時{{/if}}</td>
+{{/foreach}}
+</tr>
+{{/foreach}}
+
+</table>
+
+
+

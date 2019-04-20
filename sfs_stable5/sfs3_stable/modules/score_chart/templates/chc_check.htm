@@ -1,0 +1,29 @@
+<!-- $Id: chc_check.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<TABLE border=0 width=100% style='font-size:12pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<TR bgcolor=#9EBCDD>
+
+
+<td width=100%  style="vertical-align: top;" colspan=2>
+<!-- 第1格內容 -->
+<font color="#FF0000">■</font>請選擇班級：{{$sel_year}}{{$sel_grade}}
+</td>
+</tr>
+<TR bgcolor=white>
+<td colspan=2>
+{{if $smarty.get.grade!='' && $smarty.get.year_seme!=''}}
+{{assign var="i" value=1}}
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  bgcolor=#9EBCDD><TR bgcolor=white>
+{{foreach from=$sel_class item=data}}
+
+{{if $i!=1 && ($i%10)==1 }}  <TR bgcolor=white>{{/if}}
+
+{{$data.c_name}}
+{{if $i!=0 && ($i%10)==0 }} </TR>{{/if}}
+{{assign var="i" value=$i+1}}
+{{/foreach}}
+</TABLE>
+{{/if}}
+</td></tr>
+
+</table>
+

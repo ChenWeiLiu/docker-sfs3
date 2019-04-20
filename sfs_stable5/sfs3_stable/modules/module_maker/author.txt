@@ -1,0 +1,9 @@
+module_maker - 模組產生器
+
+原版作者：tad
+
+tad@www.tnc.edu.tw 2003/05/26
+
+可以直接從線上產生一個 SFS3 的標準模組
+
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $

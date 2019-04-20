@@ -1,0 +1,71 @@
+{{* $Id: admin_edit.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+<form enctype="multipart/form-data"  name=myform method="post" action="<?php echo basename($PHP_SELF) ?>">
+  <h2>相片管理--修改 </h2>
+  <table width="95%" border="1" cellspacing="0" cellpadding="4" bordercolorlight="#FFFFFF" bordercolordark="#3333FF" bgcolor="#CCFFFF" bordercolor="#33CCFF">
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">相片名稱：</td>
+      <td width="79%"> 
+        <input type="text" name="Iact_name" size="60" value="<?php echo $nb[act_name] ?>">
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">建製日期：</td>
+      <td width="79%"> 
+        <input type="text" name="Iact_date" size="60" value="<?php echo $nb[act_date] ?>">
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">簡介：</td>
+      <td width="79%"> 
+        <textarea name="Iact_info" cols="60" rows="3"><?php echo $nb[act_info] ?></textarea>
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">檔案整理：</td>
+      <td width="79%"> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="4">
+          <tr>
+            <td bgcolor="#33CCCC" valign="top" width="41%"> 
+              <p>刪除檔案：</p>
+              <p> 
+    
+
+              <p>&nbsp;</p>
+            </td>
+            <td bgcolor="#CCFFCC" valign="top" width="59%"> 
+               <p>再上傳檔案：</p>
+               ZIP壓縮檔，最大2MB：<br><input name="Iact_zip" type="file" >
+               <br>
+               <font color="#FF3333" size="-1">多檔案時先把所有檔案壓縮再一次上傳，會自動解開放在該目錄中。(主網頁檔案，不要壓縮)</font> 
+                  
+              
+              <ol>
+<?php        
+        for ($i=1 ; $i<= $upfilenum ; $i++) {
+          echo "<li> " ;
+          echo "  <input type=\"file\" name=\"Iupload[]\" > " ;
+          echo "</li>  \n" ;
+        }  
+?>      
+
+              </ol>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr> 
+      <td width="21%" bgcolor="#66CCFF">&nbsp;</td>
+      <td width="79%"> 
+        <input type="submit" name="Submit" value="更新">
+        <input type="reset" name="Submit22" value="重設">
+        <input type="hidden" name="Iact_ID" value="<?php echo $nb[act_ID] ?>">
+        <input type="hidden" name="Ioldicon" value="<?php echo $nb[act_icon] ?>">
+        <input type="hidden" name="Ipath" value="<?php echo $nb[act_dir] ?>">
+      </td>
+    </tr>
+  </table>
+</form>  	
+{{include file="$SFS_TEMPLATE/footer.tpl"}}

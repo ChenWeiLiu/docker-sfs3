@@ -1,0 +1,33 @@
+{{* $Id: admin_add2.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+
+<script language="JavaScript" type="text/javascript">
+function UploadComplete() {
+  alert('檔案上傳完成！') ;
+}
+</script>
+<p>{{$Iact_name}}--第二步，上傳檔案</p>
+    <form id="form1" runat="server" enctype="multipart/form-data" method="POST">
+    <div>
+        
+        <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+         codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
+         width="450" height="300" id="fileUpload" align="middle">
+            <param name="allowScriptAccess" value="sameDomain" />
+            <param name="movie" value="fileUpload.swf" />
+            <param name="quality" value="high" />
+            <param name="wmode" value="transparent" />
+            <PARAM NAME=FlashVars VALUE='uploadPage=upload.php?dir={{$dir}}&lid={{$login_id}}&sid={{$session_id}}&completeFunction=UploadComplete()&fileExtension=*.jpg;*.jpeg;*.gif;*.png&fileDescription=Images' />
+            <embed src="fileUpload.swf"
+             FlashVars='uploadPage=upload.php?dir={{$dir}}&lid={{$login_id}}&sid={{$session_id}}&completeFunction=UploadComplete()&fileExtension=*.jpg;*.jpeg&fileDescription=Images'
+             quality="high" wmode="transparent" width="450" height="300" 
+             name="fileUpload" align="middle" allowScriptAccess="sameDomain" 
+             type="application/x-shockwave-flash" 
+             pluginspage="http://www.macromedia.com/go/getflashplayer" />
+        </object>
+    </div>
+        
+    </form>
+    完成，回到<a href='photo_admin2.php?step=3'>主畫面！</a>
+{{include file="$SFS_TEMPLATE/footer.tpl"}}

@@ -1,0 +1,8 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+parent_start - 啟動家長帳號
+原版作者：jrh
+
+jrh@www.tnc.edu.tw 2003/05/09
+
+家長要使用家長模組前要先行啟動家長的帳號以確保安全
+

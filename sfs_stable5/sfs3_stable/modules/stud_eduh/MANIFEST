@@ -1,0 +1,15 @@
+// $Id: MANIFEST,v 1.2 2003-05-29 17:05:05 hami Exp $
+* 本模組檔案列表清單：(MANIFEST)
+
+INSTALL
+MANIFEST
+NEWS
+README
+author.txt
+config.php
+index.php
+module-cfg.php
+module.sql
+stud_eduh_list.php
+stud_seme_talk2.php
+stud_seme_spe2.php

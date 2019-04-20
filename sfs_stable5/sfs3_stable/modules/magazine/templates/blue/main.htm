@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>電子校刊</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+
+<style type="text/css">
+<!--
+.backpic {  background-image: url(<?php echo "$mag->templetdir/bg.gif" ?>); }
+.tdm {  font-size: 10pt; height: 22px; text-align: center ;color:white ; background-image:url(<?php echo "$mag->templetdir/bar.gif" ?>);}
+.tdm_s {  font-size: 10pt; height: 22px; background-color: yellow; text-align: center;color:white ; background-image:url(<?php echo "$mag->templetdir/bar_sel.gif" ?>);}
+.tdm_o {  font-size: 10pt; text-align: center ;color:white }
+.leftwidth {  width: 140px; clip:   rect(   )}
+
+.td_title {  font-size: 16pt;  text-align: center ;color:white ;border-style:dotted;border-width:1;}
+.td_list {  font-size: 11pt;  text-align: center ;color:white}
+.td_author {  font-size: 12pt;  text-align: left ;color:white}
+.td_doc {  font-size: 12pt;  text-align: left ;color:white}
+.td_class_doc {  font-size: 11pt;  text-align: left }
+.td_doc_B {  font-size: 10pt; background-color: #CCFFCC; text-align: left }
+.td_judge {  font-size: 12pt; background-color: #CCFFCC; text-align: center ;color:white}
+.td_foot {  font-size: 12pt; background-color: #CCCCCC; text-align: center ;color:white}
+.td_fixed {  font-size: 12pt; background-color: #9999FF; text-align: center ;color:white}
+.td_htm {  font-size: 12pt; background-color: #9999FF; color:white}
+
+a:link { color:black; }
+a:visited { color:black; }
+a:active { color:black; }
+a:hover { color:black; }
+-->
+</style>
+
+</head>
+
+
+<?
+//出現在新視窗
+echo '<body bgcolor="#3366FF" >' ;
+if ($new_win) {
+   $mag->showpaper($book_num,$chap,$paper) ;  
+   exit ;
+}
+?> 
+
+<body class="backpic">
+<table width="750" border="0" cellspacing="0" cellpadding="4">
+  <tr> 
+    <td > 
+    
+<table width="710" border="0" cellspacing="0" cellpadding="4" >
+  <tr> 
+    <td colspan="2"> 
+            <p align="center"><img src="<?php echo $mag->templetdir.'/logo.gif' ;?>" > </p>
+            <p align="center"><img src="<?php echo $mag->templetdir.'/hr.gif' ;?>" border="0" class="namo-hr"></p> 
+    </td>
+  </tr>
+  <tr> 
+    <td class="leftwidth" valign="top" height="340"> 
+      <form name="myform" method="post" action="<?php echo $mag->self_php ?>">
+
+          <?php  
+          //OpenTable() ;
+
+          $mag->showmenu($book_num,$chap) ; 	
+
+          //CloseTable() ;
+          ?> 
+       </form>
+            <table width="100%" border="1" cellspacing="0" cellpadding="4" bordercolor="#00CCFF" align="center">
+              <tr> 
+                <td> 
+                  <div align="center"><a href="/balletin4/balletin.htm"><font size="-1">第四期</font></a></div>
+                </td>
+                <td> 
+                  <div align="center"><a href="/balletin3/balletin.htm"><font size="-1">第三期</font></a></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><a href="/balletin2/balletin.htm"><font size="-1">第二期</font></a></div>
+                </td>
+                <td> 
+                  <div align="center"><a href="/balletin1/balletin.htm"><font size="-1">第一期</font></a></div>
+                </td>
+              </tr>
+            </table>
+            <p class="tdm_o"><a href="<?php echo $HOME_URL ?>">回學校首頁</a></p>
+            </td>
+    <td width="600" valign="top" height="340"> 
+      <?php
+        //OpenTable2() ;
+        $mag->showpaper($book_num,$chap,$paper) ;  
+       // CloseTable2() ;
+      ?>
+    </td>
+  </tr>
+</table>
+    </td>
+  </tr>
+  <tr><td><p align="center"><img src="<?php echo $mag->templetdir.'/hr.gif' ;?>" border="0" ></p></td></tr>
+</table>
+</body>
+</html>

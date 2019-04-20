@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# calls mf_conv.pl recursively
+#
+
+conv="`dirname $0`/mf_conv.pl"
+
+echo "Converting MiG metafiles..."
+echo " "
+
+find . -type d -print > /tmp/$$.mv_conv
+${conv} -I /tmp/$$.mv_conv
+rm /tmp/$$.mv_conv
+

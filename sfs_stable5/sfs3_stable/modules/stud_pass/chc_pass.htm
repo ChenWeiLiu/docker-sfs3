@@ -1,0 +1,49 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'>
+<td>{{$this->select}}
+<B style="font-size:16pt;color:blue;">M產生與X清除學生的eduKey</B>
+</td>
+
+</tr>
+</table>
+<table  width='100%'  border='0' align='center' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:10pt' bgcolor='white'>
+<td  width=4% nowrap>座號</td>
+<td  width=6% nowrap>姓　名</td>
+<td  width=4% nowrap>性 別</td>
+<td  width=6% nowrap>學　號</td>
+<td  width=5% nowrap>狀 態</td>
+<td  width=10% nowrap>字　號</td>
+<td  width=6% nowrap>密  碼</td>
+<td  width=10% nowrap>eduKey</td>
+<td  width=10% nowrap>動 作</td>
+</tr>
+
+{{foreach from=$this->stu item=stu key=st_sn}}
+
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' >
+<td>{{$stu.seme_num}}</td>
+<td>{{if $stu.stud_study_cond!='0' }}<font color="#0000FF">{{$stu.stud_name}}</font>
+{{else}}{{$stu.stud_name}}{{/if}}</td>
+<td>{{if $stu.stud_sex=='1'}}<font color="#0000FF">男</font>
+{{else}}<font color="#FF0000">女</font>{{/if}}</td>
+<td>{{$stu.stud_id}}</td>
+<td>
+{{if $stu.stud_study_cond!='0' }}<font color="#0000FF">{{$this->cond[$stu.stud_study_cond]}}</font>
+{{else}}{{$this->cond[$stu.stud_study_cond]}}{{/if}}
+</td>
+<td>{{$stu.stud_person_id}}</td>
+<td>{{$stu.email_pass}}</td>
+<td title='{{$stu.edu_key}}' onclick="alert('{{$stu.edu_key}}');">
+{{$stu.edu_key|truncate:12:".."}}<td>
+<a href='{{$smarty.server.SCRIPT_NAME}}?act=Make&sn={{$stu.student_sn}}&year_seme={{$this->year_seme}}&class_id={{$this->class_id}}' onclick="return window.confirm('真的產生嗎？');">M產生</a>
+<a href='{{$smarty.server.SCRIPT_NAME}}?act=Del&sn={{$stu.student_sn}}&year_seme={{$this->year_seme}}&class_id={{$this->class_id}}' onclick="return window.confirm('真的刪除嗎？');">X清除</a>
+</td>
+
+
+</tr>
+
+{{/foreach}}
+</table>
+<br><br><br>

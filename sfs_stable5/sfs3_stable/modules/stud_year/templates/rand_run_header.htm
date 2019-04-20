@@ -1,0 +1,55 @@
+<!-- $Id: rand_run_header.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<script LANGUAGE="JavaScript" TYPE="text/javascript">
+	function Mover(obj) {obj.style.backgroundColor='#FFDDDD';}
+	function Mout(obj) { obj.style.backgroundColor='#FFFFFF';}
+
+function jamp(id) {
+	location.href='{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$this->Fi}}&act=view&Nclass='+id;
+}
+
+function RR() {
+	num1=Math.floor( Math.random() * 9999 )+1;//無條件捨去
+	return num1;
+}
+
+</script>
+<table bgcolor="#9EBCDD" cellspacing="1" cellpadding="4" width=800 align=center>
+<tr align=center bgcolor="#FFFFFF"><td colspan=2><b>在籍生亂數編班作業流程--3.進行編班作業</b></td></tr>
+<tr><td colspan=2><b>■點選作業項目</b>
+<INPUT TYPE=button  value='返回主頁' onclick="location.href='{{$smarty.server.PHP_SELF}}';">
+</td></tr>
+<tr bgcolor="#FFFFFF"><td colspan=2 style="font-size:12pt">
+{{foreach item=arr  from=$this->List}}
+□<font color="#0000FF"><b>{{$arr.rWord.Y}}</b>學年度 第<b>{{$arr.rWord.S}}</b>學期
+<b>{{$arr.rWord.Gw}}</b> 學生 亂數編班作業</font>
+<div style="margin-left: 30px; ">
+{{if $arr.f3==''}}
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}&act=go">1.進行編班作業</a>]&nbsp;
+{{else}}[1.進行編班作業]&nbsp;{{/if}}
+{{if $arr.f3=='Y'}}
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}&act=view" >2.結果檢視</a>]&nbsp;
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}&act=ord" >3.班序調整</a>]&nbsp;
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}&act=prt" target='_blank'>4.名冊列印</a>]&nbsp;
+[<a href="rand_view.php?Fi={{$arr.file}}" target='_blank'>5.公布畫面</a>]&nbsp;
+[<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}&act=del"  onclick="return  window.confirm('※系統不可能再產生相同的名冊！！\n您確定真的刪除亂數班編結果嗎？')">X.刪除結果檔</a>]&nbsp;
+{{else}}
+[2.結果檢視]&nbsp;
+[3.班序調整]&nbsp;
+[4.名冊列印]&nbsp;
+[5.公布畫面]&nbsp;
+{{/if}}</div>
+{{/foreach}}
+</td></tr>
+<tr bgcolor="#FFFFFF" align=center><td colspan=2>
+<div style="font-size:12pt;color:red">※※特別注意：編完班後，再將結果檔刪除，您將無法寫入學籍系統！※※</div>
+<div style="font-size:10pt;color:blue">PS:萬一有不小心刪除名冊情事，先利用『參照上學期資料升級』將舊生升級後，<br>再請自行依現場列印之編班名冊，
+以同年級間班級調整，進行補救。 </div>
+</td></tr>
+
+
+
+
+
+
+
+

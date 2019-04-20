@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>補行評量通知單</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=big5">
+</HEAD>
+<BODY>
+{{assign var=seme_year_seme value=$smarty.post.act_year_seme}}
+{{foreach from=$base_arr item=d key=sn name=datarows}}
+{{assign var=show value=0}}
+{{if $data_arr.$sn.language.avg.score<60}}{{assign var=l value=$l+1}}{{assign var=show value=1}}{{assign var=l1 value=1}}{{else}}{{assign var=l1 value=0}}{{/if}}
+{{if $data_arr.$sn.math.avg.score<60}}{{assign var=m value=$m+1}}{{assign var=show value=1}}{{assign var=m1 value=1}}{{else}}{{assign var=m1 value=0}}{{/if}}
+{{if $data_arr.$sn.nature.avg.score<60}}{{assign var=n value=$n+1}}{{assign var=show value=1}}{{assign var=n1 value=1}}{{else}}{{assign var=n1 value=0}}{{/if}}
+{{if $data_arr.$sn.social.avg.score<60}}{{assign var=s value=$s+1}}{{assign var=show value=1}}{{assign var=s1 value=1}}{{else}}{{assign var=s1 value=0}}{{/if}}
+{{if $data_arr.$sn.health.avg.score<60}}{{assign var=h value=$h+1}}{{assign var=show value=1}}{{assign var=h1 value=1}}{{else}}{{assign var=h1 value=0}}{{/if}}
+{{if $data_arr.$sn.art.avg.score<60}}{{assign var=a value=$a+1}}{{assign var=show value=1}}{{assign var=a1 value=1}}{{else}}{{assign var=a1 value=0}}{{/if}}
+{{if $data_arr.$sn.complex.avg.score<60}}{{assign var=c value=$c+1}}{{assign var=show value=1}}{{assign var=c1 value=1}}{{else}}{{assign var=c1 value=0}}{{/if}}
+{{if $show}}
+
+<TABLE style="border-collapse: collapse; margin: auto; page-break-after: always;" cellSpacing="0" cellPadding="0" width="640" border="0">
+  <TBODY>
+  <TR>
+    <TD style="PADDING-RIGHT: 1pt; PADDING-LEFT: 1pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm;" width="640">
+      <TABLE style="BORDER-COLLAPSE: collapse; text-align: center; vertical-align: middle; font: 16pt 標楷體;" cellSpacing="0" cellPadding="2" width="640" border="0">
+        <TBODY>
+        <TR style="height: 20pt;">
+          <TD colSpan="9" style="font: 20pt 標楷體; font-weight: bold;">{{$school_data}}</TD>
+		</TR>
+        <TR style="height: 20pt;">
+          <TD colSpan="9" style="font: 20pt 標楷體; font-weight: bold;"><span style="font-family: Times New Roman; font-weight: bold;">{{$sel_year}}</span>學年度第<span style="font-family: Times New Roman; font-weight: bold;">{{$sel_seme}}</span>學期「補行評量」通知書</TD>
+		</TR>
+        <TR style="height: 20pt; font-size: 12pt;">
+          <TD colSpan="9" style="font: 14pt 標楷體; text-align: left;"><BR>
+		  壹、依據「國民小學及國民中學學生成績評量準則」及「{{$school_sheng}}國民中學學生<BR>
+		  　　成績評量補充規定」辦理。<BR><BR>
+		  貳、注意事項：<BR>
+		  　一、評量範圍以該學期教學內容為原則。<BR>
+		  　二、除有不可抗力因素外，<B>逾期未參加者，視同放棄補行評量之機會</B>。<BR>
+		  　三、本次補行評量對象為<U><B>學習領域學期成績未達丙等（六十分）</B></U>之學生。<BR>
+		  　四、依規定<B>補行評量及格者，該學習領域成績以六十分計</B>。<BR>
+		  　五、補行評量時程與地點，另行公告之。<BR><BR>
+		  參、檢視 貴子弟入學以來各學期七大學習領域成績平均， <B>貴子弟有部份領<BR>
+		  　　域未達及格標準</B>，特予此通知書通知家長及 貴子弟，敬請家長共同協助<BR>
+		  　　督導學生課業學習，以期 貴子弟補行評量順利，達到成績及格標準。<BR><BR>
+		  肆、本次補行評量之學期範圍為：{{$seme_str}}。<BR><BR>
+		  <span style="font-size: 18pt;"><B>{{$d.class_year}}</B></span> 年 <span style="font-size: 18pt;"><B>{{$d.class_num|@intval}}</B></span> 班 <span style="font-size: 18pt;"><B>{{$d.seme_num}}</B></span> 號 <span style="font-size: 18pt;"><B>{{$d.stud_name}}</B></span> 未達及格之學期與學習領域成績如下：<BR>
+		  </TD>
+		</TR>
+        <TR style="height: 27pt;font-size: 12pt; background-color: #EEEEEE;">
+          <TD style="border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid; border-left: windowtext 1.5pt solid; text-align: center;" 
+          colSpan="2">學期＼學習領域</TD>
+          <TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >語文</TD>
+          <TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >數學</TD>
+          <TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >自然與<br>生活科技</TD>
+          <TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >社會</TD>
+          <TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >健康與<br>體育</TD>
+          <TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 1.5pt solid;" 
+          >藝術與<br>人文</TD>
+          <TD style="width:11%; border-right: windowtext 1.5pt solid; border-top: windowtext 1.5pt solid;" 
+          >綜合</TD>
+		</TR>
+        <TR style="height: 28pt;font-size: 16pt;">
+			<TD style="border-right: windowtext 0.75pt solid; border-left: windowtext 1.5pt solid; border-top: windowtext 0.75pt solid; font-size: 12pt;" colSpan="2">{{$seme_arr.$seme_year_seme}}</TD>
+			<TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.language.avg.score>=60}}<span style="font: 10pt 標楷體;">及格</span>{{else}}{{$data_arr.$sn.language.avg.score}}{{/if}}</span></TD>
+			<TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.math.avg.score>=60}}<span style="font: 10pt 標楷體;">及格</span>{{else}}{{$data_arr.$sn.math.avg.score}}{{/if}}</span></TD>
+			<TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.nature.avg.score>=60}}<span style="font: 10pt 標楷體;">及格</span>{{else}}{{$data_arr.$sn.nature.avg.score}}{{/if}}</span></TD>
+			<TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.social.avg.score>=60}}<span style="font: 10pt 標楷體;">及格</span>{{else}}{{$data_arr.$sn.social.avg.score}}{{/if}}</span></TD>
+			<TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.health.avg.score>=60}}<span style="font: 10pt 標楷體;">及格</span>{{else}}{{$data_arr.$sn.health.avg.score}}{{/if}}</span></TD>
+			<TD style="width:11%; border-right: windowtext 0.75pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.art.avg.score>=60}}<span style="font: 10pt 標楷體;">及格</span>{{else}}{{$data_arr.$sn.art.avg.score}}{{/if}}</span></TD>
+			<TD style="width:11%; border-right: windowtext 1.5pt solid; border-top: windowtext 0.75pt solid;"><span style="font-family: Times New Roman;">{{if $data_arr.$sn.complex.avg.score>=60}}<span style="font: 10pt 標楷體;">及格</span>{{else}}{{$data_arr.$sn.complex.avg.score}}{{/if}}</span></TD>
+		</TR>
+        <TR style="height: 0pt;">
+          <TD style="border-top: windowtext 1.5pt solid;" colSpan="9"></TD>
+		</TR>
+        <TR style="height: 20pt; font-size: 12pt;">
+          <TD colSpan="9" style="font: 14pt 標楷體; text-align: right;">教務處　　敬上<BR>中華民國 {{$year}} 年 {{$month|@intval}} 月 {{$day|@intval}} 日</TD>
+		</TR>		
+		<TR>
+		  <TD colSpan="9" style="height: 20pt; text-align: left;"></TD>
+		</TR>
+        <TR style="height: 15pt; font-size: 12pt;">
+          <TD colSpan="9" style="font: 16pt 標楷體; text-align: center;">
+		  ※回條請於 {{$year}} 年 {{$smarty.post.rmonth}} 月 {{$smarty.post.rday}} 日前由貴子弟交回註冊組。<BR>
+		  </TD>
+		</TR>
+        <TR style="height: 20pt;">
+          <TD colSpan="9" style="font: 18pt 標楷體; font-weight: bold; border-top: windowtext 0.75pt dashed;">
+		  <BR><span style="font-family: Times New Roman; font-weight: bold;">{{$sel_year}}</span>學年度第<span style="font-family: Times New Roman; font-weight: bold;">{{$sel_seme}}</span>學期「補行評量」通知書家長回執聯
+		  </TD>
+		</TR>
+        <TR style="height: 15pt; font-size: 12pt;">
+          <TD colSpan="9" style="font: 14pt 標楷體; text-align: left;"><BR>
+		  本人為 <span style="font-size: 18pt;"><B>{{$d.class_year}}</B></span> 年 <span style="font-size: 18pt;"><B>{{$d.class_num|@intval}}</B></span> 班 <span style="font-size: 18pt;"><B>{{$d.seme_num}}</B></span> 號 <span style="font-size: 18pt;"><B>{{$d.stud_name}}</B></span> 學生家長，接獲教務處的「補行評量通知書」，已詳細閱讀並了解學生學習狀況。<BR>
+		  </TD>
+		</TR>
+        <TR style="height: 20pt; font-size: 12pt;">
+          <TD colSpan="9" style="font: 14pt 標楷體; text-align: right;"><BR>
+		  家長簽章：<U>　　　　　　　　　</U>（簽名時請簽全名）<BR>
+		  </TD>
+		</TR>
+        <TR>
+          <TD>&nbsp;</TD>
+          <TD width="11%">&nbsp;</TD>
+          <TD width="11%">&nbsp;</TD>
+          <TD width="11%">&nbsp;</TD>
+          <TD width="11%">&nbsp;</TD>
+          <TD width="11%">&nbsp;</TD>
+          <TD width="11%">&nbsp;</TD>
+          <TD width="11%">&nbsp;</TD>
+          <TD width="11%">&nbsp;</TD>
+		</TR>
+		</TBODY>
+	  </TABLE>
+	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+{{/if}}
+{{/foreach}}
+</BODY></HTML>

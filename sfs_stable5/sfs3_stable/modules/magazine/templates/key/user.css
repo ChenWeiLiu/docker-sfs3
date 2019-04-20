@@ -1,0 +1,20 @@
+.backpic {  background-image: url(bg.gif); }
+.tdm {  font-size: 10pt; text-align: right ;color:white ; background-image:url(bar.gif);}
+.tdm_s {  font-size: 10pt;  text-align: right;color:white ; background-image:url(bar_sel.gif);}
+.tdm_o {  font-size: 10pt; text-align: center ;color:white }
+
+.td_title {  font-size: 16pt;  text-align: center ;color:white}
+.td_list {  font-size: 12pt;  text-align: center ;color:white}
+.td_author {  font-size: 12pt;  text-align: left ;color:white}
+.td_doc {  font-size: 12pt;  text-align: left ;color:white}
+.td_class_doc {  font-size: 12pt;  text-align: left }
+.td_doc_B {  font-size: 10pt; background-color: #CCFFCC; text-align: left }
+.td_judge {  font-size: 12pt; background-color: #CCFFCC; text-align: center ;color:white}
+.td_foot {  font-size: 12pt; background-color: #CCCCCC; text-align: center ;color:white}
+.td_fixed {  font-size: 12pt; background-color: #9999FF; text-align: center ;color:white}
+.td_htm {  font-size: 12pt; background-color: #9999FF; color:white}
+.leftwidth {  width: 140px; clip:   rect(   )}
+a:link { color:white; }
+a:visited { color:white; }
+a:active { color:white; }
+a:hover { color:white; }

@@ -1,0 +1,27 @@
+<!-- //$Id: score.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<TABLE border=0 width=100% style='font-size:10pt;'  cellspacing=1 cellpadding=0 bgcolor=#9EBCDD>
+<TR bgcolor=#9EBCDD>
+<td width="100%" colspan="6"><B>stud_seme_score學期成績表C-----搜尋結果</B></td>
+</tr>
+<tr bgcolor="#ffffff" style='color:#800000;font-size:10px;' align='center'>
+<td nowrap>編號<br>sss_id</td>
+<td nowrap>學生流水號<br>student_sn</td>
+<td nowrap>學期<br>seme_year_seme</td>
+<td nowrap>科目<br>ss_id</td>
+<td nowrap>科目名稱</td>
+<td nowrap>成績<br>ss_score</td>
+<td nowrap>評語<br>ss_score_memo</td>
+</tr>
+
+{{foreach from=$arr_seme_score item=data}}
+<tr bgcolor="#ffffff" style='color:#800000;font-size:10pt;' >
+<td>{{$data.sss_id}}</td>
+<td>{{$data.student_sn}}</td>
+<td>{{$data.seme_year_seme}}</td>
+<td>{{$data.ss_id}}</td>
+<td>{{$data.cname}}</td>
+<td>{{$data.ss_score}}</td>
+<td>{{$data.ss_score_memo}}</td>
+</tr>
+{{/foreach}}
+</TABLE>

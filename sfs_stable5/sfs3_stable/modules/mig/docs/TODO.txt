@@ -1,0 +1,48 @@
+
+TO DO (Wish List)
+-----------------
+
+(Just because something is on this list does not mean it will be in MiG
+someday.  This is just a list of things some folks have requested, or that
+I have tossed around.  These things may or may not be implemented.  I'd
+love to implement many of them but spare time is hard to come by these days.)
+
+- Add a feature to only display X images per page (for large galleries).
+  Should be a configurable value (probably in mig.cfg) defaulting to
+  "no limit".
+
+- Make content handling more generic to recognize more formats.
+  Such as having mp3 files, MPEG video files and such handled by
+  MiG as well as image files.
+
+- Mini-search engine function.  Probably something that will index the
+  mig.cf comments periodically (and exif.inf files) and build a database
+  which could be searched through.  Results would link to pageType=image
+  MiG URLs.
+
+- Optional support for thumbnails to be auto-generated (requires the
+  web server to have write access into the filesystem).
+
+- Password protection for folders
+
+- option to turn thumbnails off (browser would select this or it could
+  be default)
+
+- use_subdir=(0|1) and subdir_name=(string)
+  instead of filename format for thumbs, let people do like thumbs/img.jpg
+  and sutff instead (some folks would find that cleaner/simpler).
+
+- Optional support for MySQL to store things instead of mig.cf/exif.inf
+
+- New parameter (maybe <Short> ?) which displaces the imagename and sizes
+  in thumbnail view and instead shows a "short" comment independent of the
+  long comment which is present in <Comment>   (user request)
+
+- Thumbnails of next & previous images on the pageType=image view.
+
+- Ability to use different file types for thumbnail and full-size image.
+
+- Have next / previous image links be buttons rather than anchor links.
+
+- Have folder lists in multiple columns, optionally.
+

@@ -1,0 +1,94 @@
+假若該IP之前有殘留session 要記得清除session
+diagnose sys session clear
+如此才會照修改好後的IP-MAC-Binding設定來執行
+
+假若有透過FG發DHCP IP卡號已經登記在dhcp之address leases
+此時 user若換其他IP 將會無法上網
+除非清除DHCP保留紀錄 execute dhcp lease-clear
+或是設定新IP的IP-MAC-Binding table
+
+IP-MAC-Binding主要有三大部分
+
+第一部分：設定若是啟用此功能 其管控之嚴格度
+
+第二部份：輸入IP與MAC對應之資料庫
+
+第三部份：設定哪些介面要啟用此功能
+
+設定的順序上 通常先設定好第一部分決定好管控之嚴格度之後
+再完成第二部份 決定好要控管的IP與MAC資料內容
+最後一切確定無誤之後 再執行第三部分 開始針對某些介面正式啟動IP與MAC的控管
+
+
+三部份設定說明如下
+
+第一部分：設定若是啟用此功能 其管控之嚴格度
+show firewall ipmacbinding setting　可以看到管控嚴格度之已設定內容
+
+config firewall ipmacbinding setting
+    set bindthroughfw enable   (啟動管制穿越防火牆)
+
+　　bindtofw enable (啟動管制誰可以修改防火牆設定)
+
+    set undefinedhost allow
+　　(IP及MAC符合資料庫對應的則放行　IP and MAC皆不在資料庫定義之中的則也放行通過
+　　但若有IP與資料庫相同但其MAC與資料庫不同　或是　MAC與資料庫相同但其IP與資料庫不同　則禁止通過)
+    
+　　set undefinedhost block
+　　(唯有IP及MAC符合資料庫對應的才放行　IP or MAC不在資料庫定義之中的則禁止其通過)      
+end     
+
+一般寬鬆的設定為下
+config firewall ipmacbinding setting
+    set bindthroughfw enable
+    set undefinedhost allow
+end
+表示只控管有收集到IP MAC的部分　其餘未收集的IP、MAC則放行　但盜用已輸入資料庫的IP or MAC則將被封鎖
+
+
+嚴格的設定為下
+config firewall ipmacbinding setting
+    set bindthroughfw enable
+　　set undefinedhost block
+end 
+表示唯有IP及MAC符合資料庫對應的才放行　其餘的全不放行
+
+
+
+第二部份：輸入IP與MAC對應之資料庫
+show firewall ipmacbinding table　可看到已輸入的資料
+config firewall ipmacbinding table
+    edit 1
+        set ip 1.1.1.1
+        set mac 11:11:11:11:11:11
+        set status enable
+    next
+    edit 2
+        set ip 192.168.10.100
+        set mac 00:90:f5:29:a3:7b
+        set status enable
+    next
+end
+
+如要刪除第二筆資料
+則輸入如下
+config firewall ipmacbinding table-->delete 2-->end
+
+
+
+第三部份：設定哪些介面要啟用此功能
+show system interface　可看到哪些介面已啟動IP-MAC-Binding
+config system interface
+    edit "internal"
+               set ipmac enable
+    next
+end
+
+使用2.8 IP-MAC-Binding的時候
+如將要對internal介面正式開始啟用IP-MAC-Binding
+則輸入流程如下config sys interface ---> edit internal --->set ipmac enable
+這樣就會對internal介面正式開始啟用IP-MAC-Binding
+
+如要對internal介面取消IP-MAC-Binding
+則輸入流程如下config sys interface ---> edit internal --->set ipmac disable
+

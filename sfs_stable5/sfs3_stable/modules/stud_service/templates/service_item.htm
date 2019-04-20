@@ -1,0 +1,107 @@
+<!-- //$Id: PHP_tmp.html 5310 2009-01-10 07:57:56Z hami $ -->
+
+<TABLE width='800'  border='0' align='left'><TR><TD align=right>
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}'  Name='e2'>
+<INPUT TYPE='hidden' Name='form_act'  value=''>
+{{if $this->Search_Str!=''}}
+<input type="text"  name="nSearch" value='{{$this->Search_Str}}' size=8>
+<INPUT TYPE='button' style='color:red' value='取消找尋' onclick="this.form.form_act.value='Search';this.form.submit();">
+{{else}}
+<input type="text"  name="Search" value='' size=8>
+<INPUT TYPE='button' style='color:blue;' value='搜尋服務內容' onclick="if( window.confirm('確定搜尋？')){this.form.form_act.value='Search';this.form.submit()}">
+
+{{/if}}
+</FORM>
+{{$this->links->show_page()}}</TD></TR></TABLE><br>
+<table  width='800'  border='0' align='left' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr align=center  style='font-size:10pt' bgcolor='#E5E5E5'>
+<td width=6%>學期</td>
+<td width=12%>日期</td>
+<td width=12%>登 錄  單 位</td>
+<td width=12%>主辦單位</td>
+
+<td width=8%>服務類型</td>
+<td width=20%>內容說明</td>
+
+<td width=6%>確認</td>
+<td width=6%>人數</td>
+
+<td>編修</td>
+</tr>
+
+{{foreach from=$this->all item=arr}}
+
+{{if $smarty.get.edit==$arr.sn}}
+<!-- 編修表單   ---開始-->
+<tr align=center><td colspan=9>
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}'  Name='e1' enctype='multipart/form-data'>
+<table>
+
+
+<tr><td>學期</td>
+<td><input type="text"  name="year_seme" value='{{$arr.year_seme}}' size=16></td></tr>
+<tr><td>服務日期</td>
+<td><input type="text"  name="service_date" value='{{$arr.service_date}}' size=16></td></tr>
+<tr><td>登 錄 單 位</td>
+<td>
+{{html_options name=department options=$this->Room selected=$arr.department}}
+</td></tr>
+<tr><td>主辦單位</td>
+<td><input type="text"  name="sponsor" value='{{$arr.sponsor}}' size=16></td></tr>
+
+
+<tr><td>服務類型</td>
+<td>{{html_options name=item values=$this->Item output=$this->Item selected=$arr.item}}
+</td></tr>
+<tr><td>服務內容</td>
+<td><input type="text"  name="memo" value='{{$arr.memo}}' size=20></td></tr>
+<tr><td>已確認</td>
+<td>{{html_radios name='confirm' options=$this->YN  selected=$arr.confirm separator='&nbsp;'}}
+</td></tr>
+
+
+
+<tr>
+<td colspan=2>
+<INPUT TYPE='hidden' Name='form_act'  value=''>
+<input type="hidden"  name="sn" value='{{$arr.sn}}'>
+<INPUT TYPE='hidden' Name='page' Value='{{$this->page}}'>
+<INPUT TYPE='reset' Value='重設' class=bur2 >
+<INPUT TYPE='button' value='填好送出' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='update';this.form.submit()}">
+<INPUT TYPE='button' value='取消返回' onclick="location.href='{{$smarty.server.PHP_SELF}}?page={{$this->page}}'" class=bur2>
+</td></tr>
+</table>
+</FORM>
+</td></tr>
+<!-- 編修表單 ---結束-->
+{{else}}
+<!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+<tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' style='font-size:13px'>
+<td>{{$arr.year_seme}} </td>
+<td>{{$arr.service_date}} </td>
+<td>{{$this->Room[$arr.department]}}-
+{{$this->Tea[$arr.update_sn]}}
+ </td>
+<td>{{$arr.sponsor}} </td>
+<td>{{$arr.item}} </td>
+<td>{{$arr.memo}} </td>
+
+
+<td>{{if $arr.confirm=='1'}}是{{else}}否{{/if}} </td>
+<td><a href="service_one.php?sn={{$arr.sn}}">{{$arr.btol}}</a> </td>
+
+<td><a href="{{$smarty.server.PHP_SELF}}?edit={{$arr.sn}}&page={{$this->page}}">修改</a>
+{{if $arr.btol!='0'}}
+<a href="{{$smarty.server.PHP_SELF}}?form_act=del&sn={{$arr.sn}}&page={{$this->page}}" onclick="return window.confirm('真的刪除嗎？');">刪除</a>
+{{/if}} 
+</td></tr>
+{{/if}}
+{{/foreach}}
+
+
+
+
+</table>
+
+
+

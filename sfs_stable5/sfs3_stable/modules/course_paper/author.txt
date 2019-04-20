@@ -1,0 +1,6 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+course_paper - 學校課表匯出系統
+2003-02-22 -- prolin(prolin@sy3es.tnc.edu.tw )
+
+
+匯出功課表到 openoffice 中。

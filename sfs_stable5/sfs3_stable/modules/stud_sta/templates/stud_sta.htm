@@ -1,0 +1,132 @@
+<!-- //$Id: stud_sta.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<script type="text/javascript" src="{{$this->sfs_url}}javascripts/calendar.js"></script>
+<script type="text/javascript" src="{{$this->sfs_url}}javascripts/lang/calendar-en.js"></script>
+<script type="text/javascript" src="{{$this->sfs_url}}javascripts/calendar-setup.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="{{$this->sfs_url}}javascripts/calendar-brown.css">
+
+
+<table  width='90%'  border='0' align='left' cellpadding='1' cellspacing='1'  bgcolor='#E6E6FA' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr align=center  style='font-size:11pt'>
+<td colspan=2><span align="center" style="font-size: 20pt;font-family: 標楷體, cursive;font-weight: bold; ">開立在學証明</span></td>
+</tr>
+
+
+<tr align=center  style='font-size:11pt' >
+<td>{{$this->select->select()}}</td>
+<td>&nbsp;</td>
+</tr>
+<form name=f3>
+<tr  style='font-size:11pt' >
+<td align=right valign=top>
+
+{{if $this->stu!=''}}
+<input type="button" value="全選/取消/反向" onclick="tagall('f1')">
+<input type="button" value="重選" onclick="f1.reset()">
+<input type="button" value="將鉤選者記下==&gt;"  onclick="f1.form_act.value='add';f1.submit()">
+{{/if}}
+</td><td align=left valign=top>
+{{if $smarty.session.sel_stu==''}}{{else}}
+<input type="button" value="&lt;==將鉤選者移除"  onclick="f2.form_act.value='remove';f2.submit()">
+<input type="button" value="全選/取消/反向" onclick="tagall('f2')">
+<input type="button" value="重選" onclick="f2.reset()"><br>
+證明目的<input type="text" name="reason" size="30" value="{{$smarty.post.purpose}}"><br>
+證明日期<input type="text" name="rday" size="10" value="{{$smarty.now|date_format:"%Y-%m-%d"}}"  id="tt" >
+<button id="day" style="border:1px;border-color:red">日期..</button>
+<script type="text/javascript">Calendar.setup({"inputField":"tt","button":"day","singleClick":false});</script>
+<br>
+<input type="button" value="將下列學生開立証明"  onclick="chk_sta()">
+{{/if}}
+
+</td></tr>
+</form>
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td valign=top>
+<form action="{{$smarty.server.PHP_SELF}}" method="post" name=f1 >
+<input type="hidden" name="form_act" value=''>
+<input type="hidden" name="year_seme" value="{{$this->select->year}}_{{$this->select->seme}}">
+<table width=100%  style='font-size:10pt' cellpadding='0' cellspacing='0' >
+<tr>
+{{foreach from=$this->stu item=arr}}
+<td>
+{{if $arr.student_sn!=''}}<LABEL>
+<input type="checkbox" name="stu[{{$arr.student_sn}}]">
+{{$this->SEX($arr.stud_sex)}}<br>
+{{$arr.seme_num}}.{{$arr.stud_name}}</LABEL>
+{{/if}}
+
+</td>
+{{if $arr.next_line=='yes'}}</tr><tr>{{/if}}
+{{/foreach}}
+</tr>
+</table>
+</form>
+
+</td><td valign=top>
+<form action="{{$smarty.server.PHP_SELF}}" method="post" name=f2 >
+<input type="hidden" name="purpose" value=''>
+<input type="hidden" name="prove_date" value=''>
+<input type="hidden" name="form_act" value=''>
+<input type="hidden" name="year_seme" value="{{$this->select->year}}_{{$this->select->seme}}">
+<table width=100% style='font-size:10pt' cellpadding='0' cellspacing='0' >
+<tr>
+{{foreach from=$this->s_stu item=brr}}
+<td>
+{{if $brr.student_sn!=''}}<LABEL>
+<input type="checkbox" name="stu[{{$brr.student_sn}}]">
+{{$this->SEX($brr.stud_sex)}}<br>
+{{$this->CLA($brr.seme_class)}}<br>{{$brr.seme_num}}.{{$brr.stud_name}}</LABEL>
+{{/if}}
+</td>
+{{if $brr.next_line=='yes'}}</tr><tr>{{/if}}
+{{/foreach}}
+</tr>
+</table>
+</form>
+
+</td></tr>
+
+
+</table>
+
+<script>
+<!--
+
+function chk_sta() {
+	var A1=document.f3.reason;
+	var B1=document.f3.rday;
+	var A2=document.f2.purpose;
+	var B2=document.f2.prove_date;
+	if (A1.value=='' ||B1.value=='' ||B1.value=='undefined') {alert("請填寫証明事由！");return;}
+	else{
+		A2.value=A1.value;
+		B2.value=B1.value;
+		document.f2.form_act.value='add_DB';
+//		alert(document.f2.purpose.value);
+//		alert(document.f2.prove_date.value);
+		f2.submit();	
+	}
+	
+
+
+}
+function tagall(ff) {
+
+//	var FF = document.all[ff];
+//	var FF=document.getElementById(ff);
+	var FF=document.getElementsByName(ff)[0];
+	var i =0;
+	while (i < FF.elements.length) {
+	var obj=FF.elements[i];
+	var objx=FF.elements[i].name;//取得名稱
+	// objx.substr(0,4)取得部分字串
+	if (obj.type=='checkbox' && objx.substr(0,3)=='stu') {
+	if (obj.checked==1 ) {obj.checked=0;}
+	else { obj.checked=1;}
+	}
+	i++;
+	}
+}
+//-->
+</script>
+

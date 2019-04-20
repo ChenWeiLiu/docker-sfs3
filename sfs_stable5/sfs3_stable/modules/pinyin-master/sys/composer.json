@@ -1,0 +1,6 @@
+{
+    "require": {
+        "box/spout": "^2.3",
+        "smarty/smarty": "^3.1"
+    }
+}

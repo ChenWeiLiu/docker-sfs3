@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta content="text/html; charset=Big5" http-equiv="content-type">
+<meta name="generator" content="彰化縣學務系統推動小組">
+<title>成績証明通用版</title>
+</head>
+
+<script>
+<!--
+function tagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,5)=='stu_s') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=1;}
+}
+i++;
+}
+}
+//-->
+</script>  
+
+<body>
+
+<table width=80%  style="border-collapse:collapse">
+<tr>
+<td width=45%  style="vertical-align: top;">
+<!-- 第一格內容 -->
+
+
+<table style="text-align: left;border-collapse:collapse" width=100% border="1" cellspacing="2"
+ cellpadding="2" align=center>
+    <tr>
+      <td nowrap>流水號</td>
+      <td nowrap>學號</td>
+      <td nowrap>姓名</td>
+      <td nowrap>性別</td>
+      <td nowrap>就學<br>狀態</td>
+      <td nowrap>座號</td>
+      </tr>
+{{foreach from=$data item=arr}} <tr style="font-size:10pt" align=center>
+<td style="vertical-align: top;">{{$arr.student_sn}}</td>
+<td style="vertical-align: top;">{{$arr.stud_id}}</td>
+<td style="vertical-align: top;">
+<a href="{{$smarty.server.PHP_SELF}}?Seme={{$smarty.get.Seme}}&Sclass={{$smarty.get.Sclass}}&st_sn={{$arr.student_sn}}">
+{{$arr.stud_name}}</a></td>
+<td style="vertical-align: top;">{{$SEX[$arr.stud_sex]}}</td>
+<td style="vertical-align: top;">{{$stud_coud[$arr.stud_study_cond]}}</td>
+<td style="vertical-align: top;">{{$arr.seme_num}}</td>
+</tr>
+{{/foreach}}
+</table>
+
+<!-- 第一格結束 -->
+</td><td width=55%  style="vertical-align: top;">
+<!-- 第二格內容 -->
+{{if $smarty.get.st_sn}}
+<table width="90%"  border="1" align="center" cellpadding="5" cellspacing="0" bgcolor="#dddddd" bordercolordark="#eeffee" bordercolorlight="#221100" align=center>
+  <tr>
+    <th width="39%" scope="col"><div align="justify" class="style3">學號</div></th>
+    <th width="61%" scope="col"><div align="center" class="style3">{{$stu->stud_id}}</div></th>
+  </tr>
+  <tr>
+    <td><div align="justify" class="style3">流水號</div></td>
+    <td><div align="center" class="style3">{{$stu->student_sn}}</div></td>
+  </tr>
+  <tr>
+    <td><div align="justify" class="style3">姓名</div></td>
+    <td><div align="center" class="style3">{{$stu->stud_name}}</div></td>
+  </tr>
+  <tr>
+    <td><div align="justify" class="style3">班級</div></td>
+    <td><div align="center" class="style3">{{$stu->class_id}}</div></td>
+  </tr>
+  <tr>
+    <td><div align="justify" class="style3">座號</div></td>
+    <td><div align="center" class="style3">{{$stu->seme_num}}</div></td>
+  </tr>
+  <tr>
+    <td><div align="justify" class="style3">目前就學狀態</div></td>
+{{assign var="Scond" value=$stu->study_cond}}
+    <td><div align="center" class="style3">{{$stud_coud[$Scond]}}({{$stu->study_cond}})</div></td>
+  </tr>
+  <tr>
+    <td><div align="justify" class="style3">身份證字號</div></td>
+    <td><div align="center" class="style3">{{$stu->person_id}}</div></td>
+  </tr>
+  
+<form action="chc_print_ps.php" method="post" name=f1 target=_blank>
+  <tr>
+    <td><div align="justify" class="style3">要印那個學期的成績証明？<br><BR>
+<INPUT TYPE='checkbox' onClick="tagall();" >
+全選/取消
+</div>
+ </td>
+    <td><div align="center" class="style3">
+{{foreach from=$stu_seme  item=stu_seme}}
+<input type="checkbox" name="stu_sn[{{$stu_seme.all}}]" value="">
+{{$stu_seme.year}}學年
+第{{$stu_seme.seme}}學期
+<br>
+
+
+{{/foreach}} 
+
+<INPUT TYPE='hidden' NAME='student_sn'  value='{{$stu->student_sn}}'>
+<input type="submit" value="選好送出">
+
+   
+</div></td>
+  </tr>
+
+</form>
+
+  
+  
+  
+</table>
+
+{{/if}}
+
+
+
+
+
+<!-- 第二格結束 -->
+</td></tr>
+</table>
+<BR><BR>
+<DIV style="color:blue" onclick="alert('作者群：\n陽明 江添河\n 和群 姚榮輝\n二林 紀明村\n草湖 曾彥鈞\n北斗 李欣欣\n大城 林畯城');">◎By 彰化縣學務系統開發小組</DIV>
+<BR><BR>
+
+</body>
+</html>

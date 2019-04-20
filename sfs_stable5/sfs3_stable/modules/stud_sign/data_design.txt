@@ -1,0 +1,79 @@
+// $Id: data_design.txt 8152 2014-09-30 01:15:55Z smallduh $
+
+CREATE TABLE sign_data (
+  id bigint(20) NOT NULL default '0',
+  # 索引號
+  
+  #報名索引號(關聯用)
+  kind int(11) NOT NULL default '0',
+  
+  #報名項目別代號
+  item varchar(10) default NULL,
+  
+  
+  #排序(判斷正備取)
+   order_pos tinyint(4) default NULL,
+   
+  #學生姓名 
+  stud_name varchar(10) NOT NULL default '',
+  
+  #各資料串 以 | 做分隔 (R1234533|男|066332112) 
+  data_get1 varchar(256)  NULL default '',
+
+  #輸入的資料以 | 做分隔 ，(XL|XXL|   
+  data_input
+  
+  #輸入老師的 id 
+  
+  #班級代號
+  
+  
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM;
+
+
+#
+# 資料表格式： `sign_kind`
+#
+
+CREATE TABLE sign_kind (
+  #索引號
+  id int(11) NOT NULL auto_increment,
+  
+  #報名表主要名稱
+  title varchar(80) default NULL,
+  
+  #報名表說明
+  doc varchar(80) default NULL,
+  
+  
+  #開始日
+  beg_date date NOT NULL default '0000-00-00',
+  #結束日
+  end_date date NOT NULL default '0000-00-00',
+  
+  #限制年級(1~6級任)、全校教師 (A->全校教師，B->全部年級級任，1,2,3 a 表示年級)
+  input_classY varchar(40) default '0',
+  
+
+  
+  #類別人數的設定   代號|類別名|正取|備取|文字說明, (sport|運動員|4|1|星期日報到,nurse|護理員|2|0|周一報到,)
+  kind_set varchar(255) default NULL,
+  
+  #要匯出的資料欄位可取得  (A,C,D)
+  data_item varchar(80) default NULL,
+  
+  #輸額外輸入( 代號|欄名|格式代號|長度|預設值,) (A|上衣型號|s|3|L,P|長褲型號|3|S|XL)
+  input_data_item 
+  
+  
+  #負責人(代號)
+  admin varchar(20) default NULL,
+  
+  #授權助手(代號)
+  helper
+  
+  #預設隱藏名單，只出現快速輸入列
+  is_hide tinyint(4) NOT NULL default '0', 
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM;

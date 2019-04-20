@@ -1,0 +1,7 @@
+{dirname} - {showname}
+原創作者：{author}
+
+{email} {creat_date}
+{ID}
+
+{description}

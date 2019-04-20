@@ -1,0 +1,80 @@
+
+Using MiG under Windows
+-----------------------
+
+I haven't tested MiG using an IIS system.  I don't have an NT box handy,
+and don't want to :-)  But I have tested it using Personal Web Server under
+Windows98 on my laptop.  It worked out of the box using PWS 4.0 with PHP4.
+
+I installed PWS 4.0 using all of the default settings.
+
+I installed PHP based on these directions:
+    http://www.php.net/manual/install-windows95-nt.php
+
+After the PHP install, I dropped MiG onto the system and it worked with no
+changes whatsoever.  You will need to tell your web server that the folder
+you stick MiG into has "execute" permission, though.  See the documentation
+for your web server on how to do this.  You may also have to tell the web
+server to use "index.php" as one of the default document names for a given
+directory.
+
+If you find your results are different, please drop an email to let me know
+at <mig-bugs@tangledhelix.com>.
+
+(I know of at least one person using MiG in a Win2000/IIS5 environment.
+They had problems until they upgraded to PHP 4.0.2, so my recommendation is
+that you should use PHP 4.0.2 or the latest verion of PHP if you are trying
+to use MiG under Windows.)
+
+
+Windows Installation
+--------------------
+
+Windows users will need to modify the install directions a bit.  Read over
+the "INSTALLATION AND BASICS" section of docs/Install.txt and make the
+following changes:
+
+1. Instead of using gzip and tar, unpack the archive using Winzip or
+   similar.  Winzip should know how to handle .tar.gz files.
+
+2. Instead of running "install.sh", you'll want to use the "install.bat"
+   batch-file script.  Double-clicking on it is adequate.
+
+3. This will install everything into c:\mig.  Because of the limitations
+   of batch files I couldn't do much more than that.  If you can, please
+   feel free to rewrite the batch file installer and send me a copy.
+
+   (Note that I intentionally avoided use of "choice" because it is not
+   available on the Windows NT4 platform.  Or if you know of a good win32
+   GUI installer that is free or cheap, let me know.  I didn't find any
+   and I can't afford to buy InstallShield.  Alternately you can volunteer
+   to maintain the win32 packaging of MiG if you want to.  Drop me a line.)
+
+4. Then you can drag 'n drop files over to wherever you need them
+   (for instance maybe c:\inetpub\wwwroot\mig) or if you want you can just
+   use c:\mig and have your webserver map a virtual directory there.  See
+   your web server's documentation for how to do that.
+
+5. Make sure you don't copy over your photo files, please.  I can't warrant
+   that won't happen, because I've seen some really odd things happen when
+   dragging files and folders around in Windows Explorer.  Please be
+   careful and backups wouldn't hurt, either.
+
+
+Miscellaneous Notes
+-------------------
+
+I'm told by a user in Germany that MiG works under Windows NT and IIS.
+It seems that you'd be well served to upgrade to the latest version of PHP
+though, so if you're using Windows, please upgrade to the most recent
+version of PHP.  You can find it at http://www.php.net/
+
+I'm also told by this same user that having a comma in a filename or
+directory name causes trouble on their Windows platform (although I have
+had no problems with same under Linux or Solaris).  So be aware of that.
+Other special characters may not work either.  It might be safest to just
+use alphabetics, numbers and things like underscore and hyphen.  Remember
+that an underscore will be shown as a space in folder names, so as far as
+the folder names go, an underscore is equivalent to a space as far as MiG
+is concerned (in folder names, anyway).
+

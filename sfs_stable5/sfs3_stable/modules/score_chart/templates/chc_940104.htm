@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=Big5" http-equiv="content-type">
+  <title></title>
+</head>
+
+<script>
+<!--
+function tagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,8)=='class_id') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=1;}
+}
+i++;
+}
+}
+function untagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,8)=='class_id') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=0;}
+}
+i++;
+}
+}
+
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+function bb2(a,b) {
+var objform=document.f2;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+
+//-->
+</script>  
+
+<body>
+
+<TABLE border=0 width=100% style='font-size:12pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<TR bgcolor=#9EBCDD>
+<FORM METHOD=POST ACTION="ps_9401.php" name=f1 target=_blank>
+
+
+<td width=100%  style="vertical-align: top;" colspan=2>
+<!-- 第1格內容 -->
+{{$sel_year}}{{$sel_grade}}
+{{if $smarty.get.grade!='' && $smarty.get.year_seme!=''}}
+<INPUT TYPE=button  value='全選/反向' onclick="tagall();"  class=bur2>
+<INPUT TYPE=button  value='取消' onclick="untagall();" class=bur2>
+ <INPUT TYPE='checkbox' name='ceilox' value='checked' checked><font size=2 color='red'>判定等第前先將成績無條件進位 </font>
+ {{if $IS_JHORES==6}}
+ <INPUT TYPE='checkbox' name='stud_club' value='checked' checked><font size=2 color='red'>列印社團活動記錄 </font>(<INPUT TYPE='checkbox' name='stud_club_score' value='checked' checked>含成績)
+ <INPUT TYPE='checkbox' name='stud_service' value='checked' checked><font size=2 color='red'>列印服務學習記錄 </font>
+ {{/if}}
+<INPUT TYPE=button  value='選好送出' onclick=" bb1('選好了？？有點久，請耐心等待！','OK');" class=bur2>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+{{/if}}
+</td>
+</tr>
+<TR bgcolor=#BEDCFD>
+{{assign var=s2 value=$none_text*3+2}}
+{{assign var=s3 value=$none_text*3+3}}
+{{assign var=s4 value=$none_text*3+4}}
+<td width="100%" class="small" style="vertical-align:top;color:blue;" colspan="2">
+<input type="radio" name="chart_kind" value="1" {{$chked.1}}>分科成績單  
+<input type="radio" name="chart_kind" value="{{$s2}}" {{$chked.$s2}}>領域成績單 <span style="color:red;">←95前入學 | 95後入學→</span>
+<input type="radio" name="chart_kind" value="{{$s3}}" {{$chked.$s3}}>領域成績單+簡式檢核表
+<input type="radio" name="chart_kind" value="{{$s4}}" {{$chked.$s4}}>領域成績單+完整檢核表
+<input type="radio" name="chart_kind" value="9" {{$chked.9}}>自訂樣本
+{{if $smarty.get.grade!='' && $smarty.get.year_seme!=''}}
+{{assign var="i" value=1}}
+</td>
+</tr>
+<TR bgcolor=white>
+<td colspan=2>
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  bgcolor='lightGray'><TR bgcolor=white>
+{{foreach from=$sel_class item=data}}
+
+{{if $i!=1 && ($i%10)==1 }}  <TR bgcolor=white>{{/if}}
+
+{{$data.c_name}}
+{{if $i!=0 && ($i%10)==0 }} </TR>{{/if}}
+{{assign var="i" value=$i+1}}
+{{/foreach}}
+</TABLE>
+{{/if}}
+</td></tr></FORM>
+{{if $smarty.get.grade!='' && $smarty.get.year_seme!=''}}
+
+<FORM METHOD=POST ACTION="{{$phpself}}" name=f2 >
+<TR bgcolor=white><td width=100%><B>{{$smarty.get.grade}}年級的成績單備註文字：</B>
+(可用HTML語法，標點符號切勿用小寫。)
+
+<TEXTAREA NAME="input_txt" ROWS="15" COLS="100" class=ip2>{{$input_txt}}</TEXTAREA>
+<BR>
+<INPUT TYPE=button  value='使用原本預設文字' onclick=" bb2('確定寫入？True？','write_def');" class=bur2>
+<INPUT TYPE=button  value='儲存修改後的備註文字' onclick=" bb2('確定寫入？True？','write_txt');" class=bur2>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='grade'  value='{{$smarty.get.grade}}'>
+<INPUT TYPE='hidden' NAME='year_seme'  value='{{$smarty.get.year_seme}}'>
+
+</td></tr></FORM>
+<TR bgcolor=white>
+<td width=100% valign=top><B>預視結果：</B>
+</td></tr>
+<TR bgcolor=white  style='font-size:10pt;font-family:標楷體'><td width=100%>
+{{include file="$add_memo_file"}}
+
+</td></tr>
+{{/if}}
+
+<TR bgcolor=white>
+<td width=100%>
+<B class=bub>○使用說明與注意事項○</FONT></B></td></tr>
+<TR bgcolor=white style='font-size:10pt;'>
+<td width=100% valign=top >
+<span style="font-weight: bold;">問題：</span>網頁式成績單有何功能？要如何使用？<br>
+<span style="color: rgb(51, 51, 255);">
+網頁式成績單提供學校直接透過瀏覽器進行學期成績單的列印，提高學校印製成績單的效率；該程式目前放在<BR>【教務】【教學組】【製作成績單】,英文名稱為 <B style="color:red">score_chart</B>。</span>
+<br>
+<br>
+<span style="font-weight: bold;">問題：</span>到底要不要上傳校長與主任的簽章？
+<br>
+<span style="color: rgb(51, 51, 255);">
+學務系統成績單是否印出校長與主任的簽章，主要是以學校是否在【教務】【學校設定】【職稱資料】有把校長與主任的簽章傳上去；
+也就是說，如果有上傳校長與主任的簽章圖檔，那系統就會印出，如果不上傳，那系統自然就不幫學校印出。</span>
+<br>
+<br>
+<span style="font-weight: bold;">問題：</span>如何上傳校長與主任的簽章檔呢？
+<br>
+<span style="color: rgb(51, 51, 255);">
+請登入系統後，點選【教務】【學校設定】【職稱資料】，就可以上傳校長與主任的簽章。</span>
+<br>
+<br>
+<span style="font-weight: bold;">問題：</span>校長與主任的簽章檔大小與格式為何呢？
+<br>
+<span style="color: rgb(51, 51, 255);">
+系統預設圖檔寬度為160像素，圖檔高度由學校自訂，存檔副檔名為gif檔。</span>
+<br>
+<br>
+<span style="font-weight: bold;">問題：</span>校長與主任的簽章檔傳錯或是不滿意可以刪掉嗎？
+<br>
+<span style="color: rgb(51, 51, 255);">
+圖章上傳後，請老師無論是否要修改，請絕對不要按【刪除】的動作，因為在【教務】【學校設定】【職稱資料】的刪除
+是將該處室刪除掉，而不是將該圖檔刪除掉，老師要修改簽章檔的話，只要重新上傳一次就可以。<B style="color:red">
+請注意分別『刪除』與『僅刪除簽章檔』的差別，千萬別錯手把職稱給刪除了</b>。</span>
+<br>
+<br>
+<span style="font-weight: bold;">問題：</span>期末成績單在預視列印或是印出來之後，為何每週節數不正確呢？<br>
+
+<span style="color: rgb(51, 51, 255);">
+請到【教務】【學期初校設定】【課程設定】，將【加權】這個欄位改成每週實際上課的節數，再進行預視列印試看看。</span>
+<br>
+<br>
+<span style="font-weight: bold;">問題：</span>期末成績單在預視列印或是印出來之後，要怎樣把印出來的網址拿掉呢？<br>
+<span style="color: rgb(51, 51, 255);">
+請在瀏覽器當中，選擇【檔案】，在設定列印格式或是頁面設定當中，將頁首或頁尾設成空白就可以了。</span>
+<br>
+<br>
+<span style="font-weight: bold;">問題：</span>為何成績單產生後的網頁是一片空白<br>
+<span style="color: rgb(51, 51, 255);">
+1.該學期可能未作課程設定。2.課程設定中未作九年一貫對應。3.成績未作結算。</span>
+<br>
+<br>
+<span style="font-weight: bold;">問題：</span>我想要自訂本校的成績單，使用的範本檔為何？(<FONT COLOR="red">限高手</FONT>)
+<br>
+<span style="color: rgb(51, 51, 255);">
+1.國小預設範本檔 ps_head.htm、ps_body.htm 國中預設範本檔 jh_head.htm、jh_body.htm。<BR>
+2.您下載上述一組並更名為 my_head.htm、my_body.htm。<BR>
+3.修改更名後的那一組內容後再上傳到主機即可。<BR>
+</span>
+</td></tr>
+</table>
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('作者群：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n大村 鄭培華');">
+◎By 彰化縣學務系統開發小組</DIV></FONT>
+

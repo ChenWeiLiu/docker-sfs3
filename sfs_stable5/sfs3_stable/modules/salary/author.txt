@@ -1,0 +1,9 @@
+salary - 薪津查詢
+
+原創作者：曾文芳
+修改：王慶祥
+
+
+
+infodaes@seed.net.tw 2007-9-15
+shang945@gmail.com 2008-3-10

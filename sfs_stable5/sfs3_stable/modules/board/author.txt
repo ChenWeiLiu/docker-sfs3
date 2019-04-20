@@ -1,0 +1,5 @@
+board - 訊息公告
+board1.0 --- 2001-1-1 --- HaMi(cik@mail.wpes.tcc.edu.tw)
+board2.0 --- 2001-10-1 --- HaMi(cik@mail.wpes.tcc.edu.tw)
+配合 sfs3 更改
+board2.1 --- 2003-4-6 --- HaMi(cik@mail.wpes.tcc.edu.tw)

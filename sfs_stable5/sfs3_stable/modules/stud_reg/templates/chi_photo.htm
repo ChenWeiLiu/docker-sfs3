@@ -1,0 +1,86 @@
+<!-- //$Id: chi_photo.htm 7563 2013-09-22 09:00:32Z smallduh $ -->
+
+<table><tr><td>
+
+<select name="{{$this->Y_name}}" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?{{$this->Y_name}}='+this.options[this.selectedIndex].value">
+{{foreach from=$this->YS_ary key=k item=v}}
+ <option value="{{$k}}"{{ if $this->year_seme==$k }} selected{{/if}}>{{$v}}</option>
+{{/foreach}}
+</select> 
+
+<select name="{{$this->S_name}}" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?{{$this->Y_name}}={{$this->year_seme}}&{{$this->S_name}}='+this.options[this.selectedIndex].value">
+<option value='' >未選擇</option>
+{{foreach from=$this->YC_ary key=k item=v}}
+ <option value="{{$k}}"{{if $this->Sel_class==$k}} selected{{/if}}>{{$v}}</option>
+{{/foreach}}
+
+
+</select></td>
+<td>
+
+&nbsp;</td>
+</tr>
+</table>
+
+<br>
+{{if $this->stu!=''}}
+<table  border=1 cellspacing='0' cellpadding='0' style="border-collapse: collapse;border-color:#8CCCCA;background-color:#8CCCCA " >
+<form action="{{$smarty.server.PHP_SELF}}" method="post" enctype="multipart/form-data">
+
+<tr style='font-size:11pt;' align=right>
+
+<td colspan=5>
+註：不限上傳大小、張數，依主機的設定值而定。
+<input type="hidden" name="form_act" value="">
+<input type="hidden" name="{{$this->Y_name}}" value="{{$this->year_seme}}">
+<input type="hidden" name="{{$this->S_name}}" value="{{$this->Sel_class}}">
+
+
+{{if $modify_flag}}
+<input type="button" value="上傳大頭照"  onclick="if( window.confirm('上傳大頭照？確定？')){this.form.form_act.value='photo_upload';this.form.submit()}" style="font-size:20pt">
+{{/if}}
+</td></tr>
+<tr style='font-size:11pt;' align=center bgcolor=white>
+{{foreach item=arr  from=$this->stu}}
+{{if $arr.student_sn!=''}}
+<td valign=top height=180 width=125>
+{{$arr.seme_num}}.
+{{if $arr.stud_sex=='1' }}
+<font color="#0000FF">{{$arr.stud_name}}</font>
+{{else}}
+<font color="#FF0000">{{$arr.stud_name}}</font>
+{{/if}}
+<br>{{$arr.stud_id}}<br>
+
+
+{{if $arr.url!=''}}
+<a href="{{$smarty.server.PHP_SELF}}?form_act=del&img={{$arr.stud_id}}&dir={{$arr.stud_study_year}}&{{$this->Y_name}}={{$this->year_seme}}&{{$this->S_name}}={{$this->Sel_class}}"
+ onclick="return window.confirm('真的刪除嗎？');">刪除</a><br>
+<img src="{{$arr.url}}" width="120" border="0" >
+{{else}}
+上傳:<br>
+<input type="hidden" name="study[{{$arr.stud_id}}]" value="{{$arr.stud_study_year}}">
+<input type="file" name="photo[{{$arr.stud_id}}]" value="" size=10>
+{{/if}}
+
+</td>
+
+{{else}}
+
+<td>&nbsp;</td>
+
+{{/if}}
+{{if $arr.next_line=='yes'}} </tr><tr style='font-size:11pt;' align=center bgcolor=white>{{/if}}
+
+
+{{/foreach}}
+</tr>
+</form>
+</table>
+
+{{/if}}
+
+<br><br><br>
+<DIV style="color:blue;font-size:9pt">
+◎By 彰化縣學務系統開發小組 於 96.08.23</DIV>
+

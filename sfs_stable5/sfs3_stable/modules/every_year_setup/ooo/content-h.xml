@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE office:document-content PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "office.dtd">
+<office:document-content xmlns:office="http://openoffice.org/2000/office" xmlns:style="http://openoffice.org/2000/style" xmlns:text="http://openoffice.org/2000/text" xmlns:table="http://openoffice.org/2000/table" xmlns:draw="http://openoffice.org/2000/drawing" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:number="http://openoffice.org/2000/datastyle" xmlns:svg="http://www.w3.org/2000/svg" xmlns:chart="http://openoffice.org/2000/chart" xmlns:dr3d="http://openoffice.org/2000/dr3d" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="http://openoffice.org/2000/form" xmlns:script="http://openoffice.org/2000/script" office:class="text" office:version="1.0">
+	<office:script/>
+	<office:font-decls>
+		<style:font-decl style:name="標楷體" fo:font-family="標楷體" style:font-family-generic="script" style:font-pitch="fixed"/>
+		<style:font-decl style:name="Arial Unicode MS" fo:font-family="&apos;Arial Unicode MS&apos;" style:font-pitch="variable"/>
+		<style:font-decl style:name="新細明體" fo:font-family="新細明體" style:font-family-generic="roman" style:font-pitch="variable"/>
+	</office:font-decls>
+	<office:automatic-styles>
+		<style:style style:name="course_tbl" style:family="table">
+			<style:properties style:width="16.66cm" style:rel-width="98%" table:align="center"/>
+		</style:style>
+		<style:style style:name="course_tbl.A" style:family="table-column">
+			<style:properties style:column-width="2.776cm" style:rel-column-width="1574*"/>
+		</style:style>
+		<style:style style:name="course_tbl.1" style:family="table-row">
+			<style:properties style:min-row-height="1.619cm"/>
+		</style:style>
+		<style:style style:name="course_tbl.A1" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:background-color="#e6e6ff" fo:padding="0cm" fo:border-left="0.035cm solid #000000" fo:border-right="none" fo:border-top="0.035cm solid #000000" fo:border-bottom="0.002cm solid #000000">
+				<style:background-image/>
+			</style:properties>
+		</style:style>
+		<style:style style:name="course_tbl.B1" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:background-color="#e6e6ff" fo:padding="0cm" fo:border-left="0.002cm solid #000000" fo:border-right="none" fo:border-top="0.035cm solid #000000" fo:border-bottom="0.002cm solid #000000">
+				<style:background-image/>
+			</style:properties>
+		</style:style>
+		<style:style style:name="course_tbl.F1" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:background-color="#e6e6ff" fo:padding="0cm" fo:border-left="0.002cm solid #000000" fo:border-right="0.035cm solid #000000" fo:border-top="0.035cm solid #000000" fo:border-bottom="0.002cm solid #000000">
+				<style:background-image/>
+			</style:properties>
+		</style:style>
+		<style:style style:name="course_tbl.A2" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:background-color="#e6e6ff" fo:padding="0cm" fo:border-left="0.035cm solid #000000" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.002cm solid #000000">
+				<style:background-image/>
+			</style:properties>
+		</style:style>
+		<style:style style:name="course_tbl.B2" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:padding="0cm" fo:border-left="0.002cm solid #000000" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.002cm solid #000000"/>
+		</style:style>
+		<style:style style:name="course_tbl.F2" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:padding="0cm" fo:border-left="0.002cm solid #000000" fo:border-right="0.035cm solid #000000" fo:border-top="none" fo:border-bottom="0.002cm solid #000000"/>
+		</style:style>
+		<style:style style:name="course_tbl.3" style:family="table-row">
+			<style:properties style:min-row-height="1.258cm"/>
+		</style:style>
+		<style:style style:name="course_tbl.A3" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:background-color="transparent" fo:padding="0cm" fo:border-left="0.035cm solid #000000" fo:border-right="0.035cm solid #000000" fo:border-top="none" fo:border-bottom="0.002cm solid #000000">
+				<style:background-image/>
+			</style:properties>
+		</style:style>
+		<style:style style:name="course_tbl.A4" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:background-color="#e6e6ff" fo:padding="0cm" fo:border-left="0.035cm solid #000000" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.035cm solid #000000">
+				<style:background-image/>
+			</style:properties>
+		</style:style>
+		<style:style style:name="course_tbl.B4" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:padding="0cm" fo:border-left="0.002cm solid #000000" fo:border-right="none" fo:border-top="none" fo:border-bottom="0.035cm solid #000000"/>
+		</style:style>
+		<style:style style:name="course_tbl.F4" style:family="table-cell">
+			<style:properties fo:vertical-align="middle" fo:padding="0cm" fo:border-left="0.002cm solid #000000" fo:border-right="0.035cm solid #000000" fo:border-top="none" fo:border-bottom="0.035cm solid #000000"/>
+		</style:style>
+		<style:style style:name="P1" style:family="paragraph" style:parent-style-name="Standard">
+			<style:properties style:font-name="標楷體" fo:font-size="16pt" fo:text-shadow="1pt 1pt" style:text-background-color="#e6e6e6" style:font-name-asian="標楷體" fo:line-height="150%" fo:text-align="center"  style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P2" style:family="paragraph" style:parent-style-name="Standard">
+			<style:properties style:font-name="標楷體" fo:font-size="26pt" fo:text-shadow="1pt 1pt" style:font-name-asian="標楷體" fo:line-height="150%" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P3" style:family="paragraph" style:parent-style-name="Standard">
+			<style:properties style:font-name="標楷體" fo:font-size="18pt" fo:text-shadow="1pt 1pt" style:font-name-asian="標楷體" fo:line-height="150%" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P4" style:family="paragraph" style:parent-style-name="Standard">
+			<style:properties style:font-name="標楷體" fo:font-size="16pt" style:font-name-asian="標楷體" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P5" style:family="paragraph">
+			<style:properties fo:line-height="200%" fo:text-align="center"/>
+		</style:style>
+		<style:style style:name="P6" style:family="paragraph">
+			<style:properties fo:line-height="200%" fo:text-align="start"/>
+		</style:style>
+		<style:style style:name="P7" style:family="paragraph">
+			<style:properties fo:text-align="center"/>
+		</style:style>
+		<style:style style:name="P8" style:family="paragraph" style:parent-style-name="Table Contents">
+			<style:properties style:font-name="標楷體" fo:font-size="18pt" fo:text-shadow="1pt 1pt" style:font-name-asian="標楷體" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P9" style:family="paragraph" style:parent-style-name="Table Contents">
+			<style:properties style:font-name="標楷體" fo:font-size="14pt" style:font-name-asian="標楷體" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P10" style:family="paragraph" style:parent-style-name="Table Contents">
+			<style:properties fo:color="#000080" style:font-name="新細明體" fo:font-size="12pt" fo:font-weight="bold" style:font-name-asian="標楷體" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P11" style:family="paragraph" style:parent-style-name="Table Contents">
+			<style:properties style:font-name="新細明體" fo:font-size="12pt" fo:font-weight="bold" style:font-name-asian="標楷體" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P12" style:family="paragraph" style:parent-style-name="Table Contents">
+			<style:properties fo:color="#333333" style:font-name="標楷體" fo:font-size="16pt" fo:text-shadow="none" style:font-name-asian="標楷體" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>
+		<style:style style:name="P13" style:family="paragraph" style:parent-style-name="Standard">
+			<style:properties style:font-name="標楷體" style:font-name-asian="標楷體"/>
+		</style:style>
+		<style:style style:name="P14" style:family="paragraph" style:parent-style-name="Table Contents">
+      <style:properties fo:color="#ff0000" style:font-name="標楷體" fo:font-size="14pt" style:font-name-asian="標楷體" fo:text-align="center" style:justify-single-word="false"/>
+    </style:style>
+		<style:style style:name="P15" style:family="paragraph" style:parent-style-name="Table Contents">
+			<style:properties style:font-name="新細明體" fo:font-size="12pt"  style:font-name-asian="標楷體" fo:text-align="center" style:justify-single-word="false"/>
+		</style:style>    
+		<style:style style:name="T1" style:family="text">
+			<style:properties fo:font-weight="bold"/>
+		</style:style>
+		<style:style style:name="T2" style:family="text">
+			<style:properties fo:color="#000000"/>
+		</style:style>
+		<style:style style:name="T4" style:family="text">
+			<style:properties style:text-underline="single" style:text-underline-color="font-color"/>
+		</style:style>
+		<style:style style:name="gr1" style:family="graphics">
+			<style:properties draw:textarea-horizontal-align="center" draw:textarea-vertical-align="middle" style:run-through="foreground" style:wrap="run-through" style:vertical-pos="from-top"/>
+		</style:style>
+		<style:style style:name="break_page" style:family="paragraph" >
+		  <style:properties  fo:break-after="page"/>
+		</style:style>
+	</office:automatic-styles>
+	<office:body>

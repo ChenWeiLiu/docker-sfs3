@@ -1,0 +1,165 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<script>
+<!--
+
+function jampb(id) {
+	document.Fix.student_sn.value=id;
+	document.Fix.submit();
+}
+
+function chk_sco() {
+
+var X=0;
+//1.服務學習
+var SS=Fix2.score_service.value;
+if ( SS=='' || SS < 0 || SS > 8 ) {alert('1服務學習輸入錯誤!!');X=1;}
+
+//2.獎勵記錄
+var SS=Fix2.score_reward.value;
+if ( SS=='' || SS < 0 || SS > 6 ) {alert('2獎勵記錄輸入錯誤!!');X=1;}
+
+// 3生活教育 
+var SS=Fix2.score_fault.value;
+if ( SS=='') {alert('請輸入生活教育分數!!');X=1;}
+if ( SS!=0 && SS!=2 && SS!=6 && SS!=8) {alert('3生活教育填寫出錯！(只能0,2,6,8)');X=1;}
+
+// 4社團參與 
+var SS=Fix2.score_club.value;
+if ( SS=='') {alert('請輸入社團參與分數!!');X=1;}
+if ( SS!=0 && SS!=1 && SS!=2) {alert('4社團參與填寫出錯！(只能0,1,2)');X=1;}
+
+// 5競賽表現 
+var SS=Fix2.score_race.value;
+if (  SS=='' ||  SS < 0 || SS > 6 ) {alert('4競賽表現輸入錯誤!!');X=1;}
+
+//　6體適能 
+var SS=Fix2.score_physical.value;
+if (  SS=='' || SS < 0 || SS > 6 ) {alert('5體適能輸入錯誤!!');X=1;}
+
+if(X==0) {if (window.confirm('確定？')){Fix2.form_act.value='update';Fix2.submit();}}
+
+
+}
+//-->
+</script>  
+
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'>
+<td width=65%>
+<form name='Fix' method='post'>
+{{$this->select()}}　※按下姓名會出現該生積分檢查表
+<input type="hidden" name="student_sn" value="" />
+</form>
+</td>
+<td width=35%>&nbsp;
+{{if $this->class_id!=''}}
+<INPUT TYPE=button  value='E.整班編修模式' onclick="location.href='stud_listB_edit.php?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}';" >
+<form name='Fix1' method='post' action="stud_perV3.php"  target="_blank">
+<input type="hidden" name="class_id" value="{{$this->class_id}}" />
+<input type="hidden" name="form_act" value="OK" />
+<INPUT TYPE=button  value='列印本班' onclick="if( window.confirm('確定？')){this.form.form_act.value='OK';this.form.submit()}">
+</form>
+{{/if}}
+</td>
+
+</tr>
+</table>
+<table  width='100%'  border='0' align='center' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td rowspan=2 colspan="1" width=4% nowrap>座號</td>
+<td rowspan=2 colspan="1" width=6% nowrap>姓　名</td>
+<td rowspan=2 colspan="1" width=5% nowrap>學　號</td>
+
+<td rowspan=1 colspan="4" width=15% nowrap>品德服務<font color=blue>(上限20分)</font></td>
+<td rowspan=1 colspan="5" width=15% nowrap>績優表現<font color=blue>(上限16分)</font></td>
+<td rowspan=2 colspan="1" width=5% nowrap>積分狀況</td>
+</tr>
+<tr bgcolor='white' align=center>
+<td style='font-size:9pt' nowrap>1服務學習<br><font color=blue>(上限8分)</font></td>
+<td style='font-size:9pt' nowrap>2獎勵記錄<br><font color=blue>(上限6分)</font></td>
+<td style='font-size:9pt' nowrap>3生活教育<br><font color=blue>(上限8分)</font></td>
+<td style='font-size:9pt' nowrap>目前<br>得分</td>
+<td style='font-size:9pt' nowrap>均衡學習</td>
+<td style='font-size:9pt' nowrap>4社團參與<br><font color=blue>(上限2分)</font></td>
+<td style='font-size:9pt' nowrap>5競賽表現<br><font color=blue>(上限6分)</font></td>
+<td style='font-size:9pt' nowrap>6體適能<br><font color=blue>(上限6分)</font></td>
+<td style='font-size:9pt' nowrap>目前<br>得分</td>
+</tr>
+
+{{foreach from=$this->stu item=stu key=st_sn}}
+
+{{assign var="T20" value=$this->tol20(20,$stu.score_service+$stu.score_reward+$stu.score_fault)}}
+{{assign var="T16" value=$this->tol20(16,$stu.score_balance+$stu.score_club+$stu.score_race+$stu.score_physical)}}
+
+
+{{if $smarty.post.student_sn==$stu.student_sn}}
+<tr align=center  style='font-size:10pt' bgcolor=#9EBCDD>
+
+<td rowspan=2 colspan="1">{{$stu.seme_num}}</td>
+<td rowspan=2 colspan="1">{{if $stu.stud_sex=='1' }}<font color="#0000FF">{{$stu.stud_name}}</font>
+{{else}}{{$stu.stud_name}}{{/if}}</td>
+<td rowspan=2 colspan="1">{{$stu.stud_id}}</td>
+
+<td>{{$stu.score_service}}</td>
+<td>{{$stu.score_reward}}</td>
+<td>{{$stu.score_fault}}</td>
+<td>{{$T20}}</td>
+
+
+<td>{{$stu.score_balance}}</td>
+<td>{{$stu.score_club}}</td>
+<td>{{$stu.score_race}}</td>
+<td>{{$stu.score_physical}}</td>
+<td>{{$T16}}</td>
+<td>{{$stu.income+$stu.score_nearby+$T20+$T16}}</td>
+</tr>
+<tr align=center  style='font-size:10pt' bgcolor=white>
+<td colspan="9" align=left>
+<form name='Fix2' method='post'>
+1服務學習<input type="text" size=3  name="score_service" value="{{$stu.score_service}}" />
+2獎勵記錄<input type="text" size=3  name="score_reward" value="{{$stu.score_reward}}" />
+3生活教育<input type="text" size=3  name="score_fault" value="{{$stu.score_fault}}" /><br />
+4社團參與<input type="text" size=3  name="score_club" value="{{$stu.score_club}}" />
+5競賽表現<input type="text" size=3  name="score_race" value="{{$stu.score_race}}" />
+　6體適能<input type="text" size=3  name="score_physical" value="{{$stu.score_physical}}" />
+<input type="hidden" name="year_seme" value="{{$this->year_seme}}" />
+<input type="hidden" name="class_id" value="{{$this->class_id}}" />
+<input type="hidden" name="student_sn" value="{{$stu.student_sn}}" />
+<input type="hidden" name="form_act" value="" />
+<input type="hidden" name="sn" value="{{$stu.sn}}" /><br />
+<INPUT TYPE="reset"  value='[R]重設'>
+<INPUT TYPE=button  value='[OK]填好送出' onclick="chk_sco();">
+<INPUT TYPE=button  value='[B]返回' onclick="location.href='{{$smarty.server.SCRIPT_NAME}}?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}';" >
+</form>
+</td>
+
+
+
+</tr>
+{{else}}
+<tr align=center  style='font-size:10pt' 
+bgcolor=white ondblclick="jampb('{{$stu.student_sn}}')"  onMouseOver="this.style.backgroundColor='#FFEBD6'" onMouseOut="this.style.backgroundColor=''">
+
+<td>{{$stu.seme_num}}</td>
+<td><a href="stud_perV3.php?Sn={{$stu.student_sn}}" target=_blank>{{if $stu.stud_sex=='1' }}<font color="#0000FF">{{$stu.stud_name}}</font>
+{{else}}<font color="#000000">{{$stu.stud_name}}</font>{{/if}}</a></td>
+<td>{{$stu.stud_id}}</td>
+
+<td>{{$stu.score_service}}</td>
+<td>{{$stu.score_reward}}</td>
+<td>{{$stu.score_fault}}</td>
+<td>{{$T20}}</td>
+
+<td>{{if $stu.score_balance!='0' and $stu.score_balance!=''}}{{$stu.score_balance}}{{/if}}</td>
+<td>{{$stu.score_club}}</td>
+<td>{{$stu.score_race}}</td>
+<td>{{$stu.score_physical}}</td>
+<td>{{$T16}}</td>
+
+<td>{{$stu.income+$stu.score_nearby+$T20+$T16}}</td>
+</tr>
+
+{{/if}}
+{{/foreach}}
+</table>

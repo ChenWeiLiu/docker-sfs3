@@ -1,0 +1,44 @@
+<table width="97%" border="0" cellspacing="2" cellpadding="4" > 
+<tr >     
+    <td width="60%" rowspan="3"  > <h1><{$paper_doc.title}></h1></td> 
+    <td ><h2><{$paper_doc.classname}><{$paper_doc.author}></h2></td></tr> 
+    <td ><h2>家長:<{$paper_doc.parent}></td></h2></tr> 
+    <td ><h2>指導老師:<{$paper_doc.teacher}></h2></td>
+</tr> 
+<tr> 
+<td colspan="2" >
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="800" height="600" id="FlashID" title="swf">
+  <param name="movie" value="<{$htmlpath}><{$paper_doc.pic_name}>" />
+  <param name="quality" value="high" />
+  <param name="wmode" value="transparent" />
+  <param name="swfversion" value="6.0.65.0" />
+  <!-- 此 param 標籤會提示使用 Flash Player 6.0 r65 和更新版本的使用者下載最新版本的 Flash Player。如果您不想讓使用者看到這項提示，請將其刪除。 -->
+  <param name="expressinstall" value="expressInstall.swf" />
+  <!-- 下一個物件標籤僅供非 IE 瀏覽器使用。因此，請使用 IECC 將其自 IE 隱藏。 -->
+  <!--[if !IE]>-->
+  <object type="application/x-shockwave-flash" data="<{$htmlpath}><{$paper_doc.pic_name}>" width="800" height="600">
+    <!--<![endif]-->
+    <param name="quality" value="high" />
+    <param name="wmode" value="transparent" />
+    <param name="swfversion" value="6.0.65.0" />
+    <param name="expressinstall" value="/js/expressInstall.swf" />
+    <!-- 瀏覽器會為使用 Flash Player 6.0 和更早版本的使用者顯示下列替代內容。 -->
+    <div>
+      <h4>這個頁面上的內容需要較新版本的 Adobe Flash Player。</h4>
+      <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="取得 Adobe Flash Player" width="112" height="33" /></a></p>
+    </div>
+    <!--[if !IE]>-->
+  </object>
+  <!--<![endif]-->
+</object>
+
+</td> 
+</tr> 
+</table>
+
+
+  <{$paper_doc.doc}>
+
+
+      <div align="center" class="text"><a href="javascript:history.go(-1)">回上頁</a></div>
+

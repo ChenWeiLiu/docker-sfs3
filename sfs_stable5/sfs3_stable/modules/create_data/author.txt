@@ -1,0 +1,6 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+create_data - 批次建立資料
+create_data2.0 -- 2001-10-1 -- HaMi( cik@mail.wpes.tcc.edu.tw )
+create_data2.1 -- 2001-10-24 -- HaMi( cik@mail.wpes.tcc.edu.tw )
+create_data2.2 -- 2002-11-16  -- tad（tad@www.tnc.edu.tw）

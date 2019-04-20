@@ -1,0 +1,135 @@
+<TABLE border=0 width=100% cellspacing='1' cellpadding=1>
+  <TR bgcolor=#9EBCDD>
+    <td width=100%  style="vertical-align: top;" colspan=2>
+    <!-- 第1格內容 -->
+      {{$this->sel_year}}==> <FONT  COLOR="#FF0000">請選學期</FONT>
+    </td>
+  </tr>  
+
+<!-- 班級資料區段 --開始-->
+<!-- 班級資料區段 --結束-->
+<!-- 課程資料區段 --開始-->
+{{if $this->stu_data!=''}}
+<table border="0" cellspacing="1" cellpadding="4" width="100%" bgcolor="#cccccc" class="main_body" >
+  <tr   bgcolor="#E1ECFF" align="center">
+    <td rowspan="2" align="center">年級</td>
+    <td colspan="8" align="center">補考前各學習領域學生成績評量情形</td>
+    <td colspan="8" align="center">補考前學生成績評量不及格領域述情形</td>
+    <td rowspan="2" align="center">統計學期</td>
+  </tr>
+  <tr>
+    <td  align="center">語文領域不及格人數</td>
+    <td  align="center" bgcolor=white>數學領域不及格人數</td>
+    <td  align="center">社會領域不及格人數</td>
+    <td  align="center" bgcolor=white>自然與生活科技領域不及格人數</td>
+    <td  align="center">藝術與人文領域不及格人數</td>
+    <td  align="center" bgcolor=white>健康與體育領域不及格人數</td>
+    <td  align="center">綜合領域不及格人數</td>
+    <td  align="center" bgcolor=white>生活領域不及格人數</td>
+    <td  align="center">一個領域不及格人數</td>
+    <td  align="center" bgcolor=white>二個領域不及格人數</td>
+    <td  align="center">三個領域不及格人數</td>
+    <td  align="center" bgcolor=white>四個領域不及格人數</td>
+    <td  align="center">五個領域不及格人數</td>
+    <td  align="center" bgcolor=white>六個領域不及格人數</td>
+    <td  align="center">七個領域不及格人數</td>
+    <td  align="center" bgcolor=white>補考總人數</td>
+  </tr>
+  <tr>
+
+{{foreach from=$this->stu_data item=stu key=SN}}
+  <tr>
+    <td  align="center" bgcolor=white>{{$SN}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_language_src}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_math_src}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_social_src}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_nature_src}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_art_src}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_health_src}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_complex_src}}</td>
+    <td  align="center" bgcolor=white>0</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_fail_scope_1_src}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_fail_scope_2_src}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_fail_scope_3_src}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_fail_scope_4_src}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_fail_scope_5_src}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_fail_scope_6_src}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_fail_scope_7_src}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_fail_src}}</td>
+    <td  align="center">{{$this->stu_data.$SN.all_seme_array.1}},{{$this->stu_data.$SN.all_seme_array.2}},{{$this->stu_data.$SN.all_seme_array.3}},{{$this->stu_data.$SN.all_seme_array.4}},{{$this->stu_data.$SN.all_seme_array.5}},{{$this->stu_data.$SN.all_seme_array.6}}</td>
+  </tr>
+{{/foreach}}
+</TABLE>
+<table border="0" cellspacing="1" cellpadding="4" width="100%" bgcolor="#cccccc" class="main_body" >
+  <tr   bgcolor="#E1ECFF" align="center">
+    <td rowspan="2" align="center">年級</td>
+    <td colspan="8" align="center">補考後各學習領域學生成績評量情形</td>
+    <td colspan="8" align="center">補考後學生成績評量不及格領域述情形</td>
+    <td rowspan="2" align="center">統計學期</td>
+  </tr>
+  <tr>
+    <td  align="center">語文領域不及格人數</td>
+    <td  align="center" bgcolor=white>數學領域不及格人數</td>
+    <td  align="center">社會領域不及格人數</td>
+    <td  align="center" bgcolor=white>自然與生活科技領域不及格人數</td>
+    <td  align="center">藝術與人文領域不及格人數</td>
+    <td  align="center" bgcolor=white>健康與體育領域不及格人數</td>
+    <td  align="center">綜合領域不及格人數</td>
+    <td  align="center" bgcolor=white>生活領域不及格人數</td>
+    <td  align="center">一個領域不及格人數</td>
+    <td  align="center" bgcolor=white>二個領域不及格人數</td>
+    <td  align="center">三個領域不及格人數</td>
+    <td  align="center" bgcolor=white>四個領域不及格人數</td>
+    <td  align="center">五個領域不及格人數</td>
+    <td  align="center" bgcolor=white>六個領域不及格人數</td>
+    <td  align="center">七個領域不及格人數</td>
+    <td  align="center" bgcolor=white>補考總人數</td>
+  </tr>
+  <tr>
+
+{{foreach from=$this->stu_data item=stu key=SN}}
+  <tr>
+    <td  align="center" bgcolor=white>{{$SN}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_language_end}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_math_end}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_social_end}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_nature_end}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_art_end}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_health_end}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_complex_end}}</td>
+    <td  align="center" bgcolor=white>0</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_fail_scope_1_end}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_fail_scope_2_end}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_fail_scope_3_end}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_fail_scope_4_end}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_fail_scope_5_end}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_fail_scope_6_end}}</td>
+    <td  align="center">{{$this->stu_data.$SN.total_num_fail_scope_7_end}}</td>
+    <td  align="center" bgcolor=white>{{$this->stu_data.$SN.total_num_fail_end}}</td>
+    <td  align="center">{{$this->stu_data.$SN.all_seme_array.1}},{{$this->stu_data.$SN.all_seme_array.2}},{{$this->stu_data.$SN.all_seme_array.3}},{{$this->stu_data.$SN.all_seme_array.4}},{{$this->stu_data.$SN.all_seme_array.5}},{{$this->stu_data.$SN.all_seme_array.6}}</td>
+  </tr>
+{{/foreach}}
+</TABLE>
+{{/if}}
+<!-- 課程資料區段 --結束-->
+</td></tr>
+</table>
+註：<div style="font-size:9pt;color:blue">
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('開發小組：\n陽明 江添河 湖南 許銘堯\n二林 紀明村 和仁 曾彥鈞\n大成 黃俊凱 和東 王麒富\n鳳霞 林建伸 伸港 梁世憲\n\n意見提供：\n線西 許毅貞 北斗 顏淑兒\n埤頭 洪淑瓊 二中 王文村\n花壇 施皇仰 舊社 徐千惠');">
+◎By 彰化縣學務系統開發小組  於 103.10 
+</FONT>
+
+<FONT SIZE="2" >
+<p class="MsoListParagraph" style="text-indent: -18.0pt; margin-left: 18.0pt">
+<span lang="EN-US">1、</span><span style="font-family: 新細明體,serif">注意！由於本程式運算需要大量記憶體，針對大型學校，程式執行到一半可能會發生中斷情況（畫面呈現空白），此時請網管人員調整</span><span lang="EN-US"> 
+php.ini </span><span style="font-family: 新細明體,serif">中</span><span lang="EN-US"> 
+memory_limit </span><span style="font-family: 新細明體,serif">的設定值，將預設值</span><span lang="EN-US"> 
+128MB </span><span style="font-family: 新細明體,serif">改為</span><span lang="EN-US"> 
+256MB </span><span style="font-family: 新細明體,serif">即可。</span></p>
+<p class="MsoListParagraph" style="text-indent: -18.0pt; margin-left: 18.0pt">
+<span lang="EN-US">2、</span><span style="font-family: 新細明體,serif">說明：
+依據103年4月25日修正發布「國民小學及國民中學學生成績評量準則」
+第9條規定，直轄市、縣 (市)政府應於每學期結束後一個月內檢視所轄國民中小學學生之評量結果，作為其教育政策擬訂及推動之參據，並於每學年結束後二個月內連同補救教學實施成效報教育部備查。
+</span></p>
+

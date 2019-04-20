@@ -1,0 +1,76 @@
+{{* $Id: fix_tool.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<style type="text/css">
+.mei{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:12pt;}
+.bu1{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bur{border-style: groove;border-width:1px: groove;background-color:#FFFFFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bur2{color:red;border-style: groove;border-width:1px: black;background-color:#FFFFFF;font-size:10pt;Padding-left:0 px;Padding-right:0 px;}
+
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+function bb2(a,b) {
+var objform=document.f2;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+//-->
+</SCRIPT>
+
+<HR size=1 color=red>
+<form name="form" method="post" action="{{$PHP_SELF}}">
+    <font color="red">■</font>輸入學號以查詢學生<br>
+學　號：<input type="text" name="stud_id" size="12"  class=mei>
+<input type="submit" name="formbutton1" value="查詢">
+</form>
+
+<TABLE border=0 width=60% style='font-size:12pt;'  cellspacing=1 cellpadding=0 bgcolor=#9EBCDD>
+<TR bgcolor=#9EBCDD><td nowrap colspan="7" ><B>stud_base學籍表A-----搜尋結果</B></td></tr>
+<tr bgcolor="#ffffff" style='color:#800000;font-size:13px;' align='center'>
+<td nowrap>學號<br>stud_id</td>
+<td nowrap>學生流水號<br>student_sn</td>
+<td nowrap>姓名<br>stud_name</td>
+<td nowrap>性別<br>stud_sex</td>
+<td nowrap>就學狀況<br>stud_study_cond</td>
+<td nowrap>入學年<br>stud_study_year</td>
+<td nowrap>目前年班<br>curr_class_num</td>
+<td nowrap>戶口記錄<br>stud_domicile表</td>
+</tr>
+{{foreach from=$this->all item=data}}
+<tr bgcolor="#ffffff" style='color:#000000;font-size:15px;' align='center'>
+<td nowrap>{{$data.stud_id}}</td>
+<td nowrap>
+{{$data.student_sn}}</td>
+<td nowrap>{{$data.stud_name}}</td>
+<td nowrap>{{$data.stud_sex}}</td>
+<td nowrap>{{$data.stud_study_cond}}</td>
+<td nowrap>{{$data.stud_study_year}}</td>
+<td nowrap>{{$data.curr_class_num}}</td>
+<td nowrap>
+
+{{if $data.check_dom=='1'}}
+有記錄
+{{else}}
+<A HREF='{{$PHP_SELF}}?act=add&sn={{$data.student_sn}}'>無記錄<br>按下補入</A>
+{{/if}}
+
+</td>
+</tr>
+
+{{/foreach}}
+</table>
+<p>PS:<br>
+1.程式用於修正轉學生因某些因素無法自動新增戶口記錄的情形。<br>
+2.本程式僅補上戶口記錄，詳細記錄的填寫請至[學籍管理/ 戶口資料]內填寫。</p>
+<BR>
+
+<DIV style="color:blue">
+◎By 彰化縣學務系統開發小組  於 99.08.24</DIV>
+
+

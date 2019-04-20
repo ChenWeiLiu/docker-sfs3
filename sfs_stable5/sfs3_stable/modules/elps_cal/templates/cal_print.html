@@ -1,0 +1,45 @@
+<!-- //$Id: cal_print.html 5310 2009-01-10 07:57:56Z hami $ -->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; Charset=Big5">
+<title>{{$this->cal_name}}</title>
+</head>
+
+<style type="text/css">
+.f9{font-size:10 pt;}
+.td1 {height:80px;} 
+</style>
+<body{{if $this->mod=='pri'}} onload="if(window.confirm('開始列印？')){self.print();};return true;"{{/if}}>
+<div align='center'><h3>{{$this->cal_name}}</h3></div>
+<table cellPadding='0' border=1 cellSpacing='0' width='100%' align=center  style='border-collapse:collapse;font-size:14pt;'>
+<TR bgcolor=white align=center>
+<td width=10%>週別</td>
+<td width=10%>起迄</td>
+{{foreach from=$this->unit item=unit}}
+<td width="{{$this->wd}}%">{{$unit}}</td>
+{{/foreach}}
+</tr>
+
+{{foreach from=$this->WK item=week }}
+<TR bgcolor=white align=center>
+
+<td width=10%>第{{$week.No}}週</td>
+<td width=10% class=f8>{{$week.st_day}} -- {{$week.en_day}}</td>
+{{foreach from=$this->unit item=unit}}
+<td width="{{$this->wd}}%" class=f9 align="left">
+<ol type='1'>
+{{foreach from=$week.event item=arr}}
+{{if $arr.unit==$unit}}<li>{{$arr.event}}</li>{{/if}}
+{{/foreach}}
+</ol>
+</td>
+{{/foreach}}
+</tr>
+
+{{/foreach}}
+
+</table>
+</body>
+</html>
+

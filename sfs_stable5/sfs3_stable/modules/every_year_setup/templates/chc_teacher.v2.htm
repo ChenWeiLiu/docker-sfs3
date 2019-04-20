@@ -1,0 +1,190 @@
+<!-- // $Id: chc_teacher.v2.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<script>
+<!--
+
+///----- 選擇的主函式  by chi -----------------
+function select_a(tea_sn,ID) {
+	var replay;
+	//是否己經被選擇,如果是
+	if (ID.checked==true) {
+			//將tea_sn及名稱傳值給BB函式
+			replay=select_sub(tea_sn,ID.value);
+		//處理成功後讓本身失效
+		if (replay=='OK'){ID.disabled=true;}
+		//處理失敗,表示沒有選任何老師，秀出警告
+		if (replay=='NO'){alert("注意：\n\n先選班級，再選教師！！");ID.checked=false;}
+	}
+	return ;
+}
+
+
+///----- 取消選擇的主函式-----------------
+function cancel_b(tea_sn) {
+	var i =0;
+	while (i < document.F2.elements.length) {
+		var obj=document.F2.elements[i];
+		var obj_chk="teach["+tea_sn+"]";
+		if (obj.name==obj_chk ) {
+			//將值傳到cancel_select(),取消之前給的班級碼與班級名稱
+			cancel_sub(tea_sn);
+			//本身可以啟用
+			obj.disabled=false;
+			//本身可以選擇
+			obj.checked=false;
+			return;
+			}
+		i++;
+		}
+}
+
+///----- 做選擇的副函式-----------------
+
+function  select_sub(tea_sn,WW) {
+	var i =0;
+	var check_i ;
+	while (i < document.F1.elements.length) {
+		var obj=document.F1.elements[i];
+		//如果是radio物件，而且是被按下的，而且是啟用的disabled==false
+		if (obj.type=='radio'&& obj.checked==1 && obj.disabled==false  && obj.value=='' ) {
+			//得到顯示欄位置
+			check_i=i+1;
+			//得到顯示欄位置
+			check_j=i+2;
+			//顯示欄秀出導師名稱
+			document.F1.elements[check_i].value=WW;
+			document.F1.elements[check_i].className='in2';
+			document.F1.elements[check_j].value=tea_sn;
+			//將隱藏班級欄帶入班級ID
+			obj.value=tea_sn;
+			obj.disabled=true;
+			//傳回處理成功的訊息
+			return 'OK';
+			}
+		i++;
+	}
+	return 'NO';//否則就傳回失敗
+
+}
+
+///----- 取消選擇的動作(副)函式-----------------
+function cancel_sub(ID) {
+var i =0;
+var reset_i,reset_j ;
+//var objx=document.F2.ID.value;//取得名稱
+while (i < document.F1.elements.length) {
+	var obj=document.F1.elements[i];
+	// objx.substr(0,4)取得部分字串
+	//判斷物件的值是否和傳入的教師碼一樣,如果一樣要取消它的值
+	if ( obj.value==ID && obj.type=='radio' && obj.disabled==true) {
+		//取得下1個物件順序,秀教師名的欄位
+		reset_i=i+1;
+		//取得下2個物件順序,即是hidden的欄位
+		reset_j=i+2;
+		//本身先設為空值
+		obj.value='';
+		//設教師名顯示欄的值為預設值
+		document.F1.elements[reset_i].value=document.F1.elements[reset_i].defaultValue;
+		document.F1.elements[reset_i].className='in1';
+		//要傳給php處理的為設為空值
+		document.F1.elements[reset_j].value='';
+		//設radio變為啟用
+		obj.disabled=false;
+		//設radio變為沒被選擇
+		obj.checked=false;
+		return;
+		}
+	i++;
+	}
+}
+
+
+
+//-->
+</script>
+<style type="text/css">
+.in1{border:0;color:#808080;background-color:#E1ECFF;font-size:13px}
+.in2{border:0;color:blue;background-color:#E1ECFF;font-size:13px}
+.ims{border:0;color:red;font-size:13px}
+</style>
+
+
+<table bgcolor='#9EBCDD' cellspacing=1 cellpadding=4  width="100%">
+<tr><td colspan='2'   bgcolor='#E1ECFF' style='font-size:13px'>設定{{$sel_year}}的導師&nbsp;
+{{foreach from=$sel_grade key=grade item=grade1}}
+{{if $now_grade==$grade}}
+<INPUT TYPE='checkbox' onclick="location.href='{{$PHP_SELF}}?year_seme={{$year_seme}}&grade={{$grade}}'" checked>{{$grade1}}
+{{else}}
+<INPUT TYPE='checkbox' onclick="location.href='{{$PHP_SELF}}?year_seme={{$year_seme}}&grade={{$grade}}'">{{$grade1}}
+{{/if}}
+{{/foreach}}
+</td></tr>
+
+{{if $now_grade!=''}}
+<tr><td   bgcolor='#9EBCDD' valign='top' >
+
+<!-- 班級列表 -->
+<FONT  COLOR='red'>■</FONT><FONT  COLOR='#607387'>先選班級，再選教師，依次完成。</FONT>
+
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}' Name='F1' enctype='multipart/form-data'>
+<INPUT TYPE='hidden' Name='act' Value=''>
+<INPUT TYPE='hidden' Name='year_seme' Value='{{$year_seme}}'>
+<INPUT TYPE='hidden' Name='grade' Value='{{$now_grade}}'>
+
+<INPUT TYPE="text" NAME="ifo" value='' size="15" style=" text-align:center;border-width: 0px; background-color:White; font-size:14px;color:red;" readonly>&nbsp;
+<IMG  SRC='images/ch_back2.gif' onclick="location.href=''" alt='重設'  onmouseover="F1.ifo.value='重設';" onmouseout="F1.ifo.value='';"  class="ims" align="absmiddle">
+&nbsp;
+<img SRC='images/ch_save.gif' onmouseover="F1.ifo.value='填寫好送出';" onmouseout="F1.ifo.value='';" onclick="if( window.confirm('填寫完整了？')){F1.act.value='add';F1.submit();}"  class="ims" align="absmiddle">
+<table bgcolor='#9EBCDD' cellspacing=0 cellpadding=0  width="100%">
+<tr bgcolor='#E1ECFF'>
+
+{{foreach from=$class_ary key=key item=cla_ary}}
+{{if $cla_ary.class_sn==''}}<td>&nbsp;</td>{{else}}
+<td>
+<LABEL><INPUT TYPE='radio' NAME='class_tmp'  value=''>{{$cla_ary.cc_year}}年{{$cla_ary.c_name}}班
+<INPUT TYPE='text' NAME='tea[{{$cla_ary.class_id}}]' Value='{{$cla_ary.teacher_1}}' size='6' class='in1' readonly>
+<INPUT TYPE='hidden' NAME='class_id[{{$cla_ary.class_id}}]'  value=''>
+
+&nbsp;</LABEL></td>
+{{/if}}
+{{if $cla_ary.next_line=='yes'}} </tr><tr bgcolor='#E1ECFF'>{{/if}}
+
+
+{{/foreach}}
+</tr></table>
+
+</FORM>
+<!-- 班級列表:end -->
+
+
+</td>
+<td  valign='top' bgcolor='#9EBCDD'><FONT  COLOR='red'>■</FONT><FONT  COLOR='#607387'>對字點二下可取消選擇。</FONT>
+
+<!-- 教師列表 -->
+<FORM METHOD=POST Name='F2' >
+<table bgcolor='#E1ECFF' cellspacing=0 cellpadding=0  width="100%">
+<tr>
+{{foreach from=$tea key=key item=tea}}
+{{if $tea.teacher_sn==''}}<td>&nbsp;</td>{{else}}
+<td ondblclick="cancel_b('{{$tea.teacher_sn}}')">
+<LABEL><INPUT TYPE='checkbox' NAME='teach[{{$tea.teacher_sn}}]' value='{{$tea.name}}'  onclick="select_a({{$tea.teacher_sn}},this)">
+{{if $tea.sex=='1'}}<FONT SIZE='2'>{{$tea.name}}</FONT>{{else}}
+<FONT SIZE='2' COLOR='#CC6600'>{{$tea.name}}</FONT>
+{{/if}}
+&nbsp;</td>
+{{/if}}
+{{if $tea.next_line=='yes'}} </tr><tr bgcolor='#E1ECFF'>{{/if}}
+{{/foreach}}
+</tr></table>
+
+</FORM>
+<!-- 教師列表:end -->
+</td>
+</tr>
+{{/if}}
+</table>
+<BR>
+
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('作者群：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n大村 鄭培華');">
+◎By 彰化縣學務系統開發小組 於 94.08.02</DIV></FONT>
+

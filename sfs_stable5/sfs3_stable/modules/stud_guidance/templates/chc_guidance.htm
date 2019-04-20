@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+{{* $Id: chc_guidance.htm 6914 2012-09-24 15:44:04Z infodaes $ *}}
+<html>
+<head>
+<meta content="text/html; charset=Big5" http-equiv="content-type">
+<meta name="generator" content="彰化縣學務系統推動小組">
+<title>個別輔導紀錄</title>
+</head>
+
+<script>
+<!--
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+//-->
+</script>  
+
+<body>
+
+<TABLE  width='100%'>
+<TR bgcolor=white>
+<td width=60%>
+<!-- 第一格內容 -->
+<table border='2' cellpadding='3' cellspacing='0' style='border-collapse:collapse; font-size:12px;' bordercolor='#110011' width='100%'>
+    <tr bgcolor="#ffcccc" align="center">
+      <td>流水號</td>
+      <td>學號</td>
+      <td>姓名</td>
+      <td>性別</td>
+      <td>就學<br>狀態</td>
+      <td>座號</td>
+      <td>認輔紀錄</td>
+      </tr>
+{{foreach from=$data item=arr}} <tr align="center">
+<td>{{$arr.student_sn}}</td>
+<td>{{$arr.stud_id}}</td>
+<td>
+<a href="{{$smarty.server.PHP_SELF}}?Seme={{$smarty.get.Seme}}&Sclass={{$smarty.get.Sclass}}&st_sn={{$arr.student_sn}}">
+{{$arr.stud_name}}</a></td>
+<td>{{$SEX[$arr.stud_sex]}}</td>
+<td>{{$stud_coud[$arr.stud_study_cond]}}</td>
+<td>{{$arr.seme_num}}</td>
+<td align="left">{{$arr.guid_record}}</td>
+</tr>
+{{/foreach}}
+</table>
+
+<!-- 第一格結束 -->
+</td><td width=40%  style="vertical-align: top;">
+<!-- 第二格內容 -->
+
+{{if $smarty.get.st_sn}}
+<TABLE width=50%><TR align=center><TD>
+
+<FORM METHOD=POST ACTION="{{$PHP_SELF}}" name=f1>
+
+
+<H4>轉介</H4>
+{{$stu.cgrade}}{{$stu.seme_num}}號<BR>
+學生{{$stu.stud_name}}
+<H4>給</H4>
+<select name="tea_sn">
+{{foreach from=$sel_teach item=teach}}
+{{if $teach.class_num=='' || $teach.class_num=='0'}}
+<option value='{{$teach.teacher_sn}}'>{{$teach.title_name}}--{{$teach.name}}</option>
+{{else}}
+<option value='{{$teach.teacher_sn}}'>{{$teach.title_name}}{{$teach.class_num}}--{{$teach.name}}</option>
+{{/if}}
+{{/foreach}}
+</select><BR><BR>
+<H4>進行輔導</H4>
+<BR>
+<INPUT TYPE=button  value='確定轉介' onclick=" bb1('確定轉介？True？','write');" class=bur2>
+<INPUT TYPE="hidden" name='st_sn' value='{{$stu.student_sn}}'>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE="hidden" name='Seme' value='{{$smarty.get.Seme}}'>
+<INPUT TYPE="hidden" name='Sclass' value='{{$smarty.get.Sclass}}'>
+
+</form>
+</TD></TR></TABLE>
+
+{{/if}}
+<!-- 第二格結束 -->
+</td></tr>
+</table>
+<BR><BR>
+<DIV style="color:blue" onclick="alert('作者群：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n大村 鄭培華');">
+◎By 彰化縣學務系統開發小組</DIV>
+<BR><BR>

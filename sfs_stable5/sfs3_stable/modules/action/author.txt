@@ -1,0 +1,8 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+action - 活動花絮
+原版作者：prolin
+
+版本 1.0
+prolin@sy3es.tnc.edu.tw 2003/05/03
+
+提供直接上傳網頁檔案。

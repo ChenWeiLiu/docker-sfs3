@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>電子校刊</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<base href="<{ $templetdir }><{ $themes }>/" />
+<link href="user.css" rel="stylesheet" type="text/css">
+</head>
+<body bgcolor="#3366FF" >
+<table width="97%" border="0" cellspacing="2" cellpadding="4" > 
+<tr >     
+    <td width="60%" rowspan="3"  > <h1><{$paper_doc.title}></h1></td> 
+    <td ><h2><{$paper_doc.classname}><{$paper_doc.author}></h2></td></tr> 
+    <td ><h2>家長:<{$paper_doc.parent}></td></h2></tr> 
+    <td ><h2>指導老師:<{$paper_doc.teacher}></h2></td>
+</tr> 
+
+
+<tr> 
+<td colspan="2" >
+<{ if ($paper_doc.cmode == 1) }>
+  <div align="center"><img src="<{$htmlpath}><{$paper_doc.pic_name}>" border="1"> </div>
+<{ else }>
+  <{$paper_doc.doc}>
+<{ /if }>  
+  
+</td>
+</tr> 
+
+
+ <tr>
+    <td colspan="2" > 
+      <div align="center" class="text"><a href="javascript:window.close()">關畢此視窗</a></div>
+    </td>
+ </tr>
+</table>
+
+</body>
+
+</html>

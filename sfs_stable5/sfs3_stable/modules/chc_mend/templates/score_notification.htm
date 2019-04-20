@@ -1,0 +1,78 @@
+<TABLE border=0 width=100% cellspacing='1' cellpadding=1>
+
+<TR bgcolor=#9EBCDD>
+
+
+<TD width=100%  style="vertical-align: top;" colspan=2>
+<!-- 第1格內容 -->
+
+{{$this->sel_year}}{{$this->sel_grade}} <FONT  COLOR="#FFFFFF"><B>補考通知單</B></FONT>
+</TD>
+</TR>
+<form method='POST'>
+<tr><td>注意事項：<textarea name='note' cols='100' rows='10'>{{$this->oldnote}}</textarea></td>
+<input type='hidden' name='act' value='send'>
+<td><input type='submit' value='修改注意事項'></td></tr>
+</form>
+<TR>
+<TD>
+{{if $this->print_all_class_this_seme==1}}
+<button onClick="javascript:window.open('score_notification_print.php?op=print_this_seme_all_school&Y={{$this->Y}}','_blank')">列印全校{{$this->Y}}學期補考通知單</button>
+{{/if}}
+{{if $this->print_this_class_this_seme==1}}
+<button onClick="javascript:window.open('score_notification_print.php?op=print_this_seme_this_grade&Y={{$this->Y}}{{$this->students_sn}}','_blank')">列印{{$this->G}}年級{{$this->Y}}學期補考通知單</button>
+{{/if}}
+</TD>
+</TR>
+<TR bgcolor=#9EBCDD>
+<TD colspan=2>
+<!-- 班級資料區段 --開始-->
+
+{{if $this->stu_data!=''}}
+<script language="JavaScript">
+function check_all(obj,cName){
+	var checkboxs=document.getElementsByName(cName);
+	for(var i=0;i<checkboxs.length;i++){
+		checkboxs[i].checked = obj.checked;
+	}
+}
+</script>
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  align=center>
+<TR bgcolor=#CCCCCC align=center style="color:#800000">
+<TD><input type=checkbox name=all onclick="check_all(this,'sel_student_sn[]')">全選 / 全不選</TD>
+<TD>學號</TD>
+<TD>班級</TD>
+<TD>座號</TD>
+<TD>姓名</TD>
+<TD>性別</TD>
+<TD>學期補考通知單</TD>
+<TD>歷年補考通知單</TD>
+</TR>
+{{foreach from=$this->stu_data item=stu_data}}
+<FORM action="score_notification_print.php" target="foo" onsubmit="window.open('','foo')">
+<TR bgcolor=white  onmouseover="this.style.backgroundColor='#FFCDE5';" onMouseOut="this.style.backgroundColor='#FFFFFF';">
+<TD align=center ><input type=checkbox name=sel_student_sn[] value={{$stu_data.student_sn}}></TD>
+<TD align=center >{{$stu_data.stud_id}}</TD>
+<TD align=center >{{$stu_data.seme_class}}</TD>
+<TD align=center >{{$stu_data.seme_num}}</TD>
+<TD align=center >{{$stu_data.stud_name}}</TD>
+<TD align=center >{{if $stu_data.stud_sex==1}}男{{else}}女{{/if}}</TD>
+<TD align=center><span class='like_button'><a href=# onClick="javascript:window.open('score_notification_print.php?op=print_this_seme_this_stud&Y={{$this->Y}}&student_sn={{$stu_data.student_sn}}','_blank')">{{$this->Y}}學期</a></span></TD>
+<TD align=center ><span class='like_button'><a href=# onClick="javascript:window.open('score_notification_print.php?op=print_all_seme_this_stud&student_sn={{$stu_data.student_sn}}','_blank')">列印</a></span></TD>
+</TR>
+{{/foreach}}
+<TR bgcolor=white>
+<TD align=left COLSPAN=8>
+<input type=hidden name=Y value={{$this->Y}}><input type=hidden name=op value=print_this_seme_sel_student>
+<input type=submit value="列印選取學生{{$this->Y}}學期補考通知單">
+</TD>
+</TR>
+</FORM>
+</TABLE>
+{{/if}}
+
+
+
+
+</TD></TR>
+</TABLE>

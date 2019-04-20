@@ -1,0 +1,90 @@
+<!-- //$Id: fix_sendmit.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<table><tr><td>
+<select name="{{$this->Y_name}}" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?{{$this->Y_name}}='+this.options[this.selectedIndex].value">
+{{html_options options=$this->YS_ary selected=$this->year_seme}}
+</select> 
+<select name="{{$this->S_name}}" size="0" onChange="location.href='{{$smarty.server.PHP_SELF}}?{{$this->Y_name}}={{$this->year_seme}}&{{$this->S_name}}='+this.options[this.selectedIndex].value">
+<option value='' >未選擇</option>
+{{html_options options=$this->YC_ary selected=$this->Sel_class}}
+</select></td>
+<td>
+{{if $this->Sel_class!=''}}
+<a onclick="location.href='{{$smarty.server.PHP_SELF}}?{{$this->Y_name}}={{$this->year_seme}}&{{$this->S_name}}={{$this->Sel_class}}&mods=year'">
+<lable><input  type="checkbox"  class=b3 {{if $smarty.get.mods=='year'}} checked{{/if}}
+>年級課程</lable></a>
+<a onclick="location.href='{{$smarty.server.PHP_SELF}}?{{$this->Y_name}}={{$this->year_seme}}&{{$this->S_name}}={{$this->Sel_class}}&mods=cla'" >
+<lable><input  type="checkbox" class=b3  {{if $smarty.get.mods=='cla'}} checked{{/if}}
+>班級課程</lable></a>
+{{/if}}
+&nbsp;</td>
+</tr>
+</table>
+
+<br>
+<table>
+
+<form action="{{$smarty.server.PHP_SELF}}" method="post">
+
+<tr class=b1 style='font-size:11pt;' align=center>
+<td>科目碼</td>
+<td>領域</td>
+<td>科目</td>
+<td>九年一貫對映</td>
+<td>課程啟用</td>
+<td>班級碼</td>
+<td>請選科目</td>
+<td>
+{{if $this->Sel_class!='' && $smarty.get.mods!=''}}
+
+
+<input type="button"  value="O開吧" onclick="if(window.confirm('真的開了喔？')){this.form.form_act.value='updata';this.form.sendmit.value='1';this.form.submit();}" class=b1>
+<input type="button"  value="X關吧" onclick="if(window.confirm('真的關了喔？')){this.form.form_act.value='updata';this.form.sendmit.value='0';this.form.submit();}" class=b1>
+
+<INPUT TYPE='hidden' NAME='form_act'  value=''>
+<INPUT TYPE='hidden' NAME='sendmit'  value=''>
+<input type="hidden" name="{{$this->Y_name}}" value="{{$this->year_seme}}">
+<input type="hidden" name="{{$this->S_name}}" value="{{$this->Sel_class}}">
+{{/if}}
+</td>
+</tr>
+{{foreach item=arr key=key from=$this->sub}}
+
+<tr class=b3>
+<td  align=center>{{$key}}</td>
+<td>{{$arr.scope}}</td>
+<td>{{$arr.subject}}</td>
+<td>{{$arr.link_ss}}</td>
+<td align=center>
+{{if $arr.enable=='1'}}<font color="#0000FF">有效</font>
+{{else}}<font color="#FF0000">無效</font>
+{{/if}}
+</td>
+<td align=center>{{$arr.class_id}}</td>
+<td align=center><input type="radio" name="subj" value='{{$key}}'>{{$key}}</td>
+<td align=center>
+
+<select name="open[{{$key}}]" class=b2>
+<option value='' >未選擇</option>
+{{html_options options=$this->open}}
+</select>
+
+</td>
+
+</tr>
+
+{{/foreach}}
+</form>
+</table>
+<b>選項說明：</b>
+<DIV style="font-size:9pt;margin: 10px; ">
+{{foreach item=arr key=key from=$this->open}}
+『<b>{{$arr}}</b>』
+<span style="color:#0000FF;left: 200px;">{{$this->open_readme[$key]}}。</span><br>
+{{/foreach}}
+</DIV>
+
+
+
+<DIV style="color:blue;font-size:9pt">
+◎By 彰化縣學務系統開發小組 於 96.01.17</DIV>
+

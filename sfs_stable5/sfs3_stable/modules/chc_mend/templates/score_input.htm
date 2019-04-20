@@ -1,0 +1,117 @@
+
+<script type="text/javascript">
+function tagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;
+if (obj.type=='checkbox' &&  objx.substr(0,6)=='st_sn[') {
+	if (obj.checked==1 ) {obj.checked=0;}
+	else { obj.checked=1;}
+	}
+i++;}
+}
+</script>
+<TABLE border=0 width=100% cellspacing='1' cellpadding=1>
+
+<TR bgcolor=#9EBCDD>
+
+
+<td width=100%  style="vertical-align: top;" colspan=2>
+<!-- 第1格內容 -->
+
+{{$this->sel_year}}{{$this->sel_grade}} ==> <FONT  COLOR="#FF0000">先選學期,再選年級,再選領域</FONT>
+{{if $smarty.get.Y!=''}}
+<form action='{{$smarty.server.PHP_SELF}}' method="post">
+<INPUT TYPE=button  value='下載全校{{$smarty.get.Y}}補考名單CSV檔' onclick="{this.form.form_act.value='seme_csv';this.form.submit()}" class=bur2>
+<INPUT TYPE='hidden' NAME='form_act'  value=''>
+<INPUT TYPE="hidden" name='Y' value='{{$this->Y}}'>
+</form>
+{{/if}}
+</td>
+</tr>
+<TR bgcolor=#9EBCDD>
+<td colspan=2>
+<!-- 班級資料區段 --開始-->
+{{if $smarty.get.Y!='' && $smarty.get.G!=''}}
+
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  >
+<TR bgcolor=white>
+{{foreach from=$this->scope item=ii key=KK}}
+{{if $smarty.get.S==$KK}}
+<td bgcolor="#9EBCDD" onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$KK}}'">
+<label><input type="checkbox" value="{{$KK}}"  checked="checked">{{$ii}}</label></td>
+{{else}}
+<td onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$KK}}'"><label><input type="checkbox" value="{{$KK}}">{{$ii}}</label></td>
+{{/if}}
+{{/foreach}}
+</TR>
+</TABLE>
+{{/if}}
+</td>
+</tr></TABLE>
+
+{{if $this->stu!=''}}
+
+<TABLE  border="0" cellspacing="1" cellpadding="4" width="100%" bgcolor="#cccccc" class="main_body" >
+<TR  bgcolor="#E1ECFF" align="center">
+<TD>序</TD>
+<TD>班級</TD>
+<TD>座號</TD>
+<TD><INPUT TYPE='checkbox'  onClick="tagall();" >全選/取消　　姓名</TD>
+<TD>學號</TD>
+<TD>性別</TD>
+<TD>補考輸入</TD>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計結果</TD>
+
+</TR>
+<form action='{{$smarty.server.PHP_SELF}}' method="post" name=f1>
+{{foreach from=$this->stu item=stu}}
+<TR bgcolor=white >
+<TD align=center>{{$stu.id}}</TD>
+<TD align=center>{{$stu.seme_class}}</TD>
+<TD align=center>{{$stu.seme_num}}</TD>
+<TD align=center>
+<label><input type="checkbox" name="st_sn[{{$stu.id}}]" value="{{$stu.student_sn}}">
+	{{$stu.stud_name}}</label></TD>
+<TD align=center>{{$stu.stud_id}}</TD>
+<TD align=center>{{if $stu.stud_sex==1}}男{{else}}女{{/if}}</TD>
+<TD align=center>
+<input type="text" name="score_input[{{$stu.student_sn}}_{{$stu.score_src}}]" size=3 value="{{$stu.score_test}}">
+</TD>
+<TD align=center><font {{if $stu.score_src<60}} color=#EE5566{{/if}}>{{$stu.score_src|string_format:"%.2f"}}</font></TD>
+<TD align=center><font {{if $stu.score_test<60}} color=#EE5566{{/if}}>{{$stu.score_test}}</font></TD>
+<TD align=center><font {{if $stu.score_end<60}} color=#EE5566{{/if}}>{{$stu.score_end|string_format:"%.2f"}}</font></TD>
+</TR>
+{{/foreach}}
+
+
+
+<TR bgcolor=white>
+<TD align=center colspan=10><br>
+
+<INPUT TYPE=button  value='全選/不選' onclick="tagall()" class=bur2>
+<INPUT TYPE=button  value='X刪除鉤選者' onclick="if( window.confirm('確定刪除鉤選者？確定？')){this.form.form_act.value='delData';this.form.submit()}" class=bur2>
+
+<INPUT TYPE="reset"  value='重設' class=bur2 >
+
+<INPUT TYPE=button  value='O儲存輸入成績' onclick="if( window.confirm('確定儲存？確定？')){this.form.form_act.value='saveData';this.form.submit()}" class=bur2>
+<INPUT TYPE='hidden' NAME='form_act'  value=''>
+<INPUT TYPE="hidden" name='S' value='{{$this->S}}'>
+<INPUT TYPE="hidden" name='Y' value='{{$this->Y}}'>
+<INPUT TYPE="hidden" name='G' value='{{$this->G}}'>
+</TD></TR>
+</form>
+</TABLE>
+
+{{/if}}
+
+註：<br />
+
+
+<FONT SIZE="2" >
+<DIV style="color:blue;font-size:9pt;" onclick="alert('開發小組：\n陽明 江添河 湖南 許銘堯\n二林 紀明村 和仁 曾彥鈞\n大成 黃俊凱 和東 王麒富\n鳳霞 林建伸 伸港 梁世憲\n\n意見提供：\n線西 許毅貞 北斗 顏淑兒\n埤頭 洪淑瓊 二中 王文村\n花壇 施皇仰 舊社 徐千惠');">
+◎By 彰化縣學務系統開發小組  於 103.10 </DIV></FONT>
+<DIV  style="color:blue;font-size:9pt;" >根據府教學字第1050077466號公文，學校成績應統一無條件進位，對學生較為有利。補考成績輸入的補考輸入的成績，按下儲存輸入成績後會無條件進位，才呈現。意思是輸入59.1，按下儲存輸入成績，成績會變成60。</DIV>

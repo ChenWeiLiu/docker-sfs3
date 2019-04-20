@@ -1,0 +1,2 @@
+semester_score - 學習領域學期成績總表
+原版作者：Infodaes 2011/12/27

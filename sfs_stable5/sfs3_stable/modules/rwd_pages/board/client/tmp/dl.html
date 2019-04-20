@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>BinaryTransport</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/jquery.binarytransport.js"></script>
+	<script type="text/javascript">
+	$( document ).ready(function(){
+		// disable ajax cache for debugging
+		$.ajaxSetup ({
+		    cache: false
+		});	
+		// displays image
+		var showImage = function(result){
+			  // use URL context to display image
+			  var url = window.URL || window.webkitURL;
+			  $("#image").html($("<img/>",{src:url.createObjectURL(result)}));
+		};
+		// click on blob button
+		$("#blob").click(function(e){
+			// blob ajax request
+			$.ajax({
+			  url: "http://163.17.39.135/modules/board/dl.php",
+			  type: "GET",
+			  data: "pa1=hello world,pa2=good day ",
+			  dataType: 'binary',
+			  headers:{'Content-Type':'image/png','X-Requested-With':'XMLHttpRequest'},
+			  processData: false,
+			  success: function(result){
+				var url = URL.createObjectURL(result);
+				var $a = $('<a />', {
+				  'href': url,
+				  'download': 'document.pdf',
+				  'text': "click"
+				}).hide().appendTo("body")[0].click();
+			         
+				console.log("It works");
+
+				// URL.revokeObjectURL(url);
+			  },
+			  error: function (xhr, ajaxOptions, thrownError) {
+				  //console.log(xhr.status);
+			      //console.log(thrownError);
+			  }
+			});		
+		});
+		// click on arraybuffer button
+	});
+	</script>
+</head>
+<body>
+<button id="blob">Download blob</button> 
+<div id="image"></div>
+</body>
+</html>

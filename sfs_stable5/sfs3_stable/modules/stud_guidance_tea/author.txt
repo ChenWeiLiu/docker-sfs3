@@ -1,0 +1,7 @@
+stud_guidance - 個別輔導紀錄冊
+原創作者：紀明村
+
+chi@mail.elps.chc.edu.tw 2005-01-09
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+

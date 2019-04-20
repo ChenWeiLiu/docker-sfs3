@@ -1,0 +1,142 @@
+<!-- $Id: address_th_exec.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+<!--
+table.formdata {
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse;
+	font-size: 12pt;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata th.c1 {
+    width: 0.8cm;
+}
+
+table.formdata th.c2 {
+    width: 3.3cm;
+}
+table.formdata th.c3 {
+    width: 0.9cm;
+}
+table.formdata th.c4 {
+    width: 2.6cm;
+}
+table.formdata th.c5 {
+    width: 11.4cm;
+}
+table.formdata th.c6 {
+    width: 1.7cm;
+}
+table.formdata th.c7 {
+    width: 0.8cm;
+}
+table.formdata th.c8 {
+    width: 1.5cm;
+}
+table.formdata th.c9 {
+    width: 3.8cm;
+}
+
+table.formdata td.c7 {
+
+	font-size: 10pt;
+}
+table.formdata td.c8 {
+
+	font-size: 8pt;
+}
+table.formdata td.c9 {
+
+	font-size: 10pt;
+}
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px;
+	margin:0;
+	height: 0.8cm;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+br.pageEnd {page-break-after:always}
+-->
+</style>
+
+<table class="formdata" >
+	<caption>{{$class_name}}</caption>
+  <tr> 
+    <th class= "c1" >座號</th>
+    <th class= "c2">姓名</th>
+	  <th class= "c3">性別</th>
+    <th class= "c4">生日</th>
+    <th class= "c5">地址</th>
+    <th class= "c6">監護人</th>
+    <th class= "c7">關係</th>
+    <th class= "c8">職稱</th>
+    <th class= "c9">電話</th>
+  </tr>
+  {{foreach key=key1 item=data from=$data_array name=addr }} 
+    <td class= "c1">{{$data.site_num}}</td>
+    <td class= "c2">{{$data.stud_name}}</td>
+	  <td class= "c3">{{$data.stud_sex}}</td>
+    <td class= "c4">{{$data.stud_birthday}}</td>
+    <td class= "c5">{{$data.stud_addr_1}}</td>
+    <td class= "c6">{{$data.d_guardian_name}}</td>
+    <td class= "c7">{{$guardian_relation[$data.guardian_relation]}}</td>
+    <td class= "c8">{{$data.guardian_work_name}}</td>
+    <td class= "c9">{{$data.stud_tel_1}} , {{$data.stud_tel_2}}</td>    
+  </tr>
+    {{if $smarty.foreach.addr.iteration  eq 18 }}
+        </table>
+        <br class="pageEnd">
+<table class="formdata" >
+  <tr> 
+    <th class= "c1" >座號</th>
+    <th class= "c2">姓名</th>
+	  <th class= "c3">性別</th>
+    <th class= "c4">生日</th>
+    <th class= "c5">地址</th>
+    <th class= "c6">監護人</th>
+    <th class= "c7">關係</th>
+    <th class= "c8">職稱</th>
+    <th class= "c9">電話</th>
+  </tr>        
+        
+    {{/if}}  
+  {{/foreach}} 
+</table>
+<br>
+
+
+
+

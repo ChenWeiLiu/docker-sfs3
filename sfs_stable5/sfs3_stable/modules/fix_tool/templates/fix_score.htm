@@ -1,0 +1,62 @@
+<!-- //$Id: fix_score.htm 9258 2018-06-12 03:12:11Z chiming $ -->
+<style type="text/css">
+A:link  {text-decoration:none;color:blue; }
+A:visited {text-decoration:none;color:blue; }
+A:hover {background-color:FF8000;color: #000000;}
+.mei{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:12pt;}
+.bu1{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bu2{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12pt;Padding-left:0 px;Padding-right:0 px;}
+.bur{border-style: groove;border-width:1px: groove;background-color:#FFFFFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bur2{color:red;border-style: groove;border-width:1px: black;background-color:#FFFFFF;font-size:10pt;Padding-left:0 px;Padding-right:0 px;}
+.bur3{color:red;border-style: groove;border-width:1px: black;background-color:#FFFFFF;font-size:12pt;Padding-left:0 px;Padding-right:0 px;}
+
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function bb(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+
+function tagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,8)=='score_id') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=1;}
+}
+i++;
+}
+}
+
+
+//-->
+</SCRIPT>
+
+<HR size=1 color=red>
+<form name="form" method="post" action="{{$PHP_SELF}}">
+    <font color="red">■</font>輸入學號以查詢學生<br>
+學　號：<input type="text" name="stud_id" size="12"  class=mei>
+<input type="submit" name="formbutton1" value="查詢" class=bu1> <INPUT TYPE=button  value='查詢新的' onclick="location.href='{{$PHP_SELF}}';"  class=bu1>
+【※※<a href='fix_stud_seme_rew.php'>國中獎懲學號重複問題修正</a>※※】
+【※<a href='fix_seme_score.php'>學期成績查詢</a>※】
+
+<BR>
+<FONT COLOR='#006600'>※※操作前請先確認stud_base學籍基本資料表與stud_seme學期記錄表內該生的資料正確。</FONT>
+</form>
+
+
+
+{{include file="$template_dir/fix-score_1.htm"}}<BR>
+{{include file="$template_dir/fix-score_2.htm"}}
+
+{{include file="$template_dir/fix-score_3.htm"}}
+
+<BR>
+<FONT size=2 COLOR='#0000FF'>彰化縣學務系統推廣小組</FONT>
+

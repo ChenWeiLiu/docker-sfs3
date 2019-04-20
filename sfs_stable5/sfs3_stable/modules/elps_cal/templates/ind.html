@@ -1,0 +1,65 @@
+<!-- //$Id: ind.html 5619 2009-09-01 16:09:29Z infodaes $ -->
+<style type="text/css">
+body{background-color:#f9f9f9;font-size:12pt}
+.ip12{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:12pt;}
+.ipmei{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:14pt;}
+.ipme2{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:14pt;color:red;font-family:標楷體 新細明體;}
+.ip2{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:10pt;color:red;font-family:新細明體 標楷體;}
+.ip3{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:12pt;color:blue;font-family:新細明體 標楷體;}
+.bu1{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bub{border-style: groove;border-width:1px: groove;background-color:#FFCCCC;font-size:14pt;}
+.bur2{border-style: groove;border-width:1px: groove;background-color:#FFCCCC;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.f8{font-size:9pt;}
+.bf8{font-size:9pt;color:blue;}
+.f9{font-size:9 pt;}
+ol {list-style-type: decimal}
+li {margin-left: 0px;}
+
+</style>
+
+<center style='font-size:16pt;'>{{$this->cal_name}}</center>
+<TABLE border=0 width=100% style='font-size:12pt;' cellspacing='1' cellpadding=3 bgcolor='lightGray'>
+<TR bgcolor=white>
+<td colspan="{{$this->colspan}}" align=right>
+<img src=images/printer.gif alt=印表機圖示>
+<a href="cal_print.php?syear={{$this->seme}}&mode=doc" target="_blank">輸出Word</a>
+<img src=images/printer.gif alt=印表機圖示>
+<a href="cal_print.php?syear={{$this->seme}}&mode=sxw" target="_blank">輸出OpenOffice</a>
+(前二項IE流覽器請用另存目標)
+<img src=images/printer.gif alt=印表機圖示>
+<a href="cal_print.php?syear={{$this->seme}}&mode=pri" target="_blank">友善列印</a>
+<select name='xxx' class=ip3 onChange="location.href='{{$smarty.server.PHP_SELF}}?syear='+this.options[this.selectedIndex].value;">
+{{html_options  options=$this->all_seme selected=$smarty.get.syear }}
+</select>
+</td></tr>
+
+<TR bgcolor=#9EBCDD align=center>
+<td width=10%>週別</td>
+<td width=10%>起迄</td>
+{{foreach from=$this->unit item=unit}}
+<td width="{{$this->wd}}%">
+{{$unit}}
+</td>
+{{/foreach}}
+</tr>
+{{foreach from=$this->WK item=week }}
+<TR bgcolor=white align=center>
+
+<td width=10%>第{{$week.No}}週</td>
+<td width=10% class=f8>{{$week.st_day}} -- {{$week.en_day}}</td>
+{{foreach from=$this->unit item=unit}}
+<td width="{{$this->wd}}%" class=bf8 align="left">
+<ol>
+{{foreach from=$week.event item=arr}}
+{{if $arr.unit==$unit}}<li>{{if $arr.important==1}}<font color='red'>{{/if}}{{$arr.event}}{{if $arr.important==1}}</font>{{/if}}</li>{{/if}}
+{{/foreach}}
+</ol>
+</td>
+{{/foreach}}
+</tr>
+
+{{/foreach}}
+
+</table>
+
+

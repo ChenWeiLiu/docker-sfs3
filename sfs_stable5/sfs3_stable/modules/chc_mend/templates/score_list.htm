@@ -1,0 +1,80 @@
+
+<TABLE border=0 width=100% cellspacing='1' cellpadding=1>
+
+<TR bgcolor=#9EBCDD>
+
+
+<td width=100%  style="vertical-align: top;" colspan=2>
+<!-- 第1格內容 -->
+
+{{$this->sel_year}}{{$this->sel_grade}} ==> <FONT  COLOR="#FF0000">先選學期,再選年級,再選領域</FONT>
+</td>
+</tr>
+<TR bgcolor=#9EBCDD>
+<td colspan=2>
+<!-- 班級資料區段 --開始-->
+{{if $smarty.get.Y!='' && $smarty.get.G!=''}}
+
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  >
+<TR bgcolor=white>
+{{foreach from=$this->scope item=ii key=KK}}
+{{if $smarty.get.S==$KK}}
+<td bgcolor="#9EBCDD"><label><input type="checkbox" value="{{$KK}}" 
+onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$KK}}'" checked="checked">{{$ii}}</label></td>
+{{else}}
+<td><label><input type="checkbox" value="{{$KK}}" 
+onclick="location.href='{{$smarty.server.PHP_SELF}}?Y={{$this->Y}}&G={{$this->G}}&S={{$KK}}'">{{$ii}}</label></td>
+{{/if}}
+{{/foreach}}
+</TR>
+</TABLE>
+{{/if}}
+
+
+
+<!-- 班級資料區段 --結束-->
+<!-- 課程資料區段 --開始-->
+{{if $this->stu_data!=''}}
+<TABLE  border="0" cellspacing="1" cellpadding="4" width="100%" bgcolor="#cccccc" class="main_body" >
+<TR  bgcolor="#E1ECFF" align="center">
+<TD>學號</TD>
+<TD>班級</TD>
+<TD>座號</TD>
+<TD>姓名</TD>
+<TD>性別</TD>
+<TD>原始成績</TD>
+<TD>補考成績</TD>
+<TD>採計成績</TD>
+</TR>
+{{foreach from=$this->stu_data item=stu_data}}
+
+
+<TR bgcolor=white  align="center">
+<TD>{{$stu_data.stud_id}}</TD>
+<TD>{{$stu_data.seme_class}}</TD>
+<TD>{{$stu_data.seme_num}}</TD>
+<TD>{{$stu_data.stud_name}}</TD>
+<TD>{{if $stu_data.stud_sex==1}}男{{else}}女{{/if}}</TD>
+<TD><font {{if $stu_data.score_src<60}}color=#EE5566{{/if}}>{{$stu_data.score_src|string_format:"%.2f"}}</font></TD>
+<TD><font {{if $stu_data.score_test<60}}color=#EE5566{{/if}}>{{$stu_data.score_test}}</font></TD>
+<TD bgcolor=pink><font {{if $stu_data.score_end<60}}color=#EE5566{{/if}}>{{$stu_data.score_end}}</font></TD>
+
+</TR>
+
+
+{{/foreach}}
+
+</TABLE>
+{{/if}}
+<!-- 課程資料區段 --結束-->
+
+
+</td></tr>
+</table>
+註：<div style="font-size:9pt;color:blue">
+
+
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('開發小組：\n陽明 江添河 湖南 許銘堯\n二林 紀明村 和仁 曾彥鈞\n大成 黃俊凱 和東 王麒富\n鳳霞 林建伸 伸港 梁世憲\n\n意見提供：\n線西 許毅貞 北斗 顏淑兒\n埤頭 洪淑瓊 二中 王文村\n花壇 施皇仰 舊社 徐千惠');">
+◎By 彰化縣學務系統開發小組  於 103.10 </DIV></FONT>
+

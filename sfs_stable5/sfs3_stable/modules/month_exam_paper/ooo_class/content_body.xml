@@ -1,0 +1,52 @@
+<text:sequence-decls>
+<text:sequence-decl text:display-outline-level="0" text:name="Illustration"/>
+<text:sequence-decl text:display-outline-level="0" text:name="Table"/>
+<text:sequence-decl text:display-outline-level="0" text:name="Text"/>
+<text:sequence-decl text:display-outline-level="0" text:name="Drawing"/>
+</text:sequence-decls><text:p text:style-name="P1">
+{school_name}
+</text:p>
+<text:p text:style-name="P2">
+{year_seme_sort}
+</text:p>
+<text:p text:style-name="P2">
+班級：{class} 姓名：{name} 座號：{num}
+</text:p><table:table table:name="table1" table:style-name="table1">
+<table:table-column table:style-name="table1.A" table:number-columns-repeated="2"/>
+<table:table-header-rows>
+<table:table-row>
+<table:table-cell table:style-name="table1.A1" table:value-type="string">
+<text:p text:style-name="Table Heading">科目
+</text:p>
+</table:table-cell>
+<table:table-cell table:style-name="table1.B1" table:value-type="string">
+<text:p text:style-name="Table Heading">分數
+</text:p>
+</table:table-cell>
+</table:table-row>
+</table:table-header-rows>
+{sj_sc}
+<table:table-row>
+<table:table-cell table:style-name="table1.A2" table:value-type="string">
+<text:p text:style-name="P3">總分</text:p>
+</table:table-cell>
+<table:table-cell table:style-name="table1.B2" table:value-type="string">
+<text:p text:style-name="P3">{total}
+</text:p></table:table-cell>
+</table:table-row>
+<table:table-row>
+<table:table-cell table:style-name="table1.A2" table:value-type="string">
+<text:p text:style-name="P3">平均
+</text:p>
+</table:table-cell>
+<table:table-cell table:style-name="table1.B2" table:value-type="string">
+<text:p text:style-name="P3">{aver}
+</text:p>
+</table:table-cell>
+</table:table-row>
+</table:table>
+<text:p text:style-name="P4"/>
+<text:p text:style-name="P4">導師：{teacher} 
+<text:s text:c="4"/>家長：
+</text:p>
+<text:p text:style-name="P5"/>

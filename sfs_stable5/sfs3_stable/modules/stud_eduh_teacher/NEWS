@@ -1,0 +1,10 @@
+* 2012-10-29 v1.0.1
+
+關連原有 table 
+score_subject 科目記錄資料表   subject_id
+score_ss      每學年的課程設定 ss_id , subject_id , year ,semester, class_year
+score_course  課表記錄 year,semester,class_id(101_1_07_01),teacher_sn
+
+新增 table
+stud_eduh_teacher 指定那些科目的老師必須填報, 由具管理權的老師設定, 如: 資料組長
+stud_eduh_teacher2 指定特定的老師負責輸入某些班級輔導資料, 由具管理權的老師設定, 如: 資料組長

@@ -1,0 +1,64 @@
+{{* $Id: move_tool.2.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+{{foreach from=$arr_b item=data}}
+
+{{if $smarty.get.act eq "edit2" && $smarty.get.St_sn eq $data.student_sn && $data.move_id eq $smarty.get.move_id }}
+<TR bgcolor="#FFFFFF">
+	<TD colspan=7>&nbsp;</TD>
+</TR>
+
+<tr bgcolor="#CCCCFF" style='color:#000000;font-size:11pt;' align='center'>
+<td nowrap colspan=7  align="left" valign="top">
+
+<fieldset style='font-size:12pt;'><legend><B>異動記錄修改</B></legend>
+<table border=0  width=100%>
+<TR><td nowrap align='right'>stud_move表流水號：<td width=80%>{{$data.move_id}}</td></tr>
+<TR><td nowrap align='right'>學生表流水號：<td>{{$data.student_sn}}</td></tr>
+<TR><td nowrap align='right'>學 　 號：<td>{{$data.stud_id}}</tr>
+<TR><td nowrap align='right'>學 年 度：<td><INPUT TYPE='text' NAME='move_year_seme' value='{{$data.move_year_seme}}' size=12 class=ipme2></tr>
+<TR><td nowrap align='right'>異動日期：<td><INPUT TYPE='text' NAME='move_date' value='{{$data.move_date}}' size=12 class=ipme2></tr>
+<TR><td nowrap align='right'>異動代碼：<td>
+<select name="move_kind"><option value='' selected>--未選擇--</option>
+{{html_options  options=$stud_coud2 selected=$data.move_kind}}
+</select>
+</tr>
+<TR><td nowrap align='right'>核准單位：<td><INPUT TYPE='text' NAME='move_c_unit' value='{{$data.move_c_unit}}' size=12 class=ipme2></tr>
+<TR><td nowrap align='right'>核准日期：<td><INPUT TYPE='text' NAME='move_c_date' value='{{$data.move_c_date}}' size=12 class=ipme2></tr>
+<TR><td nowrap align='right'>核 准 字：<td><INPUT TYPE='text' NAME='move_c_word' value='{{$data.move_c_word}}' size=12 class=ipme2></tr>
+<TR><td nowrap align='right'>核 准 號：<td>第<INPUT TYPE='text' NAME='move_c_num' value='{{$data.move_c_num}}' size=12 class=ipme2>號</tr>
+<TR><td nowrap align='right'>(原/新)就讀學校：<td><INPUT TYPE='text' NAME='school' value='{{$data.school}}' size=20 class=ipme2></tr>
+
+<TR><td colspan=2 align='center'><BR>
+
+<INPUT TYPE='hidden' NAME='stud_id'  value='{{$data.stud_id}}'>
+<INPUT TYPE='hidden' NAME='move_id'  value='{{$data.move_id}}'>
+<INPUT TYPE='hidden' NAME='student_sn'  value='{{$data.student_sn}}'>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='Seme'  value='{{$smarty.get.Seme}}'>
+<INPUT TYPE='hidden' NAME='Sclass'  value='{{$smarty.get.Sclass}}'>
+<INPUT TYPE=button  value='X 刪除本筆記錄' onclick=" bb2('真的要將本筆資料刪除？確定這麼做？','del_move');"  class=bur2>
+
+<INPUT TYPE=button  value='＋ 儲存成新的記錄' onclick=" bb2('真的要儲存成新的記錄？確定？','add_move');"  class=bur2>
+<BR><BR>
+<INPUT TYPE=button  value='● 寫入資料' onclick=" bb2('寫入資料？OK？','write_move');" class=bur2>
+<INPUT TYPE=button  value='取消返回' onclick="history.back();" class=bu1>
+</td></tr></table>
+
+</fieldset>
+</td></tr>
+<TR bgcolor="#FFFFFF">
+	<TD colspan=7>&nbsp;</TD>
+</TR>
+
+
+{{else}}
+<tr bgcolor="#ffffff" style='color:#000000;font-size:10pt;' align='center'>
+<td nowrap><A HREF='{{$PHP_SELF}}?Seme={{$smarty.get.Seme}}&Sclass={{$smarty.get.Sclass}}&St_sn={{$smarty.get.St_sn}}&act=edit2&move_id={{$data.move_id}}'>編修{{$data.move_id}}</A></td>
+<td nowrap>{{$data.move_year_seme}}</td>
+<td nowrap>{{$data.move_date}}</td>
+<td nowrap>{{$data.move_kind}}&nbsp;{{$stud_coud[$data.move_kind]}}</td>
+<td nowrap>{{$data.move_c_word}}{{$data.move_c_num}}號</td>
+<td nowrap>{{$data.school}}</td>
+<td nowrap>{{$data.move_c_unit}}</td>
+</tr>
+{{/if}}
+{{/foreach}}

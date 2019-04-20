@@ -1,0 +1,7 @@
+team_sign_up - 才藝班報名
+原創作者：林朝敏
+
+prolin@sy3es.tnc.edu.tw 2004-09-21
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+提供才藝班、社團報名。

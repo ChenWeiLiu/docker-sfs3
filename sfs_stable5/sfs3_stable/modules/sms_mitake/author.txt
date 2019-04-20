@@ -1,0 +1,5 @@
+sms_mitake - 三竹簡訊
+
+作者:曾文芳  email: infodaes@tc.edu.tw
+
+*本模組不提供諮詢服務

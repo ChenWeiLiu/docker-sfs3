@@ -1,0 +1,199 @@
+<!-- // $Id: stud_grad_edit.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<script>
+<!--
+function jampb() {
+	location.href='{{$phpself}}?Page={{$Page}}&Syear={{$Syear}}';
+}
+function jamp(id) {
+	location.href='{{$phpself}}?Page={{$Page}}&Syear={{$Syear}}&edit_sn='+id;
+}
+
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+function bb2(a,b) {
+var objform=document.f2;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+
+function tagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,9)=='grad_stud') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=1;}
+}
+i++;
+}
+}
+function untagall() {
+var i =0;
+while (i < document.f1.elements.length) {
+var obj=document.f1.elements[i];
+var objx=document.f1.elements[i].name;//取得名稱
+// objx.substr(0,4)取得部分字串
+if (obj.type=='checkbox' && objx.substr(0,9)=='grad_stud') {
+if (obj.checked==1 ) {obj.checked=0;}
+else { obj.checked=0;}
+}
+i++;
+}
+}
+
+//-->
+</script>   
+{{$css}}
+<body>
+
+<TABLE border=0 width=100% style='font-size:12pt;' cellspacing='1' cellpadding=3  bgcolor=#9EBCDD>
+<!-- 第1格內容 -->
+
+
+<TR  bgcolor=#9EBCDD>
+<td width=100%  style="vertical-align: top;font-size:10pt;">
+請選擇學年度：{{$sel_year}}
+
+</td></tr>
+
+{{if  $stu!=''}}
+<!-- 學生列表  開始 -->
+<TR bgcolor=white>
+<td>{{$Syear}}學年度畢業生編修操作<font size=1 color=red>(列雙擊以編修)</font>
+<div align=right>{{$page_link}}</div>
+{{if $smarty.get.edit_sn=='all'}}<FORM METHOD=POST ACTION="{{$phpself}}" name=f1 >{{/if}}
+
+<TABLE  bgcolor='#CCCCCC' border=0 width=100% style='font-size:11pt;' cellspacing='1' cellpadding=1 >
+{{if $smarty.get.edit_sn=='all'}}
+<tr  align="center"  ondblclick="jampb()" >
+{{else}}
+<tr  align="center"  ondblclick="jamp('all')" title="雙擊這一列開啟部分編修或新增單筆">
+{{/if}}
+<td nowrap width=12%>班級</td>
+<td nowrap width=4%>座號</td>
+<td nowrap width=14%>學號 姓名</td>
+<td nowrap width=4%>性別</td>
+<td nowrap width=8%>生日</td>
+<td nowrap width=4%>類別</td>
+<td  width=10%>證書日期<br>格式:<br>0000-00-00</td>
+<td nowrap width=16%>證書字</td>
+<td nowrap width=8%>證書號</td>
+<td nowrap width=20%>升學學校</td>
+</tr>
+{{if $smarty.get.edit_sn=='all'}}
+<tr  ondblclick="jampb()" bgcolor=#FFEBD6>
+
+<td nowrap colspan=6 valign="TOP">
+<fieldset><legend><font color=RED>■</font>多筆編修功能</legend>
+<INPUT TYPE=button  value='全選/反向' onclick="tagall();" class=ip2>&nbsp;<INPUT TYPE=button  value='取消' onclick="untagall();" class=ip2><br>
+將鉤選者證書號自：第<input type="text" name="start_grad_num" value="" size="10" class=ip2>開始
+<br>　　(<font color="#0000FF">不填表示不變更</font>)<br>
+將鉤選者升學學校改為：<input type="text" name="start_new_school" value="" size="20" class=ip2>
+<br>　　(<font color="#0000FF">不填表示不變更</font>)<br>
+<INPUT TYPE=button  value='○寫入資料' onclick="if( window.confirm('確定了？')) {this.form.act.value='UP_start';this.form.submit();}" class=bur1><br>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='Page'  value='{{$Page}}'>
+<INPUT TYPE='hidden' NAME='Syear'  value='{{$Syear}}'>
+<font color="#0000FF">依學號自動全部填入證書號：証書位數</font>
+<input type="text" name="auto_stid_id" value="3" size="2" class=ip2><br>
+<INPUT TYPE=button  value='■依學號自動填入畢業證書號' onclick="if( window.confirm('確定依學號自動填入證書號？')) {this.form.act.value='UP_stud_id';this.form.submit();}" class=bur1><br>
+肄業證書字：<input type="text" name="word_k2" value="" size="20" class=ip2><br>
+<INPUT TYPE=button  value='□依學號自動填入肄業證書字與號' onclick="if( window.confirm('本功能僅標示肄業者有作用！')) {this.form.act.value='UP_kind_2';this.form.submit();}" class=bur1><br>
+<br>
+<INPUT TYPE=button  value='■畢業證書號和學號一致' onclick="if( window.confirm('確定畢業證書號和學號一致？')) {this.form.act.value='UP_by_stud_id';this.form.submit();}" class=bur1><br>
+
+</fieldset>
+
+
+
+</td><td nowrap colspan=4 valign="TOP" style='line-height:15pt'>
+
+<fieldset><legend><font color=RED>■</font>新增單筆功能(*者為必填)</legend>
+畢業學年度<input type="text" name="one_year" value="{{$Syear}}" size="5" class=ip2>*
+學生學號<input type="text" name="one_stud_id" value="" size="10" class=ip2>*
+
+<br>
+證書字：<input type="text" name="one_word" value="" size="20" class=ip2><br>
+證書號：<input type="text" name="one_num" value="" size="20" class=ip2><br>
+證書日期<input type="text" name="one_date" value="" size="20" class=ip2><br>
+升學學校<input type="text" name="one_school" value="" size="20" class=ip2><br>
+<INPUT TYPE=button  value='○新增這一筆' onclick="if( window.confirm('確定了？')) {this.form.act.value='ADD_ONE';this.form.submit();}" class=bur1><br>
+</fieldset>
+
+</td>
+
+</tr>
+
+{{/if}}
+
+{{foreach from=$stu item=arr}}
+{{if $smarty.get.edit_sn==$arr.grad_sn}}
+<FORM METHOD=POST ACTION="{{$phpself}}" name=f1 >
+<TR  title="雙擊取消返回" align="center" bgcolor=white  ondblclick="jampb()"  onMouseOver="this.style.backgroundColor='#FFEBD6'" onMouseOut="this.style.backgroundColor=''">
+<td>{{$class_base[$arr.seme_class]}}<br>{{$arr.seme_class}}</td>
+<td>{{$arr.seme_num}}</td>
+<td>{{$arr.stud_id}}&nbsp;{{$arr.stud_name}}<br>{{$arr.birth}}</td>
+<td>{{$SEX[$arr.stud_sex]}}</td>
+
+<td colspan=5 align=left  style='font-size:12pt;line-height:30pt' valign="middle">
+畢業學年度：<input type="text" name="stud_grad_year" value="{{$arr.stud_grad_year}}" size="8" class=ip2><br>
+畢業類別:<select name=grad_kind>{{html_options options=$Gkind selected=$arr.grad_kind}}
+</select><input type="checkbox" name="kind_all" value="yes">全部一致<br>
+證書字：<input type="text" name="grad_word" value="{{$arr.grad_word}}" size="20" class=ip2>
+<input type="checkbox" name="word_all" value="yes">全部一致<br>
+證書號：<input type="text" name="grad_num" value="{{$arr.grad_num}}" size="20" class=ip2><br>
+證書日期<input type="text" name="grad_date" value="{{$arr.grad_date}}" size="20" class=ip2>
+<input type="checkbox" name="date_all" value="yes">全部一致<br>
+升學學校<input type="text" name="new_school" value="{{$arr.new_school}}" size="20" class=ip2><br>
+
+
+</td><td valign="middle">
+<INPUT TYPE=button  value='Ｘ刪除這筆' onclick="if( window.confirm('確定刪除這筆？')) {this.form.act.value='DEL_OK';this.form.submit();}" class=bur1><br><br>
+<INPUT TYPE=button  value='Ｘ刪除{{$Syear}}年度全部資料' onclick="if( window.confirm('這可是您說的喔？')) {this.form.act.value='DEL_ALL_OK';this.form.submit();}" class=bur1><br><br>
+<INPUT TYPE=reset  value='重設' class=bur1><br><br>
+<INPUT TYPE=button  value='○改好送出' onclick="if( window.confirm('確定了？')) {this.form.act.value='UP_OK';this.form.submit();}" class=bur1><br>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='Page'  value='{{$Page}}'>
+<INPUT TYPE='hidden' NAME='Syear'  value='{{$Syear}}'>
+<INPUT TYPE='hidden' NAME='grad_sn'  value='{{$arr.grad_sn}}'>
+</td>
+</TR>
+</FORM>
+
+{{else}}
+<TR  title="雙擊這一列編修{{$arr.stud_name}}" align="center" bgcolor=white  ondblclick="jamp('{{$arr.grad_sn}}')"  onMouseOver="this.style.backgroundColor='#FFEBD6'" onMouseOut="this.style.backgroundColor=''">
+<td>{{$class_base[$arr.seme_class]}}<font size="1" color="#BFBFBF">{{$arr.seme_class}}</font></td>
+<td>{{$arr.seme_num}}</td>
+<td>{{if $smarty.get.edit_sn=='all'}}<input type="checkbox" name="grad_stud[{{$arr.grad_sn}}]">{{/if}}
+{{$arr.stud_id}}&nbsp;
+
+<a href="{{$view}}{{$arr.stud_id}}" target="_blank" title="按下連結顯示學期記錄">{{$arr.stud_name}}</a>
+</td>
+<td>{{$SEX[$arr.stud_sex]}}</td>
+<td>{{$arr.birth}}</td> 
+<td>{{$Gkind1[$arr.grad_kind]}}</td> 
+<td>{{$arr.grad_date}}</td>
+<td class=f9>{{$arr.grad_word}}</td>
+<td>第{{$arr.grad_num}}號</td>
+<td>{{$arr.new_school}}</td>
+</TR>
+{{/if}}
+{{/foreach}}
+</TABLE>
+{{if $smarty.get.edit_sn=='all'}}</FORM>{{/if}}
+</td></tr>
+{{/if}}
+<!-- 學生列表  結束 -->
+</table>
+
+<FONT SIZE="2">
+<DIV style="color:blue" onclick="alert('小組人員：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n和美 葉國恭 大村 鄭培華');">
+◎By 彰化縣學務系統開發小組  村仔 於 94.05.04</DIV></FONT>
+

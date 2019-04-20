@@ -1,0 +1,13 @@
+* 本模組檔案列表清單：(MANIFEST)
+
+INSTALL
+MANIFEST
+NEWS
+README
+author.txt
+config.php
+index.php
+module-cfg.php
+module.sql
+report.php
+

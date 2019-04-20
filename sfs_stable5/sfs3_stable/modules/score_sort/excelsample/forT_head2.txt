@@ -1,0 +1,13 @@
+ <tr height=23 style='height:17.0pt'>
+  <td height=23 class=xl25 style='height:17.0pt;border-top:none'>補救順位</td>
+  <td class=xl25 style='border-top:none;border-left:none' x:str="身分證字號 ">身分證字號<span
+  style='mso-spacerun:yes'>&nbsp;</span></td>
+  <td class=xl25 style='border-top:none;border-left:none'>年級</td>
+  <td class=xl25 style='border-top:none;border-left:none'>班級</td>
+  <td class=xl25 style='border-top:none;border-left:none'>座號</td>
+  <td class=xl25 style='border-top:none;border-left:none'>姓名</td>
+  <td class=xl25 style='border-top:none;border-left:none'>成績</td>
+  <td class=xl25 style='border-top:none;border-left:none'>名次</td>
+  <td class=xl25 style='border-top:none;border-left:none'>PR值</td>
+  <td class=xl25 style='border-top:none;border-left:none'>備註</td>
+ </tr>

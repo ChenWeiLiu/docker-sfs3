@@ -1,0 +1,81 @@
+<!-- //$Id: PHP_tmp.html 5310 2009-01-10 07:57:56Z hami $ -->
+
+<TABLE width='100%'  border='0' align='center'>
+<TR>
+<TD align=center><b>{{$SN}}.{{$this->Tea.$SN.name}}--民國{{$this->Y-1911}}年 請假列表</b></TD></TR>
+<TR>
+<TD align=center>
+【{{$this->Y}}年統計表】
+【<a href="{{$smarty.server.PHP_SELF}}?Y={{$this->Y-1}}">{{$this->Y-1}}年</a>】
+【<a href="{{$smarty.server.PHP_SELF}}">回到今年</a>】
+【<a href="{{$smarty.server.PHP_SELF}}?Y={{$this->Y+1}}">{{$this->Y+1}}年</a>】
+</TD></TR>
+<TD align=left>
+{{foreach from=$this->absTol key=K item=AB}}
+■{{$this->ABS[$K]}}:
+{{if $AB.day!='0'}} {{$AB.day}}天{{/if}}
+{{if $AB.hour!='0'}} {{$AB.hour}}時{{/if}}　
+{{/foreach}}
+</TD></TR>
+</TABLE>
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#cccccc' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr align=center  style='font-size:11pt' bgcolor='#E1ECFF'>
+<td width=7%>假單序號</td>
+<td width=10%>請假日期</td>
+<td width=7%>日/時</td>
+<td width=6%>假別</td>
+<td width=40%>起迄/事由</td>
+<td width=6%>職務<br>代理人</td>
+<td width=6%>單位<br>主管</td>
+<td width=6%>教學<br>組長</td>
+<td width=6%>校長</td>
+<td width=6%>人事<br>主任</td>
+</tr>
+{{foreach from=$this->all item=arr}}
+<tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' style='font-size:10pt'>
+<td>
+{{if $arr.abs_kind=='52'}}	
+<a href="outlay.php?id={{$arr.id}}">{{$arr.id}}</a>
+{{else}}{{$arr.id}}{{/if}}
+</td>
+<td>{{$arr.start_date|truncate:10:""}}</td>
+<td>{{if $arr.day==0}}{{$arr.hour}} 時{{else}}{{$arr.day}} 日{{/if}} </td>
+<td>{{$this->ABS[$arr.abs_kind]}} </td>
+
+{{if $this->chkDay($arr.start_date)!='Y'}}
+<td align=left rowspan=2>{{$arr.reason}}
+{{if $arr.note_file!=''}}
+<a href="{{$this->UPLOAD_URL}}school/teacher_absent/{{$arr.note_file}}" target=_blank>[附件]</a>
+</td>
+{{/if}}
+
+{{else}}
+<td align=left rowspan=2>{{$arr.reason}}
+{{if $arr.note_file!=''}}
+<a href="{{$this->UPLOAD_URL}}school/teacher_absent/{{$arr.note_file}}" target=_blank>[附件]</a>
+{{/if}}
+<form action="{{$smarty.server.SCRIPT_NAME}}" enctype="multipart/form-data" method="post">
+<table width=100% border='0' cellpadding='0' cellspacing='0'>
+<tr><td style='font-size:10pt'>附件：<input name="ufile" type="file" size=6><INPUT TYPE='button' value='上傳' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='add_file';this.form.submit()}">
+<INPUT TYPE='hidden' Name='id' value='{{$arr.id}}'>
+<INPUT TYPE='hidden' Name='form_act' value=''>
+<INPUT TYPE='hidden' Name='start_date' value='{{$arr.start_date}}'>
+</td></tr>
+
+</table></form></td>
+
+{{/if}}
+
+<td rowspan=2>{{$this->Tea[$arr.deputy_sn].name}}</td>
+<td rowspan=2>{{$this->Tea[$arr.check1_sn].name}}</td>
+<td rowspan=2>{{$this->Tea[$arr.check2_sn].name}}</td>
+<td rowspan=2>{{$this->Tea[$arr.check3_sn].name}}</td>
+<td rowspan=2>{{$this->Tea[$arr.check4_sn].name}}</td>
+<tr align=center bgcolor='#FFFFFF' style='font-size:8pt'>
+<td colspan=4 align=right>起:{{$arr.start_date}} 迄:{{$arr.end_date}}</td>	
+</tr>
+{{/foreach}}
+</table>
+
+
+

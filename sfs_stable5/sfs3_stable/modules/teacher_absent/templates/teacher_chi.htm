@@ -1,0 +1,59 @@
+<!-- //$Id: PHP_tmp.html 5310 2009-01-10 07:57:56Z hami $ -->
+
+<TABLE width='100%'  border='0' align='center'>
+<TR>
+<TD align=center><b>{{$this->Y-1}} - {{$this->Y}} 年 {{$SN}}.{{$this->Tea.$SN.name}}公差假列表</b></TD></TR>
+<FORM METHOD=POST ACTION='{{$smarty.server.SCRIPT_NAME}}' Name='e1' target='_blank'>
+<TR><TD align=left>
+選取列印月份：<br>
+{{$this->SelMonth('pMonth')}}
+<INPUT TYPE="reset"  value='重設' class=bur2 >
+<INPUT TYPE=button  value='選好送出' onclick="if (window.confirm('選好月份了？確定送出？')){this.form.form_act.value='OK';this.form.submit();}" class=bur2>
+<INPUT TYPE='hidden' NAME='form_act'  value=''><br>
+※1.當目前所在月份是12月時，不用鉤選，按下選好送出，就會自動帶出12月份記錄。<br>
+※2.單筆/多筆列印，請自行鉤選後，再按下方印表機圖示。<br>
+</TD></TR>
+</form>
+</TABLE>
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#cccccc' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<FORM METHOD=POST ACTION='{{$smarty.server.SCRIPT_NAME}}' Name='e2' target='_blank'>
+<tr align=center  style='font-size:11pt' bgcolor='#E1ECFF'>
+<td width=8%>假單序號</td>
+<td width=12%>日期
+<input TYPE='image' align='top' border=0 SRC='../elps_sport/images/ch_back2.gif' 
+onclick="this.form.reset();return false;" title='重新填寫' >
+
+<input TYPE='image' align='top' border=0 SRC="../elps_cal/images/printer.gif"
+onclick=" if (window.confirm('確定列印鉤選記錄？')){e2.form_act.value='id_select';this.form.sumit();}return false;" title='列印鉤選記錄'>
+<INPUT TYPE='hidden' NAME='form_act'  value=''>
+</td>
+<td width=8%>日/時數</td>
+<td width=12%>地點</td>
+<td width=6%>職務<br>代理人</td>
+<td width=6%>單位<br>主管</td>
+<td width=6%>教學<br>組長</td>
+<td width=6%>校長</td>
+<td width=6%>人事<br>主任</td>
+<td width=6%>差旅費<br>申請數</td>
+<td>事由</td>
+</tr>
+{{foreach from=$this->all item=arr}}
+<tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' style='font-size:10pt'>
+<td><a href="outlay.php?id={{$arr.id}}">{{$arr.id}}</a></td>
+<td><label><input type='checkbox' name='prnID[]' value='{{$arr.id}}' />&nbsp;{{$arr.start_date|truncate:10:""}} </label></td>
+<td>{{if $arr.day==0}}{{$arr.hour}} 時{{else}}{{$arr.day}} 日{{/if}} </td>
+<td align=left>{{$arr.locale}}</td>
+<td>{{$this->Tea[$arr.deputy_sn].name}}</td>
+<td>{{$this->Tea[$arr.check1_sn].name}}</td>
+<td>{{$this->Tea[$arr.check2_sn].name}}</td>
+<td>{{$this->Tea[$arr.check3_sn].name}}</td>
+<td>{{$this->Tea[$arr.check4_sn].name}}</td>
+<td>{{$arr.Num}} </td>
+<td align=left>{{$arr.reason}}</td>
+</tr>
+{{/foreach}}
+</form>
+</table>
+
+
+

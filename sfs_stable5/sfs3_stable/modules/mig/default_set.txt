@@ -1,0 +1,18 @@
+/** 模組資訊 **/
+$MODULE_NAME=mig
+$MODULE_DISPLAY_NAME=數位相本
+$MODULE_GROUP_NAME=校務行政
+$MODULE_VER=2.0
+$MODULE_CREATE_DATE=2002-12-15
+
+/** 模組設定預設值
+系統名稱::顯示名稱::值
+**/
+
+$P_TITLE::程式標題::數位相本
+$is_standalone::是否有獨立的界面(1是,0否)::0
+$convert_path::壓縮程式路徑(利用 whereis convert 指令查詢)::/usr/bin/X11/
+$indexImgWidth::索引圖寬度(pix)::96
+$ImgWidth::展示圖寬度(pix)::500
+$maxFileSize::上載檔案限制大小 單位K::13000
+$maxColumns::顯示欄數::4

@@ -1,0 +1,12 @@
+// $Id: INSTALL,v 1.1.2.1 2003-12-04 15:23:48 brucelyc Exp $
+* 匯入讀卡成績
+
+** 安裝法:
+
+請由 "模組權限管理" 進入
+
+
+註：這裡採用 outline 文件模式。
+
+關於 outline，請參考 http://linux.tnc.edu.tw/techdoc/otl/ 的說明。
+

@@ -1,0 +1,43 @@
+<!-- $Id: view_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<TABLE border=0 width=100% cellspacing='1' cellpadding=1>
+<TR bgcolor=#9EBCDD>
+<td width=100%  style="vertical-align: top;" colspan=2>
+<!-- 第1格內容 -->
+{{$this->sel}}
+<FONT  COLOR="#FFFFFF"><B>學期資料表stud_seme的統計狀況</B></FONT>
+</td>
+</tr>
+<TR  bgcolor=#9EBCDD>
+<td width=100% colspan=2 style='font-size:11pt;' >
+<table cellspacing='1' cellpadding=1 border=0>
+<tr align=center>
+<td>班級碼</td>
+<td>資料數</td>
+<td>班級碼</td>
+<td>資料數</td>
+<td>班級碼</td>
+<td>資料數</td>
+<td>班級碼</td>
+<td>資料數</td>
+<td>班級碼</td>
+<td>資料數</td>
+
+</tr>
+<tr align=center bgcolor=white>
+{{foreach from=$this->seme_chk item=arr}}
+<td><b>{{$arr.seme_class}}</b></td>
+<td>{{$arr.tol}}</td>
+{{if $arr.next_line=='yes'}}
+</tr>
+<tr align=center bgcolor=white>
+
+{{/if}}
+
+
+{{/foreach}}
+
+</table>
+</td>
+</tr>
+
+</TABLE>

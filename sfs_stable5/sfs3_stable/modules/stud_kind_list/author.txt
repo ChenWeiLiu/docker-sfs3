@@ -1,0 +1,9 @@
+
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+stud_search - 學生搜尋
+原版作者：prolin
+
+prolin@sy3es.tnc.edu.tw 2003/05/15
+
+

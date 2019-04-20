@@ -1,0 +1,50 @@
+<div ng-controller="mainCtrl as pageCtrl">	
+	<h4 class="text-danger text-center" >DEMO校務佈告欄
+</h4>
+	<div class="col-md-12 text-center">
+	<button type="button" class="btn btn-primary btn-sm" ng-click="previousPage()">上一頁</button>
+	<button type="button" class="btn btn-primary btn-sm" ng-click="nextPage()">下一頁</button>
+
+	<button type="button" class="btn btn-success btn-sm" ng-click="open()">產生zip檔</button>
+	</div>
+
+
+ <script type="text/ng-template" id="myModalContent.html">
+	 <div class="modal-header">
+	 </div>
+
+		<div class="modal-body">
+			 <b><a href="{{ selected.item }}">點我下載</a></b>
+	 </div>
+
+	 <div class="modal-footer">
+	 <button class="btn btn-warning" type="button" ng-click="cancel()">關閉</button>
+	 </div>
+
+</script> 
+
+
+	<div class="container">
+	<table class = "table table-hover">
+
+	<tr>
+		<th class="col-md-3"> 主旨 </th>
+		<th class="col-md-1"> 公告單位</th>
+		<th class="col-md-1"> 公告時間</th>
+		<th class="col-md-1"> 詳細內容 </th>
+	</tr>
+	<tr ng-repeat="article in articles">
+		
+		<td>{{article.headline}} </td>
+		<td>{{article.jobUnit}} </td>
+		<td>{{article.postTime}} </td>
+		<td> 
+			<a href="#/page/{{main.page}}/article/{{article.articleId}}" class="btn btn-info" role="button">more</a>
+		</td>
+
+	</tr>
+
+	</table>
+
+	</div>
+</div>

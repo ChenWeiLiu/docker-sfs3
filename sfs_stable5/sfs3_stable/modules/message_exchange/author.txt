@@ -1,0 +1,6 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+message_exchange - 訊息傳遞
+2010-08-19 -- wkb(wkb@wkb.idv.tw )
+小麥 撰寫
+
+一個簡易校內教職員訊息傳送工具

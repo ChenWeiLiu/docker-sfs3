@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  教育部九年一貫課程學生成績評量及學籍電子資料交換規格標準之 學校整合資料 DTD 2.0 版 2002.05 -->
+
+<!-- 學校整合資料 DTD 資料起始 -->
+<!ELEMENT 學校整合資料 (學校基本資料, 校舍校地面積, 歲出決算數, 學校連絡資料, 學校班級狀況, 教職員基本資料, 一男, 一女, 二男, 二女, 三男, 三女, 四男, 四女, 五男, 五女, 六男, 六女)>
+<!ELEMENT 學校基本資料 (教育部學校代碼, 學校屬性, 學校名稱, 學校英文名稱, 縣市別, 設校日期, 註記, 級別, 山地識別)>
+<!ELEMENT 教育部學校代碼 (#PCDATA)>
+<!ELEMENT 學校屬性 (#PCDATA)>
+<!ELEMENT 學校名稱 (#PCDATA)>
+<!ELEMENT 學校英文名稱 (#PCDATA)>
+<!ELEMENT 縣市別 (#PCDATA)>
+<!ELEMENT 設校日期 (#PCDATA)>
+<!ELEMENT 註記 (#PCDATA)>
+<!ELEMENT 級別 (#PCDATA)>
+<!ELEMENT 山地識別 (#PCDATA)>
+<!ELEMENT 校舍校地面積 (校地總面積, 校舍總延面積, 建坪面積)>
+<!ELEMENT 校地總面積 (#PCDATA)>
+<!ELEMENT 校舍總延面積 (#PCDATA)>
+<!ELEMENT 建坪面積 (#PCDATA)>
+<!ELEMENT 歲出決算數 (經常門支出, 資本門支出)>
+<!ELEMENT 經常門支出 (#PCDATA)>
+<!ELEMENT 資本門支出 (#PCDATA)>
+<!ELEMENT 學校連絡資料 (鄉鎮市區別, 郵遞區號, 地址, 電話傳真, 學校網址, 電子郵件信箱_學校)>
+<!ELEMENT 鄉鎮市區別 (#PCDATA)>
+<!ELEMENT 郵遞區號 (#PCDATA)>
+<!ELEMENT 地址 (#PCDATA)>
+<!ELEMENT 電話傳真 (#PCDATA)>
+<!ELEMENT 學校網址 (#PCDATA)>
+<!ELEMENT 電子郵件信箱_學校 (#PCDATA)>
+<!ELEMENT 學校班級狀況 (年級, 班級, 班級性質, 特殊班性質, 班級人數, 男生人數, 女生人數)>
+<!ELEMENT 年級 (#PCDATA)>
+<!ELEMENT 班級 (#PCDATA)>
+<!ELEMENT 班級性質 (#PCDATA)>
+<!ELEMENT 特殊班性質 (#PCDATA)>
+<!ELEMENT 班級人數 (#PCDATA)>
+<!ELEMENT 男生人數 (#PCDATA)>
+<!ELEMENT 女生人數 (#PCDATA)>
+<!ELEMENT 教職員基本資料 (姓名, 身分證號碼, 出生年月日, 性別, 出生地, 電子郵件信箱_教職員*, 學歷別, 教師檢定資格別*, 任教科目*, 任教職日期, 領有殘障手冊, 職別)*>
+<!ELEMENT 姓名 (#PCDATA)>
+<!ELEMENT 身分證號碼 (#PCDATA)>
+<!ELEMENT 出生年月日 (#PCDATA)>
+<!ELEMENT 性別 (#PCDATA)>
+<!ELEMENT 出生地 (#PCDATA)>
+<!ELEMENT 電子郵件信箱_教職員 (#PCDATA)>
+<!ELEMENT 學歷別 (#PCDATA)>
+<!ELEMENT 教師檢定資格別 (#PCDATA)>
+<!ELEMENT 任教科目 (#PCDATA)>
+<!ELEMENT 任教職日期 (#PCDATA)>
+<!ELEMENT 領有殘障手冊 (#PCDATA)>
+<!ELEMENT 職別 (#PCDATA)>
+<!ELEMENT 一男 (人數_一男)>
+<!ELEMENT 人數_一男 (#PCDATA)>
+<!ELEMENT 一女 (人數_一女)>
+<!ELEMENT 人數_一女 (#PCDATA)>
+<!ELEMENT 二男 (人數_二男)>
+<!ELEMENT 人數_二男 (#PCDATA)>
+<!ELEMENT 二女 (人數_二女)>
+<!ELEMENT 人數_二女 (#PCDATA)>
+<!ELEMENT 三男 (人數_三男)>
+<!ELEMENT 人數_三男 (#PCDATA)>
+<!ELEMENT 三女 (人數_三女)>
+<!ELEMENT 人數_三女 (#PCDATA)>
+<!ELEMENT 四男 (人數_四男)>
+<!ELEMENT 人數_四男 (#PCDATA)>
+<!ELEMENT 四女 (人數_四女)>
+<!ELEMENT 人數_四女 (#PCDATA)>
+<!ELEMENT 五男 (人數_五男)>
+<!ELEMENT 人數_五男 (#PCDATA)>
+<!ELEMENT 五女 (人數_五女)>
+<!ELEMENT 人數_五女 (#PCDATA)>
+<!ELEMENT 六男 (人數_六男)>
+<!ELEMENT 人數_六男 (#PCDATA)>
+<!ELEMENT 六女 (人數_六女)>
+<!ELEMENT 人數_六女 (#PCDATA)>
+<!-- 學校整合資料 DTD 資料結束 -->

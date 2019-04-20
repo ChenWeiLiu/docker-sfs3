@@ -1,0 +1,68 @@
+// $Id: INSTALL,v 1.1.2.1 2004-02-13 06:44:56 yungshan Exp $
+
+** 安裝法:
+
+請由 "模組權限管理" 進入。
+
+並請注意以下有關主機安裝上的相關訊息
+
+
+================================================================================
+一、Linux 部份：請直接用ols3 APM 1.0.8重新安裝 apache+php，喜歡手動的人請參考以下
+　　　　　　　　說明
+
+1.要使用本模組, 要準備：
+	(1). gd函式庫要2.0以上
+	(2). zlib
+	(3). jpeg-6d
+	(4). libpng
+	詳見下面gd函式庫的網頁說明 -> http://www.boutell.com/gd/gd.html
+
+	--------------------------------------------------------------------------------
+	三個函式庫下載網址如下：
+	zlib -> http://www.gzip.org/zlib/ 在裝linux時應己用rpm 裝妥, 不必再動
+
+	jpeg-6d -> http://www.ijg.org/files -> 選jpegsrc.v6b.tar.gz 
+
+	libpng -> http://www.libpng.org/pub/png/libpng.html
+	找到右下角紛紅色的 libpng 小圖, 點一下, 進入後, 選最新版安裝
+
+	--------------------------------------------------------------------------------
+2. 上列函式庫都準備好之後, 要重編 apache & php, 請參考以下的文件：
+
+	php configure 的參考寫法：
+
+	./configure --with-mysql=/usr/local/mysql --with-apache=../apache_1.3.29 
+	--with-gd --enable-sockets --with-expat --with-dom --enable-wddx --with-xmlrpc
+	--with-iconv=/usr/local/lib --with-zlib --with-jpeg-dir=/usr/local/bin
+	--with-png-dir=/usr/local/lib
+
+	重編的重點在此： --with-jpeg-dir=/usr/local/bin --with-png-dir=/usr/local/lib
+
+	jpeg-6d 及 libpng 的目錄位置要依實際安裝的位置而定，若諸位在安裝上述兩套函式庫
+	的過程沒加 --prefix 參數, 那麼configure的寫法將同於上列所述。
+	(因為zlib採用rpm 安裝, 所以zlib不必指定目錄, 系統也找得到)
+
+================================================================================
+二、在Windows下
+
+　建議直接安裝 appserv ，裝妥後所有所需的環境皆己OK，不必再費心。
+
+　若堅持要手動一個個套件自己安裝，請裝apache 1.3.x就好，不要安裝apache2.x版，否
+則在php.ini啟用動態連結庫(*.dll)可能會有問題。
+
+　手動安裝者，一定要打開 *gd2.dll 這個動態連結庫。
+
+================================================================================
+三、重新裝好 apache+php 請在apache的document root 下建立一個 phptest.php的程式，
+　　內容如下：		<?php phpinfo(); ?>
+
+	然後在瀏覽器執行它，檢查一下各種組態設定, 其中gd 的部份應如下所列：
+
+	GD Support 			enabled
+	GD Version 			bundled (2.0.X compatible)
+	GIF Read Support 	enabled
+	JPG Support 		enabled
+	PNG Support 		enabled
+	WBMP Support 		enabled
+	XBM Support 		enabled

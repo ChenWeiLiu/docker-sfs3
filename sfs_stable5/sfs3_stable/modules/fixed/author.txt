@@ -1,0 +1,7 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+fixed - 維修通告系統說明
+原版作者：prolin
+
+prolin@sy3es.tnc.edu.tw 2003/05/09
+
+

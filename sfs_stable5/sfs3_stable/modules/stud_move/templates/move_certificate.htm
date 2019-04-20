@@ -1,0 +1,199 @@
+<!-- $Id: move_certificate.htm 8982 2016-10-03 06:21:08Z infodaes $ -->
+<TABLE width="{{$this->tb_width}}" align=center  style='font-family: 標楷體'>
+<TR align=center>
+<TD >
+<DIV align=center style='font-weight: 600;font-size: 18pt;'>《{{$this->sch_info.sch_cname}}學生轉學證明書存根》</DIV>
+</TD>
+</TR>
+<TR align=right>
+	<TD>{{$this->sch_info.sch_cname_ss}}轉證字第{{$this->mv_info.move_year_seme}}{{$this->mv_info.school_move_num}}號</TD>
+</TR>
+</TABLE>
+
+
+
+<table cellPadding='0' border=1 cellSpacing='0' width="{{$this->tb_width}}"  align=center style='border-collapse:collapse;line-height:14pt;font-size:12pt;font-family: 標楷體'>
+  <tr align=center  height="30">
+    <td width=10%>學生<BR>姓名</td>
+    <td width=13%>{{$this->base.stud_name}}</td>
+    <td width=10%>性別</td>
+    <td width=13%>{{$this->base.C_sex}}</td>
+    <td width=10%>聯絡<BR>電話</td>
+    <td width=14%>{{$this->base.stud_tel_1}}<BR>{{$this->base.stud_tel_2}}</td>
+    <td width=10%>出　生<BR>年月日</td>
+    <td width=20%>{{$this->base.C_birthday}}</td>
+
+  </tr>
+  <tr align=center  height="30">
+    <td>遷移<BR>新址</td>
+    <td colspan=5 align=left style="padding-left: 10pt">{{$this->mv_info.new_address}}</td>
+    <td>轉入<BR>學校</td>
+    <td>{{$this->mv_info.school}}</td>
+  </tr>
+  <tr align=center  height="50">
+    <td>申請<BR>日期</td>
+    <td>{{ $this->mv_info.C_move_date}}</td>
+    <td>申請人<BR>簽　章</td>
+    <td></td>
+    <td>與學生<BR>關　係</td>
+    <td></td>
+    <td>轉出<BR>原因</td>
+    <td>{{ $this->mv_info.reason}}</td>
+
+  </tr>
+</table>
+<TABLE width="{{$this->tb_width}}" align=center>
+<TR height="50">
+	<TD>導 師：</TD>
+	<TD>核 對：</TD>
+	<TD>校 長：</TD>
+</TR>
+</TABLE>
+
+<TABLE align=center width="{{$this->tb_width}}">
+<TR>
+<TD style='font-size: 14pt;font-family: 標楷體;line-height: 30pt'>
+<HR style='border-style:dashed'>
+<DIV align=center style='font-weight: 600;font-size: 18pt;'>
+《 {{$this->sch_info.sch_cname}}學生轉學證明書 》</DIV>
+<DIV  align=right>
+{{$this->sch_info.sch_cname_ss}}轉證字第{{$this->mv_info.move_year_seme}}{{$this->mv_info.school_move_num}}號</DIV>
+
+　　學生<U><B>{{$this->base.stud_name}}</B></U>，民國{{$this->base.C_birthday2}}生。
+在本校{{$this->class_info.c_year}}年{{$this->class_info.c_name }}班
+第{{$this->class_info.semester}}學期肄業，因為<B>{{$this->mv_info.reason2}}</B>申請轉學，經查屬實應予照准，並核給轉學證明書以玆證明。
+<span style='font-weight: 600;font-size: 9pt;'>（依據學籍處理要點應於三天內至轉入學校報到）</span>
+<DIV style='font-weight: 600;font-size: 16pt;padding-top:20pt; padding-bottom: 20pt;'>
+　{{$this->sch_info.sch_cname}}　校長　　 {{if $this->sign_url}}<p align="right" style="margin: 0px;"><img src='{{$this->sign_url}}' width='{{$this->sign_width}}' height='{{$this->sign_height}}' style='vertical-align:text-top'></p>{{/if}}
+</DIV>
+<CENTER>中　華　民　國　{{$this->Now.0}}　年　{{$this->Now.1}}　月　{{$this->Now.2}}　日</CENTER>
+</TD>
+</TR>
+</TABLE>
+<TABLE>
+<TR>
+<TD style='font-size: 14pt;font-family: 標楷體'>
+<HR style='border-style:dashed'>
+<H2 align=center>《 回報單 》</H2><BR>
+　　貴校原 {{$this->class_info.c_year}}年{{$this->class_info.c_name }}班 學生 {{$this->base.stud_name}}，
+已於　　年　　月　　日轉入本校　　年　　班就讀。請將該生之 (1)學生學籍紀錄表 (2)輔導資料記錄表 (3)健康資料記錄表 等資料，寄送本校，以便整理。<BR><BR>
+<font size=2>□請惠予上傳此生之XML電子學籍資料至http://exchange.tc.edu.tw，本校之PGP公鑰編號為：{{$this->pgp_num}}。</font><BR>
+經辦人：<BR><BR>
+          <DIV align=right>{{$this->mv_info.school}} 註冊組 啟　年　月　日</DIV>
+</TD>
+</TR>
+</TABLE>
+
+
+
+<P STYLE='page-break-before: always;'>
+<TABLE align=center width="{{$this->tb_width}}">
+<TR align=center >
+<TD>
+<DIV  style='font-weight: 600;font-size: 18pt;font-family: 標楷體'>
+{{$this->sch_info.sch_cname}}期中轉學成績評量紀錄表
+</DIV>
+</TD>
+</TR>
+<TR align=right ><TD  width=100%>製表:{{$this->Now.0}}.{{$this->Now.1}}.{{$this->Now.2}}</TD></TR>
+</TABLE>
+
+
+<table cellPadding='0' border=1 cellSpacing='0'  width="{{$this->tb_width}}" align=center style='border-collapse:collapse;line-height:20pt;font-size:12pt;'>
+
+<TR align=center >
+<TD width=10% >學生<BR>姓名</TD>
+<TD width=10% >{{$this->base.stud_name}}</TD>
+<TD width=10%>班級</TD>
+<TD width=10%>{{$this->class_info.c_year}}年{{$this->class_info.c_name }}班</TD>
+<TD width=10%>座號</TD>
+<TD width=10%>{{$this->seme_info.seme_num }}</TD>
+<TD width=10%>學號</TD>
+<TD width=20% colspan=2>{{$this->base.stud_id}}</TD>
+</TD></TR>
+<TR align=center ><TD colspan='9' width=100%>
+<B>{{$this->class_info.year}}學年第{{$this->class_info.semester}}學期</B>
+</TD></TR>
+
+<TR align=center ><TD colspan='2' width=20% rowspan='2'>領域及科目</TD>
+<TD width=10% rowspan='2'>每週<BR>節數</TD>
+<TD colspan='2' width=20% >第一次定期評量</TD>
+<TD colspan='2' width=20% >第二次定期評量</TD>
+<TD colspan='2' width=20%>第三次定期評量</TD>
+</TR>
+
+<TR align=center >
+<TD width=10%>月考</TD>
+<TD width=10%>平時</TD>
+<TD width=10%>月考</TD>
+<TD width=10%>平時</TD>
+<TD width=10%>月考</TD>
+<TD width=10%>平時</TD>
+
+</TR>
+
+{{foreach  key=key from=$this->SS item=SS}}
+
+
+{{if $SS.H==''}}
+<TR align=center ><TD width=10%>{{$SS.sb}}</TD>
+{{/if}}
+{{if $SS.H=='W'}}
+<TR align=center ><TD colspan='2' width=20%>{{$SS.sc}}</TD>
+{{/if}}
+
+{{if $SS.H!='' &&  $SS.H!='W'}}
+<TR align=center ><TD  rowspan='{{$SS.H}}' width=10%>{{$SS.sc}}</TD>
+<TD width=10%>{{$SS.sb}}</TD>
+{{/if}}
+<TD>{{$SS.rate}}</TD>
+{{assign var=SCO value=$this->Score($key) }}
+{{if $SCO.all!=''}}
+<TD colspan=6>{{$SCO.all}}</TD>
+{{else}}
+<TD>{{$SCO.1}}</TD>
+<TD>{{$SCO.2}}</TD>
+<TD>{{$SCO.3}}</TD>
+<TD>{{$SCO.4}}</TD>
+<TD>{{$SCO.5}}</TD>
+<TD>{{$SCO.6}}</TD>
+{{/if}}
+</TR>
+{{/foreach}}
+<TR align=center ><TD  colspan='2'>評量項目</TD><TD  colspan='7'>文字補充說明</TD></TR>
+<TR align=center ><TD colspan='2'>日常行為表現</TD><TD  colspan='7'>&nbsp;</TD></TR>
+<TR align=center ><TD colspan='2'>團體活動表現</TD><TD  colspan='7'>&nbsp;</TD></TR>
+<TR align=center ><TD colspan='2'>公共服務表現</TD><TD  colspan='7'>&nbsp;</TD></TR>
+<TR align=center ><TD colspan='2'>學生出席情形</TD>
+<TD  colspan='7' align=left >
+<DIV style="padding-left:30pt;">
+{{ if $this->stu_abs!=''}}
+{{foreach  key=key from=$this->stu_abs item=abs}}
+{{$abs.abs}} : {{$abs.val}}&nbsp;
+{{/foreach}}
+{{/if}}
+</DIV></TD></TR>
+<TR align=center ><TD colspan='2'>學生獎懲情形</TD>
+<TD  colspan='7' align=left >
+<DIV style="padding-left:30pt;">
+{{ if $this->stu_rew!=''}}
+{{foreach  key=key from=$this->stu_rew item=rew}}
+{{$rew.rew}} : {{$rew.val}}
+{{/foreach}}
+{{/if}}
+</DIV></TD></TR>
+</TABLE>
+
+
+
+<BR>
+
+
+<TABLE width="{{$this->tb_width}}" align=center>
+<TR>
+	<TD>導 師：</TD>
+	<TD>核 對：</TD>
+	<TD>校 長：</TD>
+</TR>
+</TABLE>
+

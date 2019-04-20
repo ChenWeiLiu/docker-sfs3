@@ -1,0 +1,3 @@
+mig 數位相本
+原作：Daniel M. Lowe 
+管理界面(sfs_mig2.0) --- 2001-10-1 --- cik@mail.wpes.tcc.edu.tw

@@ -1,0 +1,4 @@
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+health - 學生健康資訊
+2006-12-24 -- brucelyc ( brucelyc@seed.net.tw )
+台中縣教育網路中心 劉育彰 撰寫 

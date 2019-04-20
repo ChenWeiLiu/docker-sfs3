@@ -1,0 +1,2 @@
+sfs_text - 系統選項設定
+sfs_text2.0  -- 2001-10-1 -- HaMi( cik@mail.wpes.tcc.edu.tw )

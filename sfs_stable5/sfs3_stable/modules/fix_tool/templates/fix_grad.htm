@@ -1,0 +1,52 @@
+<!-- //$Id: fix_grad.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+A:link  {text-decoration:none;color:blue; }
+A:visited {text-decoration:none;color:blue; }
+A:hover {background-color:FF8000;color: #000000;}
+.mei{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:12pt;}
+.bu1{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bu2{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12pt;Padding-left:0 px;Padding-right:0 px;}
+.bur{border-style: groove;border-width:1px: groove;background-color:#FFFFFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bur2{color:red;border-style: groove;border-width:1px: black;background-color:#FFFFFF;font-size:10pt;Padding-left:0 px;Padding-right:0 px;}
+.bur3{color:red;border-style: groove;border-width:1px: black;background-color:#FFFFFF;font-size:12pt;Padding-left:0 px;Padding-right:0 px;}
+
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function chk() {
+v=document.form.v.value;
+if (v==""){
+alert('尚未選擇要處理的學生!');
+} else {
+if (confirm('確定要將 '+v+' 年入學的畢業學生狀態改成在籍 ?')) document.form.submit();
+}
+}
+
+//-->
+</SCRIPT>
+
+<HR size=1 color=red>
+<form name="form" method="post" action="{{$PHP_SELF}}">
+    <font color="red">■</font>先選擇學生入學年<br>
+<FONT COLOR='#006600'>※※本作業會將同入學年的所有學生就學狀態由畢業改為在籍（就學狀態非畢業則不處理），並刪除異動記錄中的畢業記錄，若要回復成畢業狀態，則再由「學生異動」進行「畢業轉出」作業即可。</FONT><BR>
+<INPUT TYPE=button  value='開始處理' onclick="chk();"  class=bu1><BR>
+<INPUT TYPE=hidden  name="v"  value="">
+
+<TABLE border=0 width=60% style='font-size:11pt;'  cellspacing=1 cellpadding=2 bgcolor=#9EBCDD>
+<TR bgcolor=#9EBCDD><td nowrap colspan="4" style="text-align:center;">學生基本資料表內容</td></tr>
+<tr bgcolor="#ffffff" style='color:#800000;font-size:11pt;' align='center'>
+<td nowrap>選取</td>
+<td nowrap>入學年</td>
+<td nowrap>學生就學狀態</td>
+<td nowrap>人數</td>
+
+{{foreach from=$rowdata item=data}}
+<tr bgcolor="{{cycle values="yellow,white"}}" style='color:#000000;font-size:11pt;' align='center'>
+<td nowrap>{{if $data.stud_study_cond==5}}<input type="radio" name="sel" OnClick="document.form.v.value='{{$data.stud_study_year}}';">{{/if}}</td>
+<td nowrap>{{$data.stud_study_year}}</td>
+<td nowrap>{{$cond_arr[$data.stud_study_cond]}}</A></td>
+<td nowrap>{{$data.num}}</td>
+</tr>
+{{/foreach}}
+</form>
+</table>

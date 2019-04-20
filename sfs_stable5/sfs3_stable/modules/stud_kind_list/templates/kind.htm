@@ -1,0 +1,113 @@
+<!-- $Id: kind.htm 7187 2013-03-03 16:56:24Z infodaes $ -->
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+-->
+</style>
+
+
+
+<form name="form1" method="post" action="">
+  <table class="formdata" >
+    <tr>
+{{foreach key=key_m item=kind_name from=$stud_kind_menu name=menu }} 
+   {{if $key_m neq '0' }}
+      <th><input type="checkbox" name="stud_kind[]" value="{{$key_m}}" {{$checked.$key_m}}>{{if $checked.$key_m}}<font color='red'>{{/if}}{{ $kind_name }}{{if $checked.$key_m}}</font>{{/if}} </th>
+   {{/if}}   
+   {{if $smarty.foreach.menu.iteration is div by 5 }}
+     </tr><tr>
+   {{/if}}
+{{/foreach}} 
+
+   </tr>
+ </table>    
+
+  
+  <input type="submit" name="Submit" value="查詢">
+  <input type="submit" name="Submit" value="匯出EXCEL">
+</form>
+
+<table class="formdata" >
+  <tr> 
+    <th>(代號)身份別</th>
+    <th>學號</th>
+    <th>班級</th>
+    <th>座號</th>
+    <th>姓名</th>
+    <th>身份證號</th>
+    <th>生日</th>
+    <th>地址</th>
+    <th>電話</th>
+    <th>父親</th>
+    <th>母親</th>
+    <th>監護人</th>
+  </tr>
+  {{foreach key=key1 item=data from=$data_array name=data_list}} 
+  {{if $key1 is not div by 2}} 
+  <tr class="altrow">
+  {{else }} 
+  <tr>
+  {{/if}} 
+    <td>{{$data.s_kind}}</td>
+    <td>{{$data.stud_id}}</td>
+    <td>{{$data.s_year_class}}</td>
+    <td>{{$data.s_num}}</td>
+    <td>{{$data.stud_name}}</td>
+    <td>{{$data.stud_person_id}}</td>
+    <td>{{$data.s_birthday}}</td>
+    <td>{{$data.s_addres}}</td>
+    <td>{{$data.s_home_phone}}</td>
+    <td>{{$data.fath_name}}</td>
+    <td>{{$data.moth_name}}</td>
+    <td>{{$data.d_guardian_name}}</td>
+  </tr>
+  {{/foreach}} 
+</table>
+符合人數：{{$smarty.foreach.data_list.total}} 
+<br>
+
+

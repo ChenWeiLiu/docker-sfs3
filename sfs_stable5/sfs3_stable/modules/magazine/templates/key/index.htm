@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>電子校刊</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<base href="<{ $templetdir }><{ $themes }>/" />
+<link href="user.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body bgcolor="#3366FF" > 
+
+<body class="backpic">
+<table width="750" border="0" cellspacing="0" cellpadding="4">
+  <tr> 
+    <td > 
+    
+
+<table width="710" border="0" cellspacing="0" cellpadding="4" >
+  <tr> 
+    <td colspan="2"> 
+        <{* 上方圖型 *}>
+            <p align="center"><img src="logo.gif" > </p>
+            <p align="center"><img src="hr.gif" border="0" class="namo-hr"></p> 
+    </td>
+  </tr>
+  <tr> 
+    <td class="leftwidth" valign="top" height="340"> 
+      <form name="myform" method="post" action="<{ $PHP_SELF }>">
+
+          <table width='125'  height='28' >
+          
+<{* 選單 *}>          
+<{foreach name=menu key=key1 item=menu1 from=$menu_list }>
+          <tr>
+<{ if  $menu1.select   }>          
+          <td class="tdm_s" ><a href="<{ $menu1.link }>"><{ $menu1.chap_name }></a></td>
+<{else}>
+          <td class="tdm" ><a href="<{ $menu1.link }>"><{ $menu1.chap_name }></a></td>
+<{/if}>          
+          </tr>
+<{/foreach}>
+ 
+
+<tr><td class="tdm_o" ><hr> <{ $publish }> <br />
+<{ $publish_date }> 發行 <br /> 
+
+期別:<select name="book_num" onchange="this.form.submit()" > 
+<{html_options values=$mbooks_num selected=$book_num output=$mbooks_name}>
+ </select></td></tr>
+</table>
+</form>
+
+            <p class="tdm_o"><a href="<{ $HOME_URL }>">回學校首頁</a></p>
+            </td>
+    <td width="600" valign="top" height="340"> 
+    <{ include file=$dyn_page }>
+        </td>
+  </tr>
+</table>
+    </td>
+  </tr>
+  <tr><td><p align="center"><img src="hr.gif" border="0" ></p></td></tr>
+</table>
+</body>
+
+</html>

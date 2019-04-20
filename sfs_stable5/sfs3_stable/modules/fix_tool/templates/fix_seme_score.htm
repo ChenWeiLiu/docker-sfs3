@@ -1,0 +1,64 @@
+
+<style type="text/css">
+
+.red{color:red;}
+.blue{color:blue;}
+.cc{text-align:center;}
+</style>
+
+<TABLE width='95%'  border='0' align='center'>
+<TR><TD>
+<span style="color:red;">本程式主要協助刪除多餘錯誤成績用，非維護人員，請勿任意使用。</span><br>
+{{if $this->Search==''}}
+<FORM METHOD=POST ACTION='{{$smarty.server.SCRIPT_NAME}}' Name='e1'>
+●學生SN<INPUT TYPE='text' NAME='SN' value='' size=5>
+●科目SSID<INPUT TYPE='text' NAME='SSID' value='' size=5>
+●學年<INPUT TYPE='text' NAME='YS' value='' size=5>
+<INPUT TYPE='hidden' Name='page' Value='{{$this->page}}'>
+<input type="submit" name="form_act" value="搜尋">
+</FORM>
+
+{{else}}<div align=right><INPUT TYPE='button' value='取消尋找' onclick="location.href='{{$smarty.server.SCRIPT_NAME}}?form_act=noSearch';"  class=in1>
+{{$this->links->show_page()}}
+</div>
+{{/if}}
+</TD></TR>
+</TABLE>
+<table  width='95%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr align=center  style='font-size:11pt'  bgcolor=#9EBCDD>
+<td width=10%>sss_id</td>
+<td width=6%>學期</td>
+<td width=6%>SN</td>
+<td width=6%>SSID</td>
+<td width=25%>年級/課程/代碼</td>
+<td width=6%>成績</td>
+<td width=10%>評語</td>
+<td width=12%>教師</td>
+<td width=5%>日期</td>
+<td width=10%>編修</td>
+</tr>
+
+{{foreach from=$this->all item=arr}}
+<tr align=center  style='font-size:10pt' bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}'>
+<td>{{$arr.sss_id}}</td>
+<td>{{$arr.seme_year_seme}}</td>
+<td>{{$arr.student_sn}}</td>
+<td>{{$arr.ss_id}}</td>
+<td align=left>{{$this->SsidToName[$arr.ss_id]}}</td>
+<td>{{$arr.ss_score}}</td>
+<td>{{$arr.ss_score_memo|truncate:12:".."}}</td>
+<td>{{$arr.teacher_sn}}.{{$this->TeaName[$arr.teacher_sn]}}</td>
+<td title="{{$arr.ss_update_time}}">--</td>
+<td>
+<a href='{{$smarty.server.PHP_SELF}}?YS={{$arr.seme_year_seme}}&sn={{$arr.student_sn}}&act=del&id={{$arr.sss_id}}&page={{$this->page}}' onclick="return window.confirm('真的刪除嗎？\n這將無法復原喔！\n\n確定？');">X刪除</a>
+
+</td>
+</tr>
+
+{{/foreach}}
+
+
+</table>
+
+
+

@@ -1,0 +1,88 @@
+{{* $Id:$ *}}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+
+{{if $msg}}
+<script language="JavaScript">
+alert('{{$msg}}');
+</script>
+{{/if}}
+<table border="0" cellspacing="1" cellpadding="2" width="100%" bgcolor="#cccccc">
+<form name="myform" method="post" action="{{$smarty.server.SCRIPT_NAME}}">
+<tr>
+<td style="background-color:white;">
+<table class="small"><tr><td>
+篩選學生：{{$year_seme_menu}}{{$class_year_menu}}<span style="color: red;">(注意：僅處理所選學期之在籍學生)</span>
+<br>{{if $smarty.post.class_year}}處理學期：{{$year_seme_menu2}}{{/if}}
+</td></tr></table><br>
+{{if $sel_class_year}}
+<span class="small" style="color: blue;">領域成績計算時將依下列設定進行(若有問題, 請由「學期初設定」模組進行修正)</span>
+<table bgcolor='#9EBCDD' cellspacing=1 cellpadding=4 class='small'>
+<tr style="background-color: #E1ECFF; text-align: center;"><td>班級</td><td>領域</td><td>分科名</td><td>加權</td><td>課程代碼</td></tr>
+{{foreach from=$setup_arr item=d key=class_id name=rows}}
+<tr style="background-color: white; text-align: center;"><td>{{$d.0}}</td><td>{{$d.1}}</td><td>{{$d.2}}</td><td style="color: #A23B32;">{{$d.4}}</td><td>{{$d.3}}</td></tr>
+{{/foreach}}
+</table><br>
+<input type="submit" name="cal" value="開始篩選"><br>
+{{/if}}
+{{if $data_arr}}
+<input type="submit" name="export" value="匯出CSV">
+<input type="radio" name="subj" value="lang" checked>語文 
+<input type="radio" name="subj" value="math">數學 
+<input type="radio" name="subj" value="natu">自然 
+<input type="radio" name="subj" value="soci">社會 
+<input type="radio" name="subj" value="heal">健體 
+<input type="radio" name="subj" value="art">藝文 
+<input type="radio" name="subj" value="comp">綜合
+<br>
+<span class="small">回執聯繳回日期：<input type="text" name="rmonth" style="width: 20pt;">月<input type="text" name="rday" style="width: 20pt;">日</span><br>
+<input type="submit" name="noti1" value="列印單學期通知單"> <span class="small" style="color: red;">(資料即時統計出, 列印學期為所選之「處理學期」)</span><br>
+<input type="submit" name="notin" value="列印多學期通知單"> <span class="small" style="color: red;">(資料來自補行評量名冊, 請確認名冊已完全並正確)</span><br>
+{{assign var=i value=0}}
+{{foreach from=$seme_arr item=d key=seme_year_seme}}
+<input type="checkbox" name="chart_seme[{{$seme_year_seme}}]" value="1"><span class="small">印出{{$d}}</span>{{if $i>1}}<br>{{assign var=i value=0}}{{/if}}
+{{assign var=i value=$i+1}}
+{{/foreach}}
+<br>
+<table bgcolor='#9EBCDD' cellspacing=1 cellpadding=4 class='small'>
+<tr style="background-color: #E1ECFF; text-align: center;"><td>學號</td><td>班級</td><td>座號</td><td>姓名</td><td>語文</td><td>數學</td><td>自然</td><td>社會</td><td>健體</td><td>藝文</td><td>綜合</td><td>不及格總數</td></tr>
+{{foreach from=$base_arr item=d key=sn name=datarows}}
+{{assign var=show value=0}}
+{{if $data_arr.$sn.language.avg.score<60}}{{assign var=l value=$l+1}}{{assign var=show value=1}}{{assign var=l1 value=1}}{{else}}{{assign var=l1 value=0}}{{/if}}
+{{if $data_arr.$sn.math.avg.score<60}}{{assign var=m value=$m+1}}{{assign var=show value=1}}{{assign var=m1 value=1}}{{else}}{{assign var=m1 value=0}}{{/if}}
+{{if $data_arr.$sn.nature.avg.score<60}}{{assign var=n value=$n+1}}{{assign var=show value=1}}{{assign var=n1 value=1}}{{else}}{{assign var=n1 value=0}}{{/if}}
+{{if $data_arr.$sn.social.avg.score<60}}{{assign var=s value=$s+1}}{{assign var=show value=1}}{{assign var=s1 value=1}}{{else}}{{assign var=s1 value=0}}{{/if}}
+{{if $data_arr.$sn.health.avg.score<60}}{{assign var=h value=$h+1}}{{assign var=show value=1}}{{assign var=h1 value=1}}{{else}}{{assign var=h1 value=0}}{{/if}}
+{{if $data_arr.$sn.art.avg.score<60}}{{assign var=a value=$a+1}}{{assign var=show value=1}}{{assign var=a1 value=1}}{{else}}{{assign var=a1 value=0}}{{/if}}
+{{if $data_arr.$sn.complex.avg.score<60}}{{assign var=c value=$c+1}}{{assign var=show value=1}}{{assign var=c1 value=1}}{{else}}{{assign var=c1 value=0}}{{/if}}
+{{if $show}}
+{{assign var=total value=$total+1}}
+{{assign var=t1 value=$t1+$l1+$m1+$n1+$s1+$h1+$a1+$c1}}
+<tr style="background-color: white; text-align: center;">
+<td>{{$d.stud_id}}</td>
+<td>{{$d.seme_class}}</td>
+<td>{{$d.seme_num}}</td>
+<td style="color: {{if $d.stud_sex==1}}blue{{else}}red{{/if}};">{{$d.stud_name}}</td>
+<td style="color: {{if $l1==1}}red{{else}}black{{/if}};">{{$data_arr.$sn.language.avg.score}}</td>
+<td style="color: {{if $m1==1}}red{{else}}black{{/if}};">{{$data_arr.$sn.math.avg.score}}</td>
+<td style="color: {{if $n1==1}}red{{else}}black{{/if}};">{{$data_arr.$sn.nature.avg.score}}</td>
+<td style="color: {{if $s1==1}}red{{else}}black{{/if}};">{{$data_arr.$sn.social.avg.score}}</td>
+<td style="color: {{if $h1==1}}red{{else}}black{{/if}};">{{$data_arr.$sn.health.avg.score}}</td>
+<td style="color: {{if $a1==1}}red{{else}}black{{/if}};">{{$data_arr.$sn.art.avg.score}}</td>
+<td style="color: {{if $c1==1}}red{{else}}black{{/if}};">{{$data_arr.$sn.complex.avg.score}}</td>
+<td>{{$l1+$m1+$n1+$s1+$h1+$a1+$c1}}</td>
+</tr>
+{{/if}}
+{{/foreach}}
+<tr style="background-color: #E1ECFF; text-align: center;"><td>學號</td><td>班級</td><td>座號</td><td>姓名</td><td>語文</td><td>數學</td><td>自然</td><td>社會</td><td>健體</td><td>藝文</td><td>綜合</td><td>不及格總數</td></tr>
+<tr style="background-color: #E1ECFF; text-align: center;"><td colSpan="3">總計</td><td>{{$total|@intval}}</td><td>{{$l|@intval}}</td><td>{{$m|@intval}}</td><td>{{$n|@intval}}</td><td>{{$s|@intval}}</td><td>{{$h|@intval}}</td><td>{{$a|@intval}}</td><td>{{$c|@intval}}</td><td>{{$t1}}</td></tr>
+{{/if}}
+</table>
+{{if $data_arr}}
+<input type="submit" name="insert" value="將篩選出學生列入補行評量名冊(共{{$total|@intval}}人)">
+{{/if}}
+</td>
+</tr>
+</form>
+</table>
+{{include file="$SFS_TEMPLATE/footer.tpl"}}

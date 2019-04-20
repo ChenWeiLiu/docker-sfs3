@@ -1,0 +1,7 @@
+stud_id_card - 學生證列印模組
+原創作者：tad
+
+tad@www.tnc.edu.tw 2003-12-17
+//$Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+
+可以讓學校列學生證

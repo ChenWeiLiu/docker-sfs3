@@ -1,0 +1,169 @@
+<!-- //$Id: fix_print.htm 8376 2015-03-31 05:43:20Z chiming $ -->
+<html>
+<head>
+<meta content="text/html; charset=Big5" http-equiv="content-type">
+<title>課程設定修正</title>
+</head>
+{{$myheader}}
+<script>
+<!--
+function jamp(id) {
+	location.href='{{$PHP_SELF}}?year_seme={{$smarty.get.year_seme}}&grade={{$smarty.get.grade}}&class_id='+id;
+}
+function jampb(id) {
+	location.href='{{$PHP_SELF}}?year_seme={{$smarty.get.year_seme}}&grade={{$smarty.get.grade}}&class_id={{$smarty.get.class_id}}&ss_id='+id;
+}
+
+
+function bb1(a,b) {
+var objform=document.f1;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+function bb2(a,b) {
+var objform=document.f2;
+if (window.confirm(a)){
+objform.act.value=b;
+objform.submit();}
+}
+
+//-->
+</script>  
+
+<body>
+<TABLE border=0 width=100% cellspacing='1' cellpadding=1>
+<TR bgcolor=white>
+<td width=100%   colspan=2 style='font-size:11pt;' >
+<FONT  COLOR="RED"><B>！！！強烈警告！！！<BR>
+請先進行【※※<a href="chk_ss.php">錯誤課程檢查</a>※※】的動作</B></FONT>、
+或
+請先進行【※※<a href="fix_print2.php">課程分析</a>※※】</B></FONT>
+、【※※<a href="fix_score_course.php">課表資料</a>※※】</B>
+<br>
+<FONT  COLOR="blue">本程式不會檢查您的課程是否己經輸入成績，使用前請三思。
+未經指導任意使用，將使貴校的成績資料無法挽回。</FONT>
+</td></tr>
+<TR bgcolor=#9EBCDD>
+
+
+<td width=100%  style="vertical-align: top;" colspan=2>
+<!-- 第1格內容 -->
+{{$sel_year}}{{$sel_grade}} <FONT  COLOR="#FFFFFF"><B>課程設定列表</B></FONT>
+</td>
+</tr>
+<TR bgcolor=#9EBCDD>
+<td colspan=2>
+<!-- 班級資料區段 --開始-->
+{{if $smarty.get.grade!='' && $smarty.get.year_seme!=''}}
+{{assign var="i" value=1}}
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  ><TR bgcolor=white>
+{{foreach from=$sel_class item=data}}
+
+{{if $i!=1 && ($i%10)==1 }}  <TR bgcolor=white>{{/if}}
+
+{{$data.c_name}}
+{{if $i!=0 && ($i%10)==0 }} </TR>{{/if}}
+{{assign var="i" value=$i+1}}
+{{/foreach}}
+</TABLE>
+{{/if}}
+<!-- 班級資料區段 --結束-->
+<!-- 課程資料區段 --開始-->
+{{if $ss_ary!=''}}
+<TABLE  border=0 width=100% style='font-size:10pt;' cellspacing='1' cellpadding=1  align=center>
+<TR bgcolor=#CCCCCC align=center style="color:#800000">
+<TD>課程碼<BR>ss_id</TD>
+<TD>科目碼:名稱</TD>
+<TD>分科碼:名稱</TD>
+<TD>班級碼</TD>
+<TD>年級碼</TD>
+<TD>啟用</TD>
+<TD>計分</TD>
+<TD>加權<BR>(節數)</TD>
+<TD>完整<BR>print</TD>
+<TD>領域序</TD>
+<TD>科目序</TD>
+<TD>對映link_ss</TD>
+
+</TR>
+{{foreach from=$ss_ary item=ss_ary}}
+{{if $smarty.get.ss_id==$ss_ary.ss_id }}
+<FORM METHOD=POST ACTION="{{$PHP_SELF}}" name=f1 >
+
+
+<TR bgcolor=white ondblclick="jamp('{{$smarty.get.class_id}}')" >
+
+<TD align=center><B>{{$ss_ary.ss_id}}</B></TD>
+
+<TD colspan=9>
+<TABLE  border=0 cellspacing=0 cellpadding=25 bgcolor=#FFEBD6 width=100% style='font-size:12pt;'><TR><TD style='color:red'>
+科目碼：<select name="scope">{{html_options options=$scope selected=$ss_ary.scope_id}}</select><BR>
+分科碼：<select name="subject">{{html_options options=$subj selected=$ss_ary.subject_id}}</select><BR>
+年級碼：<INPUT TYPE="text" NAME="class_year" value='{{$ss_ary.class_year}}' size=3 class=f12><BR>
+
+班級碼：<INPUT TYPE="text" NAME="class_id" value='{{$ss_ary.class_id}}' size=15 class=f12><BR>
+對　映：<INPUT TYPE="text" NAME="link_ss" value='{{$ss_ary.link_ss}}' size=20 class=f12>(九年一貫對映)
+</TD>
+<TD style='color:red'>
+啟　用：<INPUT TYPE="text" NAME="enable" value='{{$ss_ary.enable}}' size=3 class=f12><BR>
+計　分：<INPUT TYPE="text" NAME="need_exam" value='{{$ss_ary.need_exam}}' size=3 class=f12><BR>
+加　權：<INPUT TYPE="text" NAME="rate" value='{{$ss_ary.rate}}' size=5 class=f12><BR>
+完　整：<INPUT TYPE="text" NAME="print" value='{{$ss_ary.print}}' size=3 class=f12><BR>
+領域序：<INPUT TYPE="text" NAME="sort" value='{{$ss_ary.sort}}' size=3 class=f12><BR>
+科目序：<INPUT TYPE="text" NAME="sub_sort" value='{{$ss_ary.sub_sort}}' size=3 class=f12>
+
+</TD>
+</TR></TABLE>
+</TD>
+<TD colspan=2 align=center>
+<INPUT TYPE="reset"  value='重設' class=bur2 >
+<INPUT TYPE=button  value='返回' 
+onclick="location.href='{{$PHP_SELF}}?year_seme={{$smarty.get.year_seme}}&grade={{$smarty.get.grade}}&class_id={{$smarty.get.class_id}}';" class=bur2>
+<BR><BR>
+<INPUT TYPE=button  value='填好送出' onclick=" bb1('確定嗎？','OK');" class=bur2>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE="hidden" name='ss_id' value='{{$ss_ary.ss_id}}'>
+<INPUT TYPE="hidden" name='year_seme' value='{{$smarty.get.year_seme}}'>
+<INPUT TYPE="hidden" name='grade' value='{{$smarty.get.grade}}'>
+<INPUT TYPE="hidden" name='url_class_id' value='{{$smarty.get.class_id}}'>
+
+</TD></TR>
+
+{{else}}
+	
+<TR bgcolor=white ondblclick="jampb('{{$ss_ary.ss_id}}')"  onMouseOver="this.style.backgroundColor='#FFEBD6'" onMouseOut="this.style.backgroundColor=''">
+<TD align=center><B>{{$ss_ary.ss_id}}</B></TD>
+<TD><B>{{$ss_ary.scope_id}}</B>:{{$ss_ary.scope}} </TD>
+<TD><B>{{$ss_ary.subject_id}}</B>:{{$ss_ary.subject}}</TD>
+<TD><FONT COLOR="red">{{$ss_ary.class_id}}</FONT></TD>
+<TD><B>{{$ss_ary.class_year}}</B></TD>
+<TD><B {{if $ss_ary.enable=='0'}}style='color:red'{{/if}}>{{$ss_ary.enable}}</B></TD>
+<TD><B>{{$ss_ary.need_exam}}</B></TD>
+<TD><B>{{$ss_ary.rate}}</B></TD>
+<TD><B>{{$ss_ary.print}}</B></TD>
+<TD>{{$ss_ary.sort}}</TD>
+<TD>{{$ss_ary.sub_sort}}</TD>
+<TD><FONT COLOR="#669900">{{$ss_ary.link_ss}}</FONT></TD>
+
+
+{{/if}}
+</TR>
+{{/foreach}}
+
+</TABLE>
+{{/if}}
+<!-- 課程資料區段 --結束-->
+
+
+</td></tr></FORM>
+</table>
+註：<div style="font-size:9pt;color:blue">
+
+1.本程式用來配合(彰化)縣開發之學籍程式--<font color=red>網頁式成績單</font>，用來處理同一科目，在不同學期有不同名稱的問題。<br>
+2.操作方式：<font color=red>雙擊編修</font>。
+</div><br><br>
+<FONT SIZE="2" >
+<DIV style="color:blue" onclick="alert('開發小組：\n陽明 江添河 和群 姚榮輝\n二林 紀明村 草湖 曾彥鈞\n北斗 李欣欣 大城 林畯城\n大村 鄭培華');">
+◎By 彰化縣學務系統開發小組  村仔 於 94.04.06</DIV></FONT>
+

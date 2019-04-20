@@ -1,0 +1,78 @@
+<!-- //$Id: fix-score_3.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<FORM METHOD=POST ACTION='{{$PHP_SELF}}' name='f1'>
+<TABLE border=0 width=100% style='font-size:10pt;'  cellspacing=1 cellpadding=0 bgcolor=#9EBCDD>
+<TR bgcolor=#9EBCDD><td nowrap colspan="13" ><B style="color:blue"> {{$SCO_TAB}} </B> 平時成績表-----搜尋結果</td></tr>
+
+
+{{if $smarty.get.year_seme !='' && $Seme_class_id!='' }}
+<tr bgcolor="#ffffff" style='color:#800000;font-size:9pt;'>
+<td colspan='13' style='font-size:11pt;'><font color="red">■</font>操作選項：
+目前操作學期為{{$smarty.get.year_seme}}
+<BR>
+1.<INPUT TYPE=button  value='將鉤選者同步化class_id為 {{$Seme_class_id}}' 
+onclick=" bb('開始同步化？確定？','do_change1');"  class=bu2><BR>
+2.將鉤選者的class_id同步化為
+<INPUT TYPE='text' NAME='My_class_id' value=''  class=mei size=12>&nbsp;
+<INPUT TYPE=button  value='開始依我填寫同步' onclick=" bb('依我填寫同步？確定？','do_change2');"  class=bu2><BR>
+3.將鉤選者的sendmit值同步化為
+<INPUT TYPE='text' NAME='sendmit' value=''  class=mei size=10>&nbsp;
+<INPUT TYPE=button  value='開始依我填寫更正' onclick=" bb('依我填寫更正sendmit值？確定？','do_sendmit');"  class=bu2>(1:未鎖定 0:鎖定)<BR>
+4.<INPUT TYPE=button  value='將鉤選者刪除' onclick=" bb('真的要將本筆資料刪除？確定這麼做？','del_data');"  class=bur3>
+<INPUT TYPE='hidden' NAME='student_sn'  value='{{$stu_sn}}'>
+<INPUT TYPE='hidden' NAME='act'  value=''>
+<INPUT TYPE='hidden' NAME='SCO_TAB'  value='{{$SCO_TAB}}'>
+<INPUT TYPE='hidden' NAME='year_seme'  value='{{$smarty.get.year_seme}}'>
+<INPUT TYPE='hidden' NAME='class_id'  value='{{$Seme_class_id}}'>
+
+<BR>
+<BR></td></tr>
+
+
+
+
+<tr bgcolor="#ffffff" style='color:#800000;font-size:9pt;' align='center'>
+<td nowrap>score_id<br>表流水號</td>
+<td nowrap>class_id<br>學期班級</td>
+<td nowrap>student_sn<br>學生流水</td>
+<td nowrap>全選<BR><INPUT TYPE='checkbox' NAME='' value='' onclick='tagall();'></td>
+
+<td nowrap colspan=2>ss_id | 領域名稱:課程名稱</td>
+<td nowrap>score<br>成績</td>
+<td nowrap>test_name<br>測驗名</td>
+<td nowrap>test_kind<br>測驗別</td>
+<td nowrap>test_sort<br>排序別</td>
+<td nowrap>update_time<br>時間</td>
+<td nowrap>sendmit<br>鎖定</td>
+<td nowrap>teacher_sn<br>輸入教師</td>
+</tr>
+{{foreach from=$arr_sco item=data}}
+
+<tr bgcolor="#ffffff" style='color:#800000;font-size:10pt;'>
+<td>{{$data.score_id}}</td>
+<td>{{$data.class_id}}</td>
+<td>{{$data.student_sn}}</td>
+<td nowrap>
+<INPUT TYPE='checkbox' NAME='score_id[{{$data.score_id}}]' value=''>
+</td>
+
+<td><FONT COLOR='red'>{{$data.ss_id}}</FONT></td>
+<td>{{$data.cname}}</td>
+<td>{{$data.score}}</td>
+<td>{{$data.test_name}}</td>
+<td>{{$data.test_kind}}</td>
+<td>{{$data.test_sort}}</td>
+<td>{{$data.update_time|truncate:10:""}}</td>
+<td>{{$data.sendmit}}</td>
+<td>{{$data.teacher_sn}}</td>
+</tr>
+
+{{/foreach}}
+
+{{else}}
+<tr bgcolor="#ffffff" style='color:#800000;'>
+<td colspan='13'>
+<CENTER><H2>尚無平時成績資料</H2></CENTER>
+</td></tr>
+{{/if}}
+</table>
+</FORM>

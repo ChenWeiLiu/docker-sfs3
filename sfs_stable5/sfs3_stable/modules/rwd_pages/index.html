@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RWD PAGES</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body ng-app="app" ng-controller="mainCtrl">
+
+<div class="jumbotron text-center">
+  <p>RWD電子佈告欄模組</p>
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+			步驟一：按下server按鈕後，螢幕畫面會出現校內學務系統server端的資料。(此為編碼後的json格式) </br>
+步驟二：按下client按鈕後，螢幕畫面會出現校內佈告欄的內容，佈告欄上方會出現 (產生zip檔) 按鈕。  </br>
+步驟三：請下載zip檔，解壓縮後整個資料夾放置在對外的web主機上，路徑為：/var/www/html/資料夾名稱，並修改download權限為777。 </br>
+步驟四：在瀏覽器上輸入->對外web主機上的 IP/資料夾名稱，螢幕畫面會出現學務系統佈告欄的正確內容，就大功告成了！ </br>
+</br>
+<p>
+附註:</br>
+1.對外的web主機,必需支援php。 </br>
+2.何謂RWD(Responsive Web Design)： 此種設計目的是為了使網頁的內容可以在多種瀏覽裝置上閱讀和導航，包括桌面電腦顯示器到行動電話或其他行動產品等裝置 </br>
+✰感謝喀哩國小資訊張組長提供詳細安裝說明<p>
+		<button ng-click="goServer()">server</button>
+		<button ng-click="goClient()">client</button>
+		</div>
+  </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,88 @@
+<!-- $Id: rand_input.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<table bgcolor="#9EBCDD" cellspacing="1" cellpadding="4" width=800 align=center>
+<tr align=center bgcolor="#FFFFFF"><td colspan=2><b>在籍生亂數編班作業流程--4.寫入學籍系統</b></td></tr>
+<tr><td colspan=2><b>■點選作業項目</b>
+<INPUT TYPE=button  value='返回主頁' onclick="location.href='{{$smarty.server.PHP_SELF}}';">
+</td></tr>
+<tr bgcolor="#FFFFFF"><td colspan=2 style="font-size:12pt">
+
+<table bgcolor="#9EBCDD" cellspacing="1" cellpadding="4" width=100% align=center>
+<tr bgcolor="#FFFFFF" style="font-size:9pt" align=center>
+<td>作業名稱</td>
+<td>原始名冊</td>
+<td>結果名冊</td>
+<td>開學日設定</td>
+<td>班級設定</td>
+<td>學生學期<br>資料檢查</td>
+<td>本學期</td>
+<td>執行寫入動作</td>
+</tr>
+{{foreach item=arr  from=$this->List}}
+<tr bgcolor="#FFFFFF" style="font-size:11pt" align=center>
+<td>□<font color="#0000FF">
+<b>{{$arr.rWord.Y}}</b>學年度 第<b>{{$arr.rWord.S}}</b>學期<br>
+<b>{{$arr.rWord.Gw}}</b> 學生 亂數編班作業</font>
+</td>
+<td>{{if $arr.f2!=''}}<font color="#0000FF">有
+{{else}}<font color="#FF0000">無{{/if}}</font></td>
+<td>{{if $arr.f3!=''}}<font color="#0000FF">有
+{{else}}<font color="#FF0000">無{{/if}}</font></td>
+
+<td>
+{{if $arr.C4.chk_day=='Y'}}<font color="#0000FF">有</font>
+{{elseif $arr.C4.chk_day=='N'}}<font color="#FF0000">無</font>
+{{else}}--{{/if}}
+</td>
+
+
+<td>
+{{if $arr.C4.chk_class=='Y'}}<font color="#0000FF">有</font>
+{{elseif $arr.C4.chk_class=='N'}}<font color="#FF0000">無</font>
+{{else}}--{{/if}}
+</td>
+
+
+<td>
+{{if $arr.C4.chk_stu=='Y'}}
+<font color="#0000FF">OK</font>
+{{elseif $arr.C4.chk_stu=='N'}}
+<font color="#FF0000">己有</font>{{else}}--{{/if}}
+</td>
+<td>
+{{if $arr.C4.chk_now=='Y'}}
+<font color="#0000FF">是</font>
+{{elseif $arr.C4.chk_now=='N'}}
+<font color="#FF0000">不是</font>{{else}}--{{/if}}
+</td>
+
+<td>
+
+{{if $arr.C4.tol=='Y'}}
+<a href="{{$smarty.server.PHP_SELF}}?step={{$this->mod}}&Fi={{$arr.file}}&act=form" >
+進行操作</a>
+{{else}}
+<font color="#FF0000">設定不合<br>無法寫入</font>
+{{/if}}
+</td></tr>
+{{/foreach}}
+</table>
+</td></tr>
+{{if $this->Info!='' && $smarty.get.act=='form'}}
+<tr bgcolor="#FFFFFF" align='center'>
+<td colspan=2>
+確定寫入【
+{{$this->Info.Rand.rWord.Y}}學年度 第
+{{$this->Info.Rand.rWord.S}}學期
+{{$this->Info.Rand.rWord.Gw}} 學生 亂數編班作業結果】到學籍系統？<br><br>
+
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}' Name='f1' >
+<INPUT TYPE='hidden' Name='form_act' Value=''>
+<INPUT TYPE='hidden' Name='Fi' Value='{{$this->Fi}}'>
+<INPUT TYPE='hidden' Name='step' Value='{{$this->mod}}'>
+<INPUT TYPE='button' value='確定寫入上述編班結果' onclick="if( window.confirm('正式寫入學籍表內喔？您確定嗎？')){f1.form_act.value='Rand_write';f1.submit();}">
+</FORM>
+
+</td></tr>
+{{/if}}
+
+</table>

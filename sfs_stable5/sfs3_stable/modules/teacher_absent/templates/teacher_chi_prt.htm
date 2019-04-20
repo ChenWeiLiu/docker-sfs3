@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; Charset=Big5">
+<title>{{$this->Sch.sch_cname}} 學務管理系統 -- 差旅費列印</title>
+</head>
+<style type="text/css">
+<!--
+table{
+    border-collapse:collapse;
+    border:1px solid black;
+}
+td{
+    border:1px solid black;font-size:10pt;
+}
+@page {
+margin-left: 0.6cm;
+margin-right: 0.6cm;
+margin-top: 1.2cm;
+margin-bottom: 1cm;
+}
+
+-->
+</style>
+<body>
+<TABLE width='100%'  border='0' align='center' style="border:0px;">
+<TR><TD colspan=3 align='center' style="border:0px;"><b style="font-size:16pt;">{{$this->Sch.sch_cname}}出差請示單暨旅費報告表</b></TD></TR>
+<TR><TD width=40% style="border:0px;">
+<TABLE  align='left'>
+<TR><TD>憑證編號</TD><TD colspan=3 align='center'>預算科目</TD></TR>
+<TR><TD>&nbsp;</TD><TD>　　　　&nbsp;</TD><TD>　　　　&nbsp;</TD><TD>　　　　&nbsp;</TD></TR>
+</TABLE>
+</TD>
+<TD style="border:0px;" width=30%>&nbsp;</TD>
+<TD  width=30% style="border:0px;">
+<div style="text-align: right;font-size:10pt;">製表日期:{{$smarty.now|date_format:"%Y.%m.%d"}}</div>
+</TD>
+</TR></TABLE>
+
+<TABLE width='100%' border='0' align='center'>
+<TR align='center'>
+<TD width=15%><b>姓  名</b></TD>
+<TD width=18%>{{$this->Tea.$SN.name}}</TD>
+<TD width=15%><b>職 稱</b></TD> 
+<TD width=18%>{{$this->Tea.$SN.title_name}} </TD>
+<TD width=15%><b>職 等</b></TD>
+<TD width=19%>{{$this->Tea.$SN.post_class}}</TD>
+</TR>
+<TR align='center'>
+<TD><b>出差事由</b></TD>
+<TD align=left colspan=2>&nbsp;&nbsp;如下列表。</TD>
+<TD><b>列印月份</b></TD>
+<TD align=left colspan=2>
+{{foreach from=$smarty.post.pMonth item=MM}}■{{$MM}} {{/foreach}}
+{{if $this->add12!=''}}&nbsp;■{{$this->add12}}{{/if}}
+</TD>
+</TR>
+</TABLE>
+
+
+<table cellPadding='0' border=1 cellSpacing='0' width='100%' align=center style='border:1px solid black;border-collapse:collapse;font-size:12pt;'>
+<tr align=center  style='font-size:11pt;border:1px solid black;'>
+<td width=8%>差假<br>單號</td>
+<td width=12%>日期</td>
+<td width=8%>日/時數</td>
+<td width=12%>地點</td>
+<td width=6%>職務<br>代理人</td>
+<td width=6%>單位<br>主管</td>
+<td width=6%>教學<br>組長</td>
+<td width=6%>校長</td>
+<td width=6%>人事<br>主任</td>
+<td width=6%>差旅費<br>申請數</td>
+<td>出差事由</td>
+</tr>
+{{foreach from=$this->all item=arr}}
+{{if $arr.Num>0}}
+<tr align=center  style='font-size:10pt;border:1px solid black;'>
+<td>{{$arr.id}}</td>
+<td>{{$arr.start_date|truncate:10:""}} ~ {{$arr.end_date|truncate:10:""}}
+ </td>
+<td>{{if $arr.day==0}}{{$arr.hour}} 時{{else}}{{$arr.day}} 日{{/if}} </td>
+<td align=left>{{$arr.locale}}</td>
+<td>{{$this->Tea[$arr.deputy_sn].name}}</td>
+<td>{{$this->Tea[$arr.check1_sn].name}}</td>
+<td>{{$this->Tea[$arr.check2_sn].name}}</td>
+<td>{{$this->Tea[$arr.check3_sn].name}}</td>
+<td>{{$this->Tea[$arr.check4_sn].name}}</td>
+<td>{{$arr.Num}} </td>
+<td align=left>{{$arr.reason}}</td>
+</tr>
+{{/if}}
+{{/foreach}}
+</table>
+
+<table border='1' cellPadding='0' cellSpacing='0'  width=100%>
+<tr align='center'>
+<td width='8%' rowspan='2' >請領<br>單號</td> 
+<td width='9%' rowspan='2' >日   期</td> 
+<td  width='10%' rowspan='2'>起迄地點</td>
+<td  width='18%' rowspan='2'>工作記要</td>
+
+<td  width='20%' colspan='4'>交通費</td>
+<td  width='5%' rowspan='2'>住宿費</td>
+<td  width='5%' rowspan='2'>旅行業代收轉付</td>
+<td  width='5%' rowspan='2'>單據<br>號數</td>
+<td  width='5%' rowspan='2'>什費</td>
+<td  width='5%' rowspan='2'>合計</td>	
+
+<td  width='10%' rowspan='2'>主任</td>	
+</tr>	
+<tr align='center'>
+<td  width='5%'>飛機</td>
+<td  width='5%'>汔車及捷運</td>
+<td  width='5%'>火車</td>
+<td  width='5%'>高鐵</td>
+</tr>	
+{{assign var="Tol" value="0"}}
+{{foreach from=$this->Sub item=ar2}}
+<tr align='center'>
+<td>{{$ar2.a_id}}-{{$ar2.c_id}}</td>
+<td>{{$ar2.start_date}}</td>
+<td>{{$ar2.end_date}}</td>		
+<td align='left'>{{$ar2.class_name}}</td>		
+<td>{{$ar2.outlay1}}&nbsp;</td>
+<td>{{$ar2.outlay2}}&nbsp;</td>
+<td>{{$ar2.outlay3}}&nbsp;</td>
+<td>{{$ar2.outlay4}}&nbsp;</td>
+<td>{{$ar2.outlay5}}&nbsp;</td>
+<td>{{$ar2.outlay6}}&nbsp;</td>
+<td>{{$ar2.outlay7}}&nbsp;</td>
+<td>{{$ar2.outlay8}}&nbsp;</td>
+<td>{{$ar2.outlay_a}}&nbsp;</td>
+<td>{{$this->Tea[$ar2.deputy_sn].name}}</td>
+</tr>
+{{assign var="Tol" value=$Tol+$ar2.outlay_a}}
+{{/foreach}}
+
+<tr>
+<td colspan=4>&nbsp;口有口無 提供住宿(請勾選)</td>
+<td align='right' colspan=7>總計</td>		
+<td align='right' colspan=2><b> {{$Tol|number_format}} </b>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+
+<table border='1' cellPadding='0' cellSpacing='0'　 width=100%>
+<tr><td colspan=5>請敘明交通工具種類：口客運　口捷運　口火車(復興)　口火車(莒光)　口火車(自強)</td></tr>
+<tr Height=50><td colspan=5>上列出差旅費合計： <ins><b> 新台幣{{$this->MoneyNum($Tol)}}元整 </b></ins> ，
+業經如數收訖。<div style="text-align: right;font-size:10pt;"><b>具領人</b>　　　　　　　　　　　　　　　　　　　(簽名或蓋章)</div></td></tr>
+<tr align='center'>
+<td width=20%>出差人</td>
+<td width=20%>單位主管</td>
+<td width=20%>人事單位</td>
+<td width=20%>會計單位</td>
+<td width=20%>機關首長</td></tr>
+<tr Height=60><td>&nbsp;<br><br></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>

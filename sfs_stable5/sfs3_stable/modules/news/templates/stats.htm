@@ -1,0 +1,102 @@
+{{* $Id: stats.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<style type="text/css">
+<!--
+table.formdata {
+	border: 1px solid #000000;
+	border-collapse:collapse;
+	padding-right: 1cm;
+	font-size: 14pt;
+}
+table.formdata caption  {
+    font-size: 16pt;
+}
+table.formdata th {
+	border: 1px solid #000000;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:center;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+	width:3cm;
+	height:1cm;
+}
+table.formdata th.sp {
+    width:0.2cm;
+}
+table.formdata td {
+	border: 1px solid #000000;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+	width:3cm;
+	height:1cm;
+}
+
+table.formdata td.sp {
+    width:0.2cm;
+}
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+p.foot{
+	font-size: 16pt;
+	margin-left: 1cm;
+
+}
+
+br.pageEnd {page-break-after:always}
+-->
+</style>
+
+{{ if not $print  }}
+		<table cellspacing=2 cellpadding=2>
+			<tr>
+				<td>
+					<form name='form1' method='post' action='' >
+        開始日期：
+        <input name="txt_beg" type="text" id="txt_beg" size="10" maxlength="10" value="{{ $txt_beg }}">
+        結束日期：
+        <input name="txt_end" type="text" id="txt_end" size="10" maxlength="10" value="{{ $txt_end }}" >
+        <input type='submit' name='Submit1' value='查詢'>
+
+					</form>
+				</td>
+			</tr>
+		</table>
+{{ /if}}
+
+<table class="formdata">
+  <caption>發佈者統計</caption>
+  <tr>
+    <th >發佈者</th>
+    <th>篇數</th>
+  </tr>
+  <tr>
+
+{{foreach name=data_array key=key1 item=data  from=$job_array  }}
+  <tr>
+    <td>{{  $key1 }}</td>
+    <td>{{ $data }}</td>
+  </tr>
+
+  {{/foreach}}
+</table>

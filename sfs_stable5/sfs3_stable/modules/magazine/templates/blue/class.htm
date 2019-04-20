@@ -1,0 +1,16 @@
+<{* ¯Z¯ÅÂIºw  *}>
+<table width='100%'  border=' 0'>
+<{foreach name=item_name key=key1 item=v from=$paper_list.item }>
+
+<tr class =' td_class_doc'>
+
+<{if $smarty.foreach.item_name.iteration is div by 2}>
+<td background='map1.jpg' >
+<{else}>
+<td background='map2.jpg' >
+<{ /if }>
+<{$v.classname}> ...<{$v.name}><br>
+<{$v.doc}>
+</td></tr>
+<{/foreach}>
+</table>

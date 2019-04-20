@@ -1,0 +1,14 @@
+// $Id: MANIFEST,v 1.2 2003-05-28 03:34:27 jrh Exp $
+* 本模組檔案列表清單：(MANIFEST)
+
+seme_score_input/INSTALL
+seme_score_input/MANIFEST
+seme_score_input/NEWS
+seme_score_input/README
+seme_score_input/author.txt
+seme_score_input/config.php
+seme_score_input/creat_table.php
+seme_score_input/index.php
+seme_score_input/module-cfg.php
+seme_score_input/module.sql
+

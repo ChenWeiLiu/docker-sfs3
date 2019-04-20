@@ -1,0 +1,25 @@
+{{* $Id: tol.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<TABLE border=0 width='50%'  cellspacing=1 cellpadding=2 bgcolor='#9EBCDD'>
+<TR bgcolor='#FEFBDA' width='100%' align=center>
+<td nowrap>學年度</td>
+<td nowrap>起--迄</td>
+<td nowrap>新接輔數</td>
+<td nowrap>輔導中個案數</td>
+<td nowrap>完成個案數</td>
+<td nowrap>認輔教師數</td>
+</tr>
+{{foreach from=$stu_nu item=arr}}
+<tr bgcolor=white align=center>
+<td nowrap>{{$arr.year}}學年第{{$arr.seme}}學期</td>
+<td nowrap>{{$arr.start}}--{{$arr.end}}</td>
+<td>{{$arr.begin_num}}</td>
+<td>{{$arr.tol_num}}</td>
+<td>{{$arr.end_num}}</td>
+<td>{{$arr.tea_num}}</td>
+</tr>
+{{/foreach}}
+
+</td></tr>
+</table>
+<FONT COLOR="red">請注意</FONT>：<BR>
+本表正確性在於&nbsp;<U>教務處/學期初設定/開學日設定 內的<strong>[學期開始日期]</strong>與<strong>[學期結束日期]</strong>是否銜接一致</U>。

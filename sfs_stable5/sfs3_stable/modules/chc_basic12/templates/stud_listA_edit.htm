@@ -1,0 +1,103 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<script>
+<!--
+
+function jampb(id) {
+	document.Fix.student_sn.value=id;
+	document.Fix.submit();
+}
+
+function chk_sco() {
+var SS=Fix2.score_balance.value;
+var X=0;
+if ( SS!=0 && SS!=2 && SS!=4 && SS!=7 ) {alert('均衡學習輸入錯誤!!');X=1;}
+if(X==0) {Fix2.form_act.value='update';Fix2.submit();}
+}
+
+//-->
+</script>  
+
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'>
+<td width=100%>{{$this->select()}}</td></tr>
+</table>
+<table  width='100%'  border='0' align='center' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td  width=4% nowrap rowspan=2 colspan="1">座號</td>
+<td width=6% nowrap rowspan=2 colspan="1">姓　名</td>
+<td width=5% nowrap rowspan=2 colspan="1">學　號</td>
+<td width=5% nowrap rowspan=1 colspan="5">基本資料</td>
+<td width=5% nowrap rowspan=2 colspan="1">6就近入學</td>
+<td width=5% nowrap rowspan=2 colspan="1">7均衡學習</td>
+<td width=5% nowrap rowspan=2 colspan="1">積分狀況</td>
+</tr>
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td width=5% nowrap title="0.一般生  1.原住民  2.派外人員子女  3.蒙藏生  4.回國僑生  
+5.港澳生  6.退伍軍人  7.境外優秀科學技術人才子女">1身分類別</td>
+<td width=5% nowrap title="0.一般生   1.智能障礙   2.視覺障礙   3.聽覺障礙   4.語言障礙
+5.肢體障礙   6.身體病弱   7.境情緒行為障礙   8.學習障礙
+9.多重障礙   A.自閉症   B.其他障礙">2身心障礙</td>
+<td width=5% nowrap title="0.否   1.是">3失業勞工</td>
+<td width=5% nowrap title="0.肄業   1.畢業">4畢肄業</td>
+<td width=5% nowrap title="0.無   1.中低收入   2.低收入">5經濟弱勢</td>
+</tr>
+{{if $this->class_id!=''}}
+<form name='Fix1' method='post' action="{{$smarty.server.SCRIPT_NAME}}">
+<tr bgcolor='white' align=center><td colspan=11>
+<input type="hidden" name="class_id" value="{{$this->class_id}}" />
+
+<INPUT TYPE=button  value='返回檢視' onclick="location.href='stud_listA.php?year_seme={{$this->year_seme}}&class_id={{$this->class_id}}';" >
+<input type="hidden" name="year_seme" value="{{$this->year_seme}}" />
+<input type="hidden" name="class_id" value="{{$this->class_id}}" />
+<input type="hidden" name="form_act" value="" />
+<INPUT TYPE="reset"  value='[R]重設'>
+<INPUT TYPE=button  value='[OK]填好送出' onclick="if( window.confirm('確定？')){this.form.form_act.value='updateAll';this.form.submit()}">
+<INPUT TYPE=button  value='[X]清空本班' onclick="if( window.confirm('確定清空成績嗎？確定？')){this.form.form_act.value='clearAll';this.form.submit()}">
+
+
+</td></tr>
+{{foreach from=$this->stu item=stu key=st_sn}}
+
+{{assign var="T20" value=$this->tol20(20,$stu.score_service+$stu.score_reward+$stu.score_fault)}}
+{{assign var="T16" value=$this->tol20(16,$stu.score_balance+$stu.score_race+$stu.score_physical)}}
+
+
+<tr align=center  style='font-size:10pt' 
+bgcolor=white ondblclick="jampb('{{$stu.student_sn}}')"  onMouseOver="this.style.backgroundColor='#FFEBD6'" onMouseOut="this.style.backgroundColor=''">
+
+<td>{{$stu.seme_num}}</td>
+<td><a href="stud_perV3.php?Sn={{$stu.student_sn}}" target=_blank>{{if $stu.stud_sex=='1' }}<font color="#0000FF">{{$stu.stud_name}}</font>
+{{else}}<font color="#000000">{{$stu.stud_name}}</font>{{/if}}</a></td>
+<td>{{$stu.stud_id}}</td>
+
+
+
+<td><input type="text" name="kind_id[{{$stu.student_sn}}]" value="{{$stu.kind_id}}" size="2" /></td>
+<td><input type="text" name="special[{{$stu.student_sn}}]" value="{{$stu.special}}" size="2" /></td>
+<td><input type="text" name="unemployed[{{$stu.student_sn}}]" value="{{$stu.unemployed}}" size="2" /></td>
+
+<td><input type="text" name="graduation[{{$stu.student_sn}}]" value="{{$stu.graduation}}" size="3" /></td>
+<!--<td><input type="text" name="income[{{$stu.student_sn}}]" value="{{$stu.income}}" size="3" /></td>-->
+<td><select name="income[{{$stu.student_sn}}]">{{html_options options=$this->income3 selected=$stu.income}}</select></td>
+
+<td><input type="text" size=2 name="score_nearby[{{$stu.student_sn}}]" value="{{$stu.score_nearby}}" readonly="readonly" /></td>
+<!--<td><input type="text" size=2 name="score_balance[{{$stu.student_sn}}]" value="{{$stu.score_balance}}" /></td>-->
+<td><select name="score_balance[{{$stu.student_sn}}]">{{html_options options=$this->balance_s selected=$stu.score_balance}}</select></td>
+
+
+<td>{{$stu.income+$stu.score_nearby+$T20+$T16}}</td>
+
+</tr>
+{{/foreach}}
+</form>
+{{/if}}
+</table>
+
+
+
+
+
+
+
+

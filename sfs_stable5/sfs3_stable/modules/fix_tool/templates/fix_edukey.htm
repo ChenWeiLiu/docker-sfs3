@@ -1,0 +1,35 @@
+<HR size=1 color=red>
+<strong>教師 edu_key 列表 hash('sha256',字號)</strong>
+<br />身分證字號重複，可能無法產生edu_key，可利用
+【<a href='fix_teacher_ID.php'>全校身份證字號檢查</a>】來檢查。
+<br />
+<TABLE border=0 width=100% style='font-size:11pt;'  cellspacing=1 cellpadding=0 bgcolor=#E6ECF0>
+<tr align=center>
+<td width=5%>NO</td>
+<td width=5%>SN</td>
+<td width=15%>教師姓名</td>
+<td width=12%>字號</td>
+<td width=12%>動作</td>
+<td width=25%>edukey</td>
+<td width=25%>LDAP_PW</td>
+</tr>
+{{assign var="No" value="1"}}
+{{foreach from=$this->all item=ary}}
+<tr bgcolor='#FFFFFF' align=center>
+<td>{{$No}}</td>
+<td>{{$ary.SN}}</td>
+<td>{{$ary.cname}}
+{{if $ary.sex=='1'}}<font color=blue>男</font>{{/if}}
+{{if $ary.sex=='2'}}<font color=red>女</font>{{/if}}
+</td>
+<td>{{$ary.perID}}</td>
+<td>
+<a href='{{$smarty.server.SCRIPT_NAME}}?act=Make&sn={{$ary.SN}}' onclick="return window.confirm('真的產生嗎？');">M產生</a>
+<a href='{{$smarty.server.SCRIPT_NAME}}?act=Del&sn={{$ary.SN}}' onclick="return window.confirm('真的刪除嗎？');">X清除</a>
+</td>
+<td style="font-size:9pt;" title='{{$ary.edu_key}}'>{{$ary.edu_key|truncate:10}}</td>  
+<td style="font-size:9pt;" title='{{$ary.ldap_password}}'>{{$ary.ldap_password|truncate:10}}</td>  
+</tr>
+{{assign var="No" value=$No+1}}
+{{/foreach}}
+</table>

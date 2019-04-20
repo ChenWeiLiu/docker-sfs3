@@ -1,0 +1,100 @@
+<!-- $Id: address.htm 5310 2009-01-10 07:57:56Z hami $ -->
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+}
+
+
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+-->
+</style>
+
+
+
+<form name='form1' method='post' action=''> 
+	選擇班級:{{$class_select}}  
+	<input name='allyear' type='checkbox' value='1' >全學年
+	{{$import_option}}<input type='submit' name='Submit1' value='下載班級通訊錄'>
+					</form>
+<table class="formdata" >
+  <tr> 
+    <th>學號</th>
+    <th>座號</th>
+    <th>姓名</th>
+	<th>性別</th>
+	<th>英文姓名</th>
+    <th>身份證號</th>
+    <th>生日</th>
+    <th>地址</th>
+    <th >電話</th>
+    <th >監護人</th>
+    <th >工作地</th>
+    <th >職稱</th>
+	<th >緊急電話</th>
+  </tr>
+  {{foreach key=key1 item=data from=$data_array }} 
+  {{if $key1 is not div by 2}} 
+  <tr class="altrow">
+  {{else }} 
+  <tr>
+  {{/if}} 
+
+    <td>{{$data.stud_id}}</td>
+    <td>{{$data.site_num}}</td>
+    <td>{{$data.stud_name}}</td>
+	<td>{{$data.stud_sex}}</td>
+    <td>{{$data.stud_name_eng}}</td>
+    <td>{{$data.stud_person_id}}</td>
+    <td>{{$data.stud_birthday}}</td>
+    <td>{{$data.stud_addr_1}}</td>
+    <td>{{$data.stud_tel_1}}</td>
+    <td>{{$data.d_guardian_name}}</td>
+    <td>{{$data.guardian_unit}}</td>
+    <td>{{$data.guardian_work_name}}</td>
+	<td>{{$data.stud_tel_2}}</td>
+  </tr>
+  {{/foreach}} 
+</table>
+<br>
+
+

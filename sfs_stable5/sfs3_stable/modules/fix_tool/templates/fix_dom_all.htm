@@ -1,0 +1,103 @@
+{{* $Id: fix_tool.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<style type="text/css">
+.rr{color:#FF0000; font-size:10pt;}
+.rb{color:#0000FF; font-size:11pt;}
+.r1{color:#0000FF; font-size:9pt;}
+</style>
+
+<script>
+function tall(NAME,NUM) {
+	var i =0;
+	while (i < document.f1.elements.length) {
+	var obj=document.f1.elements[i];
+	var objx=document.f1.elements[i].name;//取得名稱
+	// objx.substr(0,4)取得部分字串
+	if (obj.type=='checkbox' && objx.substr(0,NUM)==NAME ) {
+		if (obj.checked==1 ) {obj.checked=0;}	else { obj.checked=1;}
+	}
+	i++;
+	}
+}
+</script>
+
+<HR size=1 color=red>
+<form name="f1" method="post" action="{{$smarty.server.SCRIPT_NAME}}" >
+<font color="red">■</font>鉤選欲補入戶口資料學生，無法補入資料時，表示資料庫有問題,請連絡網路中心人員協助處理<br>
+{{if $smarty.post.form_act=='show'}}
+<INPUT TYPE='button' value='取消返回' onclick="history.back();">
+{{else}}
+<input type="button" value="檢視建表語法"  class='rr'  
+ onclick="if( window.confirm('檢視？確定？')){this.form.form_act.value='show';this.form.submit()}">
+
+{{/if}}
+
+<TABLE border=0 width=60% style='font-size:12pt;'  cellspacing=1 cellpadding=0 bgcolor=#9EBCDD>
+{{if $smarty.post.form_act=='show'}}
+<tr bgcolor="#ffffff" style='color:#800000;font-size:13px;' align='center'>
+<td colspan="8" align=left>
+<b>{{$this->all.0}}建表語法..用於檢視資料表索引鍵的正確與否。</b><br>
+{{$this->all.1|nl2br}}
+</td></tr>
+{{else}}
+<tr bgcolor="#ffffff" style='color:#800000;font-size:13px;' align='center'>
+<td colspan="8" align=right>
+學籍表內共 <b>{{$this->tol}}</b> 筆記錄，每頁秀 <b>{{$this->size}}</b> 筆。
+{{$this->links->show_page()}}
+</td></tr>
+
+<TR bgcolor=#9EBCDD><td nowrap colspan="5" >
+<B>stud_base學籍表/stud_domicile戶口資料--比對結果</B>
+</td>
+<td nowrap colspan="3" align=center>
+<INPUT TYPE='hidden' Name='form_act' value=''>
+<INPUT TYPE='hidden' Name='page' value='{{$this->page}}'>
+<input type="button" value="選好後按我補入鉤選者"  class='rr'  
+ onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='add';this.form.submit()}">
+<input type="button" value="全選/反向/取消" onclick="tall('StuSN',5)" class=r1>
+</td></tr>
+<tr bgcolor="#ffffff" style='color:#800000;font-size:13px;' align='center'>
+<td nowrap>學號<br>stud_id</td>
+<td nowrap>學生流水號<br>student_sn</td>
+<td nowrap>姓名<br>stud_name</td>
+<td nowrap>性別<br>stud_sex</td>
+<td nowrap>就學狀況<br>stud_study_cond</td>
+<td nowrap>入學年<br>stud_study_year</td>
+<td nowrap>目前年班<br>curr_class_num</td>
+<td nowrap>戶口記錄<br>stud_domicile表</td>
+</tr>
+{{foreach from=$this->all item=data}}
+<tr bgcolor="#ffffff" style='color:#000000;font-size:15px;' align='center'>
+<td nowrap>{{$data.stud_id}}</td>
+<td nowrap>
+{{$data.student_sn}}</td>
+<td nowrap>{{$data.stud_name}}</td>
+<td nowrap>{{$data.stud_sex}}</td>
+<td nowrap>{{$data.stud_study_cond}}</td>
+<td nowrap>{{$data.stud_study_year}}</td>
+<td nowrap>{{$data.curr_class_num}}</td>
+<td nowrap>
+
+{{if $data.NN!=''}}
+有記錄
+{{else}}
+<label class='rb'>
+<input type="checkbox" name="StuSN[{{$data.student_sn}}]" value="{{$data.stud_id}}">補入記錄</label>
+{{/if}}
+</td>
+</tr>
+{{/foreach}}
+{{/if}}
+</table>
+
+</form>
+<p>PS:<br>
+1.程式用於修正轉學生因某些因素無法自動新增戶口記錄的情形。<br>
+2.本程式僅補上戶口記錄，詳細記錄的填寫請至[學籍管理/ 戶口資料]內填寫。
+</p>
+
+<BR>
+
+<DIV style="color:blue">
+◎By 彰化縣學務系統開發小組  於 99.09.14</DIV>
+
+

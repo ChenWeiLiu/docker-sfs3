@@ -1,0 +1,250 @@
+$Id: WEB_INSTALL_README,v 1.10 2003-09-27 17:45:29 ols3 Exp $
+
+
+SFS3 安裝使用說明：
+
+==================================================================
+
+一．準備環境
+
+安裝 SFS3 之前，您應該先備妥平台環境，這裡有方便的建置工具供您選用：
+
+A. sfs_LAMP1.0.2 SFS3 環境安裝程式及說明文件，下載位址：
+
+http://163.17.40.18/sfs/sfs3/linux_platform/sfs_LAMP1.0.2.tar.gz
+
+B. 全自動安裝 SFS3 平台環境 1.0.6，說明及下載位址：
+
+ftp://ftp.tnc.edu.tw/Sysop/sfs3/install-tools/INSTALL
+
+您至少要有 Apache + PHP + MySQL 
+
+C. 若您不喜歡使用 tar 檔安裝，可以參考以下這篇說明：
+
+http://cvs.tnc.edu.tw/modules/news/article.php?storyid=49
+
+這讓您很方便地準備 SFS3 的平台環境喲!
+
+
+
+二. 使用 SFS3 Web 安裝介面
+
+
+1. 將 sfs*.tar.gz 放入 htdocs 目錄下 (或您的web主目錄下)
+
+cd /home/apache/htdocs
+
+ncftp ftp.tnc.edu.tw
+cd sysop/sfs3/sfs3/beta
+get sfs-3.xxxx.tar.gz
+quit
+
+
+解壓： 
+tar xvzf sfs-3.xxxx.tar.gz
+
+
+2. 執行設定程式：
+
+./setup.sh
+
+
+3. 執行 Web 介面安裝程式：
+
+http://您的主機位址/sfs3/install.php
+
+填妥相關設定，按 "安裝" 鈕，約幾秒之後，
+
+即可安裝成功。
+
+預設帳號為 1001，預設密碼為 demo
+
+
+
+4. 後續處理：
+
+a. 請記得把 config.php 的檔案屬性改回來：
+
+chmod 644 config.php
+
+以策安全
+
+
+b. chmod 000 install.php
+
+拿掉 install.php 的使用權
+
+
+c. chmod a-x upgrade
+
+拿掉進入 upgrade 目錄的權力
+
+
+d. 並在您的 httpd.conf 中加入上傳目錄的設定：
+
+(注意! 若您的 Apache 不是安裝在 /usr/local/apache 請自行調整)
+
+Alias /upfiles/ "/usr/local/apache/htdocs/sfs3/data/"
+<Directory "/usr/local/apache/htdocs/sfs3/data">
+   	AllowOverride None 
+   	Options None
+   	Order allow,deny
+   	Allow from all
+</Directory>
+
+然後，重新啟動您的 Apache
+
+
+注意：
+
+1. 請把 web 主目錄 htdocs 的選項設為：
+
+Options FollowSymLinks
+
+請勿使用 Indexes，以避免沒有放 index.php , index.html, 
+index.htm 的目錄，被人直接瀏覽該目錄內容。
+
+2. 記得要加入：
+
+# Add type for PHP4
+AddType application/x-httpd-php .php
+AddType application/x-httpd-php-source .phps
+
+3. 要設妥 DirectoryIndex
+
+DirectoryIndex index.php index.html
+
+或
+
+DirectoryIndex index.php index.html index.htm 
+
+請自行考量需求增刪之。
+
+4. 若您使用 Apache 2.x 的版本，請記得將 httpd.conf 中的
+
+AddDefaultCharset ISO-8859-1
+
+改成
+
+#AddDefaultCharset ISO-8859-1
+
+然後重新啟動 Apache
+
+以免畫面出現亂碼。
+
+
+
+三. 安裝其它相關工具程式
+
+以下幾個程式是系統必須要有的：
+
+1. ImageMagick-5.4.3.11-1.i386.rpm 
+
+(RedHat 7.3，若是其它平台，請抓取適當的版本來安裝)
+
+作用：其內包含 convert 程式，為 "數位相本" 所需。
+
+2. unzip-5.50-2.i386.rpm  
+
+(RedHat 7.3，若是其它平台，請抓取適當的版本來安裝)
+
+作用：其內包含 unzip 程式，為 "數位相本" 或其它程式所需。
+
+3. lynx-2.8.4-18.i386.rpm  
+
+(RedHat 7.3，若是其它平台，請抓取適當的版本來安裝)
+
+作用：其內包含 lynx 簡單瀏覽器，方便您將來抓取 SFS3 中某一支程式來自行更新。
+
+
+
+四. 更新 SFS3 程式的方法
+
+A. 使用 upsfs
+
+ncftp ftp.tnc.edu.tw
+cd sysop/sfs3/tools
+get upsfs-linux-1.0.2.tar.gz
+quit
+
+tar xvzf upsfs-linux-1.0.2.tar.gz
+
+執行 upsfs
+
+./upsfs 
+
+即可更新 SFS3
+
+
+B. 適用時機：當某一支 SFS3 程式有 bug，
+
+而開發人員已將修正檔匯入 CVS Server 中，
+
+此時，您可以利用 lynx 來更新。
+
+作法：
+
+1. 比如：sfs3/modules/absent/index.php 這支程式有 bug，
+
+此時，您可以用瀏覽器觀看 
+
+http://sfscvs.tcc.edu.tw/viewcvs/viewcvs.cgi/sfs3/modules
+/absent/index.php?rev=1.8&content-type=text/vnd.viewcvs-markup
+
+此處最新版是 1.8，但將來可能隨時會變動。
+
+2. 點按進去之後，複製 Download 這個連結位址：
+
+http://sfscvs.tcc.edu.tw/viewcvs/viewcvs.cgi/*checkout*/
+sfs3/modules/absent/index.php?rev=1.8
+
+3. 使用 lynx 來抓取：
+
+cd sfs3/modules/absent
+
+lynx http://sfscvs.tcc.edu.tw/viewcvs/viewcvs.cgi/*checkout*/
+sfs3/modules/absent/index.php?rev=1.8
+
+它會出現 text/plain;charset=big5  D)ownload, or C)ancel
+
+請按 D 下載
+
+再按 Enter 鍵予以存檔，
+
+將 Enter a filename: index.php?rev=1.8 中的 ?rev=1.8 去掉，
+
+存成 index.php，將原 index.php 覆蓋過去即可。
+
+
+五. 維護支援
+
+SFS 學務管理系統，是基於自由分享、多人合作，所共同建置的系統。
+
+就像任何開放性的原始碼專案計劃一樣，我們***沒有提供任何維護支援的義務***。
+
+若您覺得這個系統有那邊不好，最好的方式是：
+
+1. 捲起您的袖子，跳進來改善它! 而不是抱怨它!
+
+2. 將錯誤情形，詳細地，回報至：http://cvs.tnc.edu.tw/bugtrack/
+
+3. 極積參與使用，並貢獻您的創意及具建設性的看法。
+
+這裡有 SFS 使用者的郵件論壇，可供您訂閱：
+
+http://cvs.boe.tcc.edu.tw/mailman/listinfo/sfs_user
+
+這二個網站：
+
+http://sfs.wpes.tcc.edu.tw
+
+http://cvs.tnc.edu.tw
+
+也有提供討論區。
+
+
+最後，感謝您支持及使用 SFS! 
+
+期待您一起加入開發校園自由軟體的行列。任何貢獻都是歡迎的!
+
+SFS Project Group 敬上

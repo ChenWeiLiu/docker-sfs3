@@ -1,0 +1,94 @@
+<!-- //$Id: chc_index.htm 9096 2017-06-20 07:47:05Z chiming $ -->
+
+
+<div align="center"><h3>彰化縣教育報表填報作業</h3>
+<table  align=center border=0 width=650 cellspacing='1' cellpadding=1  bgcolor=#9EBCDD style="font-size:12pt" >
+<tr align=center>
+<td><b>項次</b></td>
+<td><b>填報項目</b></td>
+<td colspan=2><b>檔案輸出</b></td>
+
+</tr>
+<tr  bgcolor=white align=center onMouseOver=this.style.backgroundColor='#FFCE3C'
+onMouseOut=this.style.backgroundColor=''>
+<td>1</td>
+<td align=left>103年家長關係身份調查填報</td>
+<td><a href="chc_stud.php?type=ODS">ODS開放格式</a></td>
+<td><a href="chc_stud.php?type=XLS">XLS封閉格式</a></td>
+</tr>
+<tr  bgcolor=white align=center onMouseOver=this.style.backgroundColor='#FFCE3C'
+onMouseOut=this.style.backgroundColor=''>
+<td>2</td>
+<td align=left>歷屆段考(彰縣)</td>
+<td colspan=2><a href="chc_stage_score.php">操作</a></td>
+</tr>
+<tr  bgcolor=white align=center onMouseOver=this.style.backgroundColor='#FFCE3C'
+onMouseOut=this.style.backgroundColor=''>
+<td>3</td>
+<td align=left>國中五學期各學習領域成績</td>
+<td colspan=2><a href="chc_stage_disgrad.php">操作</a></td>
+</tr>
+<tr bgcolor=white align=center onMouseOver=this.style.backgroundColor='#FFCE3C'
+onMouseOut=this.style.backgroundColor=''>
+<td>4</td>
+<td align=left>本學年國中小入學學生名冊(目前在籍)</td>
+<td colspan=2><a href="chc_newstud.php">下載</a></td>
+</tr>
+<tr bgcolor=white align=center onMouseOver=this.style.backgroundColor='#FFCE3C'
+onMouseOut=this.style.backgroundColor=''>
+<td>5</td>
+<td align=left>本學年國小畢業生最後一次國數成績<br>
+【<a href="../every_year_setup/ss_setup.php?act=set_ss&Cyear=6" target="_blank">按下查詢六年級課程代碼</a>】<br>
+<font size=2>1.請先確定貴校有將<font color=red>每次的階段成績</font>登錄到學務系統！<br>
+2.請確定六年級成績已送出至教務處。<br>
+3.確定「註冊組-畢業生升學資料」已<font color=red>同步化</font>，且完成學生就讀學校！</font><br><br>
+</td>
+<td colspan=2 align=left>
+
+<script>
+	function CK1(){
+	var mad = document.getElementById("mad");
+	var math = document.getElementById("math");
+	if(mad.selectedIndex == 0) {alert('請選擇國語課程！');return ;}
+	if(math.selectedIndex == 0) {alert('請選擇數學課程！');return ;}
+	if(window.confirm('確定送出？')) F106.submit();
+	}
+</script>
+
+	
+<form method='post' name='F106' action="chc_es_grad_score.php?jschool=全部國中">六年級國語課程代碼：
+<select  name='mad_ssid' size=1 id="mad" style="font-size:11pt;color:#A52A2A;">
+<option value=''>-請選擇,國語課程-</option>
+{{foreach from=$obj->SsidToName item=AA key=K}}
+<option value='{{$K}}'>{{$AA}}</option>
+{{/foreach}}
+</select>
+<br>六年級數學課程代碼：
+<select  name='math_ssid' size=1  id="math" style="font-size:11pt;color:#A52A2A;">
+<option value=''>-請選擇,數學課程-</option>
+{{foreach from=$obj->SsidToName item=AA key=K}}
+<option value='{{$K}}'>{{$AA}}</option>
+{{/foreach}}
+</select>
+<br><br>
+<INPUT TYPE=button  value='選好下載' onclick="CK1()">
+</form></td>
+</tr>
+
+
+</table>
+<table align=center border=0 width=650 ><tr><td>
+<br><b>※使用說明：</b>
+<br>
+
+<span style="font-size: 11pt; ">1.建議使用OpenOffice.Org的「ODS開放格式」下載後再打開，再另存成XLS檔。<br>
+2.若以「XLS封閉格式」下載時，不提供中文工作表名稱，須自行修改(ODS格式無此問題)。<br>
+3.學生姓名等資料..如有錯誤，會導致無法打開ODS檔案，須先修正才能正確打開。<br>
+4.匯出資料若無(家長、關係)資料時，請先各班導師先完成資料輸入後再行匯出。
+</span>
+</td></tr></table>
+
+<br><br><br>
+<DIV style="color:blue;font-size:9pt">
+◎By 彰化縣學務系統開發小組 於 98.11.25</DIV>
+</div>

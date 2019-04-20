@@ -1,0 +1,5 @@
+//$Id: author.txt 9240 2018-05-04 03:25:04Z igogo $
+csrc - 校安匯整
+2009-11-03 -- brucelyc ( brucelyc@seed.net.tw )
+台中縣教育網路中心 劉育彰 撰寫 
+

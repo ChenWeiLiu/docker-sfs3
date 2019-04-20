@@ -1,0 +1,44 @@
+		<text:sequence-decls>
+			<text:sequence-decl text:display-outline-level="0" text:name="Illustration"/>
+			<text:sequence-decl text:display-outline-level="0" text:name="Table"/>
+			<text:sequence-decl text:display-outline-level="0" text:name="Text"/>
+			<text:sequence-decl text:display-outline-level="0" text:name="Drawing"/>
+		</text:sequence-decls>
+		<text:p text:style-name="P1">{city_name}{school_name}  第<text:span text:style-name="T1">{year}</text:span>學年  第<text:span text:style-name="T1">{seme}</text:span>學期</text:p>
+		<text:p text:style-name="P2">
+			<text:span text:style-name="T2">{stu_class}功課表</text:span>
+		</text:p>
+		<text:p text:style-name="P3">導師：<text:span text:style-name="T4">{teacher_name}</text:span>
+		</text:p>
+		<table:table table:name="course_tbl" table:style-name="course_tbl">
+			<table:table-column table:style-name="course_tbl.A" table:number-columns-repeated="6"/>
+			<table:table-header-rows>
+				<table:table-row table:style-name="course_tbl.1">
+					<table:table-cell table:style-name="course_tbl.A1" table:value-type="string">
+						<text:p text:style-name="P4">
+							<draw:line text:anchor-type="as-char" svg:y="-1.028cm" draw:z-index="0" draw:style-name="gr1" draw:text-style-name="P7" svg:x2="2.722cm" svg:y2="1.84cm">
+								<text:p text:style-name="P5">
+									<text:s text:c="2"/>星期</text:p>
+								<text:p text:style-name="P6">節數 <text:s/>
+								</text:p>
+							</draw:line>
+						</text:p>
+					</table:table-cell>
+					<table:table-cell table:style-name="course_tbl.B1" table:value-type="string">
+						<text:p text:style-name="P8">星期一</text:p>
+					</table:table-cell>
+					<table:table-cell table:style-name="course_tbl.B1" table:value-type="string">
+						<text:p text:style-name="P8">星期二</text:p>
+					</table:table-cell>
+					<table:table-cell table:style-name="course_tbl.B1" table:value-type="string">
+						<text:p text:style-name="P8">星期三</text:p>
+					</table:table-cell>
+					<table:table-cell table:style-name="course_tbl.B1" table:value-type="string">
+						<text:p text:style-name="P8">星期四</text:p>
+					</table:table-cell>
+					<table:table-cell table:style-name="course_tbl.F1" table:value-type="string">
+						<text:p text:style-name="P8">星期五</text:p>
+					</table:table-cell>
+				</table:table-row>
+			</table:table-header-rows>{all_course}</table:table>
+		<text:p text:style-name="P13"/>

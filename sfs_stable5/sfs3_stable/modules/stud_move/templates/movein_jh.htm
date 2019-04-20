@@ -1,0 +1,67 @@
+{{* $Id: movein_jh.htm 5310 2009-01-10 07:57:56Z hami $ *}}
+<html>
+<meta http-equiv="Content-Type" content="text/html; Charset=Big5">
+<head>
+<title>入學生名冊</title>
+</head>
+<body>
+
+{{foreach from=$st->get_all()  item=arr}}
+
+<table  width="99%" bgcolor="Black" cellpadding="1" cellspacing="1" align="center">
+<tr align="center" bgcolor="White">
+<td colspan="8">
+<TABLE width="100%" cellspacing="0" border="0" cellpadding="0">
+<tr align="center"><td colspan="2"><h2>{{$SCHOOL}}入學學生名冊</h2></td></tr>
+<Tr>
+<TD width="50%" align="left">{{$st->seme}}</TD>
+<TD width="50%" align="right">{{$st->year}}年{{$smarty.now|date_format:"%m"}}月填報
+</TD></TR></table>
+</td></tr>
+
+
+<tr align="center" bgcolor="White">
+<td width="8%">學號</td>
+<td width="10%">姓　名</td>
+<td width="4%">性別</td>
+<td width="12%">身分證字號</td>
+<td width="8%">出　生<br>年月日</td>
+<td width="8%">入學時間<br>年月</td>
+<td width="10%">入學資格</td>
+<td width="40%">戶　　籍　　地　　址</td>
+</tr>
+
+{{foreach from=$arr.stu  item=stu}}
+
+<tr align="center" bgcolor="White" style=" line-height:30px;font-size:11pt">
+<td>{{$stu.stud_id}}</td>
+<td>{{$stu.stud_name}}</td>
+<td>{{$st->sex($stu.stud_sex)}}</td>
+<td>{{$stu.stud_person_id}}</td>
+<td>{{$st->bir($stu.stud_birthday)}}</td>
+<td>{{$st->year}}年8月</td>
+<td>{{$stu.stud_mschool_name}}</td>
+<td align="left">{{$stu.stud_addr_1}}</td>
+</tr>
+
+{{/foreach}}
+
+</table>
+<table  width="99%"  cellpadding="1" cellspacing="1" align="center" style="font-size:10pt">
+<tr>
+<TD width="40%" valign="top">第{{$arr.now}}頁　共{{$st->tol_page}}頁	<br>本頁共 {{$arr.page_tol}}人</TD>
+<TD width="60%" valign="top">
+<pre>核准學籍年月日文號：
+	注意事項：(1)本名冊應填造一式二份，一份存校，一份函報縣市政府。
+	　　　　　(2)入學資格欄應填明畢業或肄業學校名稱及年級。
+	　　　　　(3)轉入學生亦用本表並分年級別裝訂。
+	　　　　　(4)本名冊應於學生入學後一個月內函報。</pre>
+</TD></tr>
+</table>
+{{if $arr.break_line=='yes'}}<P STYLE='page-break-before: always;'>{{/if}}
+
+
+{{/foreach}}
+
+</body>
+</html>

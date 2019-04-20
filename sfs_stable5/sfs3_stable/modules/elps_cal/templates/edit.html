@@ -1,0 +1,184 @@
+<!-- //$Id: edit.html 6694 2012-02-21 04:02:28Z infodaes $ -->
+<style type="text/css">
+body{background-color:#f9f9f9;font-size:12pt}
+.ip12{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:12pt;}
+.ipmei{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:14pt;}
+.ipme2{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:14pt;color:red;font-family:標楷體 新細明體;}
+.ip2{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:10pt;color:red;font-family:新細明體 標楷體;}
+.ip3{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:11pt;color:blue;font-family:新細明體 標楷體;}
+.ip3r{border-style: solid; border-width: 0px; background-color:#FFCCCC; font-size:11pt;color:blue;font-family:新細明體 標楷體;}
+.bu1{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bub{border-style: groove;border-width:1px: groove;background-color:#FFCCCC;font-size:14pt;}
+.bur2{border-style: groove;border-width:1px: groove;background-color:#FFCCCC;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.f8{font-size:9pt;}
+.bf8{font-size:9pt;color:blue;}
+.f9{font-size:9 pt;}
+ol,li {margin-left: 0px;}
+
+</style>
+
+
+<TABLE width='100%'  border='0' >
+<TR><TD align=left>
+<select name='x1' class=ip3 onChange="location.href='{{$smarty.server.PHP_SELF}}?syear='+this.options[this.selectedIndex].value;">
+{{html_options  options=$this->all_seme selected=$smarty.get.syear }}
+</select>
+
+<select name='x2' class=ip3 onChange="location.href='{{$smarty.server.PHP_SELF}}?syear={{$this->seme}}&UN='+this.options[this.selectedIndex].value;">
+<option value="">請選擇類別</option>
+{{foreach from=$this->unit item=unit}}
+<option value="{{$unit}}" label="{{$unit}}" {{if $unit==$this->UN}}selected{{/if}}>{{$unit}}</option>
+{{/foreach}}
+</select><B style='color:red'> << </B>請先選擇
+
+</TD></TR></TABLE>
+<table  width='100%'  border='0'  cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr align=center  style='font-size:11pt' bgcolor='#E5E5E5'>
+<td width=5%>流水</td>
+<td width=5%>週次</td>
+<td width=5%>調整</td>
+<td width=12%>起迄</td>
+<td width=10%>類別</td>
+<td width=50%>行事</td>
+<td width=10%><a href="{{$smarty.server.PHP_SELF}}?syear={{$this->seme}}&UN={{$this->UN}}&act=add_form">新增</a></td>
+</tr>
+{{if $smarty.get.act=="add_form" }}
+<!-- 新增表單   ---開始-->
+<tr bgcolor='white'><td colspan="6">
+
+
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}' Name='e1'  method="post">
+<TABLE border=0 width=85% style='font-size:12pt;' cellspacing='1' cellpadding=3 bgcolor='lightGray'>
+
+<tr bgcolor='white'><td width=30%>學年度</td>
+<td width=70%>{{$this->seme}}</td></tr>
+<tr bgcolor='white'><td>選擇行事週別<BR><B style='color:red'>(可複選)</B></td>
+<td>
+{{$this->wk_checkbox()}}
+
+
+</td></tr>
+<tr bgcolor='white'><td>單位分類別</td>
+<td>
+
+<select name='unit' class=ip3r>
+{{foreach from=$this->unit item=unit}}
+<option value="{{$unit}}" label="{{$unit}}" {{if $unit==$this->UN}}selected{{/if}}>{{$unit}}</option>
+{{/foreach}}
+</select>
+
+<input type='checkbox' name='important' value='1'><font color='red'>學校大事</font>
+
+
+</td></tr>
+
+<tr bgcolor='white'><td>行事記錄<BR><B style='color:red'>僅填一個工作項目</B></td>
+<td>
+<textarea name='event' rows='5' cols='60' class=ip3r>{{$arr.event}}</textarea>
+
+</td></tr>
+<tr bgcolor='white'>
+<td colspan=2 align=center>
+<INPUT TYPE='hidden' Name='form_act' value=''>
+<input type="hidden"  name="syear" value='{{$this->seme}}'>
+<INPUT TYPE='reset' Value='重設' class=bu1 >
+<INPUT TYPE='button' value='填好送出' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='add';this.form.submit()}" class=bu1>
+<INPUT TYPE='button' value='取消返回' onclick="history.back();" class=bu1>
+</td></tr>
+<tr bgcolor='white'>
+<td colspan=2>
+
+<FONT COLOR='#FF0000'>填寫時以『多週單工』為原則。</FONT><BR>
+(一次選多週,每次僅填一個工作項目)<BR>
+請先選擇那幾週要做這件工作，再填寫工作內容。<BR><BR>
+
+例如：訓導方面第1週可能有1.檢查手帕 2.廁所衛生檢查 3.路隊訓練三個工作項目<BR>
+則分三次填寫。第一次填『檢查手帕』且不要填編號(123..)，以此類推。<BR>
+填寫時<I><U>將相同工作項目的週次</U></I>也一併選好。<BR><BR>
+以此方法行之，很快就將該學期的行事曆完成了。
+</td></tr>
+
+
+</table>
+</FORM>
+<!-- 新增表單   ---結束-->
+</td></tr>
+{{else}}
+{{foreach from=$this->all item=arr}}
+
+{{if $smarty.get.edit==$arr.id}}
+<!-- 編修表單   ---開始-->
+
+
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}'  Name='e1'>
+
+<tr align=center style='font-size:12px'>
+<td>{{$arr.id}}</td>
+<td>{{$arr.week}}</td>
+<td>
+{{$this->WK[$arr.week].st_day}}--{{$this->WK[$arr.week].en_day}}
+</td>
+<td colspan=5 align=left>
+<fieldset style="margin: 3px;background-color: #FFFFFF;">
+<legend><b>編修行事</b></legend>
+週次:
+<select name='week' class=ip3r>
+{{$this->wk_select($arr.week)}}
+</select>
+
+&nbsp;&nbsp;
+類別:
+<select name='unit' class=ip3r>
+{{foreach from=$this->unit item=unit}}
+<option value="{{$unit}}" label="{{$unit}}" {{if $unit==$this->UN}}selected{{/if}}>{{$unit}}</option>
+{{/foreach}}
+</select><br>
+行事內容： <input type='checkbox' name='important' value=1 {{if $arr.important==1}}checked{{/if}}><font color='red'>學校大事</font><br>
+<textarea name='event' rows='2' cols='58' class=ip3r>{{$arr.event}}</textarea>
+
+<br>
+<input type="hidden"  name="id" value='{{$arr.id}}'>
+<input type="hidden"  name="syear" value='{{$arr.syear}}'>
+<INPUT TYPE='hidden' Name='form_act'  value=''>
+
+<INPUT TYPE='reset' Value='重設' class=bu1>
+<INPUT TYPE='button' value='送出' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='update';this.form.submit()}" class=bu1>
+<INPUT TYPE='button' value='取消' onclick="history.back();" class=bu1>
+</fieldset>
+</td>
+</tr>
+
+</FORM>
+
+<!-- 編修表單 ---結束-->
+{{else}}
+<!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+
+<tr align=center bgcolor='{{$this->color($arr.week)}}' style='font-size:14px'>
+<td>{{$arr.id}}</td>
+<td>{{$arr.week}}</td>
+<td align="center">
+<a href="{{$smarty.server.PHP_SELF}}?syear={{$arr.syear}}&UN={{$arr.unit}}&scroll=up&id={{$arr.id}}"><span style='cursor:hand; color:red; font-size:9px;'>↑</span></a>
+<a href="{{$smarty.server.PHP_SELF}}?syear={{$arr.syear}}&UN={{$arr.unit}}&scroll=down&id={{$arr.id}}"><span style='cursor:hand; color:blue; font-size:9px;'>↓</span></a>
+</td>
+<td>
+{{$this->WK[$arr.week].st_day}}--{{$this->WK[$arr.week].en_day}}
+</td>
+<td>{{$arr.unit}}</td>
+
+<td align=left>{{if $arr.important==1}}<font color='red'>{{/if}}{{$arr.event}}{{if $arr.important==1}}</font>{{/if}}</td>
+<td><a href="{{$smarty.server.PHP_SELF}}?edit={{$arr.id}}&syear={{$arr.syear}}&UN={{$arr.unit}}">修改</a>
+<a href="{{$smarty.server.PHP_SELF}}?form_act=del&id={{$arr.id}}&syear={{$arr.syear}}&UN={{$arr.unit}}" onclick="return window.confirm('真的刪除嗎？');">刪除</a> 
+</td></tr>
+{{/if}}
+{{/foreach}}
+
+{{/if}}
+
+<tr>
+<td colspan=6><br>
+<p><FONT size=2 COLOR='#0000FF'>彰化縣學務系統推廣小組</FONT></p>
+</td>
+</table>
+
+

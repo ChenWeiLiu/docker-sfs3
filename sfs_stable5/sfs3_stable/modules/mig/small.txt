@@ -1,0 +1,2 @@
+mkGAllery -t *.jpg (*.JPG)
+建縮小圖語法

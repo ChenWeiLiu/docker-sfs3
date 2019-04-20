@@ -1,0 +1,8 @@
+// $Id: author.txt 5310 2009-01-10 07:57:56Z hami $
+seme_score_input - 學期成績補匯
+原版作者：jrh
+
+jrh@www.tnc.edu.tw 2003/05/06
+
+將以前的學期成績補匯入資料庫中
+

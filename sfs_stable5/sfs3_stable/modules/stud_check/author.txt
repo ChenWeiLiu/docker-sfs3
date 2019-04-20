@@ -1,0 +1,2 @@
+stud_check  學籍資料檢查
+stud_check 1.0 --- 2001-10-1 --- HaMi( cik@mail.wpes.tcc.edu.tw )

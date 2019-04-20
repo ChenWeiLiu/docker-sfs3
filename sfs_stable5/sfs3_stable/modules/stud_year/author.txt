@@ -1,0 +1,4 @@
+stud_year  學期編班作業
+stud_year1.0 --- 2001-10-1 --- HaMi( cik@mail.wpes.tcc.edu.tw )
+
+2003-01-01 -- tad(tad@www.tnc.edu.tw )台南縣教育網路中心 網管研發組組長 吳弘凱 修改

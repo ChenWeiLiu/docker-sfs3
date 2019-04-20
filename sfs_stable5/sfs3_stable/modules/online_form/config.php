@@ -1,0 +1,14 @@
+<?php
+// $Id: config.php 5310 2009-01-10 07:57:56Z hami $
+
+/* 取得學務系統設定檔 */
+include_once "../../include/config.php";
+include_once "../../include/sfs_case_signpost.php";
+include_once "../../include/sfs_case_studclass.php";
+include_once "../../include/sfs_case_file2db.php";
+
+include_once "./module-cfg.php";
+include_once "function.php";
+
+
+?>

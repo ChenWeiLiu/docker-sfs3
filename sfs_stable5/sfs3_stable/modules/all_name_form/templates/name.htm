@@ -1,0 +1,142 @@
+<!-- $Id: name.htm 7049 2012-12-26 05:16:27Z smallduh $ -->
+{{ if not $act  }}
+{{include file="$SFS_TEMPLATE/header.tpl"}}
+{{include file="$SFS_TEMPLATE/menu.tpl"}}
+{{/if}}
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<style type="text/css">
+<!--
+table.formdata {
+	
+	border: 1px solid #5F6F7E;
+	border-collapse:collapse ;
+}
+table.formdata th {
+	border: 1px solid #5F6F7E;
+	background-color:#E2E2E2;
+	color:#000000 ;
+	text-align:left;
+	font-weight:normal;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+	width:1cm;
+}
+
+table.formdata th.c2 {
+      width:2cm;
+}
+
+table.formdata th.c3 {
+      width:3cm;
+}
+
+table.formdata td {
+	border: 1px solid #E2E2E2;
+	padding:2px 4px 2px 4px ;
+	margin:0;
+	width:1cm;
+}
+
+table.formdata td.c2 {
+	width:2cm;
+}
+
+table.formdata td.c3 {
+	width:3cm;
+}
+
+table.formdata tr.altrow {
+	background-color: #DFE7F2;
+	color: #000000;
+}
+
+table.formdata  tr:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+table.formdata tr.altrow:hover {
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+
+
+table.formdata th.out {
+
+	background-color:#99CCCC;
+
+}
+
+-->
+</style>
+
+
+{{ if not $act  }}
+		<table cellspacing=2 cellpadding=2>
+			<tr>
+				<td>
+					<form name='form1' method='post' action=''>
+					{{$class_select}} 
+					<input name="with_stud_id" type="hidden" value="{{$with_stud_id}}">
+					</form>
+				</td>
+			  <td>	
+				  <form name='form2' method='post' action='' target="_blank">
+					{{$import_option}}
+					空白欄位數:<input type='text' name='many_col' size='2' maxlength='4' value='0'>
+					<input type='submit' name='Submit1' value='下載班級名條'>
+					<input type="checkbox" name="with_stud_id" value="1"{{if $with_stud_id==1}} checked{{/if}} onclick="javascript:checkit()">含學號
+					<input name="sel_year" type="hidden" value="{{$class_id}}">
+					</form>
+				</td>
+			</tr>
+		</table>
+{{/if}}			
+<table class="formdata" >
+	<caption>{{ $data_class_name }}</caption> 
+  <tr> 
+  	{{ if $with_stud_id==1 }}
+  	<th>學號</th>
+  	{{ /if }}
+    <th>座號</th>
+    <th class=c2>姓名</th>
+    <th>性別</th>
+{{section name=foo start=0 loop=$many_col step=1}}
+    <th class="c2"></th>
+{{/section}}
+  </tr>
+  {{foreach key=key1 item=data from=$data_array }} 
+  
+  {{if $key1 is not div by 2}} 
+  <tr class="altrow">
+  {{else }} 
+  <tr>
+  {{/if}} 
+   {{ if $with_stud_id==1 }}
+  	<td>{{$data.stud_id}}</td>
+  	{{ /if }}
+
+    <td>{{$data.site_num}}</td>
+    <td class="c2">{{$data.stud_name}}</td>
+    <td>{{$data.stud_sex}}</td>
+{{section name=foo start=0 loop=$many_col step=1}}
+  <td class="c2"></td>
+{{/section}}    
+    
+
+  </tr>
+  {{/foreach}} 
+</table>
+{{ if not $act  }}
+{{include file="$SFS_TEMPLATE/footer.tpl"}}
+{{/if}}
+<Script language="JavaScript">
+ function checkit() {
+  if (document.form2.with_stud_id.checked) {
+   document.form1.with_stud_id.value=1;
+  } else {
+   document.form1.with_stud_id.value=0;
+  }
+ 
+ }
+</Script>

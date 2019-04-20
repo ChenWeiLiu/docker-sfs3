@@ -1,0 +1,10 @@
+charge_class - 註冊收費管理(導師用)
+
+原創作者：曾文芳
+
+
+
+infodaes@seed.net.tw 2006-8-3
+
+
+

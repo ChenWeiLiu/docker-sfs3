@@ -1,0 +1,429 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; Charset=Big5">
+<head>
+<title>彰化區免試入學</title>
+</head>
+<body style="width:595px;">
+
+{{assign var="TheStu" value=$this->stu}}
+<div align="center" style="font-size: 16; font-weight: bold;width:600 px;">
+108學年度彰化區免試入學超額比序積分檢核表
+<span style='font-size:10pt;font-weight: normal;'>
+(檢視日期:{{$smarty.now|date_format:"%Y-%m-%d"}})</span>
+</div>
+<table style="text-align: left; width: 595px;" border="0" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td width=50%>就讀國中：<strong>{{$this->sch.sch_cname}}</strong></td>
+<td width=50%>就讀國中代碼：<strong>{{$this->sch.sch_id}}</strong></td>
+</tr>
+<tr>
+<td>
+<strong>{{$this->stu.seme_class}}</strong>班
+<strong>{{$this->stu.seme_num}}</strong>號
+<strong>{{$this->stu.stud_name}}</strong>
+學號:<strong>{{$this->stu.stud_id}}</strong>
+</td><td>身分證統一編號：<strong>{{$this->stu.stud_person_id}}</strong></td></tr>
+
+<tr><td colspan=2>
+{{assign var="move_data" value=$this->get_move($this->Sn)}}
+<table cellPadding='0' border=1 cellSpacing='0' style='border-collapse:collapse;font-size:12pt;text-align: left; width: 100%;' >
+<tr><td  align="center" valign="middle">異動<br>情形</td>
+<td>
+<TABLE width=100% valign="top"  cellPadding='0' border=1 cellSpacing='0'  style='border-collapse:collapse;font-size:12pt;text-align: left; width: 100%;'>
+<TR align=center>
+<TD>日期</TD>
+<TD>類別</TD>
+<TD>核准機關</TD>
+<TD>核准日期</TD>
+<TD {{if $smarty.post.type==1}}class="empty_right"{{/if}}>核准文號</TD>
+</TR>
+{{if $move_data!="查無資料"}}
+{{foreach from=$move_data  item=move_data}}
+<TR><TD>{{$move_data.move_date}}</TD>
+<TD>{{if $move_data.c_move_kind=="畢業"}}{{if $graduate_kind=="2"}}修業{{else}}畢業{{/if}}{{else}}{{$move_data.c_move_kind}}{{/if}}</TD>
+<TD>{{$move_data.move_c_unit}}</TD>
+<TD>{{$move_data.move_c_date}}</TD>
+<TD {{if $smarty.post.type==1}}class="empty_right"{{/if}}>{{$move_data.move_c_word}}字{{if $smarty.post.type==1}}<br>{{else}} {{/if}}第{{$move_data.move_c_num}}號
+</TD></TR>
+{{/foreach}}
+{{/if}}
+</td></tr>
+</TABLE>
+
+</td></tr>
+
+
+
+<tr><td colspan=2>
+<table cellPadding='0' border=1 cellSpacing='0' style='border-collapse:collapse;font-size:12pt;text-align: left; width: 100%;' >
+<tr align=center>
+<td>項目</td>
+<td colspan=2>身分別<br><span  style="font-size:10pt;">(最高9分)</span></td>
+<td colspan=3>品德服務<br><span  style="font-size:10pt;">(最高20分)</span></td>
+<td colspan=4>績優表現<br><span  style="font-size:10pt;">(最高16分)</span></td>
+<td>總分</td>
+</tr>
+{{assign var="Ta20" value=$TheStu.income+$TheStu.score_nearby}}
+{{assign var="Tb20" value=$this->tol20(20,$TheStu.score_service+$TheStu.score_reward+$TheStu.score_fault)}}
+{{assign var="Tc20" value=$this->tol20(16,$TheStu.score_balance+$TheStu.score_club+$TheStu.score_race+$TheStu.score_physical)}}
+<tr align=center>
+<td rowspan=3>目前得分</td>
+<td>經濟弱勢</td>
+<td>就近入學</td>
+
+<td>服務學習(上限8分)</td>
+<td>獎勵紀錄(上限6分)</td>
+<td>生活教育(上限8分)</td>
+
+<td>均衡學習</td>
+<td>社團參與(上限2分)</td>
+<td>競賽表現(上限6分)</td>
+<td>體適能(上限6分)</td>
+<td rowspan=3>{{$Ta20+$Tb20+$Tc20}}</td>
+</tr>
+
+<tr align=center>
+<td>{{$this->stu.income}}</td>
+<td>{{$this->stu.score_nearby}}</td>
+
+<td>{{$this->stu.score_service}}</td>
+<td>{{$this->stu.score_reward}}</td>
+<td>{{$this->stu.score_fault}}</td>
+
+<td>{{$this->stu.score_balance}}</td>
+<td>{{$this->stu.score_club}}</td>
+<td>{{$this->stu.score_race}}</td>
+<td>{{$this->stu.score_physical}}</td>
+</tr>
+
+<tr align=center>
+<td colspan=2>{{$Ta20}}</td>
+<td colspan=3>{{$Tb20}}</td>
+<td colspan=4>{{$Tc20}}</td>
+</tr>
+
+</table>
+</td>
+</tr>
+
+<tr>
+<td colspan=2 style='font-size:10pt;'>
+※ 如有疑問者，請洽相關處室處理。(身分別與均衡學習請洽教務處，其他項目請洽學務處)<br>
+<table border=0 table style="width: 600px;">
+<tr>
+<td>家長:</td>
+<td>導師:</td>
+<td>學務處:</td>
+<td>教務處:</td>
+</tr></table><br><br>
+</td></tr>
+
+</tbody></table>
+
+
+<table cellPadding='0' border=1 cellSpacing='0' style='border-collapse:collapse;line-height:16pt;font-size:12pt;text-align: left; width: 600px;' >
+
+<tbody>
+<tr align=center><td colspan=3 width=18%><strong>項  目</strong></td>
+<td><strong>比序計分基本資料</strong></td>
+<td><strong>小計</strong></td>
+<td><strong>積分</strong></td>
+</tr>
+
+
+<tr align=center><td style="vertical-align: center;" rowspan=2><b>身<br>分<br>別</b></td>
+<td colspan=2>經濟弱勢</td><td align=left>
+{{if $TheStu.income=='0'}}■{{else}}□{{/if}}非經濟弱勢者　　
+{{if $TheStu.income=='1'}}■{{else}}□{{/if}}中低收入戶　　
+{{if $TheStu.income=='2'}}■{{else}}□{{/if}}低收入戶
+</td>
+<td>&nbsp;</td>
+<td>{{$this->stu.income}}</td>
+</tr>
+<tr align=center>
+<td colspan=2>就近入學</td><td align=left>
+{{if $this->stu.score_nearby==7}}■彰化區免試就學區{{/if}}
+</td>
+<td>&nbsp;</td>
+<td>{{$this->stu.score_nearby}}</td>
+</tr>
+
+
+<tr align=center>
+<td style="vertical-align: center;" rowspan=5><b>品<br>德<br>服<br>務</b><br>︵<br>最<br>高<br>20<br>分<br>︶</td>
+<td rowspan=2>服務<br>學習<br>︵<br>上限<br>8分<br>︶</td>
+<td>幹部</td>
+<td align=left>
+{{assign var="serviceA" value=$this->gLeader($this->stu.student_sn)}}
+{{if $serviceA!=''}}
+<table style="font-size:10pt;width:100%;border-collapse:collapse;border-bottom-style:solid;border-width:1px; ">
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-weight: bold;">
+<td>學期</td>
+<td>團體單位</td>
+<td>擔任幹部</td>
+<td>採計</td>
+</tr>
+{{foreach from=$serviceA item=S}}
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-size:9pt; ">
+<td>{{$S.seme}}</td>
+<td>{{$S.org_name}}</td>
+<td>{{$S.title}}</td>
+<td>□</td>
+</tr>
+{{/foreach}}
+</table>
+{{/if}}
+
+&nbsp;
+
+</td>
+<td>&nbsp;</td>
+<td rowspan=2>{{$this->stu.score_service}}&nbsp;</td>
+</tr>
+
+<tr align=center>
+<td>服務<br>時數</td><td align=left style="font-size:10pt;">
+
+{{assign var="serviceA" value=$this->get_service($this->stu.student_sn)}}
+{{if $serviceA!=''}}
+<table style="font-size:10pt;width:100%;border-collapse:collapse;border-bottom-style:solid;border-width:1px; ">
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-weight: bold;">
+<td>學期</td>
+<td>日期</td>
+<td>服務學習事項及活動項目</td>
+<td>時數</td>
+<td>主辦單位</td>
+<td>採計</td>
+</tr>
+{{foreach from=$serviceA item=S}}
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-size:9pt; ">
+<td>{{$S.year_seme}}</td>
+<td>{{$S.service_date}}</td>
+<td align=left>{{$S.item}} {{$S.memo}}{{if $S.studmemo!=''}}-{{$S.studmemo}}{{/if}}</td>
+<td>{{$S.minutes/60|string_format:"%.1f"}}</td>
+<td>{{$S.sponsor}}</td>
+<td>□</td>
+</tr>
+{{/foreach}}
+</table>
+{{/if}}
+※ 每滿1小時0.1分。
+&nbsp;
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr align=center>
+<td colspan="2">獎勵紀錄<br>(上限6分)</td>
+<td align=left style="font-size:10pt;">
+{{assign var="Reward_A" value=$this->get_reward($this->stu.student_sn)}}
+{{if $Reward_A!=''}}
+<table style="font-size:10pt;width:100%;border-collapse:collapse;border-bottom-style:solid;border-width:1px; ">
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-weight: bold;">
+<td>學期</td>
+<td>日期</td>
+<td>獎勵事由</td>
+<td>獎懲類別</td>
+<td>採計</td>
+</tr>
+{{foreach from=$Reward_A item=S}}
+<tr align=center style="border-bottom-style:solid;border-width:1px; ">
+<td>{{$S.reward_year_seme}}</td>
+<td>{{$S.reward_date}}</td>
+<td align=left>{{$S.reward_reason}}</td>
+<td>{{$this->reward_kind[$S.reward_kind]}}</td>
+<td>□</td>
+</tr>
+{{/foreach}}
+</table>
+{{/if}}
+&nbsp;
+大功(　　)次X4.5 + 
+小功(　　)次X1.5 +
+嘉獎(　　)次X0.5
+
+</td>
+<td>&nbsp;</td>
+<td>{{$this->stu.score_reward}}&nbsp;</td>
+</tr>
+
+<tr align=center>
+<td rowspan=2>生活<br>教育<br>︵<br>上限<br>8分<br>︶</td>
+<td>懲處<br>紀錄</td>
+<td align=left style="font-size:10pt;">
+{{assign var="Reward_B" value=$this->get_reward2($this->stu.student_sn)}}
+{{if $Reward_B!=''}}
+<table border='0' style="font-size:10pt;width:100%;border-collapse:collapse;">
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-weight: bold;">
+<td>學期</td>
+<td>日期</td>
+<td>獎懲事由</td>
+<td>獎懲類別</td>
+<td>銷過</td>
+</tr>
+{{foreach from=$Reward_B item=S}}
+<tr style="border-bottom-style:solid;border-width:1px;" align=center>
+<td>{{$S.reward_year_seme}}</td>
+<td>{{$S.reward_date}}</td>
+<td align=left>{{$S.reward_reason}}</td>
+<td>{{$this->reward_kind[$S.reward_kind]}}</td>
+<td>{{if $S.reward_cancel_date=='0000-00-00'}}未銷過{{else}}已銷過{{/if}}</td>
+</tr>
+{{/foreach}}
+</table>
+{{else}}
+ ■完全或銷過後無紀錄<br />
+{{/if}}
+&nbsp;
+</td>
+<td>&nbsp;</td>
+<td rowspan=2>{{$this->stu.score_fault}}&nbsp;</td>
+</tr>
+<tr align=center>
+<td>曠課<br>紀錄</td>
+<td align=left style="font-size:10pt;">
+{{assign var="ABS" value=$this->get_abs()}}
+{{if $ABS!=''}}
+<table border='0' style="font-size:10pt;width:100%;border-collapse:collapse;">
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-weight: bold;">
+<td>學年</td>
+<td>學期</td>
+<td>日期</td>
+<td>節次</td>
+<td>類別</td>
+</tr>
+{{foreach from=$ABS item=S}}
+<tr style="border-bottom-style:solid;border-width:1px;" align=center>
+<td>{{$S.year}}</td>
+<td>{{$S.semester}}</td>
+<td>{{$S.date}}</td>
+<td>{{if $S.section=='allday'}}全日{{else}}{{$S.section2}}{{/if}}</td>
+<td>{{$S.absent_kind}}</td>
+</tr>
+{{/foreach}}
+</table>
+{{else}}■曠課紀錄<br />
+{{/if}}
+
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr align=center>
+<td style="vertical-align: center;" rowspan=3><b>績<br>優<br>表<br>現</b><br>︵<br>最<br>高<br>16<br>分<br>︶</td>
+<td colspan="2">均衡學習</td>
+<td align=left style="font-size:10pt;">
+{{assign var="SCO" value=$this->get_balance($this->stu.student_sn)}}
+{{if $SCO!=''}}
+<table border='0' style="font-size:10pt;width:100%;border-collapse:collapse;">
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-weight: bold;">
+<td>學期領域</td>
+<td>健康與體育</td>
+<td>藝術與人文</td>
+<td>綜合活動</td>
+<td>本學期的學習結果</td>
+</tr>
+{{foreach from=$SCO.A item=S key=K}}
+<tr style="border-bottom-style:solid;border-width:1px;" align=center>
+<td>{{$this->gCH($K)}}</td>
+<td>{{$SCO.H.$K.score}}</td>
+<td>{{$SCO.A.$K.score}}</td>
+<td>{{$SCO.B.$K.score}}</td>
+<td>{{$SCO.Tol.$K}}</td>
+</tr>
+{{/foreach}}
+</table>
+{{/if}}※三領域平均成績皆達60分(含)以上者才採計。
+</td>
+<td>&nbsp;</td>
+<td>{{$this->stu.score_balance}}&nbsp;</td>
+</tr>
+
+<tr align=center>
+<!--<td>社團<br>參與<br>(上限<br>2分)</td>-->
+  <td colspan="2">社團<br>參與<br>(上限<br>2分)</td>
+  <td align=left colspan="1">
+  {{assign var="Club" value=$this->get_club($this->stu.student_sn)}}
+  {{if $Club!=''}}
+<table border='0' style="font-size:10pt;width:100%;border-collapse:collapse;">
+  <tr align=center style="border-bottom-style:solid;border-width:1px;font-weight: bold;">
+   <td width="19%">學期</td>
+   <td width="67%">社團名稱</td>
+   <td width="14%">採計</td>
+  </tr>
+{{foreach from=$Club item=S}}
+  <tr style="border-bottom-style:solid;border-width:1px;font-size:9pt;" align=center>
+   <td style="font-size:8pt;">{{$S.seme_year_seme}}</td>
+   <td>{{$S.association_name}}</td>
+<!--<td style="font-size:8pt;">{{$this->gSeme($S.certificate_date)}}</td>-->
+<!--<td>{{$this->get_club[$S.clubName]}}</td>-->
+   <td>□</td>
+  </tr>
+{{/foreach}}
+
+</table>
+{{/if}}
+&nbsp;
+  </td>
+  <td>&nbsp;</td>
+  <td>{{$this->stu.score_club}}&nbsp;</td>
+</tr>
+
+<tr align=center>
+<td>競賽<br>表現<br>(上限<br>6分)</td><td align=left colspan="2">
+{{assign var="Race" value=$this->get_race($this->stu.student_sn)}}
+
+{{if $Race!=''}}
+<table border='0' style="font-size:10pt;width:100%;border-collapse:collapse;">
+<tr align=center style="border-bottom-style:solid;border-width:1px;font-weight: bold;">
+<td>學期</td>
+<td>類別</td>
+<td>名次</td>
+
+<td>日期</td>
+<td>文號</td>
+
+<td>事蹟</td>
+<td>單位</td>
+<td>採計</td>
+
+</tr>
+{{foreach from=$Race item=S}}
+<tr style="border-bottom-style:solid;border-width:1px;font-size:9pt;" align=center>
+<td style="font-size:8pt;">{{$this->gSeme($S.certificate_date)}}</td>
+<td>{{$this->race_area[$S.level]}}:{{$this->race_kind[$S.squad]}}</td>
+<td>{{$S.rank}}</td>
+
+<td style="font-size:8pt;">{{$S.certificate_date}}</td>
+<td>{{$S.word}}</td>
+<td align=left>{{$S.name}}</td>
+
+<td>{{$S.sponsor}}</td>
+<td>□</td>
+</tr>
+{{/foreach}}
+</table>
+{{/if}}
+
+&nbsp;
+</td>
+<td>&nbsp;</td>
+<td>{{$this->stu.score_race}}&nbsp;</td>
+</tr>
+<tr align=center>
+<td colspan="3">體適能<br />(最優一次<br>上限6分)</td>
+<td align=left style="font-size:11pt;">
+請至教育部健康體育網路護照，自行列印成績核章後，<br>連同本表交至學務處登錄。<br>
+http://www.fitness.org.tw/
+
+&nbsp;</td>
+<td>&nbsp;</td>
+<td>{{$this->stu.score_physical}} </td>
+</tr>
+
+</tbody></table>
+
+
+</body>
+</html>

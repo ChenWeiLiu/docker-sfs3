@@ -1,0 +1,55 @@
+<TABLE width='800'  border='0' align='center'><TR><TD align=right>
+{{foreach from=$this->KKary item=Kv key=K1}}
+<label onclick="change_link('{{$smarty.server.SCRIPT_NAME}}?KK={{$K1}}&page=0')"><input type="radio" name="KK" value="{{$K1}}" {{if $this->KK==$K1}}checked="checked" {{/if}}/>{{$Kv}}</label>
+{{/foreach}}
+{{$this->links->show_page()}}</TD></TR></TABLE>
+<table  width='800'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#DEE3E7' style='table-layout: fixed;word-wrap:break-word;font-size:10pt' align=center>
+<tr align=center  style='font-size:11pt' bgcolor='#E5E5E5'>
+<td width=8%>id</td>
+<td width=6%>學期</td>
+<td width=8%>列印</td>
+<td width=12%>學號/姓名</td>
+<td>性別</td>
+<td width=15%>單位名稱</td>
+<td>幹部名稱</td>
+<td nowrap>備註<br />(原就讀校)</td>
+<td width=20%>更新時間</td>
+<td>操作</td>
+</tr>
+
+{{foreach from=$this->all item=arr}}
+
+<!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+<tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' onMouseOver="this.style.backgroundColor='#FFEBD6'" onMouseOut="this.style.backgroundColor=''">
+<td>{{$arr.id}} </td>
+<td>{{$arr.seme}} </td>
+<td><a href="leader_prt.php?SN={{$arr.student_sn}}" target="_blank">
+<img src="images/printer.gif" width="16" height="16" alt="" border='0' />
+</a>
+
+{{$arr.student_sn}}</td>
+<td>{{$arr.stud_id}} {{$arr.stud_name}}</td>
+<td>{{if $arr.stud_sex=='1'}}<span style="color: blue;">男</span>{{else}}<span style="color: red;">女</span>{{/if}}</td>
+<td>{{if $arr.kind==0}}
+{{$this->oName($arr.org_name)}}
+{{else}}
+{{$arr.org_name}}
+{{/if}}
+ </td>
+<td>{{$arr.title}} </td>
+<td>{{$arr.memo}}</td>
+<td>{{$arr.cr_time}}</td>
+<td>
+<a href="{{$smarty.server.SCRIPT_NAME}}?form_act=del&id={{$arr.id}}&KK={{$this->KK}}&page={{$this->page}}" onclick="return  window.confirm('確定刪除？');">刪除</a>
+</td>
+</tr>
+
+{{/foreach}}
+
+
+
+
+</table>
+
+
+

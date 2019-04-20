@@ -1,0 +1,65 @@
+<!-- //$Id: chc_seme.htm 5310 2009-01-10 07:57:56Z hami $ -->
+
+<table  width='100%'  border='0' align='center' cellpadding='1' cellspacing='1' bgcolor='#9EBCDD' style='table-layout: fixed;word-wrap:break-word;font-size:10pt'>
+<tr style='font-size:11pt' bgcolor='#9EBCDD'>
+<td>
+<strong>{{$this->select()}}</strong>
+<form name='Fix' method='post' action="stud_perV3.php"  target="_blank">
+<input type="hidden" name="class_id" value="{{$this->class_id}}" />
+<input type="hidden" name="form_act" value="OK" />
+<INPUT TYPE=button  value='列印本班' onclick="if( window.confirm('確定？')){this.form.form_act.value='OK';this.form.submit()}">
+</form>
+</td>
+
+</tr>
+</table>
+<table  width='100%'  border='0' align='center' cellpadding='2' cellspacing='1' bgcolor='#9EBCDD'>
+<tr align=center  style='font-size:11pt' bgcolor='white'>
+<td rowspan=2 colspan="1" width=5% nowrap>座號</td>
+<td rowspan=2 colspan="1" width=5% nowrap>姓　名</td>
+<td rowspan=2 colspan="1" width=5% nowrap>學　號</td>
+<td rowspan=1 colspan="2" width=10% nowrap>身分別</td>
+<td rowspan=1 colspan="4" width=15% nowrap>品德服務</td>
+<td rowspan=1 colspan="5" width=20% nowrap>績優表現</td>
+<td rowspan=2 colspan="1" width=5% nowrap>積分</td>
+</tr>
+<tr bgcolor='white' align=center>
+<td style='font-size:9pt' nowrap>經濟弱勢</td>
+<td style='font-size:9pt' nowrap>就近入學</td>
+<td style='font-size:9pt' nowrap>服務學習</td>
+<td style='font-size:9pt' nowrap>獎勵記錄</td>
+<td style='font-size:9pt' nowrap>生活教育</td>
+<td style='font-size:9pt' nowrap>目前<br>得分</td>
+<td style='font-size:9pt' nowrap>均衡學習</td>
+<td style='font-size:9pt' nowrap>社團參與</td>
+<td style='font-size:9pt' nowrap>競賽表現</td>
+<td style='font-size:9pt' nowrap>體適能</td>
+<td style='font-size:9pt' nowrap>目前<br>得分</td>
+</tr>
+
+{{foreach from=$this->stu item=stu key=st_sn}}
+{{assign var="T20" value=$this->tol20(20,$stu.score_service+$stu.score_reward+$stu.score_fault)}}
+{{assign var="T16" value=$this->tol20(16,$stu.score_balance+$stu.score_club+$stu.score_race+$stu.score_physical)}}
+
+<tr align=center  style='font-size:10pt' 
+bgcolor=white  onMouseOver="this.style.backgroundColor='#FFEBD6'" onMouseOut="this.style.backgroundColor=''">
+<td>{{$stu.seme_num}}</td>
+<td><a href="stud_perV3.php?Sn={{$stu.student_sn}}" target="_blank">{{if $stu.stud_sex=='1' }}<font color="#0000FF">{{$stu.stud_name}}</font>
+{{else}}<font color="#000000">{{$stu.stud_name}}</font>{{/if}}</a></td>
+<td>{{$stu.stud_id}}</td>
+<td>{{if $stu.income==0}}{{else}}{{$stu.income}}{{/if}}</td>
+<td>{{$stu.score_nearby}}</td>
+<td>{{$stu.score_service}}</td>
+<td>{{$stu.score_reward}}</td>
+<td>{{$stu.score_fault}}</td>
+<td>{{$T20}}</td>
+<td>{{$stu.score_balance}}</td>
+<td>{{$stu.score_club}}</td><!--社團參與-->
+<td>{{$stu.score_race}}</td>
+<td>{{$stu.score_physical}}</td>
+<td>{{$T16}}</td>
+<td>{{$stu.income+$stu.score_nearby+$T20+$T16}}</td>
+</tr>
+
+{{/foreach}}
+</table>

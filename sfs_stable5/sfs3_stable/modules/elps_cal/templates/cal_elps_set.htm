@@ -1,0 +1,160 @@
+<!-- //$Id: cal_elps_set.htm 6691 2012-02-16 09:07:06Z infodaes $ -->
+
+<link rel="stylesheet" type="text/css" media="all" href="{{$smarty.const.__SFS_url}}javascripts/calendar-system.css">
+<script type="text/javascript" src="{{$smarty.const.__SFS_url}}javascripts/calendar.js"></script>
+<script type="text/javascript" src="{{$smarty.const.__SFS_url}}javascripts/calendar-tw.js"></script>
+<script type="text/javascript" src="{{$smarty.const.__SFS_url}}javascripts/calendar-setup.js"></script>
+<style type="text/css">
+.ipmei{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:14pt;}
+.ipme2{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:14pt;color:red;font-family:標楷體 新細明體;}
+.ip2{border-style: solid; border-width: 0px; background-color:#E6ECF0; font-size:10pt;color:red;font-family:新細明體 標楷體;}
+.ip3{border-style: solid; border-width: 1px; background-color:#ADD8E6; font-size:12pt;color:blue;font-family:新細明體 標楷體;}
+.bu1{border-style: groove;border-width:1px: groove;background-color:#CCCCFF;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.bub{border-style: groove;border-width:1px: groove;background-color:#FFCCCC;font-size:14pt;}
+.bur2{border-style: groove;border-width:1px: groove;background-color:#FFCCCC;font-size:12px;Padding-left:0 px;Padding-right:0 px;}
+.f8{font-size:9pt;}
+.bf8{font-size:9pt;color:blue;}
+.f9{font-size:9 pt;}
+</style>
+
+<TABLE width='90%'  border='0'>
+
+
+<TR><TD align=right>{{$this->links->show_page()}}</TD></TR></TABLE>
+<TABLE border=0 width=90% style='font-size:11pt;' cellspacing='1' cellpadding='3' bgcolor='lightGray' >
+
+<tr align=center  style='font-size:11pt' bgcolor='#E5E5E5'>
+<td width=6%>學期</td>
+<td width=10%>起始日期</td>
+<td width=10%>週數</td>
+<td width=50%>單位標題陣列</td>
+<td width=14%>週次模式</td>
+<td width=10%><a href="{{$smarty.server.PHP_SELF}}?act=add_form">新增</a></td>
+</tr>
+{{if $smarty.get.act=="add_form" }}
+<!-- 新增表單   ---開始-->
+<tr align=center ><td colspan="6">
+
+<fieldset style="margin: 20px;background-color: #FFFFFF;">
+<legend><b>新增校務行事曆設定</b></legend>
+
+
+
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}' Name='e1' enctype='multipart/form-data'>
+<table>
+<tr><td>1.學年度<font color="#FF0000">*</font></td>
+<td><input type="text"  name="syear" value='' size=10 class=ip3></td></tr>
+<tr><td>2.起始日期<font color="#FF0000">*</font></td>
+<td>
+<input type="text"  name="sday" value='{{$smarty.now|date_format:"%Y-%m-%d"}}' id="open_date1" size=10 class=ip3>
+<button id="date_1" title="選擇日期">...</button>
+<script type="text/javascript">Calendar.setup({"inputField":"open_date1","button":"date_1","singleClick":false});</script>
+</td></tr>
+<tr><td colspan=2>3.<font color="#FF0000">*</font><input type="checkbox" name="copy_prior" value='on' onclick='this.form.weeks.readonly=true;'>自前一學年度相同學期複製資料(若選取，以下資料不用填寫)</td></tr>
+<tr><td>4.顯示週數<font color="#FF0000">*</font></td>
+<td><input type="text"  name="weeks" value='' size=6 class=ip3></td></tr>
+<tr><td>5.使用單位名稱列表<font color="#FF0000">*</font></td>
+<td><input type="text"  name="unit" value='' size=50 class=ip3></td></tr>
+<tr><td>6.週次模式依<font color="#FF0000">*</font></td>
+<td>
+<select name='week_mode' class=ip3>
+{{html_options  options=$this->wk_mode }}
+</select>
+</td></tr>
+
+<tr align=center>
+<td colspan=2>
+<br>
+<INPUT TYPE='hidden' Name='form_act' value=''>
+<INPUT TYPE='hidden' Name='page' Value='{{$this->page}}'>
+<INPUT TYPE='reset' Value='重設' class=bur2 >
+<INPUT TYPE='button' value='填好送出' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='add';this.form.submit()}" class=bur2>
+<INPUT TYPE='button' value='取消返回' onclick="history.back();" class=bur2>
+</td></tr>
+</table>
+</FORM>
+</fieldset>
+<!-- 新增表單   ---結束-->
+</td></tr>
+{{/if}}
+{{foreach from=$this->all item=arr}}
+
+{{if $smarty.get.edit==$arr.syear}}
+<!-- 編修表單   ---開始-->
+<tr align=center><td colspan=6 >
+<fieldset style="margin: 20px;background-color: #FFFFFF;">
+<legend><b>編修校務行事曆設定</b></legend>
+
+<FORM METHOD=POST ACTION='{{$smarty.server.PHP_SELF}}'  Name='e1' enctype='multipart/form-data'>
+<table>
+<tr><td>1.學年度<font color="#FF0000">*</font></td>
+<td><input type="text"  name="syear" value='{{$arr.syear}}' size=10 class=ip3></td></tr>
+<tr><td>2.起始日期<font color="#FF0000">*</font></td>
+<td>
+<input type="text"  name="sday" value='{{$arr.sday}}' id="open_date1" size=10 class=ip3>
+<button id="date_1" title="選擇日期">...</button>
+<script type="text/javascript">Calendar.setup({"inputField":"open_date1","button":"date_1","singleClick":false});</script>
+</td></tr>
+<tr><td>3.顯示週數<font color="#FF0000">*</font></td>
+<td><input type="text"  name="weeks" value='{{$arr.weeks}}' size=6 class=ip3></td></tr>
+<tr><td>4.使用單位名稱列表<font color="#FF0000">*</font></td>
+<td><input type="text"  name="unit" value='{{$arr.unit}}' size=50 class=ip3></td></tr>
+<tr><td>5.週次模式依<font color="#FF0000">*</font></td>
+<td>
+<select name='week_mode' class=ip3 >
+{{html_options  options=$this->wk_mode selected=$arr.week_mode}}
+</select>
+
+</td></tr>
+
+<tr align=center>
+<td colspan=2><br>
+<INPUT TYPE='hidden' Name='form_act'  value=''>
+<INPUT TYPE='hidden' Name='page' Value='{{$this->page}}'>
+<INPUT TYPE='reset' Value='重設' class=bur2 >
+<INPUT TYPE='button' value='填好送出' onclick="if( window.confirm('要寫入了喔？確定？')){this.form.form_act.value='update';this.form.submit()}" class=bur2>
+<INPUT TYPE='button' value='取消返回' onclick="history.back();" class=bur2>
+</td></tr>
+</table>
+</FORM>
+</fieldset>
+</td></tr>
+<!-- 編修表單 ---結束-->
+{{else}}
+<!-- 流覽資料 #E4E7C5,#E9ECE6 -->
+<tr align=center bgcolor='{{cycle values="#FFFFFF,#E6ECF0"}}' style='font-size:14px'>
+<td>{{$arr.syear}} </td>
+<td>{{$arr.sday}} </td>
+<td>{{$arr.weeks}} </td>
+<td>{{$arr.unit}} </td>
+<td>{{$this->wk_mode[$arr.week_mode]}}</td>
+<td><a href="{{$smarty.server.PHP_SELF}}?edit={{$arr.syear}}&page={{$this->page}}">修改</a>
+<a href="{{$smarty.server.PHP_SELF}}?form_act=del&syear={{$arr.syear}}&page={{$this->page}}" onclick="return window.confirm('真的刪除嗎？');">刪除</a> 
+</td></tr>
+{{/if}}
+{{/foreach}}
+
+
+
+<tr align=left  style='font-size:11pt' bgcolor=white>
+<td width=100% colspan=6>
+填寫說明：<br>
+1.學年度：<font size="2" color="#0000FF"><B style="color:red">92</B>學年度第<B style="color:red">2</B>學期則以<B style="color:red">0922</B>表示。</font><br><br>
+2.起始日期：<font size="2" color="#0000FF">填寫格式 </font><B style="color:red">2004-03-03</B><br><br>
+3.顯示週數：<font size="2" color="#0000FF">填寫數字</font><br><br>
+4.使用單位名稱列表：<font size="2" color="#0000FF">顯示於行事曆的標題名稱，
+請以<B style="color:red">3個</B>半形<B style="color:red">@</B>隔開各個項目。<br>
+例:
+校園大事<B style="color:red">@@@</B>教務<B style="color:red">@@@</B>訓導<B style="color:red">@@@</B>總務<B style="color:red">@@@</B>輔導。</font><br><BR>
+5.週次模式：<BR>
+【自動計算】指程式自動計算取得週次。<BR>
+【開學日設定】指所有週次資料由『學期初設定/開學日設定/週次設定』內取得。<BR><BR>
+6.其他事項：<BR>
+部分電腦主機無法正確拆解字串,請連絡網管將主機內/etc/php.ini設定檔中的<br>
+magic_quotes_gpc=Off改為magic_quotes_gpc=On
+<p><FONT size=2 COLOR='#0000FF'>彰化縣學務系統推廣小組</FONT></p>
+</td>
+</tr>
+</table>
+
+

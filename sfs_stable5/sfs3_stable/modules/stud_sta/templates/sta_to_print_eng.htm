@@ -1,0 +1,143 @@
+<html>
+    <meta http-equiv="Content-Type" content="text/html; Charset=Big5">
+    <head>
+        <title>{{$this->sch.sch_cname}}英文版在學證明書</title>
+        <style type="text/css">
+            <!--
+            body{
+                #		width:21cm;
+                #		height:29cm;
+                #		border-style: solid;
+            }
+            .all{
+                width:18cm;
+                height:12cm;
+                border-style:dashed;
+                dispaly:block;
+                margin-top:0cm;
+                margin-left:0cm;
+                margin-right:0cm;
+                line-height:30pt;
+                font-family: Times New Roman, cursive;
+
+            }
+            .title{
+                margin-top:0.5cm;
+                text-align: center;
+                font-size: 20pt;
+                font-weight: bold;
+            }
+            .wordnum{
+                text-align: right;
+                font-size: 12pt;
+                font-weight: normal;
+                margin-top: 10pt;
+                margin-right:1cm;
+                margin-bottom: 10pt;
+            }
+            .meat{
+                text-align: left;
+                font-size: 16pt;
+                font-weight: normal;
+
+                margin-top: 10pt;
+                margin-bottom: 10pt;
+                margin-left: 20pt;
+                margin-right: 20pt;
+                line-height:24pt;
+                text-indent: 30pt;
+            }
+            .principal{
+                text-align: center;
+                font-size: 26pt;
+                font-weight: bold;
+                margin-top:0.3cm;
+                font-family:script;
+            }
+            .sch{
+                text-align: right;
+                font-size: 30pt;
+                font-weight: bold;
+                margin-top:0.3cm;
+                margin-right:1cm;
+                font-family:script;
+            }
+
+            .idate{
+                text-align: center;
+                font-size: 16pt;
+                font-weight: normal;
+                letter-spacing:12px;
+                margin-top: 2pt;
+                font-family: Times New Roman, cursive;
+            }
+            hr{
+                text-align: center;
+                #		margin-top:18pt;
+                width:17cm;
+                border-style:dashed;
+                margin-left:1cm;
+            }
+            .tea{
+                text-align: right;
+                font-size: 16pt;
+                margin-right:0.5cm;
+                margin-top:0.3cm;
+                margin-bottom:1.2cm;
+                font-family: Times New Roman, cursive;
+            }
+            -->
+        </style>
+    </head>
+    <body>
+        {{assign var="tol" value=0 }}
+        {{foreach from=$this->stu item=arr}}
+        {{if $tol!=0}}<BR STYLE='page-break-before: always;'>{{/if}}
+        <div class="all">
+            <div class="title">CERTIFICATE OF ENROLLMENT</div>
+            {{$arr.photo}}
+            <div class="wordnum">Certificate Number: ({{$this->CD($arr.prove_date,"Y")}}) {{$arr.prove_id}}</div>
+            <div class="meat">This is to certify that 
+                {{$arr.stud_name_eng}}, born on 
+                {{$this->CD2($arr.stud_birthday,"m")}}
+                {{$this->CD($arr.stud_birthday,"d")}}{{$this->CD2($arr.stud_birthday,"d")}}, {{$this->CD2($arr.stud_birthday,"Y")}},
+                is enrolled as a {{$this->CD2($arr.seme_class2,"s")}} grade student in the 
+                {{$this->CD2($arr.seme,"s")}} semester of {{$this->CD2($arr.prove_date,"Y")}} at {{$this->sch.sch_ename}}.</div>
+            <div class="principal">Principal<div>
+                    <div class="sch">{{$this->set.signature3}}</div>
+                    <div class="idate">
+                        Date of issue: {{$this->CD2($arr.prove_date,"Y")}} -
+                        {{$this->CD($arr.prove_date,"m")}} -
+                        {{$this->CD($arr.prove_date,"d")}}
+                    </div>
+                    <div class="tea">{{$this->need_teacher}}  Reviewer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                </div>
+                <hr>
+
+                <div class="all">
+                    <div class="title">CERTIFICATE OF ENROLLMENT</div>
+                    {{$arr.photo}}
+                    <div class="wordnum">Certificate Number: ({{$this->CD($arr.prove_date,"Y")}}) {{$arr.prove_id}}</div>
+                    <div class="meat">This is to certify that
+                        {{$arr.stud_name_eng}}, born on
+                        {{$this->CD2($arr.stud_birthday,"m")}}
+                        {{$this->CD($arr.stud_birthday,"d")}}{{$this->CD2($arr.stud_birthday,"d")}}, {{$this->CD2($arr.stud_birthday,"Y")}},
+                        is enrolled as a {{$this->CD2($arr.seme_class2,"s")}} grade student in the
+                        {{$this->CD2($arr.seme,"s")}} semester of {{$this->CD2($arr.prove_date,"Y")}} at {{$this->sch.sch_ename}}.</div>
+                    <div class="principal">Principal<div>
+                            <div class="sch">{{$this->set.signature3}}</div>
+                            <div class="idate">
+                                Date of issue: {{$this->CD2($arr.prove_date,"Y")}} -
+                                {{$this->CD($arr.prove_date,"m")}} -
+                                {{$this->CD($arr.prove_date,"d")}}
+                            </div>
+                            <div class="tea">{{$this->need_teacher}}  Reviewer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        </div>
+
+
+                        {{assign var="tol" value=$tol+1 }}
+                        {{/foreach}}
+
+                        </body>
+                        </html>
+
